@@ -9,11 +9,14 @@ const extractSass = new ExtractTextPlugin({
 module.exports = [{
   name: 'css',
   entry: {
-    common: path.resolve('./src/scss/common.scss')
+    'type': path.resolve('./src/scss/type.scss'),
+    'common': path.resolve('./src/scss/common.scss'),
+    'common-def': path.resolve('./src/scss/common.def.scss'),
+    'demo': path.resolve('./demo/demo.scss'),
   },
   output: {
     path: path.resolve('./dist'),
-    filename: 'bundle.js'
+    filename: '[name].css.js'
   },
   module: {
     rules: [{
