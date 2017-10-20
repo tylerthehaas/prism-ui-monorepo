@@ -1,0 +1,28 @@
+@import 'variables';
+@import 'mixins';
+
+// @include tui-type-font-face('ProximaNova-Reg');
+@font-face {
+  font-family: 'ProximaNova-Reg';
+  src: url('/dist/fonts/ProximaNova-Reg.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+html, body {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-family: $tui-type-font-family;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  margin: 0;
+  padding: 0;
+}
+
+.tui-type-form-heading {
+  font-size: .75rem;
+  line-height: 1.5rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}

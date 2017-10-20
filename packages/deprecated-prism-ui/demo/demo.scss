@@ -1,1 +1,15 @@
-@import '../src/scss/common'
+@import '../src/scss/common';
+
+.content {
+  max-width: 800px;
+  margin: 3em auto;
+}
+
+.types {
+  dt {
+    float: left;
+  }
+  dd {
+    margin-left: 10em;
+  }
+}
