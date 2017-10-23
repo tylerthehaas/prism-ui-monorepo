@@ -2,7 +2,13 @@
 
 .content {
   max-width: 800px;
-  margin: 3em auto;
+  margin: 0 auto;
+}
+
+.section-header {
+  color: white;
+  background-color: $psm-color-gray-900;
+  padding: 10px 0 10px 200px;
 }
 
 .types {
@@ -10,6 +16,13 @@
     float: left;
   }
   dd {
-    margin-left: 10em;
+    margin-left: 200px;
+    height: 6em;
   }
 }
+
+h1, h2, h3, h4, h5, h6, p {
+  margin: 0;
+  padding: 0;
+}
+

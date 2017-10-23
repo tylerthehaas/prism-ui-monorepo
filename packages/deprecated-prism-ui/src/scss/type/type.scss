@@ -1,10 +1,11 @@
+@import '../color/variables';
 @import 'variables';
 @import 'mixins';
 
-// @include tui-type-font-face('ProximaNova-Reg');
+@include psm-type-font-face('ProximaNova-Reg');
 @font-face {
   font-family: 'ProximaNova-Reg';
-  src: url('/dist/fonts/ProximaNova-Reg.ttf') format('truetype');
+  src: url('/fonts/ProximaNova-Reg.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
 }
@@ -12,17 +13,74 @@
 html, body {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
-  font-family: $tui-type-font-family;
+  font-family: $psm-type-font-family;
+  color: $psm-color-gray-600;
+  line-height: 2;
 }
 
-h1, h2, h3, h4, h5, h6, p {
-  margin: 0;
-  padding: 0;
+.psm-type-header-1, h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: $psm-color-gray-900;
 }
 
-.tui-type-form-heading {
+.psm-type-header-2, h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: $psm-color-gray-900;
+}
+
+.psm-type-header-3, h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: $psm-color-gray-900;
+}
+
+.psm-type-header-4, h4 {
+  font-size: 1rem;
+  font-weight: normal;
+  color: $psm-color-gray-900;
+}
+
+.psm-type-header-5, h5 {
+  font-size: .875rem;
+  font-weight: 600;
+  color: $psm-color-gray-900;
+}
+
+.psm-type-header-6, h6 {
+  font-size: 1rem;
+  font-weight: normal;
+  color: $psm-color-gray-900;
+}
+
+.psm-type-form-heading {
   font-size: .75rem;
-  line-height: 1.5rem;
   font-weight: 600;
   text-transform: uppercase;
+}
+
+.psm-type-paragraph, p {
+  font-size: .875rem;
+  line-height: 1.5rem;
+}
+
+.psm-type-body {
+  font-size: .875rem;
+  line-height: 1.25rem;
+}
+
+.psm-type-paragraph-small {
+  font-size: .75rem;
+}
+
+.psm-type-body-small {
+  font-size: .75rem;
+  line-height: 1.25rem;
+}
+
+.psm-type-text-link, a {
+  @extend .psm-type-body;
+  color: $psm-color-link;
+  text-decoration: none;
 }

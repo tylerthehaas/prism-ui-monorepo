@@ -9,7 +9,7 @@ const extractSass = new ExtractTextPlugin({
 module.exports = [{
   name: 'css',
   entry: {
-    'type': path.resolve('./src/scss/type.scss'),
+    'type': path.resolve('./src/scss/type/type.scss'),
     'common': path.resolve('./src/scss/common.scss'),
     'common-def': path.resolve('./src/scss/common.def.scss'),
     'demo': path.resolve('./demo/demo.scss'),

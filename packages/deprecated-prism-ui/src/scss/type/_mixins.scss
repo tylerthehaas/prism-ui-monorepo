@@ -1,12 +1,12 @@
 @import 'variables';
 
-@mixin tui-type-font-face($font-name) {
+@mixin psm-type-font-face($font-name) {
   @font-face {
     font-family: $font-name;
-    src: url('#{$tui-type-font-location}/fonts/#{$font-name}-webfont.eot');
-    src: url('#{$tui-type-font-location}/fonts/#{$font-name}-webfont.eot?#iefix') format('embedded-opentype'),
-    url('#{$tui-type-font-location}/fonts/#{$font-name}-webfont.woff') format('woff'),
-    url('#{$tui-type-font-location}/fonts/#{$font-name}-webfont.ttf') format('truetype'),
-    url('#{$tui-type-font-location}/fonts/#{$font-name}-webfont.svg#webfont') format('svg');
+    src: url('#{$psm-type-font-location}/fonts/#{$font-name}-webfont.eot');
+    src: url('#{$psm-type-font-location}/fonts/#{$font-name}-webfont.eot?#iefix') format('embedded-opentype'),
+    url('#{$psm-type-font-location}/fonts/#{$font-name}-webfont.woff') format('woff'),
+    url('#{$psm-type-font-location}/fonts/#{$font-name}-webfont.ttf') format('truetype'),
+    url('#{$psm-type-font-location}/fonts/#{$font-name}-webfont.svg#webfont') format('svg');
   }
 }
