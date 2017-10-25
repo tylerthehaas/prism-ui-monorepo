@@ -1,0 +1,6 @@
+@import 'mixins';
+
+.psm-button, button {
+  @include psm-button-base();
+}
+

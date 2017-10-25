@@ -2,13 +2,14 @@
 
 .content {
   max-width: 800px;
-  margin: 0 auto;
+  margin: 0 auto 3em;
 }
 
 .section-header {
-  color: white;
-  background-color: $psm-color-gray-900;
-  padding: 10px 0 10px 200px;
+  background-color: $psm-color-gray-50;
+  margin-bottom: 60px;
+  padding: 10px;
+  text-align: center;
 }
 
 .types {
