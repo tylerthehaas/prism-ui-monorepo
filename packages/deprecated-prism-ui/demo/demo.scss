@@ -1,4 +1,4 @@
-@import '../src/scss/common';
+@import '../src/scss/prism';
 
 .content {
   max-width: 800px;
@@ -20,6 +20,10 @@
     margin-left: 200px;
     height: 6em;
   }
+}
+
+.buttons {
+  margin-bottom: 60px;
 }
 
 h1, h2, h3, h4, h5, h6, p {

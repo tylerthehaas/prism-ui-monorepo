@@ -1,6 +1,74 @@
 @import 'mixins';
 
 .psm-button, button {
-  @include psm-button-base();
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+	min-width: 80px;
+  height: 36px;
+  padding: 0 16px;
+	border: 1px solid $psm-color-gray-200;
+	border-radius: 3px;
+	background-color: $psm-color-gray-50;
+  outline: none;
+  font-size: .875rem;
+  font-weight: 600;
+  text-align: center;
+  user-select: none;
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  overflow: hidden;
+  vertical-align: middle;
+
+  &:active {
+    outline: none;
+    border-color: $psm-color-gray-300;
+    background-color: white;
+  }
+
+  &:hover {
+    cursor: pointer;
+    border-color: $psm-color-gray-300;
+    background-color: white;
+  }
+
+  &::-moz-focus-inner {
+    padding: 0;
+    border: 0;
+  }
+
+  &:disabled {
+    cursor: default;
+    pointer-events: none;
+    border-color: $psm-color-gray-50;
+    color: $psm-color-gray-400;
+  }
 }
 
+.psm-button-primary {
+  @extend .psm-button;
+  background-color: $psm-color-primary-500;
+  border-color: $psm-color-primary-500;
+  color: white;
+
+  &:active {
+    border-color: $psm-color-primary-600;
+    background-color: $psm-color-primary-600;
+  }
+
+  &:hover {
+    border-color: $psm-color-primary-600;
+    background-color: $psm-color-primary-600;
+  }
+
+  &:disabled {
+    border-color: $psm-color-primary-300;
+    background-color: $psm-color-primary-300;
+    color: white;
+  }
+}
+
+.psm-button-small {
+  min-width: 74px;
+  height: 24px;
+}
