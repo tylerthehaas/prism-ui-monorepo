@@ -3,6 +3,7 @@
 @import 'mixins';
 
 @include psm-type-font-face('ProximaNova-Reg');
+
 @font-face {
   font-family: 'ProximaNova-Reg';
   src: url('/fonts/ProximaNova-Reg.ttf') format('truetype');
