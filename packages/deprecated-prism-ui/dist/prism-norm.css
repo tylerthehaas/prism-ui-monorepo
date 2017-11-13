@@ -391,14 +391,8 @@ template {
 
 @font-face {
   font-family: "ProximaNova-Reg";
-  src: url("/fonts/ProximaNova-Reg-webfont.eot");
-  src: url("/fonts/ProximaNova-Reg-webfont.eot?#iefix") format("embedded-opentype"), url("/fonts/ProximaNova-Reg-webfont.woff") format("woff"), url("/fonts/ProximaNova-Reg-webfont.ttf") format("truetype"), url("/fonts/ProximaNova-Reg-webfont.svg#webfont") format("svg"); }
-
-@font-face {
-  font-family: 'ProximaNova-Reg';
-  src: url("/fonts/ProximaNova-Reg.ttf") format("truetype");
-  font-weight: 400;
-  font-style: normal; }
+  src: url("http://localhost:8000/fonts/ProximaNova-Reg.ttf");
+  src: url("http://localhost:8000/fonts/ProximaNova-Reg.woff") format("woff"), url("http://localhost:8000/fonts/ProximaNova-Reg.ttf") format("truetype"), url("http://localhost:8000/fonts/ProximaNova-Reg.svg#webfont") format("svg"); }
 
 html, body {
   -moz-osx-font-smoothing: grayscale;
@@ -751,7 +745,7 @@ html, body {
 select,
 textarea,
 input:not([type="checkbox"]):not([type="radio"]) {
-  font-family: 'ProximaNova-Reg';
+  font-family: "ProximaNova-Reg", "Helvetica", "Arial", sans-serif;
   outline: none;
   width: 100%;
   height: 36px;
