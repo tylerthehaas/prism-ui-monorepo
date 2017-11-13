@@ -391,8 +391,8 @@ template {
 
 @font-face {
   font-family: "ProximaNova-Reg";
-  src: url("http://localhost:8000/fonts/ProximaNova-Reg.ttf");
-  src: url("http://localhost:8000/fonts/ProximaNova-Reg.woff") format("woff"), url("http://localhost:8000/fonts/ProximaNova-Reg.ttf") format("truetype"), url("http://localhost:8000/fonts/ProximaNova-Reg.svg#webfont") format("svg"); }
+  src: url("/fonts/ProximaNova-Reg.ttf");
+  src: url("/fonts/ProximaNova-Reg.woff") format("woff"), url("/fonts/ProximaNova-Reg.ttf") format("truetype"), url("/fonts/ProximaNova-Reg.svg#webfont") format("svg"); }
 
 html, body {
   -moz-osx-font-smoothing: grayscale;

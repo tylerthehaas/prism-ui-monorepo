@@ -1,18 +1,40 @@
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-
 const extractSass = new ExtractTextPlugin({
     filename: '[name].css',
     disable: process.env.NODE_ENV !== 'production'
 });
 
 module.exports = [{
+  name: 'docs',
+  entry: {
+    'docs': path.resolve('./docs/docs.scss'),
+  },
+  output: {
+    path: path.resolve('./docs'),
+    filename: '[name].css.js'
+  },
+  module: {
+    rules: [{
+      test: /\.scss$/,
+      use: extractSass.extract({
+        use: [{
+          loader: 'css-loader'
+        }, {
+          loader: 'sass-loader'
+        }],
+        fallback: 'style-loader'
+      })
+    }]
+  },
+  plugins: [
+    extractSass
+  ]
+}, {
   name: 'css',
   entry: {
-    'type': path.resolve('./src/scss/type/type.scss'),
-    'common': path.resolve('./src/scss/common.scss'),
-    'common-def': path.resolve('./src/scss/common.def.scss'),
-    'demo': path.resolve('./demo/demo.scss'),
+    'prism': path.resolve('./src/scss/prism.scss'),
+    'prism-norm': path.resolve('./src/scss/prism-norm.scss'),
   },
   output: {
     path: path.resolve('./dist'),
@@ -33,9 +55,5 @@ module.exports = [{
   },
   plugins: [
     extractSass
-  ],
-  devServer: {
-    contentBase: path.join(__dirname, 'demo'),
-    compress: true
-  }
+  ]
 }];

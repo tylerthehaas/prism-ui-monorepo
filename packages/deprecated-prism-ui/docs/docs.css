@@ -1,7 +1,7 @@
 @font-face {
   font-family: "ProximaNova-Reg";
-  src: url("http://localhost:8000/fonts/ProximaNova-Reg.ttf");
-  src: url("http://localhost:8000/fonts/ProximaNova-Reg.woff") format("woff"), url("http://localhost:8000/fonts/ProximaNova-Reg.ttf") format("truetype"), url("http://localhost:8000/fonts/ProximaNova-Reg.svg#webfont") format("svg"); }
+  src: url("./fonts/ProximaNova-Reg.ttf");
+  src: url("./fonts/ProximaNova-Reg.woff") format("woff"), url("./fonts/ProximaNova-Reg.ttf") format("truetype"), url("./fonts/ProximaNova-Reg.svg#webfont") format("svg"); }
 
 html, body {
   -moz-osx-font-smoothing: grayscale;
@@ -68,7 +68,7 @@ html, body {
   display: inline-block;
   height: 16px;
   width: 24px;
-  background-image: url(/icons/psm-icons.svg);
+  background-image: url(./icons/psm-icons.svg);
   background-repeat: no-repeat; }
 
 .psm-icon-zoom-in {
