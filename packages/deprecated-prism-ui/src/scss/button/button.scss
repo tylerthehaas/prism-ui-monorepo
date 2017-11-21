@@ -1,14 +1,18 @@
 @import 'mixins';
 
+$psm-button-height: 36px;
+$psm-border-width: 1px;
+
 .psm-button, button {
   display: inline-block;
   position: relative;
   box-sizing: border-box;
 	min-width: 80px;
-  height: 36px;
+  height: $psm-button-height;
   padding: 0 16px;
-	border: 1px solid $psm-color-gray-200;
-	border-radius: 3px;
+	border: $psm-border-width solid $psm-color-gray-200;
+  border-radius: 3px;
+  color: $psm-color-gray-900;
 	background-color: $psm-color-gray-50;
   outline: none;
   font-size: .875rem;
@@ -19,6 +23,7 @@
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   overflow: hidden;
   vertical-align: middle;
+  line-height: $psm-button-height - $psm-border-width * 2;
 
   &:active {
     outline: none;
@@ -70,5 +75,6 @@
 
 .psm-button-small {
   min-width: 74px;
-  height: 24px;
+  height: $psm-button-height * 2/3;
+  line-height: $psm-button-height * 2/3 - $psm-border-width * 2;
 }

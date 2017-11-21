@@ -672,6 +672,7 @@ html, body {
   padding: 0 16px;
   border: 1px solid #c9cbcd;
   border-radius: 3px;
+  color: #363839;
   background-color: #edeeee;
   outline: none;
   font-size: .875rem;
@@ -681,7 +682,8 @@ html, body {
   -webkit-appearance: none;
   -webkit-tap-highlight-color: transparent;
   overflow: hidden;
-  vertical-align: middle; }
+  vertical-align: middle;
+  line-height: 34px; }
   .psm-button:active, .psm-button-primary:active, button:active {
     outline: none;
     border-color: #b6babc;
@@ -716,7 +718,8 @@ html, body {
 
 .psm-button-small {
   min-width: 74px;
-  height: 24px; }
+  height: 24px;
+  line-height: 22px; }
 
 .psm-input-leading-icon,
 .psm-input-trailing-icon {
