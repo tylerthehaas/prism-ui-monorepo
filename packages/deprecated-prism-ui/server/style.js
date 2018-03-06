@@ -11,6 +11,12 @@ function overridePrimary(color) {
     : '';
 }
 
+function overrideMount(fpath) {
+  return fpath
+    ? `$psm-mount-location: '/${fpath}';`
+    : '';
+}
+
 function doImport(normalize) {
   return normalize
     ? "@import 'prism-norm.scss';"
@@ -18,7 +24,8 @@ function doImport(normalize) {
 }
 
 styleRoute.get('/:color?/prism.css', function (req, res) {
-  const data = overridePrimary(req.params.color) + doImport(req.query.norm);
+  const forwardedPath = req.get('x-forwarded-path');
+  const data = overridePrimary(req.params.color) + overrideMount(forwardedPath) + doImport(req.query.norm);
 
   function success(result) {
     res.type('css').send(result.css.toString());

@@ -2,7 +2,7 @@
   display: inline-block;
   height: 16px;
   width: 24px;
-  background-image: url(/icons/psm-icons.svg);
+  background-image: url(#{$psm-mount-location}/icons/psm-icons.svg);
   background-repeat: no-repeat;
 }
 
