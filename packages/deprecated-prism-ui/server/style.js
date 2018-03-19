@@ -19,7 +19,7 @@ function getMount(path) {
 
 function overrideMount(fpath) {
   return fpath
-    ? `$psm-mount-location: '/${fpath}';`
+    ? `$psm-mount-location: '${fpath}';`
     : '';
 }
 
