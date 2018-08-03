@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import { Button } from '../../../dist/prism.min.js';
+import { Button } from './index';
 import { simplifyWhiteSpace } from '../utils/utils';
 
 describe('Button Component', () => {
@@ -75,6 +75,28 @@ describe('Button Component', () => {
       }
     });
     assert.ok(hasPrimaryClass);
+  });
+
+  it('must remove small button styles when isSmall is set to false', () => {
+    let hasSmallClass = true;
+    button.isSmall = false;
+    button.node.classList.forEach(c => {
+      if(!/^buttonSmall/.test(c)){
+        hasSmallClass = false;
+      }
+    });
+    assert.ok(!hasSmallClass);
+  });
+
+  it('must add small button styles when isSmall is set to true', () => {
+    let hasSmallClass = false;
+    button.isSmall = true;
+    button.node.classList.forEach(c => {
+      if(!/^buttonSmall/.test(c)){
+        hasSmallClass = true;
+      }
+    });
+    assert.ok(hasSmallClass);
   });
 });
 

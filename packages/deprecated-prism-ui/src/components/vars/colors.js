@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 export default {
   gray: {
     50: '#F8F8F8',
