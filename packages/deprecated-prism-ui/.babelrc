@@ -1,0 +1,38 @@
+{
+  "plugins": [
+    "transform-object-assign",
+    "transform-object-rest-spread",
+    "transform-class-properties"
+  ],
+  "presets": [
+    [
+      "env",
+      {
+        "modules": false,
+        "targets": {
+          "browsers": [
+            "last 2 versions",
+            "ie >= 11"
+          ]
+        },
+        "useBuiltIns": true
+      }
+    ]
+  ],
+  "env": {
+    "test": {
+      "presets": [
+        [
+          "env",
+          {
+            "modules": "commonjs",
+            "useBuiltIns": true,
+            "targets": {
+              "node": "current"
+            }
+          }
+        ]
+      ]
+    }
+  }
+}
