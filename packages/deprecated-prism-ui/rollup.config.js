@@ -6,10 +6,11 @@ import minify from "rollup-plugin-minify";
 import replace from "rollup-plugin-replace";
 import postcss from "rollup-plugin-postcss";
 import postcssPresetEnv from "postcss-preset-env";
-import url from "rollup-plugin-url";
+import url from "postcss-url";
 import htmlTemplate from "rollup-plugin-generate-html-template";
 
 const isProduction = process.env.NODE_ENV === "production";
+const outDir = isProduction ? "dist" : "docs";
 
 const getDevPlugins = () => [
   htmlTemplate({
@@ -24,7 +25,7 @@ export default {
   input: "components/index.js",
   output: {
     extend: true,
-    file: isProduction ? "dist/bundle.js" : "docs/bundle.js",
+    file: `${outDir}/bundle.js`,
     format: "umd",
     globals: ["jss", "preset", "isolate"],
     name: "prism",
@@ -49,11 +50,9 @@ export default {
         postcssPresetEnv({
           browsers: ["last 2 versions", "ie >= 11"],
         }),
+        url({ url: "inline" }),
       ],
       sourceMap: isProduction ? false : "inline",
-    }),
-    url({
-      include: ["**/*.svg", "**/*.ttf", "**/*.woff"],
     }),
     filesize(),
   ].concat(isProduction ? getProdPlugins() : getDevPlugins()),
