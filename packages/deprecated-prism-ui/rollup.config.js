@@ -8,7 +8,6 @@ import replace from "rollup-plugin-replace";
 import scss from "rollup-plugin-scss";
 import uglifyCSS from "uglifycss";
 import url from "rollup-plugin-url";
-import serve from "rollup-plugin-serve";
 import htmlTemplate from "rollup-plugin-generate-html-template";
 
 const isProduction = process.env.NODE_ENV === "production";
@@ -17,10 +16,6 @@ const getDevPlugins = () => [
   htmlTemplate({
     target: "./docs/index.html",
     template: "./templates/docs.html",
-  }),
-  serve({
-    contentBase: "docs",
-    port: 3000,
   }),
 ];
 
@@ -60,4 +55,7 @@ export default {
     }),
     filesize(),
   ].concat(isProduction ? getProdPlugins() : getDevPlugins()),
+  watch: {
+    chokidar: true,
+  },
 };

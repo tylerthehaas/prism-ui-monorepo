@@ -1,1 +1,3 @@
-import "./index.scss";
+import "./color";
+import "./icon";
+import "./type";
