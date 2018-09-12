@@ -1,0 +1,80 @@
+@import "../core/color/variables";
+
+$psm-button-height: 36px;
+$psm-border-width: 1px;
+
+.psm-button,
+button {
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  min-width: 80px;
+  height: $psm-button-height;
+  padding: 0 16px;
+  border: $psm-border-width solid $psm-color-gray-200;
+  border-radius: 3px;
+  color: $psm-color-gray-900;
+  background-color: $psm-color-gray-50;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-align: center;
+  user-select: none;
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  overflow: hidden;
+  vertical-align: middle;
+  line-height: $psm-button-height - $psm-border-width * 2;
+
+  &:active {
+    outline: none;
+    border-color: $psm-color-gray-300;
+    background-color: white;
+  }
+
+  &:hover {
+    cursor: pointer;
+    border-color: $psm-color-gray-300;
+    background-color: white;
+  }
+
+  &::-moz-focus-inner {
+    padding: 0;
+    border: 0;
+  }
+
+  &:disabled {
+    cursor: default;
+    pointer-events: none;
+    border-color: $psm-color-gray-50;
+    color: $psm-color-gray-400;
+  }
+}
+
+.psm-button-primary {
+  @extend .psm-button;
+  background-color: $psm-color-primary-500;
+  border-color: $psm-color-primary-500;
+  color: white;
+
+  &:active {
+    border-color: $psm-color-primary-600;
+    background-color: $psm-color-primary-600;
+  }
+
+  &:hover {
+    border-color: $psm-color-primary-600;
+    background-color: $psm-color-primary-600;
+  }
+
+  &:disabled {
+    border-color: $psm-color-primary-300;
+    background-color: $psm-color-primary-300;
+    color: white;
+  }
+}
+
+.psm-button-small {
+  min-width: 74px;
+  height: $psm-button-height * 2/3;
+  line-height: $psm-button-height * 2/3 - $psm-border-width * 2;
+}

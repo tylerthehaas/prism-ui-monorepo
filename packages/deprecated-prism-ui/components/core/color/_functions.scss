@@ -1,0 +1,7 @@
+@function alpha-blend($foreground, $opacity, $background) {
+  $bm-red: red($foreground) * $opacity + red($background) * (1 - $opacity);
+  $bm-green: green($foreground) * $opacity + green($background) * (1 - $opacity);
+  $bm-blue: blue($foreground) * $opacity + blue($background) * (1 - $opacity);
+
+  @return rgb($bm-red, $bm-green, $bm-blue);
+}

@@ -1,0 +1,27 @@
+@import "functions";
+
+$psm-color-primary-base: #ff6008 !default;
+$psm-color-gray-base: #868c8f;
+$psm-color-link: #0078d3;
+
+$psm-color-primary-50: alpha-blend($psm-color-primary-base, 0.15, white);
+$psm-color-primary-100: alpha-blend($psm-color-primary-base, 0.3, white);
+$psm-color-primary-200: alpha-blend($psm-color-primary-base, 0.45, white);
+$psm-color-primary-300: alpha-blend($psm-color-primary-base, 0.6, white);
+$psm-color-primary-400: alpha-blend($psm-color-primary-base, 0.85, white);
+$psm-color-primary-500: $psm-color-primary-base;
+$psm-color-primary-600: alpha-blend($psm-color-primary-base, 0.85, black);
+$psm-color-primary-700: alpha-blend($psm-color-primary-base, 0.7, black);
+$psm-color-primary-800: alpha-blend($psm-color-primary-base, 0.55, black);
+$psm-color-primary-900: alpha-blend($psm-color-primary-base, 0.4, black);
+
+$psm-color-gray-50: #f8f8f8;
+$psm-color-gray-100: #f1f1f1;
+$psm-color-gray-200: #e1e1e1;
+$psm-color-gray-300: #d4d4d4;
+$psm-color-gray-400: #ababae;
+$psm-color-gray-500: #8e8e8e;
+$psm-color-gray-600: #707070;
+$psm-color-gray-700: #525252;
+$psm-color-gray-800: #363636;
+$psm-color-gray-900: #212121;

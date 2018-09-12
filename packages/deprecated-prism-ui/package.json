@@ -1,15 +1,25 @@
 {
   "name": "prism-ui",
-  "version": "1.0.0",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=10.0.0 <11.0.0",
+    "yarn": ">=1.9.0 <2.0.0"
+  },
   "description": "Common UI for OC Tanner",
   "scripts": {
-    "build": "NODE_ENV=production webpack --progress --colors && ./node_modules/.bin/rollup -c",
-    "build:css": "NODE_ENV=production webpack --progress --colors",
-    "build:components": "./node_modules/.bin/rollup -c",
-    "start": "node server",
-    "test": "npm run build:components && BABEL_ENV=test ./node_modules/.bin/mocha --require jsdom-global/register --require babel-core/register \"./src/components/**/*.test.js\"",
-    "report": "./node_modules/.bin/nyc report --reporter=text",
-    "coverage": "BABEL_ENV=test ./node_modules/.bin/nyc --reporter=html ./node_modules/.bin/mocha --require babel-core/register \"./src/components/**/*.test.js\""
+    "build:css": "NODE_ENV=production yarn rollup -c",
+    "dev:css": "yarn rollup -c --watch",
+    "lint": "eslint . --ext .js",
+    "prettier": "yarn prettier:js && yarn prettier:css",
+    "prettier:js": "prettier --write \"./**/*.js\"",
+    "prettier:css": "prettier --parser scss --write \"./**/*.scss\"",
+    "precommit": "pretty-quick --staged",
+    "postmerge": "yarnhook",
+    "postcheckout": "yarnhook",
+    "postrewrite": "yarnhook",
+    "test": "node ./jest-config/jest.js -w='2' --no-cache",
+    "test:coverage": "yarn test --coverage",
+    "test:watch": "yarn test --watch"
   },
   "license": "ISC",
   "publishConfig": {
@@ -25,68 +35,148 @@
     "jss-preset-default": "^4.5.0"
   },
   "devDependencies": {
-    "babel-core": "^6.26.3",
-    "babel-plugin-external-helpers": "^6.22.0",
-    "babel-plugin-istanbul": "^4.1.6",
-    "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-plugin-transform-object-assign": "^6.22.0",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-preset-env": "^1.7.0",
-    "codacy-coverage": "^2.0.3",
+    "@babel/core": "^7.0.0",
+    "@babel/plugin-proposal-class-properties": "^7.0.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
+    "@babel/plugin-transform-object-assign": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "^23.6.0",
+    "codacy-coverage": "^3.0.0",
     "compression": "^1.7.3",
     "cors": "^2.8.4",
-    "css-loader": "^1.0.0",
-    "eslint": "^4.19.1",
+    "eslint": "^5.5.0",
+    "eslint-plugin-jest": "^21.22.0",
     "express": "^4.16.3",
-    "extract-text-webpack-plugin": "^3.0.2",
-    "html-webpack-plugin": "^2.30.1",
+    "husky": "^0.14.3",
+    "jest": "^23.6.0",
     "jsdom": "^11.12.0",
-    "jsdom-global": "^3.0.2",
-    "mocha": "^5.2.0",
     "node-sass": "^4.9.3",
-    "normalize.css": "^7.0.0",
-    "nyc": "^12.0.2",
-    "rollup": "^0.63.0",
-    "rollup-plugin-babel": "^3.0.7",
-    "rollup-plugin-commonjs": "^9.1.4",
+    "normalize.css": "^8.0.0",
+    "prettier": "^1.14.2",
+    "pretty-quick": "^1.6.0",
+    "rollup": "^0.65.2",
+    "rollup-plugin-babel": "^4.0.3",
+    "rollup-plugin-commonjs": "^9.1.6",
     "rollup-plugin-filesize": "^4.0.1",
+    "rollup-plugin-generate-html-template": "^1.1.0",
     "rollup-plugin-minify": "^1.0.3",
-    "rollup-plugin-node-resolve": "^3.3.0",
-    "sass-loader": "^7.0.0",
-    "style-loader": "^0.21.0",
-    "webpack": "^3.7.1"
+    "rollup-plugin-node-resolve": "^3.4.0",
+    "rollup-plugin-replace": "^2.0.0",
+    "rollup-plugin-scss": "^0.4.0",
+    "rollup-plugin-serve": "^0.4.2",
+    "rollup-plugin-url": "^1.4.0",
+    "uglifycss": "^0.0.29",
+    "yarnhook": "^0.3.0"
   },
-  "nyc": {
-    "check-coverage": true,
-    "lines": 80,
-    "statements": 80,
-    "functions": 80,
-    "branches": 80,
-    "watermarks": {
-      "lines": [
-        80,
-        95
-      ],
-      "functions": [
-        80,
-        95
-      ],
-      "branches": [
-        80,
-        95
-      ],
-      "statements": [
-        80,
-        95
-      ]
-    },
-    "require": [
-      "babel-core/register"
+  "babel": {
+    "plugins": [
+      "@babel/plugin-transform-object-assign",
+      "@babel/plugin-proposal-object-rest-spread",
+      "@babel/plugin-proposal-class-properties"
     ],
-    "sourceMap": false,
-    "instrument": false,
-    "cache": true,
-    "all": false,
-    "report-dir": "./coverage/"
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "modules": false,
+          "targets": {
+            "browsers": [
+              "last 2 versions",
+              "ie >= 11"
+            ]
+          },
+          "useBuiltIns": "usage"
+        }
+      ]
+    ],
+    "env": {
+      "test": {
+        "presets": [
+          [
+            "@babel/preset-env",
+            {
+              "modules": "commonjs",
+              "useBuiltIns": "usage",
+              "targets": {
+                "node": "current"
+              }
+            }
+          ]
+        ]
+      }
+    }
+  },
+  "eslintConfig": {
+    "extends": [
+      "eslint:recommended",
+      "plugin:jest/recommended"
+    ],
+    "env": {
+      "browser": true,
+      "commonjs": true,
+      "es6": true,
+      "node": true
+    },
+    "parserOptions": {
+      "ecmaVersion": 2018,
+      "ecmaFeatures": {
+        "jsx": true
+      },
+      "sourceType": "module"
+    },
+    "rules": {
+      "jest/expect-expect": "error",
+      "jest/prefer-to-be-null": "error",
+      "jest/prefer-to-be-undefined": "error",
+      "sort-keys": "error",
+      "jest/valid-describe": "error",
+      "jest/valid-expect-in-promise": "error"
+    }
+  },
+  "eslintIgnore": [
+    "node_modules",
+    "dist",
+    "coverage"
+  ],
+  "prettier": {
+    "trailingComma": "all"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json"
+    ],
+    "modulePaths": [
+      "<rootDir>/src/"
+    ],
+    "moduleNameMapper": {
+      "^.+\\.(jpg|png|svg)$": "<rootDir>/jest-config/file-mock.js",
+      "^.+\\.css$": "<rootDir>/jest-config/style-mock.js"
+    },
+    "transform": {
+      "^.+\\.js$": "<rootDir>/jest-config/transform.js"
+    },
+    "setupFiles": [
+      "<rootDir>/jest-config/setup.js"
+    ],
+    "testPathIgnorePatterns": [
+      "<rootDir>/(dist|node_modules)/",
+      "<rootDir>/src/"
+    ],
+    "testEnvironment": "jsdom",
+    "testRegex": "\\.test\\.js$",
+    "coverageReporters": [
+      "text",
+      "html"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "lines": 80,
+        "statements": 80,
+        "functions": 80,
+        "branches": 80
+      }
+    }
   }
 }

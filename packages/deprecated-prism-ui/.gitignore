@@ -3,3 +3,4 @@ dist/
 .nyc_output/
 coverage/
 *.css.js
+docs/docs.css
