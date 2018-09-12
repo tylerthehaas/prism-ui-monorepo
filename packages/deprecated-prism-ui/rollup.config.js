@@ -1,12 +1,11 @@
 import babel from "rollup-plugin-babel";
-import { writeFileSync } from "fs";
 import resolve from "rollup-plugin-node-resolve";
 import commonjs from "rollup-plugin-commonjs";
 import filesize from "rollup-plugin-filesize";
 import minify from "rollup-plugin-minify";
 import replace from "rollup-plugin-replace";
-import scss from "rollup-plugin-scss";
-import uglifyCSS from "uglifycss";
+import postcss from "rollup-plugin-postcss";
+import postcssPresetEnv from "postcss-preset-env";
 import url from "rollup-plugin-url";
 import htmlTemplate from "rollup-plugin-generate-html-template";
 
@@ -25,7 +24,7 @@ export default {
   input: "components/index.js",
   output: {
     extend: true,
-    file: "dist/prism.js",
+    file: isProduction ? "dist/bundle.js" : "docs/bundle.js",
     format: "umd",
     globals: ["jss", "preset", "isolate"],
     name: "prism",
@@ -43,12 +42,15 @@ export default {
     babel({
       exclude: "node_modules/**",
     }),
-    scss({
-      output(styles) {
-        const css = isProduction ? uglifyCSS.processString(styles) : styles;
-        const target = isProduction ? "./dist/bundle.css" : "./docs/docs.css";
-        writeFileSync(target, css);
-      },
+    postcss({
+      extract: true,
+      minimize: isProduction,
+      plugins: [
+        postcssPresetEnv({
+          browsers: ["last 2 versions", "ie >= 11"],
+        }),
+      ],
+      sourceMap: isProduction ? false : "inline",
     }),
     url({
       include: ["**/*.svg", "**/*.ttf", "**/*.woff"],
