@@ -1,0 +1,64 @@
+@import "../core/color/variables";
+@import "../core/spacing/variables";
+
+.psm-avatar {
+  border-radius: 100%;
+  width: 40px;
+  height: 40px;
+  background-color: $psm-color-gray-500;
+  color: $psm-color-gray-50;
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+
+  .psm-avatar__img {
+    border-radius: 100%;
+    height: 100%;
+    width: 100%;
+  }
+
+  .psm-avatar__sillouette {
+    background-image: url(./icons/psm-avatar.svg);
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    width: 100%;
+    height: 100%;
+    background-size: 75%;
+  }
+
+  .psm-avatar__text {
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    font-size: 14px;
+  }
+
+  &.psm-avatar--xl {
+    width: 120px;
+    height: 120px;
+
+    .psm-avatar__text {
+      font-size: 55px;
+    }
+  }
+
+  &.psm-avatar--lg {
+    width: 72px;
+    height: 72px;
+
+    .psm-avatar__text {
+      font-size: 35px;
+    }
+  }
+
+  &.psm-avatar--sm {
+    width: 32px;
+    height: 32px;
+  }
+
+  &.psm-avatar--xs {
+    width: 24px;
+    height: 24px;
+  }
+}

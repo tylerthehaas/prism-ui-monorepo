@@ -28,4 +28,9 @@
 .psm-select {
   line-height: 36px;
   background-color: white;
+  appearance: none;
+  display: inline-block;
+  background-image: url(./icons/psm-select-arrow.svg);
+  background-position: right 9px;
+  background-repeat: no-repeat;
 }

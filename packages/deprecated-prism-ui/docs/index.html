@@ -1,47 +1,76 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Common UI</title>
-    <link rel="stylesheet" href="bundle.css">
-    <link rel="stylesheet"
-      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/railscasts.min.css">
-  </head>
-  <body>
-    <div class="content psm-paragraph">
-      <section>
-        <h2 class="section-header">Typography</h2>
-        <dl class="types">
-          <dt class="psm-form-heading">Header 1</dt>
-          <dd><h1 class="psm-header--1">Proxima Nova Regular 24 px</h1></dd>
-          <dt class="psm-form-heading">Header 2</dt>
-          <dd><h2 class="psm-header--2">Proxima Nova Regular 20 px</h2></dd>
-          <dt class="psm-form-heading">Header 3</dt>
-          <dd><h3 class="psm-header--3">Proxima Nova Semi-Bold 16 px</h3></dd>
-          <dt class="psm-form-heading">Header 4</dt>
-          <dd><h4 class="psm-header--4">Proxima Nova Regular 16 px</h4></dd>
-          <dt class="psm-form-heading">Header 5</dt>
-          <dd><h5 class="psm-header--5">Proxima Nova Regular 16 px</h5></dd>
-          <dt class="psm-form-heading">Header 6</dt>
-          <dd><h6 class="psm-header--6">Proxima Nova Regular 14 px</h6></dd>
-          <dt class="psm-form-heading">Form Heading</dt>
-          <dd class="psm-form-heading">PROXIMA NOVA SEMI BOLD 12Px CAPS</dd>
-          <dt class="psm-form-heading">Paragraph 14</dt>
-          <dd><p>Paragraph text should be Proxima Nova Regular 14px font. Sit amet, consectetur adipiscing elit, static text link tempor incididunt ut labore et hover link aliqua. Ut nostrud clicked link minim veniam, quis nostrud experecita<p></dd>
-          <dt class="psm-form-heading">Body</dt>
-          <dd><div class="psm-type-body">Body text should be Proxima Nova Regular 14px font. Sit amet, consectetur adipiscing elit, static text link tempor incididunt ut labore et hover link aliqua. Ut nostrud clicked link minim veniam, quis nostrud experecita</div></dd>
-          <dt class="psm-form-heading">Paragraph 12</dt>
-          <dd><p class="psm-paragraph--small">Paragraph 12 text should be Proxima Nova Regular 12px font. Sit amet, consectetur adipiscing elit, static text link tempor incididunt ut labore et hover link aliqua. Ut nostrud clicked link minim veniam, quis nostrud experecita</p></dd>
-          <dt class="psm-form-heading">Body 12</dt>
-          <dd><p class="psm-type-body--small">Paragraph 12 text should be Proxima Nova Regular 12px font. Sit amet, consectetur adipiscing elit, static text link tempor incididunt ut labore et hover link aliqua. Ut nostrud clicked link minim veniam, quis nostrud experecita</p></dd>
-          <dt class="psm-form-heading">Text Link</dt>
-          <dd><a class="psm-link" href="#">A link to somewhere</a></dd>
-        </dl>
-        <div class="snippet">
-          <div class="psm-form-heading">Examples</div>
-          <pre><code>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Common UI</title>
+  <link rel="stylesheet" href="bundle.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/railscasts.min.css">
+</head>
+
+<body>
+  <div class="content psm-paragraph">
+    <section>
+      <h2 class="section-header">Typography</h2>
+      <dl class="types">
+        <dt class="psm-form-heading">Header 1</dt>
+        <dd>
+          <h1 class="psm-header--1">Proxima Nova Regular 24 px</h1>
+        </dd>
+        <dt class="psm-form-heading">Header 2</dt>
+        <dd>
+          <h2 class="psm-header--2">Proxima Nova Regular 20 px</h2>
+        </dd>
+        <dt class="psm-form-heading">Header 3</dt>
+        <dd>
+          <h3 class="psm-header--3">Proxima Nova Semi-Bold 16 px</h3>
+        </dd>
+        <dt class="psm-form-heading">Header 4</dt>
+        <dd>
+          <h4 class="psm-header--4">Proxima Nova Regular 16 px</h4>
+        </dd>
+        <dt class="psm-form-heading">Header 5</dt>
+        <dd>
+          <h5 class="psm-header--5">Proxima Nova Regular 16 px</h5>
+        </dd>
+        <dt class="psm-form-heading">Header 6</dt>
+        <dd>
+          <h6 class="psm-header--6">Proxima Nova Regular 14 px</h6>
+        </dd>
+        <dt class="psm-form-heading">Form Heading</dt>
+        <dd class="psm-form-heading">PROXIMA NOVA SEMI BOLD 12Px CAPS</dd>
+        <dt class="psm-form-heading">Paragraph 14</dt>
+        <dd>
+          <p>Paragraph text should be Proxima Nova Regular 14px font. Sit amet, consectetur adipiscing elit, static
+            text link tempor incididunt ut labore et hover link aliqua. Ut nostrud clicked link minim veniam, quis
+            nostrud experecita<p>
+        </dd>
+        <dt class="psm-form-heading">Body</dt>
+        <dd>
+          <div class="psm-type-body">Body text should be Proxima Nova Regular 14px font. Sit amet, consectetur
+            adipiscing elit, static text link tempor incididunt ut labore et hover link aliqua. Ut nostrud clicked link
+            minim veniam, quis nostrud experecita</div>
+        </dd>
+        <dt class="psm-form-heading">Paragraph 12</dt>
+        <dd>
+          <p class="psm-paragraph--small">Paragraph 12 text should be Proxima Nova Regular 12px font. Sit amet,
+            consectetur adipiscing elit, static text link tempor incididunt ut labore et hover link aliqua. Ut nostrud
+            clicked link minim veniam, quis nostrud experecita</p>
+        </dd>
+        <dt class="psm-form-heading">Body 12</dt>
+        <dd>
+          <p class="psm-type-body--small">Paragraph 12 text should be Proxima Nova Regular 12px font. Sit amet,
+            consectetur adipiscing elit, static text link tempor incididunt ut labore et hover link aliqua. Ut nostrud
+            clicked link minim veniam, quis nostrud experecita</p>
+        </dd>
+        <dt class="psm-form-heading">Text Link</dt>
+        <dd><a class="psm-link" href="#">A link to somewhere</a></dd>
+      </dl>
+      <div class="snippet">
+        <div class="psm-form-heading">Examples</div>
+        <pre><code>
     &lt;h1&gt;Proxima Nova Regular 24 px&lt;/h1&gt;
     &lt;h2&gt;Proxima Nova Regular 20 px&lt;/h2&gt;
     &lt;h3&gt;Proxima Nova Semi-Bold 16 px&lt;/h3&gt;
@@ -67,303 +96,303 @@
     experecita&lt;/p&gt;
             </code>
           </pre>
-        </div>
-      </section>
-      <section>
-        <h2 class="section-header">Icons</h2>
-        <ul>
-          <li>
-            <i class="psm-icon-zoom-in"></i>
-            <p>.psm-icon-zoom-in</p>
-          </li>
-          <li>
-            <i class="psm-icon-trophy"></i>
-            <p>.psm-icon-trophy</p>
-          </li>
-          <li>
-            <i class="psm-icon-trash"></i>
-            <p>.psm-icon-trash</p>
-          </li>
-          <li>
-            <i class="psm-icon-tail-up"></i>
-            <p>.psm-icon-tail-upt</p>
-          </li>
-          <li>
-            <i class="psm-icon-tail-right"></i>
-            <p>.psm-icon-tail-right</p>
-          </li>
-          <li>
-            <i class="psm-icon-tail-left"></i>
-            <p>.psm-icon-tail-left</p>
-          </li>
-          <li>
-            <i class="psm-icon-tail-down"></i>
-            <p>.psm-icon-tail-down</p>
-          </li>
-          <li>
-            <i class="psm-icon-tag"></i>
-            <p>.psm-icon-tag</p>
-          </li>
-          <li>
-            <i class="psm-icon-support"></i>
-            <p>.psm-icon-support</p>
-          </li>
-          <li>
-            <i class="psm-icon-stre-up"></i>
-            <p>.psm-icon-stre-up</p>
-          </li>
-          <li>
-            <i class="psm-icon-stre-right"></i>
-            <p>.psm-icon-stre-right</p>
-          </li>
-          <li>
-            <i class="psm-icon-stre-left"></i>
-            <p>.psm-icon-stre-left</p>
-          </li>
-          <li>
-            <i class="psm-icon-stre-down"></i>
-            <p>.psm-icon-stre-down</p>
-          </li>
-          <li>
-            <i class="psm-icon-small-up"></i>
-            <p>.psm-icon-small-up</p>
-          </li>
-          <li>
-            <i class="psm-icon-small-triangle-up"></i>
-            <p>.psm-icon-small-triangle-up</p>
-          </li>
-          <li>
-            <i class="psm-icon-small-triangle-right"></i>
-            <p>.psm-icon-small-triangle-right</p>
-          </li>
-          <li>
-            <i class="psm-icon-small-triangle-left"></i>
-            <p>.psm-icon-small-triangle-left</p>
-          </li>
-          <li>
-            <i class="psm-icon-small-triangle-down"></i>
-            <p>.psm-icon-small-triangle-down</p>
-          </li>
-          <li>
-            <i class="psm-icon-small-right"></i>
-            <p>.psm-icon-small-right</p>
-          </li>
-          <li>
-            <i class="psm-icon-small-left"></i>
-            <p>.psm-icon-small-left</p>
-          </li>
-          <li>
-            <i class="psm-icon-small-down"></i>
-            <p>.psm-icon-small-down</p>
-          </li>
-          <li>
-            <i class="psm-icon-single-content"></i>
-            <p>.psm-icon-single-content</p>
-          </li>
-          <li>
-            <i class="psm-icon-single-body"></i>
-            <p>.psm-icon-single-body</p>
-          </li>
-          <li>
-            <i class="psm-icon-simple-remove"></i>
-            <p>.psm-icon-simple-remove</p>
-          </li>
-          <li>
-            <i class="psm-icon-simple-add"></i>
-            <p>.psm-icon-simple-add</p>
-          </li>
-          <li>
-            <i class="psm-icon-share"></i>
-            <p>.psm-icon-share</p>
-          </li>
-          <li>
-            <i class="psm-icon-share-2"></i>
-            <p>.psm-icon-share-2</p>
-          </li>
-          <li>
-            <i class="psm-icon-settings-gear"></i>
-            <p>.psm-icon-settings-gear</p>
-          </li>
-          <li>
-            <i class="psm-icon-send"></i>
-            <p>.psm-icon-send</p>
-          </li>
-          <li>
-            <i class="psm-icon-select"></i>
-            <p>.psm-icon-select</p>
-          </li>
-          <li>
-            <i class="psm-icon-refresh"></i>
-            <p>.psm-icon-refresh</p>
-          </li>
-          <li>
-            <i class="psm-icon-print"></i>
-            <p>.psm-icon-print</p>
-          </li>
-          <li>
-            <i class="psm-icon-path-unite"></i>
-            <p>.psm-icon-path-unite</p>
-          </li>
-          <li>
-            <i class="psm-icon-multiple"></i>
-            <p>.psm-icon-multiple</p>
-          </li>
-          <li>
-            <i class="psm-icon-menu-dots"></i>
-            <p>.psm-icon-menu-dots</p>
-          </li>
-          <li>
-            <i class="psm-icon-menu"></i>
-            <p>.psm-icon-menu</p>
-          </li>
-          <li>
-            <i class="psm-icon-lock"></i>
-            <p>.psm-icon-lock</p>
-          </li>
-          <li>
-            <i class="psm-icon-image"></i>
-            <p>.psm-icon-image</p>
-          </li>
-          <li>
-            <i class="psm-icon-heartbeat"></i>
-            <p>.psm-icon-heartbeat</p>
-          </li>
-          <li>
-            <i class="psm-icon-heart"></i>
-            <p>.psm-icon-heart</p>
-          </li>
-          <li>
-            <i class="psm-icon-goal"></i>
-            <p>.psm-icon-goal</p>
-          </li>
-          <li>
-            <i class="psm-icon-flag-points"></i>
-            <p>.psm-icon-flag-points</p>
-          </li>
-          <li>
-            <i class="psm-icon-favorite"></i>
-            <p>.psm-icon-favorite</p>
-          </li>
-          <li>
-            <i class="psm-icon-eye"></i>
-            <p>.psm-icon-eye</p>
-          </li>
-          <li>
-            <i class="psm-icon-email"></i>
-            <p>.psm-icon-email</p>
-          </li>
-          <li>
-            <i class="psm-icon-desktop"></i>
-            <p>.psm-icon-desktop</p>
-          </li>
-          <li>
-            <i class="psm-icon-cloud-download"></i>
-            <p>.psm-icon-cloud-download</p>
-          </li>
-          <li>
-            <i class="psm-icon-check"></i>
-            <p>.psm-icon-check</p>
-          </li>
-          <li>
-            <i class="psm-icon-chat"></i>
-            <p>.psm-icon-chat</p>
-          </li>
-          <li>
-            <i class="psm-icon-chat-2"></i>
-            <p>.psm-icon-chat-2</p>
-          </li>
-          <li>
-            <i class="psm-icon-chart-bar"></i>
-            <p>.psm-icon-chart-bar</p>
-          </li>
-          <li>
-            <i class="psm-icon-cart-simple"></i>
-            <p>.psm-icon-cart-simple</p>
-          </li>
-          <li>
-            <i class="psm-icon-calendar-add"></i>
-            <p>.psm-icon-calendar-add</p>
-          </li>
-          <li>
-            <i class="psm-icon-calendar"></i>
-            <p>.psm-icon-calendar</p>
-          </li>
-          <li>
-            <i class="psm-icon-bullet-list"></i>
-            <p>.psm-icon-bullet-list</p>
-          </li>
-          <li>
-            <i class="psm-icon-block-down"></i>
-            <p>.psm-icon-block-down</p>
-          </li>
-          <li>
-            <i class="psm-icon-bell"></i>
-            <p>.psm-icon-bell</p>
-          </li>
-          <li>
-            <i class="psm-icon-attach"></i>
-            <p>.psm-icon-attach</p>
-          </li>
-          <li>
-            <i class="psm-icon-archive-check"></i>
-            <p>.psm-icon-archive-check</p>
-          </li>
-          <li>
-            <i class="psm-icon-alert-circle-i"></i>
-            <p>.psm-icon-alert-circle-i</p>
-          </li>
-          <li>
-            <i class="psm-icon-add"></i>
-            <p>.psm-icon-add</p>
-          </li>
-          <li>
-            <i class="psm-icon-a-check"></i>
-            <p>.psm-icon-a-check</p>
-          </li>
-          <li>
-            <i class="psm-icon-edit-note"></i>
-            <p>.psm-icon-edit-note</p>
-          </li>
-          <li>
-            <i class="psm-icon-one-on-one"></i>
-            <p>.psm-icon-one-on-one</p>
-          </li>
-          <li>
-            <i class="psm-icon-play-screen"></i>
-            <p>.psm-icon-play-screen</p>
-          </li>
-          <li>
-            <i class="psm-icon-power"></i>
-            <p>.psm-icon-power</p>
-          </li>
-          <li>
-            <i class="psm-icon-chat-3"></i>
-            <p>.psm-icon-chat-3</p>
-          </li>
-        </ul>
-        <div class="snippet">
-          <div class="psm-form-heading">Examples</div>
-          <pre><code>
+      </div>
+    </section>
+    <section>
+      <h2 class="section-header">Icons</h2>
+      <ul>
+        <li>
+          <i class="psm-icon-zoom-in"></i>
+          <p>.psm-icon-zoom-in</p>
+        </li>
+        <li>
+          <i class="psm-icon-trophy"></i>
+          <p>.psm-icon-trophy</p>
+        </li>
+        <li>
+          <i class="psm-icon-trash"></i>
+          <p>.psm-icon-trash</p>
+        </li>
+        <li>
+          <i class="psm-icon-tail-up"></i>
+          <p>.psm-icon-tail-upt</p>
+        </li>
+        <li>
+          <i class="psm-icon-tail-right"></i>
+          <p>.psm-icon-tail-right</p>
+        </li>
+        <li>
+          <i class="psm-icon-tail-left"></i>
+          <p>.psm-icon-tail-left</p>
+        </li>
+        <li>
+          <i class="psm-icon-tail-down"></i>
+          <p>.psm-icon-tail-down</p>
+        </li>
+        <li>
+          <i class="psm-icon-tag"></i>
+          <p>.psm-icon-tag</p>
+        </li>
+        <li>
+          <i class="psm-icon-support"></i>
+          <p>.psm-icon-support</p>
+        </li>
+        <li>
+          <i class="psm-icon-stre-up"></i>
+          <p>.psm-icon-stre-up</p>
+        </li>
+        <li>
+          <i class="psm-icon-stre-right"></i>
+          <p>.psm-icon-stre-right</p>
+        </li>
+        <li>
+          <i class="psm-icon-stre-left"></i>
+          <p>.psm-icon-stre-left</p>
+        </li>
+        <li>
+          <i class="psm-icon-stre-down"></i>
+          <p>.psm-icon-stre-down</p>
+        </li>
+        <li>
+          <i class="psm-icon-small-up"></i>
+          <p>.psm-icon-small-up</p>
+        </li>
+        <li>
+          <i class="psm-icon-small-triangle-up"></i>
+          <p>.psm-icon-small-triangle-up</p>
+        </li>
+        <li>
+          <i class="psm-icon-small-triangle-right"></i>
+          <p>.psm-icon-small-triangle-right</p>
+        </li>
+        <li>
+          <i class="psm-icon-small-triangle-left"></i>
+          <p>.psm-icon-small-triangle-left</p>
+        </li>
+        <li>
+          <i class="psm-icon-small-triangle-down"></i>
+          <p>.psm-icon-small-triangle-down</p>
+        </li>
+        <li>
+          <i class="psm-icon-small-right"></i>
+          <p>.psm-icon-small-right</p>
+        </li>
+        <li>
+          <i class="psm-icon-small-left"></i>
+          <p>.psm-icon-small-left</p>
+        </li>
+        <li>
+          <i class="psm-icon-small-down"></i>
+          <p>.psm-icon-small-down</p>
+        </li>
+        <li>
+          <i class="psm-icon-single-content"></i>
+          <p>.psm-icon-single-content</p>
+        </li>
+        <li>
+          <i class="psm-icon-single-body"></i>
+          <p>.psm-icon-single-body</p>
+        </li>
+        <li>
+          <i class="psm-icon-simple-remove"></i>
+          <p>.psm-icon-simple-remove</p>
+        </li>
+        <li>
+          <i class="psm-icon-simple-add"></i>
+          <p>.psm-icon-simple-add</p>
+        </li>
+        <li>
+          <i class="psm-icon-share"></i>
+          <p>.psm-icon-share</p>
+        </li>
+        <li>
+          <i class="psm-icon-share-2"></i>
+          <p>.psm-icon-share-2</p>
+        </li>
+        <li>
+          <i class="psm-icon-settings-gear"></i>
+          <p>.psm-icon-settings-gear</p>
+        </li>
+        <li>
+          <i class="psm-icon-send"></i>
+          <p>.psm-icon-send</p>
+        </li>
+        <li>
+          <i class="psm-icon-select"></i>
+          <p>.psm-icon-select</p>
+        </li>
+        <li>
+          <i class="psm-icon-refresh"></i>
+          <p>.psm-icon-refresh</p>
+        </li>
+        <li>
+          <i class="psm-icon-print"></i>
+          <p>.psm-icon-print</p>
+        </li>
+        <li>
+          <i class="psm-icon-path-unite"></i>
+          <p>.psm-icon-path-unite</p>
+        </li>
+        <li>
+          <i class="psm-icon-multiple"></i>
+          <p>.psm-icon-multiple</p>
+        </li>
+        <li>
+          <i class="psm-icon-menu-dots"></i>
+          <p>.psm-icon-menu-dots</p>
+        </li>
+        <li>
+          <i class="psm-icon-menu"></i>
+          <p>.psm-icon-menu</p>
+        </li>
+        <li>
+          <i class="psm-icon-lock"></i>
+          <p>.psm-icon-lock</p>
+        </li>
+        <li>
+          <i class="psm-icon-image"></i>
+          <p>.psm-icon-image</p>
+        </li>
+        <li>
+          <i class="psm-icon-heartbeat"></i>
+          <p>.psm-icon-heartbeat</p>
+        </li>
+        <li>
+          <i class="psm-icon-heart"></i>
+          <p>.psm-icon-heart</p>
+        </li>
+        <li>
+          <i class="psm-icon-goal"></i>
+          <p>.psm-icon-goal</p>
+        </li>
+        <li>
+          <i class="psm-icon-flag-points"></i>
+          <p>.psm-icon-flag-points</p>
+        </li>
+        <li>
+          <i class="psm-icon-favorite"></i>
+          <p>.psm-icon-favorite</p>
+        </li>
+        <li>
+          <i class="psm-icon-eye"></i>
+          <p>.psm-icon-eye</p>
+        </li>
+        <li>
+          <i class="psm-icon-email"></i>
+          <p>.psm-icon-email</p>
+        </li>
+        <li>
+          <i class="psm-icon-desktop"></i>
+          <p>.psm-icon-desktop</p>
+        </li>
+        <li>
+          <i class="psm-icon-cloud-download"></i>
+          <p>.psm-icon-cloud-download</p>
+        </li>
+        <li>
+          <i class="psm-icon-check"></i>
+          <p>.psm-icon-check</p>
+        </li>
+        <li>
+          <i class="psm-icon-chat"></i>
+          <p>.psm-icon-chat</p>
+        </li>
+        <li>
+          <i class="psm-icon-chat-2"></i>
+          <p>.psm-icon-chat-2</p>
+        </li>
+        <li>
+          <i class="psm-icon-chart-bar"></i>
+          <p>.psm-icon-chart-bar</p>
+        </li>
+        <li>
+          <i class="psm-icon-cart-simple"></i>
+          <p>.psm-icon-cart-simple</p>
+        </li>
+        <li>
+          <i class="psm-icon-calendar-add"></i>
+          <p>.psm-icon-calendar-add</p>
+        </li>
+        <li>
+          <i class="psm-icon-calendar"></i>
+          <p>.psm-icon-calendar</p>
+        </li>
+        <li>
+          <i class="psm-icon-bullet-list"></i>
+          <p>.psm-icon-bullet-list</p>
+        </li>
+        <li>
+          <i class="psm-icon-block-down"></i>
+          <p>.psm-icon-block-down</p>
+        </li>
+        <li>
+          <i class="psm-icon-bell"></i>
+          <p>.psm-icon-bell</p>
+        </li>
+        <li>
+          <i class="psm-icon-attach"></i>
+          <p>.psm-icon-attach</p>
+        </li>
+        <li>
+          <i class="psm-icon-archive-check"></i>
+          <p>.psm-icon-archive-check</p>
+        </li>
+        <li>
+          <i class="psm-icon-alert-circle-i"></i>
+          <p>.psm-icon-alert-circle-i</p>
+        </li>
+        <li>
+          <i class="psm-icon-add"></i>
+          <p>.psm-icon-add</p>
+        </li>
+        <li>
+          <i class="psm-icon-a-check"></i>
+          <p>.psm-icon-a-check</p>
+        </li>
+        <li>
+          <i class="psm-icon-edit-note"></i>
+          <p>.psm-icon-edit-note</p>
+        </li>
+        <li>
+          <i class="psm-icon-one-on-one"></i>
+          <p>.psm-icon-one-on-one</p>
+        </li>
+        <li>
+          <i class="psm-icon-play-screen"></i>
+          <p>.psm-icon-play-screen</p>
+        </li>
+        <li>
+          <i class="psm-icon-power"></i>
+          <p>.psm-icon-power</p>
+        </li>
+        <li>
+          <i class="psm-icon-chat-3"></i>
+          <p>.psm-icon-chat-3</p>
+        </li>
+      </ul>
+      <div class="snippet">
+        <div class="psm-form-heading">Examples</div>
+        <pre><code>
     &lt;i class="psm-icon-zoom-in"&gt;&lt;/i&gt;
     &lt;span class="psm-icon-tail-left"&gt;&lt;/span&gt;
             </code>
           </pre>
-        </div>
-      </section>
-      <section>
-        <h2 class="section-header">Button</h2>
-        <div class="buttons">
-          <button class="psm-button">Button</button>
-          <button class="psm-button" disabled>Button</button>
-          <button class="psm-button psm-button--primary">Button</button>
-          <button class="psm-button psm-button--primary" disabled>Button</button>
-          <a class="psm-button">Link Button</a>
-          <button class="psm-button psm-button--small">Button</button>
-          <button class="psm-button psm-button--primary psm-button--small">Button</button>
-        </div>
-        <div class="snippet">
-          <div class="psm-form-heading">Examples</div>
-          <pre><code>
+      </div>
+    </section>
+    <section>
+      <h2 class="section-header">Button</h2>
+      <div class="buttons">
+        <button class="psm-button">Button</button>
+        <button class="psm-button" disabled>Button</button>
+        <button class="psm-button psm-button--primary">Button</button>
+        <button class="psm-button psm-button--primary" disabled>Button</button>
+        <a class="psm-button">Link Button</a>
+        <button class="psm-button psm-button--small">Button</button>
+        <button class="psm-button psm-button--primary psm-button--small">Button</button>
+      </div>
+      <div class="snippet">
+        <div class="psm-form-heading">Examples</div>
+        <pre><code>
     &lt;button class="psm-button"&gt;Button&lt;/button&gt;
     &lt;button class="psm-button" disabled&gt;Button&lt;/button&gt;
     &lt;button class="psm-button--primary"&gt;Button&lt;/button&gt;
@@ -373,30 +402,41 @@
     &lt;button class="psm-button psm-button--primary psm-button--small"&gt;Button&lt;/button&gt;
             </code>
           </pre>
+      </div>
+    </section>
+    <section>
+      <h2 class="section-header">Inputs</h2>
+      <div class="psm-type-form-heading">Text Input and Select</div>
+      <div class="narrow">
+        <input type="text" placeholder="Text input">
+        <input type="text" placeholder="Text input in error state" class="active" required>
+        <div class="psm-input-leading-icon">
+          <i class="psm-icon-calendar"></i>
+          <input type="text" placeholder="Input with leading icon">
         </div>
-      </section>
-      <section>
-        <h2 class="section-header">Inputs</h2>
-        <div class="psm-form-heading">Text Input and Select</div>
-        <div class="narrow">
-          <input class="psm-input" type="text" placeholder="Text input">
-          <input class="psm-input psm-input--active" type="text" placeholder="Text input in error state" required>
-          <div class="psm-input-leading-icon">
-            <i class="psm-icon-calendar"></i>
-            <input class="psm-input" type="text" placeholder="Input with leading icon">
-          </div>
-          <div class="psm-input-trailing-icon">
-            <i class="psm-icon-tail-right"></i>
-            <input class="psm-input" type="text" placeholder="Input with trailing icon">
-          </div>
-          <select class="psm-input psm-select">
-            <option>Multi select</option>
-            <option>Another option</option>
-          </select>
+    </section>
+    <section>
+      <h2 class="section-header">Inputs</h2>
+      <div class="psm-form-heading">Text Input and Select</div>
+      <div class="narrow">
+        <input class="psm-input" type="text" placeholder="Text input">
+        <input class="psm-input psm-input--active" type="text" placeholder="Text input in error state" required>
+        <div class="psm-input-leading-icon">
+          <i class="psm-icon-calendar"></i>
+          <input class="psm-input" type="text" placeholder="Input with leading icon">
         </div>
-        <div class="snippet psm-paragraph">
-          <div class="psm-form-heading">Examples</div>
-          <pre><code>
+        <div class="psm-input-trailing-icon">
+          <i class="psm-icon-tail-right"></i>
+          <input class="psm-input" type="text" placeholder="Input with trailing icon">
+        </div>
+        <select class="psm-input psm-select">
+          <option>Multi select</option>
+          <option>Another option</option>
+        </select>
+      </div>
+      <div class="snippet psm-paragraph">
+        <div class="psm-form-heading">Examples</div>
+        <pre><code>
     &lt;input class="psm-input" type="text" placeholder="Text input"&gt;
     &lt;input class="psm-input psm-input--active" type="text" placeholder="Text input in error state" required&gt;
     &lt;div class="psm-input-leading-icon"&gt;
@@ -413,23 +453,23 @@
     &lt;/select&gt;
             </code>
           </pre>
-        </div>
-        <div class="psm-form-heading">Radio buttons</div>
-        <div>
-          <input class="psm-radio" type="radio" id="radio1" name="radio" checked>
-          <label for="radio1">Pick the first option</label>
-        </div>
-        <div>
-          <input class="psm-radio" type="radio" id="radio2" name="radio">
-          <label for="radio2">Pick the second option</label>
-        </div>
-        <div>
-          <input class="psm-radio" type="radio" id="radio3" name="radio">
-          <label for="radio3">Pick the third option</label>
-        </div>
-        <div class="snippet">
-          <div class="psm-form-heading">Examples</div>
-          <pre><code>
+      </div>
+      <div class="psm-form-heading">Radio buttons</div>
+      <div>
+        <input class="psm-radio" type="radio" id="radio1" name="radio" checked>
+        <label for="radio1">Pick the first option</label>
+      </div>
+      <div>
+        <input class="psm-radio" type="radio" id="radio2" name="radio">
+        <label for="radio2">Pick the second option</label>
+      </div>
+      <div>
+        <input class="psm-radio" type="radio" id="radio3" name="radio">
+        <label for="radio3">Pick the third option</label>
+      </div>
+      <div class="snippet">
+        <div class="psm-form-heading">Examples</div>
+        <pre><code>
     &lt;div&gt;
       &lt;input class="psm-radio" type="radio" id="radio1" name="radio" checked&gt;
       &lt;label for="radio1"&gt;Pick the first option&lt;/label&gt;
@@ -444,11 +484,106 @@
     &lt;/div&gt;
             </code>
           </pre>
+      </div>
+    </section>
+    <section>
+      <h2 class="section-header">Avatars</h2>
+      <div class="flex center">
+        <div>
+          <div class="psm-type-form-heading">120 x 120</div>
+          <p>.psm-avatar--xl</p>
+          <div class="psm-avatar psm-avatar--xl">
+            <img class="psm-avatar__img" src="./images/tobias.jpg" />
+          </div>
+          <br />
+          <div class="psm-avatar psm-avatar--xl">
+            <span class="psm-avatar__text">TF</span>
+          </div>
+          <br />
+          <div class="psm-avatar psm-avatar--xl">
+            <div class="psm-avatar__sillouette"></div>
+          </div>
         </div>
-      </section>
-    </div>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
-  <script src="bundle.js"></script>
+        <div>
+          <div class="psm-type-form-heading">72 x 72</div>
+          <p>.psm-avatar--lg</p>
+          <div class="psm-avatar psm-avatar--lg">
+            <img class="psm-avatar__img" src="./images/tobias.jpg" />
+          </div>
+          <br />
+          <div class="psm-avatar psm-avatar--lg">
+            <span class="psm-avatar__text">TF</span>
+          </div>
+          <br />
+          <div class="psm-avatar psm-avatar--lg">
+            <div class="psm-avatar__sillouette"></div>
+          </div>
+        </div>
+        <div>
+          <div class="psm-type-form-heading">40 x 40</div>
+          <p>&nbsp;</p>
+          <div class="psm-avatar">
+            <img class="psm-avatar__img" src="./images/tobias.jpg" />
+          </div>
+          <br />
+          <div class="psm-avatar">
+            <span class="psm-avatar__text">TF</span>
+          </div>
+          <br />
+          <div class="psm-avatar">
+            <div class="psm-avatar__sillouette"></div>
+          </div>
+        </div>
+        <div>
+          <div class="psm-type-form-heading">32 x 32</div>
+          <p>.psm-avatar--sm</p>
+          <div class="psm-avatar psm-avatar--sm">
+            <img class="psm-avatar__img" src="./images/tobias.jpg" />
+          </div>
+          <br />
+          <div class="psm-avatar psm-avatar--sm">
+            <span class="psm-avatar__text">TF</span>
+          </div>
+          <br />
+          <div class="psm-avatar psm-avatar--sm">
+            <div class="psm-avatar__sillouette"></div>
+          </div>
+        </div>
+        <div>
+          <div class="psm-type-form-heading">24 x 24</div>
+          <p>.psm-avatar--xs</p>
+          <div class="psm-avatar psm-avatar--xs">
+            <img class="psm-avatar__img" src="./images/tobias.jpg" />
+          </div>
+          <br />
+          <div class="psm-avatar psm-avatar--xs">
+            <span class="psm-avatar__text">TF</span>
+          </div>
+          <br />
+          <div class="psm-avatar psm-avatar--xs">
+            <div class="psm-avatar__sillouette"></div>
+          </div>
+        </div>
+      </div>
+      <div class="snippet">
+        <div class="psm-type-form-heading">Examples</div>
+        <pre><code>
+          &lt;div class="psm-avatar"&gt;
+            &lt;img class="psm-avatar__img" src="./images/tobias.jpg" /&gt;
+          &lt;/div&gt;
+          &lt;div class="psm-avatar"&gt;
+            &lt;span class="psm-avatar__text"&gt;TF&lt;/span&gt;
+          &lt;/div&gt;
+          &lt;div class="psm-avatar"&gt;
+            &lt;div class="psm-avatar__sillouette"&gt;&lt;/div&gt;
+          &lt;/div&gt;
+          </code></pre>
+      </div>
+    </section>
+  </div>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+<script src="bundle.js"></script>
 </body>
+
 </html>

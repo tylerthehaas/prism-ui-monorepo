@@ -33,9 +33,15 @@ $psm-mount-location: "/prism-ui";
   width: 300px;
   margin: 20px 0 60px;
 
-  input:not([type="checkbox"]):not([type="radio"]) {
+  input:not([type="checkbox"]):not([type="radio"]),
+  textarea,
+  select {
     margin-bottom: 20px;
   }
+}
+
+.center {
+  text-align: center;
 }
 
 ul {
@@ -60,4 +66,12 @@ h6,
 p {
   margin: 0;
   padding: 0;
+}
+
+.flex {
+  display: flex;
+
+  div {
+    flex: 1;
+  }
 }
