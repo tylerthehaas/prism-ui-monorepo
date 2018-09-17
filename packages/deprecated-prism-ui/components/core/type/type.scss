@@ -18,57 +18,49 @@ body {
   line-height: 2;
 }
 
-.psm-type-header-1,
-h1 {
+.psm-header--1 {
   font-size: 1.5rem;
   font-weight: 600;
   color: $psm-color-gray-900;
 }
 
-.psm-type-header-2,
-h2 {
+.psm-header--2 {
   font-size: 1.25rem;
   font-weight: 600;
   color: $psm-color-gray-900;
 }
 
-.psm-type-header-3,
-h3 {
+.psm-header--3 {
   font-size: 1rem;
   font-weight: 600;
   color: $psm-color-gray-900;
 }
 
-.psm-type-header-4,
-h4 {
+.psm-header--4 {
   font-size: 1rem;
   font-weight: normal;
   color: $psm-color-gray-900;
 }
 
-.psm-type-header-5,
-h5 {
+.psm-header--5 {
   font-size: 0.875rem;
   font-weight: 600;
   color: $psm-color-gray-900;
 }
 
-.psm-type-header-6,
-h6 {
+.psm-header--6 {
   font-size: 1rem;
   font-weight: normal;
   color: $psm-color-gray-900;
 }
 
-.psm-type-form-heading {
+.psm-form-heading {
   font-size: 0.75rem;
   font-weight: 600;
   text-transform: uppercase;
 }
 
-.psm-type-paragraph,
-p,
-div {
+.psm-paragraph {
   font-size: 0.875rem;
   line-height: 1.5rem;
 }
@@ -78,17 +70,16 @@ div {
   line-height: 1.25rem;
 }
 
-.psm-type-paragraph-small {
+.psm-paragraph--small {
   font-size: 0.75rem;
 }
 
-.psm-type-body-small {
+.psm-type-body--small {
   font-size: 0.75rem;
   line-height: 1.25rem;
 }
 
-.psm-type-text-link,
-a {
+.psm-link {
   @extend .psm-type-body;
   color: $psm-color-link;
   text-decoration: none;

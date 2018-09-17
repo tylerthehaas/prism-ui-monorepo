@@ -1,9 +1,7 @@
 @import "../core/color/variables";
 @import "../core/type/variables";
 
-select,
-textarea,
-input:not([type="checkbox"]):not([type="radio"]) {
+.psm-input {
   font-family: $psm-type-font-family;
   outline: none;
   width: 100%;
@@ -20,14 +18,14 @@ input:not([type="checkbox"]):not([type="radio"]) {
     box-shadow: 0 0 0 2px #e3f2fd;
   }
 
-  &.error,
-  &.active:invalid {
+  &.psm-input--error,
+  &.psm-input--active:invalid {
     border-color: #f44923;
     box-shadow: 0 0 0 2px rgba(244, 73, 35, 0.2);
   }
 }
 
-select {
+.psm-select {
   line-height: 36px;
   background-color: white;
 }

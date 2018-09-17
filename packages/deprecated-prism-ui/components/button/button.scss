@@ -3,8 +3,7 @@
 $psm-button-height: 36px;
 $psm-border-width: 1px;
 
-.psm-button,
-button {
+.psm-button {
   display: inline-block;
   position: relative;
   box-sizing: border-box;
@@ -50,7 +49,7 @@ button {
   }
 }
 
-.psm-button-primary {
+.psm-button--primary {
   @extend .psm-button;
   background-color: $psm-color-primary-500;
   border-color: $psm-color-primary-500;
@@ -73,7 +72,7 @@ button {
   }
 }
 
-.psm-button-small {
+.psm-button--small {
   min-width: 74px;
   height: $psm-button-height * 2/3;
   line-height: $psm-button-height * 2/3 - $psm-border-width * 2;

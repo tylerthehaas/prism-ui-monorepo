@@ -1,7 +1,7 @@
 @import "./_mixins";
 @import "../core/color/variables";
 
-input[type="radio"] {
+.psm-radio {
   display: inline-block;
   position: relative;
   flex: 0 0 auto;
