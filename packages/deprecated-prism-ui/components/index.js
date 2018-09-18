@@ -10,3 +10,4 @@ import "./nav";
 import "./list";
 import "./toggle";
 import "./avatar";
+import "./card";
