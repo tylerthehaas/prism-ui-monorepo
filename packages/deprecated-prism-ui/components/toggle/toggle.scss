@@ -1,0 +1,36 @@
+.psm-toggle {
+  width: 48px;
+  height: 28px;
+  border-radius: 50px;
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  & > .psm-toggle__switch {
+    background-color: #ffffff;
+    width: 24px;
+    height: 24px;
+    border-radius: 100%;
+    box-shadow: 0 1px 1px 0 gray;
+    transition: all 0.4s;
+  }
+
+  &.psm-toggle--inactive {
+    background-color: #dadcdd;
+    & > .psm-toggle__switch {
+      // inactive positioning goes here
+      position: absolute;
+      top: 2px;
+      left: 2px;
+    }
+  }
+  &.psm-toggle--active {
+    background-color: #008ae5;
+    transition: all 1s;
+    & > .psm-toggle__switch {
+      // active positioning goes here
+      position: absolute;
+      top: 2px;
+      left: 22px;
+    }
+  }
+}

@@ -1,0 +1,131 @@
+.psm-alert {
+  width: fit-content;
+  display: block;
+  min-width: 312px;
+  text-align: center;
+  border-radius: 4px;
+  padding: 4px 16px;
+
+  & > .psm-alert__msg {
+    vertical-align: middle;
+    padding: 0 8px;
+  }
+  & > .psm-alert__close {
+    cursor: pointer;
+    float: right;
+    margin: 5px -12px;
+    transform: scale(0.6);
+  }
+  & > .psm-alert__action {
+    text-decoration: underline;
+    vertical-align: middle;
+    padding: 0 8px;
+    cursor: pointer;
+    &:active {
+      color: #9c9c9c;
+    }
+  }
+}
+.psm-alert--warning {
+  color: #282921;
+  background-color: #f0c32c;
+  &:hover {
+    background-color: #e6b613;
+  }
+}
+
+.psm-alert--info {
+  background-color: #0178d3;
+  color: white;
+  &:hover {
+    background-color: #005ea5;
+  }
+  & > .psm-alert__btn {
+    outline-color: white;
+  }
+}
+
+.psm-alert--error {
+  background-color: #d0021b;
+  color: white;
+  &:hover {
+    background-color: #aa0015;
+  }
+  & > .psm-alert__btn {
+    outline-color: white;
+  }
+}
+
+.psm-alert--success {
+  background-color: #28a450;
+  color: white;
+  &:hover {
+    background-color: #0b8b34;
+  }
+  & > .psm-alert__btn {
+    outline-color: white;
+  }
+}
+
+.psm-alert--inline {
+  text-align: center;
+  display: inline-block;
+  min-width: unset;
+  min-height: unset;
+  padding: 0 4px;
+}
+
+.psm-alert--btn {
+  text-align: left;
+  min-width: 512px;
+  padding: 16px;
+
+  & > .psm-alert__btn {
+    float: right;
+    background-color: white;
+    color: black;
+    border-radius: 4px;
+    margin: -5px 0px;
+  }
+
+  & > .psm-alert__msg {
+    padding: 0 16px 0 0;
+  }
+}
+
+.psm-alert--inline.psm-alert--warning {
+  & > .psm-alert__inline-icon {
+    color: #282921;
+    background-color: #f0c32c;
+    &:hover {
+      background-color: #e6b613;
+    }
+  }
+}
+.psm-alert--inline.psm-alert--info {
+  & > .psm-alert__inline-icon {
+    background-color: #0178d3;
+    color: white;
+    &:hover {
+      background-color: #005ea5;
+    }
+  }
+}
+.psm-alert--inline.psm-alert--error {
+  & > .psm-alert__inline-icon {
+    background-color: #d0021b;
+    color: white;
+    &:hover {
+      background-color: #aa0015;
+    }
+  }
+}
+.psm-alert--inline.psm-alert--success {
+  & > .psm-alert__inline-icon {
+    background-color: #28a450;
+    color: white;
+    &:hover {
+      background-color: #0b8b34;
+    }
+  }
+}

@@ -1,0 +1,25 @@
+.psm-list {
+  border-collapse: collapse;
+  width: 100%;
+
+  .psm-list__row {
+    width: 100%;
+    border-top: 1px solid #dadcdd;
+    border-bottom: 1px solid #dadcdd;
+  }
+
+  .psm-list__row-sm {
+    height: 48px;
+  }
+
+  .psm-list__row-md {
+    height: 56px;
+  }
+
+  .psm-list__row-lg {
+    height: 72px;
+  }
+  .psm-list__row__lead {
+    padding-left: 16px;
+  }
+}

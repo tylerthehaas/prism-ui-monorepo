@@ -1,0 +1,33 @@
+.psm-pagination {
+  & li {
+    vertical-align: middle;
+    width: 30px;
+    cursor: pointer;
+  }
+}
+
+.psm-pagination__number {
+  line-height: 36px;
+  height: 36px;
+  display: inline-block;
+  border-radius: 3px;
+}
+
+.psm-pagination__elipses {
+  line-height: 36px;
+  height: 36px;
+  display: inline-block;
+  border-radius: 3px;
+  &:after {
+    content: "\2026";
+  }
+}
+
+.psm-pagination__active {
+  background-color: #e8eaeb;
+}
+
+.psm-pagination__disabled {
+  color: #dadcdd;
+  cursor: default;
+}
