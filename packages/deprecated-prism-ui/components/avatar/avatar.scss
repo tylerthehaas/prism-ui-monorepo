@@ -1,7 +1,8 @@
 @import "../core/color/variables";
 @import "../core/spacing/variables";
 
-.psm-avatar {
+.psm-avatar,
+%psm-avatar {
   border-radius: 100%;
   width: 40px;
   height: 40px;
@@ -33,32 +34,36 @@
     transform: translate(-50%, -50%);
     font-size: 14px;
   }
+}
 
-  &.psm-avatar--xl {
-    width: 120px;
-    height: 120px;
+.psm-avatar--xl {
+  @extend %psm-avatar;
+  width: 120px;
+  height: 120px;
 
-    .psm-avatar__text {
-      font-size: 55px;
-    }
+  .psm-avatar__text {
+    font-size: 55px;
   }
+}
 
-  &.psm-avatar--lg {
-    width: 72px;
-    height: 72px;
+.psm-avatar--lg {
+  @extend %psm-avatar;
+  width: 72px;
+  height: 72px;
 
-    .psm-avatar__text {
-      font-size: 35px;
-    }
+  .psm-avatar__text {
+    font-size: 35px;
   }
+}
 
-  &.psm-avatar--sm {
-    width: 32px;
-    height: 32px;
-  }
+.psm-avatar--sm {
+  @extend %psm-avatar;
+  width: 32px;
+  height: 32px;
+}
 
-  &.psm-avatar--xs {
-    width: 24px;
-    height: 24px;
-  }
+.psm-avatar--xs {
+  @extend %psm-avatar;
+  width: 24px;
+  height: 24px;
 }

@@ -406,17 +406,6 @@
     </section>
     <section>
       <h2 class="section-header">Inputs</h2>
-      <div class="psm-type-form-heading">Text Input and Select</div>
-      <div class="narrow">
-        <input type="text" placeholder="Text input">
-        <input type="text" placeholder="Text input in error state" class="active" required>
-        <div class="psm-input-leading-icon">
-          <i class="psm-icon-calendar"></i>
-          <input type="text" placeholder="Input with leading icon">
-        </div>
-    </section>
-    <section>
-      <h2 class="section-header">Inputs</h2>
       <div class="psm-form-heading">Text Input and Select</div>
       <div class="narrow">
         <input class="psm-input" type="text" placeholder="Text input">
@@ -783,6 +772,131 @@
     </pre>
     </section>
     <section>
+      <h2 class="section-header">Avatars</h2>
+      <div class="psm-table-header">Current Initiatives</div>
+      <div class="psm-table__actions">
+        <a class="psm-button--primary">Create New Initiative</a>
+      </div>
+      <table class="psm-table">
+        <thead>
+          <tr class="psm-table__tr">
+            <th class="psm-table__th">Name</th>
+            <th class="psm-table__th">Assigned To</th>
+            <th class="psm-table__th">Time Remaining</th>
+            <th class="psm-table__th">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="psm-table__tr">
+            <td class="psm-table__td">Utilization Awards</td>
+            <td class="psm-table__td">Mark</td>
+            <td class="psm-table__td">50 Days</td>
+            <td class="psm-table__td">In Progress</td>
+          </tr>
+          <tr class="psm-table__tr">
+            <td class="psm-table__td">Improvement Cards</td>
+            <td class="psm-table__td">Stephanie</td>
+            <td class="psm-table__td">12 Days</td>
+            <td class="psm-table__td">In Progress</td>
+          </tr>
+          <tr class="psm-table__tr">
+            <td class="psm-table__td">Safety Hero</td>
+            <td class="psm-table__td">Steve</td>
+            <td class="psm-table__td">0 Days</td>
+            <td class="psm-table__td">Complete</td>
+          </tr>
+        </tbody>
+      </table>
+      </br>
+      <div class="psm-table--box">
+        <div class="psm-table-header">Current Initiatives</div>
+        <div class="psm-table__actions">
+          <a class="psm-button">Create New Initiative</a>
+        </div>
+        <table class="psm-table">
+          <thead>
+            <tr class="psm-table__tr">
+              <th class="psm-table__th">Name</th>
+              <th class="psm-table__th">Assigned To</th>
+              <th class="psm-table__th">Time Remaining</th>
+              <th class="psm-table__th">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="psm-table__tr">
+              <td class="psm-table__td">Utilization Awards</td>
+              <td class="psm-table__td">Mark</td>
+              <td class="psm-table__td">50 Days</td>
+              <td class="psm-table__td">In Progress</td>
+            </tr>
+            <tr class="psm-table__tr">
+              <td class="psm-table__td">Improvement Cards</td>
+              <td class="psm-table__td">Stephanie</td>
+              <td class="psm-table__td">12 Days</td>
+              <td class="psm-table__td">In Progress</td>
+            </tr>
+            <tr class="psm-table__tr">
+              <td class="psm-table__td">Safety Hero</td>
+              <td class="psm-table__td">Steve</td>
+              <td class="psm-table__td">0 Days</td>
+              <td class="psm-table__td">Complete</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="snippet">
+        <div class="psm-type-form-heading">Examples</div>
+        <pre><code>
+    &lt;div class="psm-table-header"&gt;Current Initiatives&lt;/div&gt;
+    &lt;div class="psm-table__actions"&gt;
+      &lt;a class="psm-button--primary"&gt;Create New Initiative&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;table class="psm-table"&gt;
+      &lt;thead&gt;
+        &lt;tr class="psm-table__tr"&gt;
+          &lt;th class="psm-table__th"&gt;Name&lt;/th&gt;
+          &lt;th class="psm-table__th"&gt;Assigned To&lt;/th&gt;
+          &lt;th class="psm-table__th"&gt;Time Remaining&lt;/th&gt;
+          &lt;th class="psm-table__th"&gt;Status&lt;/th&gt;
+        &lt;/tr&gt;
+      &lt;/thead&gt;
+      &lt;tbody&gt;
+        &lt;tr class="psm-table__tr"&gt;
+          &lt;td class="psm-table__td"&gt;Utilization Awards&lt;/td&gt;
+          &lt;td class="psm-table__td"&gt;Mark&lt;/td&gt;
+          &lt;td class="psm-table__td"&gt;50 Days&lt;/td&gt;
+          &lt;td class="psm-table__td"&gt;In Progress&lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+    &lt;div class="psm-table--box"&gt;
+      &lt;div class="psm-table-header"&gt;Current Initiatives&lt;/div&gt;
+      &lt;div class="psm-table__actions"&gt;
+        &lt;a class="psm-button--primary"&gt;Create New Initiative&lt;/a&gt;
+      &lt;/div&gt;
+      &lt;table class="psm-table"&gt;
+        &lt;thead&gt;
+          &lt;tr class="psm-table__tr"&gt;
+            &lt;th class="psm-table__th"&gt;Name&lt;/th&gt;
+            &lt;th class="psm-table__th"&gt;Assigned To&lt;/th&gt;
+            &lt;th class="psm-table__th"&gt;Time Remaining&lt;/th&gt;
+            &lt;th class="psm-table__th"&gt;Status&lt;/th&gt;
+          &lt;/tr&gt;
+        &lt;/thead&gt;
+        &lt;tbody&gt;
+          &lt;tr class="psm-table__tr"&gt;
+            &lt;td class="psm-table__td"&gt;Utilization Awards&lt;/td&gt;
+            &lt;td class="psm-table__td"&gt;Mark&lt;/td&gt;
+            &lt;td class="psm-table__td"&gt;50 Days&lt;/td&gt;
+            &lt;td class="psm-table__td"&gt;In Progress&lt;/td&gt;
+          &lt;/tr&gt;
+        &lt;/tbody&gt;
+      &lt;/table&gt;
+    &lt;/div&gt;
+          </code></pre>
+      </div>
+    </section>
+    <section>
       <h2 class="section-header">Tabbed Navigation</h2>
       <div>
         <ul class="psm-nav">
@@ -792,16 +906,16 @@
         </ul>
       </div>
       <pre>
-          <code>
-    &lt;div&gt;
-      &lt;ul class="psm-nav"&gt;
-        &lt;li class="psm-nav__tab psm-nav__active"&gt;Received&lt;/li&gt;
-        &lt;li class="psm-nav__tab"&gt;Given&lt;/li&gt;
-        &lt;li class="psm-nav__tab"&gt;Personal&lt;/li&gt;
-      &lt;/ul&gt;
-    &lt;/div&gt;
-          </code>
-        </pre>
+            <code>
+      &lt;div&gt;
+        &lt;ul class="psm-nav"&gt;
+          &lt;li class="psm-nav__tab psm-nav__active"&gt;Received&lt;/li&gt;
+          &lt;li class="psm-nav__tab"&gt;Given&lt;/li&gt;
+          &lt;li class="psm-nav__tab"&gt;Personal&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/div&gt;
+            </code>
+          </pre>
     </section>
     <section>
       <h2 class="section-header">List View</h2>
@@ -977,98 +1091,99 @@
       </code>
     </pre>
     </section>
-    <h2 class="section-header">Avatars</h2>
-    <div class="flex center">
-      <div>
-        <div class="psm-type-form-heading">120 x 120</div>
-        <p>.psm-avatar--xl</p>
-        <div class="psm-avatar psm-avatar--xl">
-          <img class="psm-avatar__img" src="./images/tobias.jpg" />
+    <section>
+      <h2 class="section-header">Avatars</h2>
+      <div class="flex center">
+        <div>
+          <div class="psm-type-form-heading">120 x 120</div>
+          <p>.psm-avatar--xl</p>
+          <div class="psm-avatar--xl">
+            <img class="psm-avatar__img" src="./images/tobias.jpg" />
+          </div>
+          <br />
+          <div class="psm-avatar--xl">
+            <span class="psm-avatar__text">TF</span>
+          </div>
+          <br />
+          <div class="psm-avatar--xl">
+            <div class="psm-avatar__sillouette"></div>
+          </div>
         </div>
-        <br />
-        <div class="psm-avatar psm-avatar--xl">
-          <span class="psm-avatar__text">TF</span>
+        <div>
+          <div class="psm-type-form-heading">72 x 72</div>
+          <p>.psm-avatar--lg</p>
+          <div class="psm-avatar--lg">
+            <img class="psm-avatar__img" src="./images/tobias.jpg" />
+          </div>
+          <br />
+          <div class="psm-avatar--lg">
+            <span class="psm-avatar__text">TF</span>
+          </div>
+          <br />
+          <div class="psm-avatar--lg">
+            <div class="psm-avatar__sillouette"></div>
+          </div>
         </div>
-        <br />
-        <div class="psm-avatar psm-avatar--xl">
-          <div class="psm-avatar__sillouette"></div>
+        <div>
+          <div class="psm-type-form-heading">40 x 40</div>
+          <p>&nbsp;</p>
+          <div class="psm-avatar">
+            <img class="psm-avatar__img" src="./images/tobias.jpg" />
+          </div>
+          <br />
+          <div class="psm-avatar">
+            <span class="psm-avatar__text">TF</span>
+          </div>
+          <br />
+          <div class="psm-avatar">
+            <div class="psm-avatar__sillouette"></div>
+          </div>
+        </div>
+        <div>
+          <div class="psm-type-form-heading">32 x 32</div>
+          <p>.psm-avatar--sm</p>
+          <div class="psm-avatar--sm">
+            <img class="psm-avatar__img" src="./images/tobias.jpg" />
+          </div>
+          <br />
+          <div class="psm-avatar--sm">
+            <span class="psm-avatar__text">TF</span>
+          </div>
+          <br />
+          <div class="psm-avatar--sm">
+            <div class="psm-avatar__sillouette"></div>
+          </div>
+        </div>
+        <div>
+          <div class="psm-type-form-heading">24 x 24</div>
+          <p>.psm-avatar--xs</p>
+          <div class="psm-avatar--xs">
+            <img class="psm-avatar__img" src="./images/tobias.jpg" />
+          </div>
+          <br />
+          <div class="psm-avatar--xs">
+            <span class="psm-avatar__text">TF</span>
+          </div>
+          <br />
+          <div class="psm-avatar--xs">
+            <div class="psm-avatar__sillouette"></div>
+          </div>
         </div>
       </div>
-      <div>
-        <div class="psm-type-form-heading">72 x 72</div>
-        <p>.psm-avatar--lg</p>
-        <div class="psm-avatar psm-avatar--lg">
-          <img class="psm-avatar__img" src="./images/tobias.jpg" />
-        </div>
-        <br />
-        <div class="psm-avatar psm-avatar--lg">
-          <span class="psm-avatar__text">TF</span>
-        </div>
-        <br />
-        <div class="psm-avatar psm-avatar--lg">
-          <div class="psm-avatar__sillouette"></div>
-        </div>
+      <div class="snippet">
+        <div class="psm-type-form-heading">Examples</div>
+        <pre><code>
+    &lt;div class="psm-avatar"&gt;
+      &lt;img class="psm-avatar__img" src="./images/tobias.jpg" /&gt;
+    &lt;/div&gt;
+    &lt;div class="psm-avatar"&gt;
+      &lt;span class="psm-avatar__text"&gt;TF&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class="psm-avatar"&gt;
+      &lt;div class="psm-avatar__sillouette"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+          </code></pre>
       </div>
-      <div>
-        <div class="psm-type-form-heading">40 x 40</div>
-        <p>&nbsp;</p>
-        <div class="psm-avatar">
-          <img class="psm-avatar__img" src="./images/tobias.jpg" />
-        </div>
-        <br />
-        <div class="psm-avatar">
-          <span class="psm-avatar__text">TF</span>
-        </div>
-        <br />
-        <div class="psm-avatar">
-          <div class="psm-avatar__sillouette"></div>
-        </div>
-      </div>
-      <div>
-        <div class="psm-type-form-heading">32 x 32</div>
-        <p>.psm-avatar--sm</p>
-        <div class="psm-avatar psm-avatar--sm">
-          <img class="psm-avatar__img" src="./images/tobias.jpg" />
-        </div>
-        <br />
-        <div class="psm-avatar psm-avatar--sm">
-          <span class="psm-avatar__text">TF</span>
-        </div>
-        <br />
-        <div class="psm-avatar psm-avatar--sm">
-          <div class="psm-avatar__sillouette"></div>
-        </div>
-      </div>
-      <div>
-        <div class="psm-type-form-heading">24 x 24</div>
-        <p>.psm-avatar--xs</p>
-        <div class="psm-avatar psm-avatar--xs">
-          <img class="psm-avatar__img" src="./images/tobias.jpg" />
-        </div>
-        <br />
-        <div class="psm-avatar psm-avatar--xs">
-          <span class="psm-avatar__text">TF</span>
-        </div>
-        <br />
-        <div class="psm-avatar psm-avatar--xs">
-          <div class="psm-avatar__sillouette"></div>
-        </div>
-      </div>
-    </div>
-    <div class="snippet">
-      <div class="psm-type-form-heading">Examples</div>
-      <pre><code>
-  &lt;div class="psm-avatar"&gt;
-    &lt;img class="psm-avatar__img" src="./images/tobias.jpg" /&gt;
-  &lt;/div&gt;
-  &lt;div class="psm-avatar"&gt;
-    &lt;span class="psm-avatar__text"&gt;TF&lt;/span&gt;
-  &lt;/div&gt;
-  &lt;div class="psm-avatar"&gt;
-    &lt;div class="psm-avatar__sillouette"&gt;&lt;/div&gt;
-  &lt;/div&gt;
-        </code></pre>
-    </div>
     </section>
     <section>
       <div class="psm-card psm-card--shadow-1">
@@ -1103,8 +1218,6 @@
         </code>
       </pre>
     </section>
-  </div>
-
   </div>
   <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script>

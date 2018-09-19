@@ -1,0 +1,54 @@
+@import "../core/color/variables";
+@import "../core/spacing/variables";
+
+.psm-table {
+  width: 100%;
+  border: none;
+  border-collapse: collapse;
+
+  .psm-table__tr {
+    border-bottom: 1px solid $psm-color-gray-300;
+  }
+  .psm-table__th {
+    text-align: left;
+    padding: $psm-spacing-lg;
+    font-size: 12px;
+  }
+  .psm-table__td {
+    text-align: left;
+    padding: $psm-spacing-lg;
+    line-height: $psm-spacing-lg;
+  }
+}
+
+.psm-table-header {
+  font-weight: 600;
+  font-size: 24px;
+  color: $psm-color-gray-900;
+  padding-top: $psm-spacing-lg;
+  padding-bottom: $psm-spacing-xl;
+  float: left;
+}
+
+.psm-table__actions {
+  float: right;
+  padding-top: $psm-spacing-md;
+  padding-bottom: $psm-spacing-xl;
+}
+
+.psm-table--box {
+  border-radius: 3px;
+  box-shadow: 0 0 1px 0 rgba(26, 30, 32, 0.2), 0 1px 3px 0 rgba(26, 30, 32, 0.1);
+
+  .psm-table-header,
+  .psm-table__actions {
+    padding-left: $psm-spacing-xl;
+    padding-right: $psm-spacing-xl;
+  }
+
+  .psm-table__th,
+  .psm-table__td {
+    padding-left: $psm-spacing-xl;
+    padding-right: $psm-spacing-xl;
+  }
+}
