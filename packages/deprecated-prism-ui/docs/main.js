@@ -159,7 +159,7 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(3);
-module.exports = __webpack_require__(59);
+module.exports = __webpack_require__(61);
 
 
 /***/ }),
@@ -333,6 +333,13 @@ webpackContext.id = 21;
 /***/ }),
 /* 58 */,
 /* 59 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+/* 60 */,
+/* 61 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -426,7 +433,13 @@ var hr = __webpack_require__(57);
 
 // CONCATENATED MODULE: ./components/hr/index.js
 
+// EXTERNAL MODULE: ./components/chip/chip.scss
+var chip = __webpack_require__(59);
+
+// CONCATENATED MODULE: ./components/chip/index.js
+
 // CONCATENATED MODULE: ./components/index.js
+
 
 
 

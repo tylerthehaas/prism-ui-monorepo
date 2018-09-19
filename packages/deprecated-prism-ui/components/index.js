@@ -12,3 +12,4 @@ import "./avatar";
 import "./table";
 import "./card";
 import "./hr";
+import "./chip";

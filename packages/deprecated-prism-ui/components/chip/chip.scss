@@ -1,0 +1,32 @@
+@import "../core/color/variables";
+@import "../core/spacing/variables";
+@import "../core/icon/variables";
+
+.psm-chip,
+%psm-chip {
+  display: inline-block;
+  padding: $psm-spacing-xs $psm-spacing-md;
+  border: 1px solid $psm-color-gray-300;
+  border-radius: 3px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $psm-color-primary-500;
+    color: white;
+  }
+
+  &::after {
+    font-family: "#{$icomoon-font-family}" !important;
+    content: $psm-icon-simple-remove;
+    color: $psm-color-gray-300;
+    height: 24px;
+    padding: 0 0 0 $psm-spacing-lg;
+    display: inline-block;
+    vertical-align: middle;
+  }
+}
+
+.psm-chip--selected {
+  @extend %psm-chip;
+  box-shadow: 0 0 0 2px $psm-color-primary-100;
+}
