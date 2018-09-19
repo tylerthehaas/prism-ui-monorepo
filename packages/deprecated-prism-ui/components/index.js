@@ -1,4 +1,3 @@
-import "normalize.css";
 import "./button";
 import "./input";
 import "./radio";
