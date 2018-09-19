@@ -15,12 +15,12 @@ const isProd = NODE_ENV === "production";
 module.exports = {
   context: path.resolve(__dirname),
   devServer: {
-    contentBase: "./dist",
+    contentBase: "./templates",
     historyApiFallback: true,
-    hot: true,
     overlay: false,
     publicPath: "http://127.0.0.1:3000",
     stats: { colors: true },
+    watchContentBase: true,
   },
   devtool: isProd ? "hidden-source-map" : "cheap-module-source-map",
   entry: {
@@ -28,7 +28,6 @@ module.exports = {
       ? "./components/index.js"
       : [
           "webpack-dev-server/client?http://0.0.0.0:3000",
-          "webpack/hot/only-dev-server",
           "./components/index.js",
         ],
   },
@@ -83,6 +82,10 @@ module.exports = {
         loader: "file-loader",
         test: /.(woff(2)?|eot|ttf)(\?[a-z0-9=.]+)?$/,
       },
+      {
+        loader: "html-loader?interpolate=require",
+        test: /\.(html)$/,
+      },
     ],
   },
   optimization: {
@@ -110,7 +113,7 @@ module.exports = {
   },
   output: {
     filename: `[name]${isProd ? ".[chunkhash]" : ""}.js`,
-    path: path.join(__dirname, "./dist"),
+    path: path.join(__dirname, isProd ? "./dist" : "./docs"),
     publicPath: "/",
   },
   plugins: [
@@ -120,7 +123,8 @@ module.exports = {
     new HtmlWebpackPlugin({
       cache: false,
       chunksSortMode: "dependency",
-      template: "templates/docs.html",
+      minify: isProd,
+      template: "./templates/docs.html",
     }),
     new MiniCssExtractPlugin(),
   ].concat(isProd ? [] : [new Dashboard()]),
