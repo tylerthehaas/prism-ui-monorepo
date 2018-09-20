@@ -1,9 +1,12 @@
 @import "../core/color/variables";
+@import "../core/spacing/variables";
+@import "../core/icon/variables";
 
 $psm-button-height: 36px;
 $psm-border-width: 1px;
 
-.psm-button {
+.psm-button,
+%psm-button {
   display: inline-block;
   position: relative;
   box-sizing: border-box;
@@ -49,8 +52,9 @@ $psm-border-width: 1px;
   }
 }
 
-.psm-button--primary {
-  @extend .psm-button;
+.psm-button--primary,
+%psm-button--primary {
+  @extend %psm-button;
   background-color: $psm-color-primary-500;
   border-color: $psm-color-primary-500;
   color: white;
@@ -76,4 +80,60 @@ $psm-border-width: 1px;
   min-width: 74px;
   height: $psm-button-height * 2/3;
   line-height: $psm-button-height * 2/3 - $psm-border-width * 2;
+}
+
+.psm-dropdown {
+  @extend %psm-button;
+
+  &::after {
+    font-family: "#{$icomoon-font-family}" !important;
+    content: $psm-icon-small-triangle-down;
+    color: $psm-color-gray-200;
+    padding: 0 0 0 $psm-spacing-md;
+    display: inline-block;
+    vertical-align: middle;
+    border-left: 1px solid $psm-color-gray-200;
+    margin: (-$psm-spacing-sm) (-$psm-spacing-md) 0 $psm-spacing-md;
+  }
+}
+
+.psm-dropdown--primary {
+  @extend %psm-button--primary;
+
+  &::after {
+    font-family: "#{$icomoon-font-family}" !important;
+    content: $psm-icon-small-triangle-down;
+    color: #ffffff;
+    padding: 0 0 0 $psm-spacing-md;
+    display: inline-block;
+    vertical-align: middle;
+    border-left: 1px solid #ffffff;
+    margin: (-$psm-spacing-sm) (-$psm-spacing-md) 0 $psm-spacing-md;
+  }
+}
+
+.psm-dropdown__menu,
+%psm-dropdown__menu {
+  border-radius: 3px;
+  display: inline-block;
+  margin: $psm-spacing-sm 0 0 0;
+  box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.14), 0 2px 2px 0 rgba(0, 0, 0, 0.12),
+    0 1px 3px 0 rgba(0, 0, 0, 0.2);
+
+  .psm-dropdown__ul {
+    margin: 0;
+    padding: 0;
+  }
+  .psm-dropdown__ul + .psm-dropdown__ul {
+    border-top: 1px solid $psm-color-gray-200;
+  }
+  .psm-dropdown__li {
+    margin: 0;
+    padding: $psm-spacing-sm $psm-spacing-lg;
+    display: block;
+    white-space: nowrap;
+  }
+}
+.psm-dropdown__menu--flip {
+  @extend %psm-dropdown__menu;
 }
