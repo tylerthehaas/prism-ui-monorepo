@@ -1,0 +1,66 @@
+@import "../core/color/variables";
+@import "../core//spacing/variables";
+
+.psm-rollover {
+  display: inline-block;
+  position: relative;
+  & .psm-rollover__window,
+  %psm-rollover__window {
+    position: absolute;
+    padding: 12px;
+    width: 124px;
+    margin: 0 auto;
+    right: 0;
+    left: 0;
+    color: white;
+    background-color: $psm-color-gray-700;
+    border-radius: 3px;
+
+    & > ul {
+      margin: 0;
+      width: 100%;
+    }
+    & li {
+      margin: 0;
+      width: 100%;
+      text-align: left;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -$psm-spacing-md;
+      right: 0;
+      left: 0;
+      margin: 0 auto;
+      width: 0;
+      height: 0;
+      border-left: 8px solid transparent;
+      border-right: 8px solid transparent;
+      border-top: 8px solid $psm-color-gray-700;
+    }
+  }
+}
+.psm-rollover__window--show {
+  @extend %psm-rollover__window;
+  display: inline-block;
+}
+
+.psm-rollover__window--hide {
+  @extend %psm-rollover__window;
+  display: none;
+}
+
+.psm-rollover__footer {
+  position: relative;
+  top: $psm-spacing-md;
+  &::before {
+    display: block;
+    content: "";
+    width: calc(100% + $psm-spacing-xl);
+    height: 1px;
+    position: relative;
+    background-color: $psm-color-gray-600;
+    right: 12px;
+  }
+}

@@ -15,19 +15,18 @@
   }
 
   &.psm-toggle--inactive {
+    transition: all 0.4s;
     background-color: #dadcdd;
     & > .psm-toggle__switch {
-      // inactive positioning goes here
       position: absolute;
       top: 2px;
       left: 2px;
     }
   }
   &.psm-toggle--active {
+    transition: all 0.4s;
     background-color: #008ae5;
-    transition: all 1s;
     & > .psm-toggle__switch {
-      // active positioning goes here
       position: absolute;
       top: 2px;
       left: 22px;
