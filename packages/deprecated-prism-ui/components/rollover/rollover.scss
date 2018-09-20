@@ -29,7 +29,7 @@
     &::after {
       content: "";
       position: absolute;
-      bottom: -$psm-spacing-md;
+      bottom: (-$psm-spacing-md);
       right: 0;
       left: 0;
       margin: 0 auto;
