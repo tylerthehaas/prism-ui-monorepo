@@ -1,5 +1,7 @@
 @import "../core/color/variables";
+@import "../core/spacing/variables";
 @import "../core/type/variables";
+@import "../core/icon/variables";
 
 .psm-input {
   font-family: $psm-type-font-family;
@@ -33,4 +35,60 @@
   background-image: url(./icons/psm-select-arrow.svg);
   background-position: right 9px;
   background-repeat: no-repeat;
+}
+
+.psm-multi-select,
+%psm-multi-select {
+  display: inline-block;
+  padding: $psm-spacing-xs $psm-spacing-md;
+  border: 1px solid $psm-color-gray-300;
+  border-radius: 3px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $psm-color-primary-500;
+    color: white;
+  }
+
+  &::before {
+    content: "";
+    background-color: #ffffff;
+    height: 12px;
+    width: 12px;
+    border: 1px solid $psm-color-gray-300;
+    padding: 0;
+    margin: 0 $psm-spacing-lg 0 0;
+    display: inline-block;
+    vertical-align: middle;
+  }
+}
+
+.psm-multi-select--radio {
+  &::before {
+    border-radius: 100%;
+  }
+}
+
+.psm-multi-select--selected {
+  @extend %psm-multi-select;
+  border: 1px solid $psm-color-primary-500;
+  box-shadow: 0 0 0 2px $psm-color-primary-100;
+
+  &:hover {
+    &::before {
+      background-color: transparent;
+      color: #ffffff;
+    }
+  }
+
+  &::before {
+    font-family: "#{$icomoon-font-family}" !important;
+    content: $psm-icon-check;
+    border: none;
+    color: $psm-color-primary-500;
+    height: 24px;
+    padding: 0 0 0 0;
+    display: inline-block;
+    vertical-align: middle;
+  }
 }
