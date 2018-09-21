@@ -10,7 +10,8 @@ const postcssPresetEnv = require("postcss-preset-env");
 const babelrc = require("./package.json").babel;
 
 const NODE_ENV = process.env.NODE_ENV || "development";
-const isProd = NODE_ENV === "production";
+// Run production build in test env for the CI
+const isProd = NODE_ENV === "production" || NODE_ENV === "test";
 
 module.exports = {
   context: path.resolve(__dirname),
