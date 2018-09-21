@@ -14,3 +14,4 @@ import "./card";
 import "./hr";
 import "./rollover";
 import "./chip";
+import "./modal";
