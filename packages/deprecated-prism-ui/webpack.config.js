@@ -74,12 +74,16 @@ module.exports = {
         loader: "url-loader",
         options: {
           limit: 8192,
+          name: "images/[name].[ext]",
         },
         test: /.(ico|png|jpg|svg)(\?[a-z0-9=.]+)?$/,
       },
 
       {
         loader: "file-loader",
+        options: {
+          name: "fonts/[name].[ext]",
+        },
         test: /.(woff(2)?|eot|ttf)(\?[a-z0-9=.]+)?$/,
       },
       {
@@ -113,7 +117,7 @@ module.exports = {
   },
   output: {
     filename: `[name]${isProd ? ".[chunkhash]" : ""}.js`,
-    path: path.join(__dirname, isProd ? "./dist" : "./docs"),
+    path: path.join(__dirname, "/dist"),
     publicPath: "/",
   },
   plugins: [

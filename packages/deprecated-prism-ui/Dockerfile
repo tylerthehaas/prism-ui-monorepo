@@ -3,7 +3,8 @@ FROM quay.octanner.io/base/oct-node:10
 WORKDIR /usr/src/app
 COPY . /usr/src/app
 
-RUN yarn
-RUN yarn run build
+# Install dev deps so the build works
+RUN [ "yarn", "install", "--production=false" ]
+RUN [ "yarn", "build:css" ]
 
 CMD [ "yarn", "start" ]

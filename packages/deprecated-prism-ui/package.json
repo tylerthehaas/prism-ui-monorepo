@@ -3,19 +3,18 @@
   "version": "0.0.1",
   "engines": {
     "node": ">=10.0.0 <11.0.0",
-    "yarn": ">=1.9.0 <2.0.0"
+    "yarn": ">=1.7.0 <2.0.0"
   },
   "description": "Common UI for OC Tanner",
   "scripts": {
     "build:css": "rm -rf ./dist/ && NODE_ENV=production webpack -p",
     "dev:css": "webpack-dashboard -- webpack-dev-server --port 3000 --inline --progress",
-    "build:docs": "rm -rf ./docs && webpack -p",
+    "start": "node server.js",
     "lint": "eslint . --ext .js",
     "prettier": "yarn prettier:js && yarn prettier:css",
     "prettier:js": "prettier --write \"./**/*.js\"",
     "prettier:css": "prettier --parser scss --write \"./**/*.scss\"",
-    "prettier:staged": "pretty-quick --staged",
-    "precommit": "yarn build:docs && git add docs/ && yarn prettier:staged",
+    "precommit": "pretty-quick --staged",
     "postmerge": "yarnhook",
     "postcheckout": "yarnhook",
     "postrewrite": "yarnhook",
@@ -31,7 +30,10 @@
     "type": "git",
     "url": "git+https://github.com/octanner/prism-ui.git"
   },
-  "dependencies": {},
+  "dependencies": {
+    "compression": "^1.7.3",
+    "express": "^4.16.3"
+  },
   "devDependencies": {
     "@babel/core": "^7.0.0",
     "@babel/plugin-proposal-class-properties": "^7.0.0",

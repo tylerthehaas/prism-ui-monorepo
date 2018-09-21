@@ -1,5 +1,5 @@
 @import "../core/color/variables";
-@import "../core//spacing/variables";
+@import "../core/spacing/variables";
 
 .psm-rollover {
   display: inline-block;
@@ -57,7 +57,7 @@
   &::before {
     display: block;
     content: "";
-    width: calc(100% + $psm-spacing-xl);
+    width: calc(100% + #{$psm-spacing-xl});
     height: 1px;
     position: relative;
     background-color: $psm-color-gray-600;
