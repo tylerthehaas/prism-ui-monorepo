@@ -5,6 +5,6 @@ COPY . /usr/src/app
 
 # Install dev deps so the build works
 RUN [ "yarn", "install", "--production=false" ]
-RUN [ "yarn", "build:css" ]
+RUN [ "yarn", "build" ]
 
 CMD [ "yarn", "start" ]

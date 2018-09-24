@@ -31,7 +31,7 @@ jobs:
       # - run: yarn test
 
       # Validate build
-      - run: yarn build:css
+      - run: yarn build
 
 workflows:
   version: 2

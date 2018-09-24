@@ -39,7 +39,7 @@ module.exports = {
         exclude: /node_modules/,
         test: /\.scss/,
         use: [
-          MiniCssExtractPlugin.loader,
+          isProd ? MiniCssExtractPlugin.loader : "style-loader",
           {
             loader: "css-loader",
             options: {

@@ -7,8 +7,8 @@
   },
   "description": "Common UI for OC Tanner",
   "scripts": {
-    "build:css": "rm -rf ./dist/ && NODE_ENV=production webpack -p",
-    "dev:css": "webpack-dashboard -- webpack-dev-server --port 3000 --inline --progress",
+    "build": "rm -rf ./dist/ && NODE_ENV=production webpack -p",
+    "dev": "webpack-dashboard -- webpack-dev-server --port 3000 --inline --progress",
     "start": "node server.js",
     "lint": "eslint . --ext .js",
     "prettier": "yarn prettier:js && yarn prettier:css",
@@ -31,8 +31,12 @@
     "url": "git+https://github.com/octanner/prism-ui.git"
   },
   "dependencies": {
+    "classnames": "^2.2.6",
     "compression": "^1.7.3",
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "prop-types": "^15.6.2",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
@@ -40,12 +44,14 @@
     "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
     "@babel/plugin-transform-object-assign": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
+    "@babel/preset-react": "^7.0.0",
     "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "^23.6.0",
     "babel-loader": "^8.0.2",
     "css-loader": "^1.0.0",
     "eslint": "^5.5.0",
     "eslint-plugin-jest": "^21.22.0",
+    "eslint-plugin-react": "^7.11.1",
     "file-loader": "^2.0.0",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
@@ -60,6 +66,7 @@
     "prettier": "^1.14.2",
     "pretty-quick": "^1.6.0",
     "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.0",
     "uglifyjs-webpack-plugin": "^2.0.1",
     "url-loader": "^1.1.1",
     "webpack": "^4.19.1",
@@ -75,6 +82,7 @@
       "@babel/plugin-proposal-class-properties"
     ],
     "presets": [
+      "@babel/preset-react",
       [
         "@babel/preset-env",
         {
@@ -109,7 +117,8 @@
   "eslintConfig": {
     "extends": [
       "eslint:recommended",
-      "plugin:jest/recommended"
+      "plugin:jest/recommended",
+      "plugin:react/recommended"
     ],
     "env": {
       "browser": true,
@@ -130,7 +139,8 @@
       "jest/prefer-to-be-undefined": "error",
       "sort-keys": "error",
       "jest/valid-describe": "error",
-      "jest/valid-expect-in-promise": "error"
+      "jest/valid-expect-in-promise": "error",
+      "react/jsx-sort-props": "error"
     }
   },
   "eslintIgnore": [
