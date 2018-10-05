@@ -1,6 +1,6 @@
 $psm-mount-location: "/prism-ui";
 
-@import "../core/color/variables";
+@import "../components/core/color/variables";
 
 .content {
   max-width: 800px;
@@ -12,6 +12,11 @@ $psm-mount-location: "/prism-ui";
   margin-bottom: 60px;
   padding: 10px;
   text-align: center;
+}
+
+pre,
+code {
+  font-size: 14px;
 }
 
 .types {

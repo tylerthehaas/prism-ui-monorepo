@@ -16,15 +16,15 @@ yarn
 #### Production Build
 
 ```bash
-yarn build:css
+yarn build
 ```
 
-This will create a production build of the scss in `./components` to `dist`.
+This will create a production build of the project to `dist`.
 
 #### Dev
 
 ```bash
-yarn dev:css
+yarn dev
 ```
 
-This will build the sccs in `./components` to `./docs` in watch mode and start a dev server on `localhost:3000`.
+Starts Webpack dev server on port 3000

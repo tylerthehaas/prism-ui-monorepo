@@ -16,7 +16,7 @@ const isProd = NODE_ENV === "production" || NODE_ENV === "test";
 module.exports = {
   context: path.resolve(__dirname),
   devServer: {
-    contentBase: "./templates",
+    contentBase: "./docs",
     historyApiFallback: true,
     overlay: false,
     publicPath: "http://127.0.0.1:3000",
@@ -24,17 +24,35 @@ module.exports = {
     watchContentBase: true,
   },
   devtool: isProd ? "hidden-source-map" : "cheap-module-source-map",
-  entry: {
-    main: isProd
-      ? "./components/index.js"
-      : [
+  entry: isProd
+    ? {
+        docs: "./docs/index.js",
+        main: "./components/index.js",
+      }
+    : {
+        main: [
           "webpack-dev-server/client?http://0.0.0.0:3000",
-          "./components/index.js",
+          "./docs/index.js",
         ],
-  },
+      },
   mode: isProd ? "production" : "development",
   module: {
     rules: [
+      {
+        include: /node_modules\/prismjs/,
+        test: /\.css/,
+        use: [
+          isProd ? MiniCssExtractPlugin.loader : "style-loader",
+          {
+            loader: "css-loader",
+            options: {
+              importLoaders: 2,
+              localIdentName: "[name]__[local]___[hash:base64:5]",
+              sourceMap: !isProd,
+            },
+          },
+        ],
+      },
       {
         exclude: /node_modules/,
         test: /\.scss/,
@@ -129,7 +147,7 @@ module.exports = {
       cache: false,
       chunksSortMode: "dependency",
       minify: isProd,
-      template: "./templates/docs.html",
+      template: "./docs/index.html",
     }),
     new MiniCssExtractPlugin(),
   ].concat(isProd ? [] : [new Dashboard()]),

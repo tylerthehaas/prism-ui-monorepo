@@ -27,8 +27,7 @@ jobs:
       - run: yarn lint
 
       # Test
-      # Not testing as we don't have any real tests yet.
-      # - run: yarn test
+      - run: yarn test:coverage
 
       # Validate build
       - run: yarn build

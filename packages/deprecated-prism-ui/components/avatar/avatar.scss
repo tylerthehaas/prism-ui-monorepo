@@ -2,6 +2,7 @@
 @import "../core/spacing/variables";
 
 .psm-avatar,
+.psm-avatar--md,
 %psm-avatar {
   border-radius: 100%;
   width: 40px;
@@ -18,10 +19,12 @@
     width: 100%;
   }
 
-  .psm-avatar__sillouette {
+  .psm-avatar__silhouette {
     background-image: url(./icons/psm-avatar.svg);
     background-repeat: no-repeat;
-    background-position: center bottom;
+    // Slightly offsetting towards the bottom to prevent
+    // blank space between the avatar and the edge
+    background-position: right 50% bottom -15%;
     width: 100%;
     height: 100%;
     background-size: 75%;

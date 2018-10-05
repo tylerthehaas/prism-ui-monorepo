@@ -1,0 +1,1 @@
+export { AvatarDocs } from "./avatar";
