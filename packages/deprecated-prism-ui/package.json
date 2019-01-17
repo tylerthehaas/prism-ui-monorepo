@@ -37,6 +37,7 @@
   "dependencies": {
     "classnames": "^2.2.6",
     "compression": "^1.7.3",
+    "cors": "^2.8.5",
     "express": "^4.16.3",
     "prismjs": "^1.15.0",
     "prop-types": "^15.6.2",
