@@ -1,66 +1,89 @@
 @import "../core/color/variables";
 @import "../core/spacing/variables";
 
-.psm-rollover {
+.psm-rollover,
+%psm-rollover {
   display: inline-block;
   position: relative;
-  & .psm-rollover__window,
-  %psm-rollover__window {
-    position: absolute;
-    padding: 12px;
+}
+.psm-rollover .psm-rollover__text {
+  &.psm-rollover__text-dotted {
+    border-bottom: 1px dotted $psm-color-gray-700;
+    line-height: 0.85;
+    cursor: pointer;
+  }
+  &.psm-rollover__text-underline {
+    border-bottom: 1px solid $psm-color-gray-700;
+    line-height: 0.85;
+  }
+}
+.psm-rollover .psm-rollover__footer {
+  content: "";
+  bottom: ($psm-spacing-md);
+  border-top: 1px solid $psm-color-gray-600;
+  cursor: pointer;
+}
+
+.psm-rollover .psm-rollover__window,
+%psm-rollover__window {
+  visibility: hidden;
+  padding: 12px;
+  width: 124px;
+  background-color: $psm-color-gray-700;
+  color: white;
+  text-align: center;
+  border-radius: 3px;
+  & > ul {
+    margin: 0;
+    width: 100%;
+  }
+  & li {
+    margin: 0;
+    width: 100%;
+    text-align: left;
+  }
+
+  position: absolute;
+  z-index: 1;
+  &.psm-rollover__window--down {
     width: 124px;
-    margin: 0 auto;
-    right: 0;
-    left: 0;
-    color: white;
-    background-color: $psm-color-gray-700;
-    border-radius: 3px;
-
-    & > ul {
-      margin: 0;
-      width: 100%;
+    top: 100%;
+    left: 50%;
+    margin-left: -60px;
+    &.psm-rollover__window--down::after {
+      content: " ";
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      margin-left: -5px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: transparent transparent $psm-color-gray-700 transparent;
     }
-    & li {
-      margin: 0;
-      width: 100%;
-      text-align: left;
-    }
-
-    &::after {
+  }
+  &.psm-rollover__window--up {
+    width: 124px;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -60px;
+    &.psm-rollover__window--up::after {
       content: "";
       position: absolute;
-      bottom: (-$psm-spacing-md);
-      right: 0;
-      left: 0;
-      margin: 0 auto;
-      width: 0;
-      height: 0;
-      border-left: 8px solid transparent;
-      border-right: 8px solid transparent;
-      border-top: 8px solid $psm-color-gray-700;
+      top: 100%;
+      left: 50%;
+      margin-left: -5px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: $psm-color-gray-700 transparent transparent transparent;
     }
   }
 }
 .psm-rollover__window--show {
   @extend %psm-rollover__window;
-  display: inline-block;
+  visibility: visible;
 }
 
 .psm-rollover__window--hide {
   @extend %psm-rollover__window;
-  display: none;
-}
-
-.psm-rollover__footer {
-  position: relative;
-  top: $psm-spacing-md;
-  &::before {
-    display: block;
-    content: "";
-    width: calc(100% + #{$psm-spacing-xl});
-    height: 1px;
-    position: relative;
-    background-color: $psm-color-gray-600;
-    right: 12px;
-  }
+  visibility: hidden;
 }

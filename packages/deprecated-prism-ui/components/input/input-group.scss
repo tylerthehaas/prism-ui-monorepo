@@ -1,3 +1,7 @@
+@import "../core/color/variables";
+@import "../core/spacing/variables";
+@import "../core/icon/variables";
+
 .psm-input-leading-icon,
 .psm-input-trailing-icon {
   position: relative;
@@ -13,7 +17,7 @@
 .psm-input-leading-icon {
   & > [class^="psm-icon"],
   [class*=" psm-icon"] {
-    left: 8px;
+    left: $psm-spacing-md;
     right: initial;
   }
 
@@ -26,7 +30,7 @@
   & > [class^="psm-icon"],
   [class*=" psm-icon"] {
     left: initial;
-    right: 8px;
+    right: $psm-spacing-md;
   }
 
   & > input:not([type="checkbox"]):not([type="radio"]) {

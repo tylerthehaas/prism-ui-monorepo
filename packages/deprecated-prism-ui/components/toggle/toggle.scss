@@ -1,3 +1,7 @@
+@import "../core/color/variables";
+@import "../core/spacing/variables";
+@import "../core/icon/variables";
+
 .psm-toggle {
   width: 48px;
   height: 28px;
@@ -7,8 +11,8 @@
   cursor: pointer;
   & > .psm-toggle__switch {
     background-color: #ffffff;
-    width: 24px;
-    height: 24px;
+    width: $psm-spacing-xl;
+    height: $psm-spacing-xl;
     border-radius: 100%;
     box-shadow: 0 1px 1px 0 gray;
     transition: all 0.4s;
@@ -19,8 +23,8 @@
     background-color: #dadcdd;
     & > .psm-toggle__switch {
       position: absolute;
-      top: 2px;
-      left: 2px;
+      top: $psm-spacing-xs;
+      left: $psm-spacing-xs;
     }
   }
   &.psm-toggle--active {
@@ -28,7 +32,7 @@
     background-color: #008ae5;
     & > .psm-toggle__switch {
       position: absolute;
-      top: 2px;
+      top: $psm-spacing-xs;
       left: 22px;
     }
   }

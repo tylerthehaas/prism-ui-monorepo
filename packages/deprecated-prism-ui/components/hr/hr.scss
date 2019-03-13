@@ -1,5 +1,9 @@
+@import "../core/color/variables";
+@import "../core/spacing/variables";
+@import "../core/icon/variables";
+
 .psm-hr {
-  border-top: 1px solid #e1e1e1;
+  border-top: 1px solid $psm-color-gray-200;
   border-bottom: none;
   border-left: none;
   border-right: none;

@@ -1,14 +1,18 @@
+@import "../core/color/variables";
+@import "../core/spacing/variables";
+@import "../core/icon/variables";
+
 .psm-alert {
   width: fit-content;
   display: block;
   min-width: 312px;
   text-align: center;
-  border-radius: 4px;
-  padding: 4px 16px;
+  border-radius: $psm-spacing-sm;
+  padding: $psm-spacing-sm $psm-spacing-lg;
 
   & > .psm-alert__msg {
     vertical-align: middle;
-    padding: 0 8px;
+    padding: 0 $psm-spacing-md;
   }
   & > .psm-alert__close {
     cursor: pointer;
@@ -17,9 +21,10 @@
     transform: scale(0.6);
   }
   & > .psm-alert__action {
+    color: white;
     text-decoration: underline;
     vertical-align: middle;
-    padding: 0 8px;
+    padding: 0 $psm-spacing-md;
     cursor: pointer;
     &:active {
       color: #9c9c9c;
@@ -72,24 +77,24 @@
   display: inline-block;
   min-width: unset;
   min-height: unset;
-  padding: 0 4px;
+  padding: 0 $psm-spacing-sm;
 }
 
 .psm-alert--btn {
   text-align: left;
   min-width: 512px;
-  padding: 16px;
+  padding: $psm-spacing-lg;
 
   & > .psm-alert__btn {
     float: right;
     background-color: white;
     color: black;
-    border-radius: 4px;
+    border-radius: $psm-spacing-sm;
     margin: -5px 0px;
   }
 
   & > .psm-alert__msg {
-    padding: 0 16px 0 0;
+    padding: 0 $psm-spacing-lg 0 0;
   }
 }
 

@@ -1,6 +1,8 @@
 const path = require("path");
 const express = require("express");
 const compression = require("compression");
+const pathToDist = path.join(__dirname, "dist");
+const pathToIndex = path.join(pathToDist, "index.html");
 const cors = require("cors");
 
 const app = express();
@@ -14,6 +16,10 @@ app
   )
   .use(compression())
   .use(express.static(path.resolve(`${__dirname}`, "dist")));
+
+app.get("*", (req, res) => {
+  res.sendFile(pathToIndex);
+});
 
 app.listen(
   PORT,

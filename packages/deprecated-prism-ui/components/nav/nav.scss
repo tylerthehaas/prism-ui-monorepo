@@ -1,13 +1,19 @@
+@import "../core/color/variables";
+@import "../core/spacing/variables";
+@import "../core/icon/variables";
+
 .psm-nav__tab {
   height: 36px;
-  padding: 0 24px;
+  padding: 0 $psm-spacing-xl;
   width: fit-content;
   margin: 0;
-  line-height: 36px;
   cursor: pointer;
-
   &.psm-nav__active {
-    border-bottom: 2px solid #008ae5;
+    border-bottom: $psm-spacing-xs solid #008ae5;
+    // outline-style: unset;
+  }
+  &.psm-nav__click {
+    outline-style: none;
   }
 }
 

@@ -1,4 +1,4 @@
-import React from "react";
+/* eslint jsx-a11y/no-noninteractive-tabindex: 0 */ import React from "react";
 import PropTypes from "prop-types";
 import { values } from "ramda";
 
@@ -20,12 +20,19 @@ const getAvatarContent = (initials, src) => {
   }
 
   return (
-    <div className="psm-avatar__silhouette" data-testid="avatar-silhouette" />
+    <div
+      aria-label="user avatar no image provided"
+      className="psm-avatar__silhouette"
+      data-testid="avatar-silhouette"
+      role="img"
+    />
   );
 };
 
 export const Avatar = ({ initials, size = "md", src }) => (
-  <div className={`psm-avatar--${size}`}>{getAvatarContent(initials, src)}</div>
+  <div className={`psm-avatar--${size}`} tabIndex={0}>
+    {getAvatarContent(initials, src)}
+  </div>
 );
 
 Avatar.propTypes = {

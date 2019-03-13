@@ -1,5 +1,7 @@
 @import "./_mixins";
 @import "../core/color/variables";
+@import "../core/spacing/variables";
+@import "../core/icon/variables";
 
 .psm-radio {
   display: inline-block;
@@ -12,14 +14,19 @@
   cursor: pointer;
 
   &::after {
-    @include pseudo-radio(white, 16px, $psm-color-gray-500, 1px);
+    @include pseudo-radio(white, $psm-spacing-lg, $psm-color-gray-500, 1px);
   }
 
   &:hover::after {
-    @include pseudo-radio(white, 16px, $psm-color-primary-500, 1px);
+    @include pseudo-radio(white, $psm-spacing-lg, $psm-color-primary-500, 1px);
   }
 
   &:checked::after {
-    @include pseudo-radio(white, 4px, $psm-color-primary-500, 7px);
+    @include pseudo-radio(white, $psm-spacing-sm, $psm-color-primary-500, 7px);
   }
+}
+
+.psm-radio__label {
+  position: relative;
+  bottom: $psm-spacing-sm;
 }

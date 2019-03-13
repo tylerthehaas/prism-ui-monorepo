@@ -90,6 +90,11 @@ module.exports = {
         ],
       },
       {
+        exclude: /node_modules/,
+        test: /\.tsx?$/,
+        loader: "ts-loader",
+      },
+      {
         loader: "url-loader",
         options: {
           limit: 8192,
@@ -108,6 +113,21 @@ module.exports = {
       {
         loader: "html-loader?interpolate=require",
         test: /\.(html)$/,
+      },
+
+      {
+        exclude: /node_modules/,
+        test: /\.css$/,
+        loader: "style-loader",
+      },
+      {
+        exclude: /node_modules/,
+        test: /\.css$/,
+        loader: "css-loader",
+        query: {
+          modules: true,
+          localIdentName: "[name]__[local]___[hash:base64:5]",
+        },
       },
     ],
   },
@@ -152,7 +172,7 @@ module.exports = {
     new MiniCssExtractPlugin(),
   ].concat(isProd ? [] : [new Dashboard()]),
   resolve: {
-    extensions: [".js"],
+    extensions: [".js", ".ts", ".tsx"],
     modules: [path.resolve("./components"), "node_modules"],
   },
 };

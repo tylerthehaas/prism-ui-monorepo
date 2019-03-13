@@ -12,7 +12,7 @@ $psm-border-width: 1px;
   box-sizing: border-box;
   min-width: 80px;
   height: $psm-button-height;
-  padding: 0 16px;
+  padding: 0 $psm-spacing-lg;
   border: $psm-border-width solid $psm-color-gray-200;
   border-radius: 3px;
   color: $psm-color-gray-900;
@@ -117,7 +117,8 @@ $psm-border-width: 1px;
   border-radius: 3px;
   display: inline-block;
   margin: $psm-spacing-sm 0 0 0;
-  box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.14), 0 2px 2px 0 rgba(0, 0, 0, 0.12),
+  box-shadow: 0 0 $psm-spacing-xs 0 rgba(0, 0, 0, 0.14),
+    0 $psm-spacing-xs $psm-spacing-xs 0 rgba(0, 0, 0, 0.12),
     0 1px 3px 0 rgba(0, 0, 0, 0.2);
 
   .psm-dropdown__ul {
@@ -132,6 +133,11 @@ $psm-border-width: 1px;
     padding: $psm-spacing-sm $psm-spacing-lg;
     display: block;
     white-space: nowrap;
+    width: calc(100% - 36px);
+    cursor: pointer;
+    &:hover {
+      background-color: #e4e4e4;
+    }
   }
 }
 .psm-dropdown__menu--flip {

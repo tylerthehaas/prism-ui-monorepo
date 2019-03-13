@@ -2,6 +2,54 @@ $psm-mount-location: "/prism-ui";
 
 @import "../components/core/color/variables";
 
+p > code {
+  color: #ff2e35;
+}
+
+.window-group {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: stretch;
+  align-content: stretch;
+}
+
+.component-window {
+  min-width: 400px;
+  min-height: 250px;
+  padding: 16px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  position: relative;
+  flex-grow: 2;
+  margin: 8px;
+}
+
+.component-window-child {
+  display: inline-block;
+  width: 100%;
+}
+
+.props-window {
+  min-width: 150px;
+  min-height: 250px;
+  padding: 16px;
+  background-color: rgb(238, 238, 238);
+  margin: 8px;
+}
+
+.hoverable:hover {
+  font-weight: bold;
+  color: #545454;
+}
+.hoverable {
+  color: #212121;
+  text-decoration: none;
+}
+
 .content {
   max-width: 800px;
   margin: 0 auto 3em;
@@ -27,10 +75,6 @@ code {
     margin-left: 200px;
     height: 6em;
   }
-}
-
-.buttons {
-  margin-bottom: 60px;
 }
 
 .narrow {

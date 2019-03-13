@@ -5,11 +5,10 @@
 
 .psm-input {
   font-family: $psm-type-font-family;
-  outline: none;
   width: 100%;
   height: 36px;
   margin: 3px 0;
-  padding: 6px 16px;
+  padding: 6px $psm-spacing-lg;
   font-size: 0.875rem;
   box-sizing: border-box;
   border: 1px solid $psm-color-gray-200;
@@ -17,18 +16,18 @@
 
   &:hover {
     border-color: #42a5f5;
-    box-shadow: 0 0 0 2px #e3f2fd;
+    box-shadow: 0 0 0 $psm-spacing-xs #e3f2fd;
   }
 
   &.psm-input--error,
   &.psm-input--active:invalid {
     border-color: #f44923;
-    box-shadow: 0 0 0 2px rgba(244, 73, 35, 0.2);
+    box-shadow: 0 0 0 $psm-spacing-xs rgba(244, 73, 35, 0.2);
   }
 }
 
 .psm-select {
-  padding: 0 16px;
+  padding: 0 $psm-spacing-lg;
   line-height: 36px;
   background-color: white;
   appearance: none;
@@ -36,6 +35,9 @@
   background-image: url(./icons/psm-select-arrow.svg);
   background-position: right 9px;
   background-repeat: no-repeat;
+  &::-ms-expand {
+    display: none;
+  }
 }
 
 .psm-multi-select,
@@ -73,7 +75,7 @@
 .psm-multi-select--selected {
   @extend %psm-multi-select;
   border: 1px solid $psm-color-primary-500;
-  box-shadow: 0 0 0 2px $psm-color-primary-100;
+  box-shadow: 0 0 0 $psm-spacing-xs $psm-color-primary-100;
 
   &:hover {
     &::before {
@@ -87,7 +89,7 @@
     content: $psm-icon-check;
     border: none;
     color: $psm-color-primary-500;
-    height: 24px;
+    height: $psm-spacing-xl;
     padding: 0 0 0 0;
     display: inline-block;
     vertical-align: middle;

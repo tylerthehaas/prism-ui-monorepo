@@ -1,52 +1,31 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Prism from "prismjs";
-import classNames from "classnames";
+import "prismjs/components/prism-jsx";
+// import classNames from "classnames";
 
 export class Example extends Component {
   static propTypes = {
     htmlCode: PropTypes.string.isRequired,
     reactCode: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
   };
 
-  state = {
-    // 'react' | 'html'
-    codeType: "react",
-  };
+  state = {};
 
-  highlight = code => Prism.highlight(code.trim(), Prism.languages.xml, "xml");
+  highlight = code => Prism.highlight(code.trim(), Prism.languages.jsx, "jsx");
 
   setCodeType = codeType => () => this.setState(() => ({ codeType }));
 
   render() {
     const { htmlCode, reactCode } = this.props;
-    const { codeType } = this.state;
-
     return (
       <div>
-        <button
-          className={classNames({
-            "psm-button": true,
-            "psm-button--primary": codeType === "react",
-          })}
-          onClick={this.setCodeType("react")}
-        >
-          React
-        </button>
-        <button
-          className={classNames({
-            "psm-button": true,
-            "psm-button--primary": codeType === "html",
-          })}
-          onClick={this.setCodeType("html")}
-        >
-          HTML
-        </button>
-        <pre className="language-xml">
+        <pre className="language-jsx">
           <code
             dangerouslySetInnerHTML={{
               __html: this.highlight(
-                codeType === "react" ? reactCode : htmlCode,
+                this.props.type === "react" ? reactCode : htmlCode,
               ),
             }}
           />

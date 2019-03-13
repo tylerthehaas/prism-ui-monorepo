@@ -14,19 +14,19 @@
     background-color: $psm-color-primary-500;
     color: white;
   }
-
-  &::after {
-    font-family: "#{$icomoon-font-family}" !important;
-    content: $psm-icon-simple-remove;
-    color: $psm-color-gray-300;
-    height: 24px;
-    padding: 0 0 0 $psm-spacing-lg;
-    display: inline-block;
-    vertical-align: middle;
-  }
 }
 
 .psm-chip--selected {
   @extend %psm-chip;
-  box-shadow: 0 0 0 2px $psm-color-primary-100;
+  box-shadow: 0 0 0 $psm-spacing-xs $psm-color-primary-100;
+}
+
+.psm-chip__close {
+  font-family: "#{$icomoon-font-family}" !important;
+  content: $psm-icon-simple-remove;
+  color: $psm-color-gray-300;
+  height: $psm-spacing-lg;
+  margin-left: $psm-spacing-lg;
+  display: inline-block;
+  vertical-align: middle;
 }

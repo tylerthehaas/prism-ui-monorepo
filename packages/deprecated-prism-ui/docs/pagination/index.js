@@ -1,0 +1,1 @@
+export { PaginationDocs } from "./pagination";

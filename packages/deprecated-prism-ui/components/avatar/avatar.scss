@@ -61,12 +61,12 @@
 
 .psm-avatar--sm {
   @extend %psm-avatar;
-  width: 32px;
-  height: 32px;
+  width: $psm-spacing-xxl;
+  height: $psm-spacing-xxl;
 }
 
 .psm-avatar--xs {
   @extend %psm-avatar;
-  width: 24px;
-  height: 24px;
+  width: $psm-spacing-xl;
+  height: $psm-spacing-xl;
 }

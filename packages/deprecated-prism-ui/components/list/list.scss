@@ -1,3 +1,7 @@
+@import "../core/color/variables";
+@import "../core/spacing/variables";
+@import "../core/icon/variables";
+
 .psm-list {
   border-collapse: collapse;
   width: 100%;
@@ -6,6 +10,14 @@
     width: 100%;
     border-top: 1px solid #dadcdd;
     border-bottom: 1px solid #dadcdd;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: -1px 0;
+    & > li {
+      display: inline-block;
+      margin: 0;
+    }
   }
 
   .psm-list__row-sm {
@@ -20,6 +32,7 @@
     height: 72px;
   }
   .psm-list__row__lead {
-    padding-left: 16px;
+    padding-left: $psm-spacing-lg;
+    display: inline-block;
   }
 }

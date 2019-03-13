@@ -1,5 +1,6 @@
 @import "../core/color/variables";
 @import "../core/spacing/variables";
+@import "../core/icon/variables";
 
 .psm-table {
   width: 100%;
@@ -23,7 +24,7 @@
 
 .psm-table-header {
   font-weight: 600;
-  font-size: 24px;
+  font-size: $psm-spacing-xl;
   color: $psm-color-gray-900;
   padding-top: $psm-spacing-lg;
   padding-bottom: $psm-spacing-xl;
