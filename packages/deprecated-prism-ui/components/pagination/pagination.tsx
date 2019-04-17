@@ -3,9 +3,9 @@ import * as React from "react";
 export type PaginationProps = {
   pagesShown?: number;
   numPages: number;
-  onClick(event: any): any;
+  onClick(event: number): void;
   defaultPage?: number;
-  dataTestId?: String;
+  ["data-testid"]?: String;
 };
 type PaginationState = {
   active: number;
@@ -30,21 +30,31 @@ export class Pagination extends React.Component<
     defaultPage: 1,
   };
   handlePageChange = (index, action) => {
-    action(action);
+    action(index);
     this.setState({ active: index });
   };
   handleLeftArrow() {
-    if (this.state.active - 1 !== 0) {
-      this.setState({ active: this.state.active - 1 });
+    const { active } = this.state;
+    const { onClick } = this.props;
+    if (active - 1 !== 0) {
+      const newActive = active - 1;
+      onClick(newActive);
+      this.setState({ active: newActive });
     } else {
+      onClick(1);
       this.setState({ active: 1 });
     }
   }
   handleRightArrow() {
-    if (this.state.active + 1 < this.props.numPages) {
-      this.setState({ active: this.state.active + 1 });
+    const { active } = this.state;
+    const { onClick, numPages } = this.props;
+    if (active + 1 < this.props.numPages) {
+      const newActive = active + 1;
+      onClick(newActive);
+      this.setState({ active: newActive });
     } else {
-      this.setState({ active: this.props.numPages });
+      onClick(numPages);
+      this.setState({ active: numPages });
     }
   }
   findActive(index) {
@@ -69,7 +79,7 @@ export class Pagination extends React.Component<
           paginate.push(
             <li
               className="psm-pagination__number psm-pagination__active"
-              data-testid={`${this.props.dataTestId}-${i}`}
+              data-testid={`${this.props["data-testid"]}-${i}`}
               id={`pagination-number-${i}`}
               key={i}
               onClick={() => this.handlePageChange(i, this.props.onClick)}
@@ -81,7 +91,7 @@ export class Pagination extends React.Component<
           paginate.push(
             <li
               className="psm-pagination__number"
-              data-testid={`${this.props.dataTestId}-${i}`}
+              data-testid={`${this.props["data-testid"]}-${i}`}
               id={`pagination-number-${i}`}
               key={i}
               onClick={() => this.handlePageChange(i, this.props.onClick)}
@@ -105,7 +115,7 @@ export class Pagination extends React.Component<
         paginate.push(
           <li
             className="psm-pagination__number psm-pagination__active"
-            data-testid={`${this.props.dataTestId}-${i}`}
+            data-testid={`${this.props["data-testid"]}-${i}`}
             id={`pagination-number-${i}`}
             key={i}
             onClick={() => this.handlePageChange(i, this.props.onClick)}
@@ -120,7 +130,7 @@ export class Pagination extends React.Component<
         paginate.push(
           <li
             className="psm-pagination__number"
-            data-testid={`${this.props.dataTestId}-${i}`}
+            data-testid={`${this.props["data-testid"]}-${i}`}
             id={`pagination-number-${i}`}
             key={i}
             onClick={() => this.handlePageChange(i, this.props.onClick)}
@@ -134,46 +144,41 @@ export class Pagination extends React.Component<
   }
   public render() {
     return (
-      <>
-        <ul className="psm-pagination">
-          <li
-            className="psm-icon-small-left"
-            data-testid={`${this.props.dataTestId}-left-arrow`}
-            key="pagination-left-arrow"
-            onClick={() => this.handleLeftArrow()}
-          />
-          <li
-            className={`psm-pagination__number ${
-              1 === this.state.active ? "psm-pagination__active" : ""
-            }`}
-            data-testid={`${this.props.dataTestId}-1`}
-            onClick={() => this.handlePageChange(1, this.props.onClick)}
-          >
-            1
-          </li>
-          {this.handleDisplay()}
-          <li
-            className={`psm-pagination__number ${
-              this.props.numPages === this.state.active
-                ? "psm-pagination__active"
-                : ""
-            }`}
-            data-testid={`${this.props.dataTestId}-${this.props.numPages}`}
-            id={`pagination-number-${this.props.numPages}`}
-            onClick={() =>
-              this.handlePageChange(this.props.numPages, this.props.onClick)
-            }
-          >
-            {this.props.numPages}
-          </li>
-          <li
-            className="psm-icon-small-right"
-            data-testid={`${this.props.dataTestId}-right-arrow`}
-            key="pagination-right-arrow"
-            onClick={() => this.handleRightArrow()}
-          />
-        </ul>
-      </>
+      <ul className="psm-pagination">
+        <li
+          className="psm-icon-small-left"
+          data-testid={`${this.props["data-testid"]}-left-arrow`}
+          onClick={() => this.handleLeftArrow()}
+        />
+        <li
+          className={`psm-pagination__number ${
+            1 === this.state.active ? "psm-pagination__active" : ""
+          }`}
+          data-testid={`${this.props["data-testid"]}-1`}
+          onClick={() => this.handlePageChange(1, this.props.onClick)}
+        >
+          1
+        </li>
+        {this.handleDisplay()}
+        <li
+          className={`psm-pagination__number ${
+            this.props.numPages === this.state.active
+              ? "psm-pagination__active"
+              : ""
+          }`}
+          data-testid={`${this.props["data-testid"]}-${this.props.numPages}`}
+          onClick={() =>
+            this.handlePageChange(this.props.numPages, this.props.onClick)
+          }
+        >
+          {this.props.numPages}
+        </li>
+        <li
+          className="psm-icon-small-right"
+          data-testid={`${this.props["data-testid"]}-right-arrow`}
+          onClick={() => this.handleRightArrow()}
+        />
+      </ul>
     );
   }
 }

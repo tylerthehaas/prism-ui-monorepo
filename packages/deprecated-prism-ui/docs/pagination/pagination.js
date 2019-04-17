@@ -161,9 +161,8 @@ export class PaginationDocs extends React.Component {
               },
               {
                 name: "onClick",
-                type: "Event",
-                description:
-                  "Event that will be handled when a number is clicked.",
+                type: "Function",
+                description: "Function to be called when page changes.",
               },
             ]}
           />
