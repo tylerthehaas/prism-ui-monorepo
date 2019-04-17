@@ -3,6 +3,15 @@ import { render } from "react-testing-library";
 
 import { Nav } from "./";
 
+import Enzyme from "enzyme";
+import Adapter from "enzyme-adapter-react-16";
+
+const { mount } = Enzyme;
+
+Enzyme.configure({ adapter: new Adapter() });
+
+jest.mock("./");
+
 describe("<Nav />", () => {
   it("Active defaults to 0", () => {
     const { container } = render(
@@ -28,4 +37,21 @@ describe("<Nav />", () => {
       "psm-nav__tab psm-nav__active",
     );
   });
+  it("On focus sets isFocused to current index", () => {
+    const container = mount(<Nav tabs={["Recieved", "Given", "Personal"]} />);
+    container.find("#tab-0").simulate("focus");
+    expect(container.state("isFocused")).toEqual(0);
+  });
+  it("OnClick sets active to current index", () => {
+    const container = mount(<Nav tabs={["Recieved", "Given", "Personal"]} />);
+    container.find("#tab-1").simulate("click");
+    expect(container.state("active")).toEqual(1);
+  });
+  it("Enter sets tab to false", () => {
+    const container = mount(<Nav tabs={["Recieved", "Given", "Personal"]} />);
+    container.find("#tab-1").simulate("keypress", { charCode: "13" });
+    expect(container.state("isTab")).toEqual(false);
+  });
 });
+
+jest.unmock("./");

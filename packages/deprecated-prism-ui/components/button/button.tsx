@@ -1,7 +1,7 @@
 import * as React from "react";
 
 export type ButtonProps = {
-  action(event: any): any;
+  action?(event: any): any;
   dropdownActions?: Array<{ label?: string; action(event: any): any }>;
   dropdown?: boolean;
   primary?: boolean;
@@ -36,9 +36,6 @@ export class Button extends React.Component<ButtonProps, ButtonState> {
     this.handleDropDown = this.handleDropDown.bind(this);
   }
   static defaultProps: ButtonProps = {
-    action: () => {
-      console.log("No action given");
-    },
     dropdown: false,
     primary: true,
     small: false,
@@ -59,9 +56,11 @@ export class Button extends React.Component<ButtonProps, ButtonState> {
       linkRef,
     });
   }
+
   handleClick = action => event => {
     action(event);
   };
+
   handleDropDown = event => {
     if (!this.state.showMenu) {
     }
@@ -123,32 +122,29 @@ export class Button extends React.Component<ButtonProps, ButtonState> {
               {this.props.label}
             </a>
           )}
-          {this.state.showMenu &&
-            this.props.dropdown && (
-              <>
-                <div />
-                <div className="psm-dropdown__menu">
-                  <ul className="psm-dropdown__ul">
-                    {this.props.dropdownActions.map((a, index) => {
-                      return (
-                        <li
-                          aria-labelledby={a.label}
-                          className="psm-dropdown__li"
-                          data-testid={`${
-                            this.props.dataTestId
-                          }-option-${index}`}
-                          key={index}
-                          onClick={this.dropdownMenuClick(a.action)}
-                          tabIndex={0}
-                        >
-                          {a.label}
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </div>{" "}
-              </>
-            )}
+          {this.state.showMenu && this.props.dropdown && (
+            <>
+              <div />
+              <div className="psm-dropdown__menu">
+                <ul className="psm-dropdown__ul">
+                  {this.props.dropdownActions.map((a, index) => {
+                    return (
+                      <li
+                        aria-labelledby={a.label}
+                        className="psm-dropdown__li"
+                        data-testid={`${this.props.dataTestId}-option-${index}`}
+                        key={index}
+                        onClick={this.dropdownMenuClick(a.action)}
+                        tabIndex={0}
+                      >
+                        {a.label}
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>{" "}
+            </>
+          )}
         </div>
       </>
     );

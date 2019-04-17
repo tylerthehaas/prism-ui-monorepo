@@ -121,7 +121,7 @@ export class Modal extends React.Component<ModalProps, ModalState> {
                 className="psm-icon-simple-remove psm-modal__close"
                 data-testid={`${this.props.dataTestId}-close-icon`}
                 id={`button-${
-                  this.props.actions ? this.props.actions.length : 0 + 1
+                  this.props.actions ? this.props.actions.length + 1 : 1
                 }`}
                 onClick={() => {
                   this.setState({ show: false });
@@ -130,8 +130,8 @@ export class Modal extends React.Component<ModalProps, ModalState> {
                 onFocus={() =>
                   this.setState({
                     isFocused: this.props.actions
-                      ? this.props.actions.length
-                      : 0 + 1,
+                      ? this.props.actions.length + 1
+                      : 1,
                   })
                 }
                 tabIndex={0}
@@ -140,13 +140,13 @@ export class Modal extends React.Component<ModalProps, ModalState> {
               <h3
                 className="psm-modal__header"
                 id={`button-${
-                  this.props.actions ? this.props.actions.length : 0 + 2
+                  this.props.actions ? this.props.actions.length + 2 : 2
                 }`}
                 onFocus={() =>
                   this.setState({
                     isFocused: this.props.actions
-                      ? this.props.actions.length
-                      : 0 + 2,
+                      ? this.props.actions.length + 2
+                      : 2,
                   })
                 }
                 tabIndex={0}
@@ -156,13 +156,13 @@ export class Modal extends React.Component<ModalProps, ModalState> {
               <div
                 className="psm-modal__body"
                 id={`button-${
-                  this.props.actions ? this.props.actions.length : 0 + 3
+                  this.props.actions ? this.props.actions.length + 3 : 3
                 }`}
                 onFocus={() =>
                   this.setState({
                     isFocused: this.props.actions
-                      ? this.props.actions.length
-                      : 0 + 3,
+                      ? this.props.actions.length + 3
+                      : 3,
                   })
                 }
                 style={{ position: "relative", height: 250 }}

@@ -3,6 +3,15 @@ import { render } from "react-testing-library";
 
 import { Icon } from "./";
 
+import Enzyme from "enzyme";
+import Adapter from "enzyme-adapter-react-16";
+
+const { mount } = Enzyme;
+
+Enzyme.configure({ adapter: new Adapter() });
+
+jest.mock("./");
+
 describe("<Icon />", () => {
   it("Icon type: desktop", () => {
     const { container } = render(<Icon iconName={"desktop"} />);
@@ -52,4 +61,18 @@ describe("<Icon />", () => {
     const { container } = render(<Icon iconName={"simple-remove"} />);
     expect(container.firstChild).toHaveClass("psm-icon-simple-remove");
   });
+  it("Sets props to conversation", () => {
+    const container = mount(<Icon iconName={"simple-remove"} />);
+    container.setProps({ iconName: "conversation" });
+    expect(container.find(".psm-icon-conversation")).toHaveLength(1);
+  });
+  it("Test icon action", () => {
+    const func = jest.fn();
+
+    const container = mount(<Icon action={func} iconName={"simple-remove"} />);
+    container.simulate("click");
+    expect(func.mock.calls).toHaveLength(1);
+  });
 });
+
+jest.unmock("./");

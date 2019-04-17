@@ -3,6 +3,15 @@ import { render } from "react-testing-library";
 
 import { Rollover } from "./";
 
+import Enzyme from "enzyme";
+import Adapter from "enzyme-adapter-react-16";
+
+const { mount } = Enzyme;
+
+Enzyme.configure({ adapter: new Adapter() });
+
+jest.mock("./");
+
 describe("<Rollover />", () => {
   it("Defaults to show above text", () => {
     const { container } = render(<Rollover />);
@@ -38,4 +47,31 @@ describe("<Rollover />", () => {
       "psm-rollover",
     );
   });
+  it("Display more when there are more to show than should be shown", () => {
+    const container = mount(<Rollover numShown={2} underline={false} />);
+    expect(container.find(".psm-rollover__footer")).toHaveLength(1);
+  });
+  it("Shows more when more is clicked", () => {
+    const container = mount(<Rollover numShown={2} underline={false} />);
+    container.find(".psm-rollover__footer").simulate("click");
+    expect(container.state("clicked")).toEqual(true);
+    expect(container.state("extra")).not.toHaveLength(0);
+  });
+  it("OnBlur closes rollover", () => {
+    const container = mount(
+      <Rollover dotted={false} numShown={2} underline={false} />,
+    );
+    container.find(".psm-rollover").simulate("blur");
+    expect(container.state("hovered")).toEqual(false);
+    expect(container.state("clicked")).toEqual(false);
+  });
+  it("OnMouseEnter opens rollover", () => {
+    const container = mount(
+      <Rollover dotted={false} numShown={2} underline={false} />,
+    );
+    container.find(".psm-rollover").simulate("mouseenter");
+    expect(container.state("hovered")).toEqual(true);
+  });
 });
+
+jest.unmock("./");

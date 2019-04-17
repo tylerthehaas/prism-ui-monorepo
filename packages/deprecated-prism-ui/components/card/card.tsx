@@ -15,16 +15,7 @@ export class Card extends React.Component<CardProps> {
   }
 
   componentWillReceiveProps(props: CardProps) {
-    if (props.shadowType === "sm") {
-      this.setState({ shadowType: "sm" });
-    }
-    if (props.shadowType === "md") {
-      this.setState({ shadowType: "md" });
-    }
-    if (props.shadowType === "lg") {
-      this.setState({ shadowType: "lg" });
-    }
-    console.log(props);
+    this.setState({ shadowType: props.shadowType });
   }
   getShadowType() {
     if (this.props.shadowType === "sm") {

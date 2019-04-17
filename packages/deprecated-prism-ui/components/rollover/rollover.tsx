@@ -28,18 +28,15 @@ export class Rollover extends React.Component<RolloverProps, RolloverState> {
       extra: [],
       clicked: false,
       escaped: false,
-      idPrefix: Math.random()
-        .toString(36)
-        .substring(7),
+      idPrefix:
+        this.props.idPrefix ||
+        Math.random()
+          .toString(36)
+          .substring(7),
     };
     this.handleHover = this.handleHover.bind(this);
     this.handleLeave = this.handleLeave.bind(this);
     this.escFunction = this.escFunction.bind(this);
-  }
-
-  componentWillReceiveProps(props: RolloverProps) {
-    this.setState({ position: props.position });
-    console.log(props);
   }
 
   handleHover = () => {
@@ -138,7 +135,7 @@ export class Rollover extends React.Component<RolloverProps, RolloverState> {
           className="psm-rollover"
           id={`${this.state.idPrefix}-rollover-div`}
           onBlur={this.handleLeave}
-          onFocus={!this.state.escaped && this.handleHover}
+          onFocus={this.handleHover}
           onMouseEnter={this.handleHover}
           onMouseLeave={this.handleLeave}
           style={{ width: "fit-content" }}

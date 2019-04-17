@@ -50,6 +50,7 @@ export class Radio extends React.Component<RadioProps, RadioState> {
           {this.props.buttons.map((b, index) => {
             return (
               <div
+                id={`radio-div-${index}`}
                 key={index}
                 onFocus={() => this.setState({ isFocused: index })}
                 style={{ width: "fit-content", display: "inline-block" }}

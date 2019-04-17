@@ -58,6 +58,7 @@ export class Nav extends React.Component<NavProps, NavState> {
               className={`psm-nav__tab ${
                 this.state.active === index ? "psm-nav__active" : ""
               }`}
+              id={`tab-${index}`}
               key={index}
               onClick={event => {
                 this.handleClick(index, t, event);

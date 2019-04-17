@@ -44,17 +44,7 @@ export class List extends React.Component<ListProps, ListState> {
 
   static defaultProps: ListProps = {
     size: Sizes.Large,
-    rows: [
-      {
-        columns: [
-          {
-            text: "Empty Row",
-            isButton: false,
-            buttonPrimary: true,
-          },
-        ],
-      },
-    ],
+    rows: [],
     idPrefix: null,
   };
 
@@ -93,7 +83,6 @@ export class List extends React.Component<ListProps, ListState> {
     }
 
     if (event.keyCode !== 9) {
-      console.log(this.state.isFocusedColumn);
       document
         .getElementById(
           `${this.state.idPrefix}-row-${this.state.isFocusedRow}-column-div-${
@@ -128,7 +117,6 @@ export class List extends React.Component<ListProps, ListState> {
 
   componentWillReceiveProps(props: ListProps) {
     this.setState({ size: props.size });
-    console.log("Will Recieve", props);
   }
 
   public render() {
@@ -160,9 +148,6 @@ export class List extends React.Component<ListProps, ListState> {
                             }-row-${i}-column-div-${index}`}
                             key={index}
                             role="listitem"
-                            // onFocus={() =>
-                            //   this.setState({ isFocusedColumn: index })
-                            // }
                             tabIndex={0}
                           >
                             {c.text}
@@ -173,10 +158,6 @@ export class List extends React.Component<ListProps, ListState> {
                           <li
                             aria-label={`${c.text}-button`}
                             key={index}
-                            // onFocus={() => {
-                            //   this.setState({ isFocusedColumn: index });
-                            //   console.log("td");
-                            // }}
                             role="listitem"
                             tabIndex={0}
                           >
@@ -190,9 +171,6 @@ export class List extends React.Component<ListProps, ListState> {
                               }-row-${i}-column-div-${index}`}
                               key={index}
                               onClick={c.action}
-                              // onFocus={() =>
-                              //   this.setState({ isFocusedColumn: index })
-                              // }
                               tabIndex={-1}
                             >
                               {c.text}
@@ -211,9 +189,6 @@ export class List extends React.Component<ListProps, ListState> {
                               this.state.idPrefix
                             }-row-${i}-column-div-${index}`}
                             key={index}
-                            // onFocus={() =>
-                            //   this.setState({ isFocusedColumn: index })
-                            // }
                             role="listitem"
                             tabIndex={0}
                           >
@@ -221,41 +196,30 @@ export class List extends React.Component<ListProps, ListState> {
                           </li>
                         );
                       } else {
-                        {
-                          return (
-                            <li
-                              aria-label={`${c.text} button`}
+                        return (
+                          <li
+                            aria-label={`${c.text} button`}
+                            key={index}
+                            role="listitem"
+                            tabIndex={0}
+                          >
+                            <button
+                              aria-labelledby={c.text}
+                              className="psm-button--primary"
+                              data-testid={`${this.props.dataTestId}-${
+                                this.state.idPrefix
+                              }-row-${i}-column-${index}`}
+                              id={`${
+                                this.state.idPrefix
+                              }-row-${i}-column-div-${index}`}
                               key={index}
-                              // onBlur={() =>
-                              //   this.setState({ isFocusedColumn: null })
-                              // }
-                              // onFocus={() => {
-                              //   this.setState({ isFocusedColumn: index });
-                              // }}
-                              role="listitem"
-                              tabIndex={0}
+                              onClick={c.action}
+                              tabIndex={-1}
                             >
-                              <button
-                                aria-labelledby={c.text}
-                                className="psm-button--primary"
-                                data-testid={`${this.props.dataTestId}-${
-                                  this.state.idPrefix
-                                }-row-${i}-column-${index}`}
-                                id={`${
-                                  this.state.idPrefix
-                                }-row-${i}-column-div-${index}`}
-                                key={index}
-                                onClick={c.action}
-                                // onFocus={() =>
-                                //   this.setState({ isFocusedColumn: index })
-                                // }
-                                tabIndex={-1}
-                              >
-                                {c.text}
-                              </button>
-                            </li>
-                          );
-                        }
+                              {c.text}
+                            </button>
+                          </li>
+                        );
                       }
                     }
                   })}

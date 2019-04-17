@@ -129,6 +129,7 @@ export class Select extends React.Component<SelectProps, SelectState> {
                     : " "
                 }${this.findClassName()}`}
                 data-testid={`${this.props.dataTestId}-option-${index}`}
+                id={`option-${index}`}
                 key={`div${index}`}
                 onBlur={() => this.setState({ isFocused: null })}
                 onClick={this.handleClick(index)}

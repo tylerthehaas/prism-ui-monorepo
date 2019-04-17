@@ -37,58 +37,6 @@ export class Table extends React.Component<TableProps, any> {
     idPrefix: null,
   };
 
-  // handleArrow = event => {
-  //   let columnsLength = this.props.columns.length;
-  //   if (event.keyCode <= 40 && event.keyCode >= 37) {
-  //     if (event.keyCode === 38) {
-  //       if (this.state.isFocusedRow !== -1) {
-  //         this.setState({ isFocusedRow: this.state.isFocusedRow - 1 });
-  //       } else {
-  //         this.setState({ isFocusedRow: this.props.data.length - 1 });
-  //       }
-  //     }
-
-  //     if (event.keyCode === 40) {
-  //       if (this.state.isFocusedRow + 1 !== this.props.data.length) {
-  //         this.setState({ isFocusedRow: this.state.isFocusedRow + 1 });
-  //       } else {
-  //         this.setState({ isFocusedRow: -1 });
-  //       }
-  //     }
-
-  //     if (event.keyCode === 39) {
-  //       if (this.state.isFocusedColumn + 1 !== columnsLength) {
-  //         this.setState({ isFocusedColumn: this.state.isFocusedColumn + 1 });
-  //       } else {
-  //         this.setState({ isFocusedColumn: 0 });
-  //       }
-  //     }
-
-  //     if (event.keyCode === 37) {
-  //       if (this.state.isFocusedColumn > 0) {
-  //         this.setState({ isFocusedColumn: this.state.isFocusedColumn - 1 });
-  //       } else {
-  //         this.setState({ isFocusedColumn: columnsLength - 1 });
-  //       }
-  //     }
-
-  //     document
-  //       .getElementById(
-  //         `${this.state.idPrefix}-column-${this.state.isFocusedColumn}-row-${
-  //           this.state.isFocusedRow
-  //         }`,
-  //       )
-  //       .focus();
-  //   }
-  // };
-
-  // componentDidMount() {
-  //   document.addEventListener("keydown", this.handleArrow, false);
-  // }
-  // componentWillUnmount() {
-  //   document.removeEventListener("keydown", this.handleArrow, false);
-  // }
-
   public render() {
     const table = (
       <>
@@ -100,22 +48,21 @@ export class Table extends React.Component<TableProps, any> {
             {this.props.title}
           </div>
         )}
-        {this.props.actions &&
-          this.props.actions.length !== 0 && (
-            <div className="psm-table__actions">
-              {this.props.actions.map((a, index) => {
-                return (
-                  <a
-                    className={`psm-button${a.primary ? "--primary" : ""}`}
-                    key={index}
-                    onClick={a.action}
-                  >
-                    {a.label}
-                  </a>
-                );
-              })}
-            </div>
-          )}
+        {this.props.actions && this.props.actions.length !== 0 && (
+          <div className="psm-table__actions">
+            {this.props.actions.map((a, index) => {
+              return (
+                <a
+                  className={`psm-button${a.primary ? "--primary" : ""}`}
+                  key={index}
+                  onClick={a.action}
+                >
+                  {a.label}
+                </a>
+              );
+            })}
+          </div>
+        )}
         <table className="psm-table">
           <thead>
             <tr className="psm-table__tr">

@@ -1,7 +1,15 @@
 import React from "react";
 import { render } from "react-testing-library";
 
+import Enzyme from "enzyme";
 import { Button } from "./";
+import Adapter from "enzyme-adapter-react-16";
+
+const { mount } = Enzyme;
+
+Enzyme.configure({ adapter: new Adapter() });
+
+jest.mock("./");
 
 describe("<Button />", () => {
   it("Has a dropdown when dropdown is true", () => {
@@ -64,4 +72,59 @@ describe("<Button />", () => {
     );
     expect(container.firstChild.firstChild.nodeName).toEqual("A");
   });
+  it("dropdownMenuClick function should click menu option", () => {
+    const output = mount(
+      <Button
+        dropdown={true}
+        dropdownActions={[{ label: "menu item", action: () => {} }]}
+        label="Menu"
+        showMenu={true}
+      />,
+    );
+
+    expect(output.find(".psm-dropdown__li")).toHaveLength(1);
+
+    output.find(".psm-dropdown__li").simulate("click");
+
+    expect(output.find(".psm-dropdown__li")).toHaveLength(0);
+  });
+
+  it("receives props", () => {
+    const output = mount(
+      <Button action={() => {}} label="Menu" primary={true} />,
+    );
+
+    expect(output.find(".psm-button--primary")).toHaveLength(1);
+
+    output.setProps({ primary: false });
+
+    expect(output.find(".psm-button--primary")).toHaveLength(0);
+  });
+
+  it("handles click", () => {
+    const func = jest.fn();
+    const output = mount(<Button action={func} label="Menu" primary={true} />);
+
+    output.find(".psm-button--primary").simulate("click");
+
+    expect(func.mock.calls).toHaveLength(1);
+  });
+
+  it("handles blur", () => {
+    const output = mount(
+      <Button
+        dropdown={true}
+        dropdownActions={[{ label: "menu item", action: () => {} }]}
+        label="Menu"
+        showMenu={true}
+      />,
+    );
+
+    expect(output.find(".psm-dropdown__li")).toHaveLength(1);
+
+    output.simulate("blur");
+
+    expect(output.find(".psm-dropdown__li")).toHaveLength(0);
+  });
 });
+jest.unmock("./");

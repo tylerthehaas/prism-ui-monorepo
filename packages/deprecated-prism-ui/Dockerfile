@@ -4,7 +4,7 @@ WORKDIR /usr/src/app
 COPY . /usr/src/app
 
 # Install dev deps so the build works
-RUN [ "yarn", "install", "--production=false" ]
+RUN [ "yarn", "install", "--production" ]
 RUN [ "yarn", "build" ]
 
 CMD [ "yarn", "start" ]
