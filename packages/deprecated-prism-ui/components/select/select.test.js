@@ -46,7 +46,7 @@ describe("<Select />", () => {
   });
   it("Click calls event passed in", () => {
     const func = jest.fn();
-    const container = mount(<Select action={func} dropdown={false} />);
+    const container = mount(<Select dropdown={false} onClick={func} />);
     container.find("#option-0").simulate("click");
     expect(func.mock.calls).toHaveLength(1);
   });

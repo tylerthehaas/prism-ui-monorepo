@@ -16,11 +16,14 @@ const HTML_CODE = `<div class="psm-card psm-card--shadow-1" style="margin: 8px">
 <p>Some paragraph text contained within the card. Some paragraph text contained within the card</p>
 </div>`;
 
-const REACT_CODE = `<Card shadowType={this.state.type} dataTestId="1">
-<div>
-  Some paragraph text contained within the card. Some paragraph
-  text contained within the card
-</div>
+const REACT_CODE = `
+import { Card } from "prism";
+
+<Card dataTestId="1" shadowType={this.state.type}>
+  <div>
+    Some paragraph text contained within the card. Some paragraph
+    text contained within the card
+  </div>
 </Card>`;
 
 export class CardDocs extends React.Component {
@@ -78,7 +81,7 @@ export class CardDocs extends React.Component {
                 {
                   label: "Shadow Type",
                   type: "select",
-                  options: ["small", "medium", "large"],
+                  options: ["sm", "md", "lg"],
                   value: "small",
                   key: "type",
                 },

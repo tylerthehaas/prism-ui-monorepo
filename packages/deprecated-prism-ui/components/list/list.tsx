@@ -11,7 +11,7 @@ export type ListProps = {
     columns?: Array<{
       text: string;
       isButton: boolean;
-      action?(event?: any): any;
+      onClick?(event?: any): any;
       buttonPrimary?: boolean;
     }>;
   }>;
@@ -101,7 +101,7 @@ export class List extends React.Component<ListProps, ListState> {
       ) {
         this.props.rows[this.state.isFocusedRow].columns[
           this.state.isFocusedColumn
-        ].action;
+        ].onClick;
       }
     }
   };
@@ -170,7 +170,7 @@ export class List extends React.Component<ListProps, ListState> {
                                 this.state.idPrefix
                               }-row-${i}-column-div-${index}`}
                               key={index}
-                              onClick={c.action}
+                              onClick={c.onClick}
                               tabIndex={-1}
                             >
                               {c.text}
@@ -213,7 +213,7 @@ export class List extends React.Component<ListProps, ListState> {
                                 this.state.idPrefix
                               }-row-${i}-column-div-${index}`}
                               key={index}
-                              onClick={c.action}
+                              onClick={c.onClick}
                               tabIndex={-1}
                             >
                               {c.text}

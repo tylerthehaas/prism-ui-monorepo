@@ -11,17 +11,20 @@ const HTML_CODE = `
     <li className="psm-nav__tab"><span>Personal</span></li>
 </ul>`;
 
-const REACT_CODE = `<Nav
+const REACT_CODE = `
+import { Nav } from "prism";
+
+<Nav
   active={0}
   dataTestId="1"
-  tabs={[
-    { tab: "Received", action: () => console.log("Received") },
-    { tab: "Given", action: () => console.log("Given") },
-    { tab: "Personal", action: () => console.log("Personal") },
-  ]}
   navigate={(event, index, value) => {
     console.log(\`index: \${index} value: \${value}\`);
   }}
+  tabs={[
+    { tab: "Received", onClick: () => console.log("Received") },
+    { tab: "Given", onClick: () => console.log("Given") },
+    { tab: "Personal", onClick: () => console.log("Personal") },
+  ]}
 />`;
 
 export class NavDocs extends React.Component {
@@ -64,9 +67,9 @@ export class NavDocs extends React.Component {
                   console.log(`index: ${index}\nvalue: ${value}`);
                 }}
                 tabs={[
-                  { tab: "Received", action: () => console.log("Received") },
-                  { tab: "Given", action: () => console.log("Given") },
-                  { tab: "Personal", action: () => console.log("Personal") },
+                  { tab: "Received", onClick: () => console.log("Received") },
+                  { tab: "Given", onClick: () => console.log("Given") },
+                  { tab: "Personal", onClick: () => console.log("Personal") },
                 ]}
               />
             </div>
@@ -85,7 +88,7 @@ export class NavDocs extends React.Component {
                 name: "tabs",
                 type: "Object",
                 description:
-                  "Object containing tab information.<br/><b>tab:</b> String containing tab label.<br/><b>action:</b> Event to be handled when tab is clicked. If each tab should not have its own action, this prop is not needed.",
+                  "Object containing tab information.<br/><b>tab:</b> String containing tab label.<br/><b>onClick:</b> Event to be handled when tab is clicked. If each tab should not have its own action, this prop is not needed.",
               },
               {
                 name: "active",

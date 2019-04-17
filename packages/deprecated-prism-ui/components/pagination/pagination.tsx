@@ -3,7 +3,7 @@ import * as React from "react";
 export type PaginationProps = {
   pagesShown?: number;
   numPages: number;
-  action(event: any): any;
+  onClick(event: any): any;
   defaultPage?: number;
   dataTestId?: String;
 };
@@ -26,7 +26,7 @@ export class Pagination extends React.Component<
   static defaultProps: PaginationProps = {
     pagesShown: 7,
     numPages: 10,
-    action: () => console.log("page changed"),
+    onClick: () => console.log("page changed"),
     defaultPage: 1,
   };
   handlePageChange = (index, action) => {
@@ -72,7 +72,7 @@ export class Pagination extends React.Component<
               data-testid={`${this.props.dataTestId}-${i}`}
               id={`pagination-number-${i}`}
               key={i}
-              onClick={() => this.handlePageChange(i, this.props.action)}
+              onClick={() => this.handlePageChange(i, this.props.onClick)}
             >
               {i}
             </li>,
@@ -84,7 +84,7 @@ export class Pagination extends React.Component<
               data-testid={`${this.props.dataTestId}-${i}`}
               id={`pagination-number-${i}`}
               key={i}
-              onClick={() => this.handlePageChange(i, this.props.action)}
+              onClick={() => this.handlePageChange(i, this.props.onClick)}
             >
               {i}
             </li>,
@@ -108,7 +108,7 @@ export class Pagination extends React.Component<
             data-testid={`${this.props.dataTestId}-${i}`}
             id={`pagination-number-${i}`}
             key={i}
-            onClick={() => this.handlePageChange(i, this.props.action)}
+            onClick={() => this.handlePageChange(i, this.props.onClick)}
           >
             {i}
           </li>,
@@ -123,7 +123,7 @@ export class Pagination extends React.Component<
             data-testid={`${this.props.dataTestId}-${i}`}
             id={`pagination-number-${i}`}
             key={i}
-            onClick={() => this.handlePageChange(i, this.props.action)}
+            onClick={() => this.handlePageChange(i, this.props.onClick)}
           >
             {i}
           </li>,
@@ -147,8 +147,7 @@ export class Pagination extends React.Component<
               1 === this.state.active ? "psm-pagination__active" : ""
             }`}
             data-testid={`${this.props.dataTestId}-1`}
-            key="first"
-            onClick={() => this.handlePageChange(1, this.props.action)}
+            onClick={() => this.handlePageChange(1, this.props.onClick)}
           >
             1
           </li>
@@ -162,7 +161,7 @@ export class Pagination extends React.Component<
             data-testid={`${this.props.dataTestId}-${this.props.numPages}`}
             id={`pagination-number-${this.props.numPages}`}
             onClick={() =>
-              this.handlePageChange(this.props.numPages, this.props.action)
+              this.handlePageChange(this.props.numPages, this.props.onClick)
             }
           >
             {this.props.numPages}

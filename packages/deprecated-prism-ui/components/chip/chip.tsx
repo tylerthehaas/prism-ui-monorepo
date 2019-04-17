@@ -29,7 +29,6 @@ export class Chip extends React.Component<ChipProps, ChipState> {
   componentDidUpdate(prevState) {
     if (this.state.isClosed === prevState.isClosed) {
       this.setState({ isClosed: true });
-      console.log(this.state.isClosed);
     }
   }
   static defaultProps: ChipProps = {
@@ -47,7 +46,6 @@ export class Chip extends React.Component<ChipProps, ChipState> {
   }
 
   handleClose() {
-    console.log("handle close");
     this.setState({
       isClosed: true,
       show: false,
@@ -56,7 +54,6 @@ export class Chip extends React.Component<ChipProps, ChipState> {
     this.props.closeAction(this.props.closeAction);
   }
   handleClick() {
-    console.log("handle click");
     this.setState({ isSelected: true });
     this.props.selectAction(this.props.selectAction);
   }

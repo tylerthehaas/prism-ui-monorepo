@@ -18,7 +18,10 @@ const HTML_CODE = `<div>
 </div>
 `;
 
-const REACT_CODE = `<Radio
+const REACT_CODE = `
+import { Radio } from "prism";
+
+<Radio
   buttons={[
     {
       text: "Option 1",
@@ -87,12 +90,6 @@ export class RadioDocs extends React.Component {
               />
             </div>
           </div>
-          {/* {window.location.pathname.split("/")[2] === "react" && (
-                <PropsWindow
-                  props={[]}
-                  updateProps={this.updateProps}
-                />
-              )} */}
         </div>
         <br />
         <Example

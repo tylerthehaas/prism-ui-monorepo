@@ -29,14 +29,14 @@ const HTML_CODE = `
 `;
 
 const REACT_CODE = `
-import { Table } from "table";
+import { Table } from "prism";
 
 <Table
   actions={[
           {
             label: "Create New Initiative",
             primary: true,
-            action() {
+            onClick() {
               alert("Initiative Created");
             },
           },
@@ -123,7 +123,7 @@ export class TableDocs extends React.Component {
                         {
                           label: "Create New Initiative",
                           primary: true,
-                          action() {
+                          onClick() {
                             alert("Initiative Created");
                           },
                         },
@@ -177,7 +177,7 @@ export class TableDocs extends React.Component {
                   key: "title",
                 },
                 {
-                  label: "Action",
+                  label: "onClick",
                   type: "bool",
                   value: true,
                   key: "actions",
@@ -200,7 +200,7 @@ export class TableDocs extends React.Component {
                 name: "actions",
                 type: "Object",
                 description:
-                  "Object containing button information.<br/><b>label:</b> String that will appear as button label.<br/><b>primary:</b> Boolean deciding whether button is primary.<br/><b>action:</b> Event that will be handled when button is clicked.",
+                  "Object containing button information.<br/><b>label:</b> String that will appear as button label.<br/><b>primary:</b> Boolean deciding whether button is primary.<br/><b>onClick:</b> Event that will be handled when button is clicked.",
               },
               {
                 name: "box",

@@ -47,7 +47,10 @@ const HTML_CODE = `<div style="width: 33%; display: inline-block;">
 </div>
 </div>`;
 
-const REACT_CODE = `<Rollover
+const REACT_CODE = `
+import { Rollover } from "prism";
+
+<Rollover
   content={[
     { text: "John Smith" },
     { text: "Jane Smith" },

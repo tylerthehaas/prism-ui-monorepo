@@ -19,29 +19,32 @@ const HTML_CODE = `<button class="psm-dropdown">Dropdown</button>
   </ul>
 </div>`;
 
-const REACT_CODE = `<Dropdown
-    disabled={this.state.pickDisable}
-    dropdownMenu={[
+const REACT_CODE = `
+import { Dropdown } from "prism";
+
+<Dropdown
+  disabled={this.state.pickDisable}
+  dropdownMenu={[
     {
-        label: "Menu Item",
-        action: () => {
+      label: "Menu Item",
+      onClick: () => {
         console.log("Menu Item Clicked");
-        },
+      },
     },
     {
-        label: "Menu Item",
-        action: () => {
+      label: "Menu Item",
+      onClick: () => {
         console.log("Menu Item Clicked");
-        },
+      },
     },
     {
-        label: "Menu Item",
-        action: () => {
+      label: "Menu Item",
+      onClick: () => {
         console.log("Menu Item Clicked");
-        },
+      },
     },
-    ]}
-    primary={this.state.pickPrimary}
+  ]}
+  primary={this.state.pickPrimary}
 />`;
 
 export class DropdownDocs extends React.Component {
@@ -91,19 +94,19 @@ export class DropdownDocs extends React.Component {
                 dropdownMenu={[
                   {
                     label: "Menu Item",
-                    action: () => {
+                    onClick: () => {
                       console.log("Menu Item Clicked");
                     },
                   },
                   {
                     label: "Menu Item",
-                    action: () => {
+                    onClick: () => {
                       console.log("Menu Item Clicked");
                     },
                   },
                   {
                     label: "Menu Item",
-                    action: () => {
+                    onClick: () => {
                       console.log("Menu Item Clicked");
                     },
                   },
@@ -156,7 +159,7 @@ export class DropdownDocs extends React.Component {
                 name: "dropdownMenu",
                 type: "Object",
                 description:
-                  "An object containing the dropdown menu options.<br/><b>label:</b> String containing the menu option label.<br/><b>action:</b> Event to be handled when the menu option is clicked.",
+                  "An object containing the dropdown menu options.<br/><b>label:</b> String containing the menu option label.<br/><b>onClick:</b> Event to be handled when the menu option is clicked.",
               },
             ]}
           />

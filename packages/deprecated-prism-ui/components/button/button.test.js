@@ -76,7 +76,7 @@ describe("<Button />", () => {
     const output = mount(
       <Button
         dropdown={true}
-        dropdownActions={[{ label: "menu item", action: () => {} }]}
+        dropdownActions={[{ label: "menu item", onClick: () => {} }]}
         label="Menu"
         showMenu={true}
       />,
@@ -91,7 +91,7 @@ describe("<Button />", () => {
 
   it("receives props", () => {
     const output = mount(
-      <Button action={() => {}} label="Menu" primary={true} />,
+      <Button label="Menu" onClick={() => {}} primary={true} />,
     );
 
     expect(output.find(".psm-button--primary")).toHaveLength(1);
@@ -103,7 +103,7 @@ describe("<Button />", () => {
 
   it("handles click", () => {
     const func = jest.fn();
-    const output = mount(<Button action={func} label="Menu" primary={true} />);
+    const output = mount(<Button label="Menu" onClick={func} primary={true} />);
 
     output.find(".psm-button--primary").simulate("click");
 
@@ -114,7 +114,7 @@ describe("<Button />", () => {
     const output = mount(
       <Button
         dropdown={true}
-        dropdownActions={[{ label: "menu item", action: () => {} }]}
+        dropdownActions={[{ label: "menu item", onClick: () => {} }]}
         label="Menu"
         showMenu={true}
       />,

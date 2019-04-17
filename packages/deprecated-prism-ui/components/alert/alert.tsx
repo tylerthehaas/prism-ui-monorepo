@@ -7,7 +7,7 @@ type Link = {
 
 type AlertButton = {
   text: string;
-  action(event: any): any;
+  onClick(event: any): any;
 };
 
 export enum Type {
@@ -114,7 +114,7 @@ export class Alert extends React.Component<AlertProps, any> {
                 aria-labelledby={this.props.button.text}
                 className="psm-alert__btn psm-button"
                 data-testid={`${this.props.dataTestId}-button`}
-                onClick={this.props.button.action}
+                onClick={this.props.button.onClick}
               >
                 {this.props.button.text}
               </button>

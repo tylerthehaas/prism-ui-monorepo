@@ -6,7 +6,20 @@ export type CardProps = {
   dataTestId?: String;
 };
 
-export class Card extends React.Component<CardProps> {
+type CardState = {
+  shadowType: string;
+};
+
+const shadowTypes = {
+  sm: 1,
+  md: 2,
+  lg: 3,
+  small: 1,
+  medium: 2,
+  large: 3,
+};
+
+export class Card extends React.Component<CardProps, CardState> {
   constructor(props: CardProps) {
     super(props);
     this.state = {
@@ -18,15 +31,7 @@ export class Card extends React.Component<CardProps> {
     this.setState({ shadowType: props.shadowType });
   }
   getShadowType() {
-    if (this.props.shadowType === "sm") {
-      return 1;
-    }
-    if (this.props.shadowType === "md") {
-      return 2;
-    }
-    if (this.props.shadowType === "lg") {
-      return 3;
-    }
+    return shadowTypes[this.state.shadowType];
   }
 
   public render() {

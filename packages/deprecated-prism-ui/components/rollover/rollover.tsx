@@ -39,6 +39,10 @@ export class Rollover extends React.Component<RolloverProps, RolloverState> {
     this.escFunction = this.escFunction.bind(this);
   }
 
+  componentWillReceiveProps(props: RolloverProps) {
+    this.setState({ position: props.position });
+  }
+
   handleHover = () => {
     this.setState({
       hovered: true,

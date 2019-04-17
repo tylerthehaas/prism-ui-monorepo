@@ -1,7 +1,7 @@
 import * as React from "react";
 
 type NavProps = {
-  tabs: Array<{ tab: string; action?(event: any): any }>;
+  tabs: Array<{ tab: string; onClick?(event: any): any }>;
   active?: number;
   navigate(event: any, index: number, value: string): any;
 };
@@ -23,14 +23,14 @@ export class Nav extends React.Component<NavProps, NavState> {
   }
   handleClick = (index, t, event) => {
     this.setState({ active: index, isTab: false, isFocused: null });
-    if (t.action) t.action();
+    if (t.onClick) t.onClick();
     if (this.props.navigate) this.props.navigate(event, index, t.tab);
   };
 
   handleEnter = event => {
     if (event.charCode === 13 && this.state.isFocused !== null) {
       let value = this.props.tabs[this.state.isFocused];
-      this.handleClick(this.state.isFocused, value, value.action);
+      this.handleClick(this.state.isFocused, value, value.onClick);
       this.setState({ isTab: false });
     }
   };

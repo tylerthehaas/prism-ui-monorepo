@@ -19,12 +19,12 @@ describe("<Radio />", () => {
         buttons={[
           {
             text: "Option 1",
-            action: () => {},
+            onClick: () => {},
             checked: true,
           },
           {
             text: "Option 2",
-            action: () => {},
+            onClick: () => {},
             checked: false,
           },
         ]}
@@ -40,12 +40,12 @@ describe("<Radio />", () => {
         buttons={[
           {
             text: "Option 1",
-            action: () => {},
+            onClick: () => {},
             checked: false,
           },
           {
             text: "Option 2",
-            action: () => {},
+            onClick: () => {},
             checked: true,
           },
         ]}

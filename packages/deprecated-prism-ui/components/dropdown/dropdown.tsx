@@ -1,7 +1,7 @@
 import * as React from "react";
 
 export type DropdownProps = {
-  dropdownMenu: Array<{ label?: string; action(event: any): any }>;
+  dropdownMenu: Array<{ label?: string; onClick(event: any): any }>;
   primary?: boolean;
   disabled?: boolean;
   label?: string;
@@ -37,19 +37,19 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
     dropdownMenu: [
       {
         label: "Menu Item",
-        action: () => {
+        onClick: () => {
           console.log("Menu Item Clicked");
         },
       },
       {
         label: "Menu Item",
-        action: () => {
+        onClick: () => {
           console.log("Menu Item Clicked");
         },
       },
       {
         label: "Menu Item",
-        action: () => {
+        onClick: () => {
           console.log("Menu Item Clicked");
         },
       },
@@ -75,7 +75,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
     this.setState({ showMenu: !this.state.showMenu });
   }
   menuClick = (a, index) => {
-    this.props.dropdownMenu[index].action(a.action);
+    this.props.dropdownMenu[index].onClick(a.onClick);
     this.handleClick();
   };
 

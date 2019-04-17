@@ -11,7 +11,7 @@ describe("<Table />", () => {
           {
             label: "Create New Initiative",
             primary: true,
-            action() {
+            onClick() {
               alert("Initiative Created");
             },
           },
@@ -54,7 +54,7 @@ describe("<Table />", () => {
           {
             label: "Create New Initiative",
             primary: true,
-            action() {
+            onClick() {
               alert("Initiative Created");
             },
           },

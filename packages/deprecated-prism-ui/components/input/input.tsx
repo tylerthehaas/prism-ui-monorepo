@@ -9,7 +9,7 @@ export type InputProps = {
   icon?: {
     name: string;
     position: string;
-    action(event: any): any;
+    onClick(event: any): any;
   };
 };
 export enum iconType {
@@ -105,7 +105,6 @@ export class Input extends React.Component<InputProps> {
     if (this.props.icon) {
       this.setState({ position: props.icon.position });
       this.setState({ name: props.icon.name });
-      console.log(props);
     }
   }
   handleChange = event => {
@@ -125,8 +124,10 @@ export class Input extends React.Component<InputProps> {
               aria-label={`${this.props.icon.name} icon`}
               className={`psm-icon-${this.props.icon.name}`}
               data-testid={`${this.props.dataTestId}-icon`}
-              onClick={this.props.icon.action}
-              style={{ cursor: this.props.icon.action ? "pointer" : "default" }}
+              onClick={this.props.icon.onClick}
+              style={{
+                cursor: this.props.icon.onClick ? "pointer" : "default",
+              }}
               tabIndex={0}
             />
             <input

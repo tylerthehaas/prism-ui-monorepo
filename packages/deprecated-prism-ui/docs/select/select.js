@@ -20,7 +20,10 @@ const HTML_CODE = `<div>
 <div class="psm-multi-select--radio psm-multi-select">Brandon Ramos</div>
 </div>`;
 
-const REACT_CODE = `<Select
+const REACT_CODE = `
+import { Select } from "prism";
+
+<Select
   dropdown={this.state.pickDrop}
   radio={this.state.pickRadio}
   content={[
@@ -29,7 +32,7 @@ const REACT_CODE = `<Select
     { text: "Option 3" },
     { text: "Option 4" },
   ]}
-  action={() => {
+  onClick={() => {
     console.log("Selected");
   }}
 />`;
@@ -75,9 +78,6 @@ export class SelectDocs extends React.Component {
           <div className="component-window psm-card--shadow-1">
             <div className="component-window-child" style={{ width: "100%" }}>
               <Select
-                action={() => {
-                  console.log("Selected");
-                }}
                 content={[
                   { text: "Option 1" },
                   { text: "Option 2" },
@@ -85,6 +85,9 @@ export class SelectDocs extends React.Component {
                   { text: "Option 4" },
                 ]}
                 dropdown={this.state.pickDrop}
+                onClick={() => {
+                  console.log("Selected");
+                }}
                 radio={this.state.pickRadio}
               />
             </div>
@@ -137,7 +140,7 @@ export class SelectDocs extends React.Component {
                   "Object containing the string to be displayed. If dropdown is true, then the text will be displayed menu items, otherwise it will be the button labels.<br/><b>text:</b> String that will be displayed as the button or menu item.",
               },
               {
-                name: "action",
+                name: "onClick",
                 type: "Event",
                 description:
                   "Event to be handled when buttons or menu items are selected.",

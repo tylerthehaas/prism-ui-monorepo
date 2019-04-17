@@ -4,7 +4,7 @@ export type SelectProps = {
   dropdown?: boolean;
   radio?: boolean;
   content: Array<{ text: string }>;
-  action(event: any): any;
+  onClick(event: any): any;
   dataTestId?: String;
 };
 type SelectState = {
@@ -35,13 +35,12 @@ export class Select extends React.Component<SelectProps, SelectState> {
       { text: "Option 3" },
       { text: "Option 4" },
     ],
-    action: () => {
+    onClick: () => {
       console.log("Selected");
     },
   };
   componentWillReceiveProps(props: SelectProps) {
     this.setState({ dropdown: props.dropdown, radio: props.radio });
-    console.log(props);
   }
 
   findClassName() {
@@ -56,7 +55,7 @@ export class Select extends React.Component<SelectProps, SelectState> {
           className="psm-input psm-select"
           data-testid={this.props.dataTestId}
           key={`select${index}`}
-          onChange={this.props.action}
+          onChange={this.props.onClick}
           onFocus={() =>
             this.setState({ isFocused: this.props.content.length + 1 })
           }
@@ -98,20 +97,20 @@ export class Select extends React.Component<SelectProps, SelectState> {
         temp.splice(indexValue, 1);
       } else {
         temp.push(i);
-        this.props.action(event);
+        this.props.onClick(event);
       }
     } else if (!this.props.dropdown) {
       if (this.state.radioActive === i) {
         this.setState({ radioActive: null });
       } else {
         this.setState({ radioActive: i });
-        this.props.action(event);
+        this.props.onClick(event);
       }
     }
 
     this.setState({ active: temp });
     if (this.props.dropdown) {
-      this.props.action(event);
+      this.props.onClick(event);
     }
   };
 

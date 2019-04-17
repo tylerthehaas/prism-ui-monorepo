@@ -68,11 +68,14 @@ const HTML_CODE = `
 </ul>
 </div>`;
 
-const REACT_CODE = `<Pagination
-  pagesShown={7}
-  numPages={15}
-  action={() => console.log("alert")}
+const REACT_CODE = `
+import { Pagination } from "prism";
+
+<Pagination
   dataTestId="1"
+  numPages={15}
+  onClick={() => console.log()}
+  pagesShown={this.state.pages}
 />`;
 
 export class PaginationDocs extends React.Component {
@@ -116,9 +119,9 @@ export class PaginationDocs extends React.Component {
           <div className="component-window psm-card--shadow-1">
             <div className="component-window-child">
               <Pagination
-                action={() => console.log()}
                 dataTestId="1"
                 numPages={15}
+                onClick={() => console.log()}
                 pagesShown={this.state.pages}
               />
             </div>
@@ -157,7 +160,7 @@ export class PaginationDocs extends React.Component {
                 description: "Number of pages the pagination bar should have.",
               },
               {
-                name: "action",
+                name: "onClick",
                 type: "Event",
                 description:
                   "Event that will be handled when a number is clicked.",

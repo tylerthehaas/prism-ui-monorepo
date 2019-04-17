@@ -4,7 +4,10 @@ import { Example } from "../example";
 
 const HTML_CODE = `<hr class="psm-hr" />`;
 
-const REACT_CODE = `<HR />`;
+const REACT_CODE = `
+import { HR } from "prism";
+
+<HR />`;
 
 export class HRDocs extends React.Component {
   constructor(props) {
@@ -44,12 +47,6 @@ export class HRDocs extends React.Component {
               <HR />
             </div>
           </div>
-          {/* {window.location.pathname.split("/")[2] === "react" && (
-                <PropsWindow
-                  props={[]}
-                  updateProps={this.updateProps}
-                />
-              )} */}
         </div>
         <br />
         <Example

@@ -2,7 +2,7 @@ import * as React from "react";
 
 type TableAction = {
   label: string;
-  action(event: any): any;
+  onClick(event: any): any;
   primary?: boolean;
 };
 
@@ -48,21 +48,22 @@ export class Table extends React.Component<TableProps, any> {
             {this.props.title}
           </div>
         )}
-        {this.props.actions && this.props.actions.length !== 0 && (
-          <div className="psm-table__actions">
-            {this.props.actions.map((a, index) => {
-              return (
-                <a
-                  className={`psm-button${a.primary ? "--primary" : ""}`}
-                  key={index}
-                  onClick={a.action}
-                >
-                  {a.label}
-                </a>
-              );
-            })}
-          </div>
-        )}
+        {this.props.actions &&
+          this.props.actions.length !== 0 && (
+            <div className="psm-table__actions">
+              {this.props.actions.map((a, index) => {
+                return (
+                  <a
+                    className={`psm-button${a.primary ? "--primary" : ""}`}
+                    key={index}
+                    onClick={a.onClick}
+                  >
+                    {a.label}
+                  </a>
+                );
+              })}
+            </div>
+          )}
         <table className="psm-table">
           <thead>
             <tr className="psm-table__tr">

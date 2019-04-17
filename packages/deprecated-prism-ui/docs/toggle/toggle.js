@@ -1,6 +1,5 @@
 import React from "react";
 import { Toggle } from "../../components/toggle";
-// import { PropsWindow } from "../props";
 import { Example } from "../example";
 import { PropsList } from "../props";
 
@@ -13,7 +12,7 @@ const HTML_CODE = `
 </div>`;
 
 const REACT_CODE = `
-import { Toggle } from "toggle";
+import { Toggle } from "prism";
 
 <Toggle
   default={false}
@@ -88,12 +87,6 @@ export class ToggleDocs extends React.Component {
               </span>
             </div>
           </div>
-          {/* {window.location.pathname.split("/")[2] === "react" && (
-            <PropsWindow
-              props={[]}
-              updateProps={this.updateProps}
-            />
-          )} */}
         </div>
         <br />
         <Example

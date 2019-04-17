@@ -69,7 +69,7 @@ describe("<Icon />", () => {
   it("Test icon action", () => {
     const func = jest.fn();
 
-    const container = mount(<Icon action={func} iconName={"simple-remove"} />);
+    const container = mount(<Icon iconName={"simple-remove"} onClick={func} />);
     container.simulate("click");
     expect(func.mock.calls).toHaveLength(1);
   });

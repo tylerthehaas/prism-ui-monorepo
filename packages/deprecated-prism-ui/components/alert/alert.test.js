@@ -67,7 +67,7 @@ describe("<Alert/>", () => {
 
     it("is a button alert", () => {
       const { container } = render(
-        <Alert button={{ text: "Button", action: null }} type={Type.button} />,
+        <Alert button={{ text: "Button", onClick: null }} type={Type.button} />,
       );
       expect(container.querySelector("button")).toHaveClass("psm-alert__btn");
     });

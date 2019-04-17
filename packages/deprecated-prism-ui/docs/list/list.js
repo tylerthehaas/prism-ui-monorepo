@@ -67,8 +67,9 @@ const HTML_CODE = `
 </div>`;
 
 const REACT_CODE = `
+import { List } from "prism";
+
 <List
-  size={this.state.rowSize}
   dataTestId="1"
   rows={[
     {
@@ -82,7 +83,7 @@ const REACT_CODE = `
         {
           text: "Button",
           isButton: true,
-          action: () => alert("Button Clicked"),
+          onClick: () => alert("Button Clicked"),
         },
       ],
     },
@@ -97,12 +98,13 @@ const REACT_CODE = `
         {
           text: "Button",
           isButton: true,
-          action: () => alert("Button Clicked"),
+          onClick: () => alert("Button Clicked"),
         },
       ],
     },
   ]}
-              />`;
+  size={this.state.rowSize}
+/>`;
 
 export class ListDocs extends React.Component {
   constructor(props) {
@@ -158,7 +160,7 @@ export class ListDocs extends React.Component {
                       {
                         text: "Button",
                         isButton: true,
-                        action: () => alert("Button Clicked"),
+                        onClick: () => alert("Button Clicked"),
                       },
                     ],
                   },
@@ -173,7 +175,7 @@ export class ListDocs extends React.Component {
                       {
                         text: "Button",
                         isButton: true,
-                        action: () => alert("Button Clicked"),
+                        onClick: () => alert("Button Clicked"),
                       },
                     ],
                   },
@@ -216,7 +218,7 @@ export class ListDocs extends React.Component {
                 name: "rows",
                 type: "Object",
                 description:
-                  "An object containing the columns objects. Every new columns object will results in a new row.<br/><b>text:</b> String representing the text to display in the column.<br/><b>isButton:</b> Boolean deciding whether the text is a button.<br/><b>action:</b> Event that will be handled on button click, if isButton is true.",
+                  "An object containing the columns objects. Every new columns object will results in a new row.<br/><b>text:</b> String representing the text to display in the column.<br/><b>isButton:</b> Boolean deciding whether the text is a button.<br/><b>onClick:</b> Event that will be handled on button click, if isButton is true.",
               },
             ]}
           />

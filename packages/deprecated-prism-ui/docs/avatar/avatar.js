@@ -1,5 +1,4 @@
 import React from "react";
-// import { map, pipe, prop, reverse, sortBy, values } from "ramda";
 
 import { Avatar } from "avatar";
 import { Example } from "../example";
@@ -8,14 +7,13 @@ import { PropsWindow, PropsList } from "../props";
 import tobias from "../images/tobias.jpg";
 
 const REACT_CODE = `
-import { Avatar, sizes } from "avatar";
-import tobias from "../images/tobias.jpg";
+import { Avatar, sizes } from "prism";
 
 <Avatar
-initials={this.state.initials ? "TF" : null}
-size={this.state.size}
-src={this.state.image ? tobias : null}
-dataTestId="1"
+  dataTestId="1"
+  initials={this.state.initials ? "TF" : null}
+  size={this.state.size}
+  src={this.state.image ? tobias : null}
 />`;
 
 const HTML_CODE = `

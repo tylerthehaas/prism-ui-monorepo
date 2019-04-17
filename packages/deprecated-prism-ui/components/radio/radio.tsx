@@ -2,7 +2,7 @@ import * as React from "react";
 import { number } from "prop-types";
 
 type RadioProps = {
-  buttons: Array<{ text: string; action?(event: any): any; checked: boolean }>;
+  buttons: Array<{ text: string; onClick?(event: any): any; checked: boolean }>;
   onSelect(event: any): any;
   name: string;
   idPrefix: string;
@@ -27,7 +27,7 @@ export class Radio extends React.Component<RadioProps, RadioState> {
   }
   handleClick = (button, idx) => event => {
     this.props.onSelect(event);
-    button.action;
+    button.onClick;
     this.setState({ selectedOption: idx });
   };
 

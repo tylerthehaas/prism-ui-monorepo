@@ -6,7 +6,7 @@ export type ModalProps = {
   actions?: Array<{
     label: string;
     primary: boolean;
-    action(event: any): any;
+    onClick(event: any): any;
     position?: string;
     shouldCloseModal?: boolean;
   }>;
@@ -28,18 +28,20 @@ export class Modal extends React.Component<ModalProps, ModalState> {
       show: this.props.show,
       isFocused: 0,
     };
-    this.escFunction = this.escFunction.bind(this);
   }
+
   componentWillReceiveProps(props: ModalProps) {
     this.setState({ show: props.show });
   }
 
   handleClick = button => event => {
     if (button.shouldCloseModal) {
-      this.setState({ show: false });
-      document.getElementById(this.props.modalButtonId).focus();
+      this.setState(
+        pState => ({ show: !pState.show }),
+        () => document.getElementById(this.props.modalButtonId).focus(),
+      );
     }
-    return button.action();
+    return button.onClick();
   };
 
   escFunction(event) {

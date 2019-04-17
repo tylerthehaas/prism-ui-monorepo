@@ -18,15 +18,15 @@ const HTML_CODE = `<div class="narrow">
 <select class="psm-input psm-select">`;
 
 const REACT_CODE = `<Input
-  required={this.state.inputRequired}
-  placeholderText="Some text here"
-  icon={{
-    name: this.state.iconName,
-    position: this.state.iconPosition,
-    action: () => {
-      console.log("icon test");
-    },
-  }}
+icon={{
+  name: this.state.iconName,
+  position: this.state.iconPosition,
+  onClick: () => {
+    console.log("icon test");
+  },
+}}
+placeholderText="Some text here"
+required={this.state.inputRequired}
 />`;
 
 export class InputDocs extends React.Component {
@@ -78,7 +78,7 @@ export class InputDocs extends React.Component {
                 icon={{
                   name: this.state.iconName,
                   position: this.state.iconPosition,
-                  action: () => {
+                  onClick: () => {
                     console.log("icon test");
                   },
                 }}
@@ -207,7 +207,7 @@ export class InputDocs extends React.Component {
                 name: "icon",
                 type: "Object",
                 description:
-                  "Contains the icon name, position, and action.<br/><b>name:</b> String containing the name of the icon to be displayed.<br/><b>position:</b> String containing the position of the icon. Options are <code>leading</code>, which puts the icon in front of the placeholder text, or <code>trailing</code>, which puts the icon at the end of the input box.<br/><b>action:</b> An event to be handled when the icon is clicked.<br/><b>Note:</b> If an icon is not needed, the object can be set to null. The icon object would look like this: <code>icon={null}</code>",
+                  "Contains the icon name, position, and action.<br/><b>name:</b> String containing the name of the icon to be displayed.<br/><b>position:</b> String containing the position of the icon. Options are <code>leading</code>, which puts the icon in front of the placeholder text, or <code>trailing</code>, which puts the icon at the end of the input box.<br/><b>onClick:</b> An event to be handled when the icon is clicked.<br/><b>Note:</b> If an icon is not needed, the object can be set to null. The icon object would look like this: <code>icon={null}</code>",
               },
             ]}
           />

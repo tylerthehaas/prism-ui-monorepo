@@ -25,20 +25,19 @@ const HTML_CODE = `
   </div>`;
 
 const REACT_CODE = `
+import { Modal } from "prism";
+
 <Modal
-  content="Paragraph text that is contained inside the modal body. Paragraph text that is contained inside the modal
-body. Paragraph text that is contained inside the modal body."
-  title="Modal Header"
   actions={[
     {
-      action: () => {
+      onClick: () => {
         console.log("Alert: Button Clicked");
       },
       label: "Button",
       primary: true,
     },
     {
-      action: () => {
+      onClick: () => {
         console.log("Alert: Modal Canceled.");
       },
       label: "Cancel",
@@ -46,9 +45,18 @@ body. Paragraph text that is contained inside the modal body."
       shouldCloseModal: true,
     },
   ]}
-  show={this.state.show}
   dataTestId="1"
-/>`;
+  modalButtonId="show-modal-button"
+  onClose={this.closeModal}
+  show={this.state.show}
+  title="Modal Header"
+  >
+    <p>
+      Paragraph text that is contained inside the modal body.
+      Paragraph text that is contained inside the modal body.
+      Paragraph text that is contained inside the modal body.
+    </p>
+</Modal>`;
 
 export class ModalDocs extends React.Component {
   constructor(props) {
@@ -57,17 +65,14 @@ export class ModalDocs extends React.Component {
       show: false,
       viewType: "html",
     };
-    this.showModal = this.showModal.bind(this);
-  }
-  showModal() {
-    this.setState({ show: true });
-    setTimeout(() => {
-      document.getElementById("button-0").focus();
-    }, 0);
   }
 
+  showModal = () => {
+    this.setState(pState => ({ show: !pState.show }));
+  };
+
   closeModal = () => {
-    this.setState({ show: false });
+    this.setState(pState => ({ show: !pState.show }));
   };
 
   switchType = triggered => {
@@ -108,14 +113,14 @@ export class ModalDocs extends React.Component {
               <Modal
                 actions={[
                   {
-                    action: () => {
+                    onClick: () => {
                       console.log("Alert: Button Clicked");
                     },
                     label: "Button",
                     primary: true,
                   },
                   {
-                    action: () => {
+                    onClick: () => {
                       console.log("Alert: Modal Canceled.");
                     },
                     label: "Cancel",
@@ -163,7 +168,7 @@ export class ModalDocs extends React.Component {
                 name: "actions",
                 type: "Object",
                 description:
-                  "An object containting the buttons to display on the modal.<br/><b>action:</b> Event to be handled when button is clicked.<br/><b>label:</b> String that will be displayed on the button.<br/><b>primary:</b> Boolean deciding whether or not the button is primary.<br/><b>shouldCloseModal:</b> Boolean that defaults to false and decides whether a button should close the modal.",
+                  "An object containting the buttons to display on the modal.<br/><b>onClick:</b> Event to be handled when button is clicked.<br/><b>label:</b> String that will be displayed on the button.<br/><b>primary:</b> Boolean deciding whether or not the button is primary.<br/><b>shouldCloseModal:</b> Boolean that defaults to false and decides whether a button should close the modal.",
               },
             ]}
           />

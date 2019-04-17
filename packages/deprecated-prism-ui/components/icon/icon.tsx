@@ -2,7 +2,7 @@ import * as React from "react";
 
 export type IconProps = {
   iconName: iconName;
-  action(event: any): any;
+  onClick(event: any): any;
   dataTestId?: String;
 };
 
@@ -88,7 +88,7 @@ export class Icon extends React.Component<IconProps> {
   }
 
   handleClick = event => {
-    this.props.action(event);
+    this.props.onClick(event);
   };
 
   public render() {

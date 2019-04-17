@@ -32,14 +32,17 @@ const HTML_CODE = `<div class="buttons">
 </div>
 </div>`;
 
-const REACT_CODE = `<Button
-disabled={this.state.pickDisable}
-label="Button"
-dataTestId="1"
-linkRef={this.state.pickLink ? "/#" : null}
-primary={this.state.pickPrimary}
-small={this.state.pickSize}
-action={() => console.log("button clicked")}
+const REACT_CODE = `
+import { Button } from "prism";
+
+<Button
+  dataTestId="1"
+  disabled={this.state.pickDisable}
+  label="Button"
+  linkRef={this.state.pickLink ? "/#" : null}
+  onClick={() => console.log("button clicked")}
+  primary={this.state.pickPrimary}
+  small={this.state.pickSize}
 />`;
 
 export class ButtonDocs extends React.Component {
@@ -90,11 +93,11 @@ export class ButtonDocs extends React.Component {
           <div className="component-window psm-card--shadow-1">
             <div className="component-window-child">
               <Button
-                action={() => console.log("button clicked")}
                 dataTestId="1"
                 disabled={this.state.pickDisable}
                 label="Button"
                 linkRef={this.state.pickLink ? "/#" : null}
+                onClick={() => console.log("button clicked")}
                 primary={this.state.pickPrimary}
                 small={this.state.pickSize}
               />
@@ -172,7 +175,7 @@ export class ButtonDocs extends React.Component {
                   "Text that appears on the button. Default is <code>Button</code>",
               },
               {
-                name: "action",
+                name: "onClick",
                 type: "Event",
                 description: "Event to be handled when button is clicked.",
               },

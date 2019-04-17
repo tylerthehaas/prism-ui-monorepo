@@ -3,15 +3,30 @@ import { render } from "react-testing-library";
 
 import { Input } from "./";
 
+import Enzyme from "enzyme";
+const { mount } = Enzyme;
+import Adapter from "enzyme-adapter-react-16";
+Enzyme.configure({ adapter: new Adapter() });
+
 describe("<Input />", () => {
   it("Required defualts to false", () => {
     const { container } = render(<Input />);
     expect(container.firstChild).toHaveClass("psm-input");
   });
+
   it("Is required when required is true", () => {
     const { container } = render(<Input required={true} />);
     expect(container.firstChild).toHaveClass("psm-input psm-input--active");
   });
+
+  it("Updates state with new props", () => {
+    const output = mount(<Input required={false} />);
+
+    output.setProps({ required: true });
+
+    expect(output.find(".psm-input.psm-input--active")).toHaveLength(1);
+  });
+
   it("Leading icon defaults to false", () => {
     const { container } = render(<Input icon={{ name: "desktop" }} />);
     expect(container.firstChild).toHaveClass("psm-input-trailing-icon");

@@ -1,8 +1,8 @@
 import * as React from "react";
 
 export type ButtonProps = {
-  action?(event: any): any;
-  dropdownActions?: Array<{ label?: string; action(event: any): any }>;
+  onClick?(event: any): any;
+  dropdownActions?: Array<{ label?: string; onClick(event: any): any }>;
   dropdown?: boolean;
   primary?: boolean;
   small?: boolean;
@@ -58,7 +58,9 @@ export class Button extends React.Component<ButtonProps, ButtonState> {
   }
 
   handleClick = action => event => {
-    action(event);
+    if (action) {
+      action(event);
+    }
   };
 
   handleDropDown = event => {
@@ -106,7 +108,7 @@ export class Button extends React.Component<ButtonProps, ButtonState> {
               data-testid={this.props.dataTestId}
               disabled={this.props.disabled}
               onClick={
-                this.props.dropdown ? this.handleDropDown : this.props.action
+                this.props.dropdown ? this.handleDropDown : this.props.onClick
               }
             >
               {this.props.label}
@@ -134,7 +136,7 @@ export class Button extends React.Component<ButtonProps, ButtonState> {
                         className="psm-dropdown__li"
                         data-testid={`${this.props.dataTestId}-option-${index}`}
                         key={index}
-                        onClick={this.dropdownMenuClick(a.action)}
+                        onClick={this.dropdownMenuClick(a.onClick)}
                         tabIndex={0}
                       >
                         {a.label}

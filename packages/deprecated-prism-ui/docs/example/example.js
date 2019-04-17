@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Prism from "prismjs";
 import "prismjs/components/prism-jsx";
-// import classNames from "classnames";
 
 export class Example extends Component {
   static propTypes = {

@@ -14,10 +14,22 @@ const HTML_CODE = `
 `;
 
 const REACT_CODE = `
-import { Alert, Style, Type } from "alert";
+import { Alert } from "prism";
 
-<Alert type={Type.basic} message="Success message" style={Style.success} />
-`;
+<Alert
+  button={{
+    text: "Button",
+    onClick: () => alert("Button clicked!"),
+  }}
+  link={
+    this.state.link
+      ? { text: "Link", href: "javascript:alert('Link clicked!')" }
+      : null
+  }
+  message={this.state.message || "Success message"}
+  style={this.state.style || Style.success}
+  type={this.state.type || Type.basic}
+/>`;
 
 export class AlertDocs extends React.Component {
   constructor(props) {
@@ -64,7 +76,7 @@ export class AlertDocs extends React.Component {
             <Alert
               button={{
                 text: "Button",
-                action: () => alert("Button clicked!"),
+                onClick: () => alert("Button clicked!"),
               }}
               link={
                 this.state.link
@@ -125,7 +137,7 @@ export class AlertDocs extends React.Component {
                 type: "Object",
                 description:
                   "Object describing alert button's content.<br/>" +
-                  "Example usage: <br/><code>import { Alert, Type } from 'alert';<br/> &lt;Alert type={Type.button} button={{text: 'Button', action: () => alert('click!')}} /&gt;</code><br/>" +
+                  "Example usage: <br/><code>import { Alert, Type } from 'alert';<br/> &lt;Alert type={Type.button} button={{text: 'Button', onClick: () => alert('click!')}} /&gt;</code><br/>" +
                   "<strong>Note</strong>: the button property will be ignored if the Type is not of type button",
               },
               {

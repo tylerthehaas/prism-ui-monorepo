@@ -10,7 +10,10 @@ const HTML_CODE = `<div className="psm-spinner--md">
 <div />
 </div>`;
 
-const REACT_CODE = `<Spinner size={this.state.pickSize} />`;
+const REACT_CODE = `
+import { Spinner } from "prism";
+
+<Spinner size={this.state.pickSize} />`;
 
 export class SpinnerDocs extends React.Component {
   constructor(props) {
@@ -60,7 +63,7 @@ export class SpinnerDocs extends React.Component {
                 {
                   label: "Size",
                   type: "select",
-                  options: ["xl", "lg", "md", "sm", "xs"],
+                  options: ["md", "sm", "xs"],
                   value: "md",
                   key: "pickSize",
                 },
@@ -82,7 +85,7 @@ export class SpinnerDocs extends React.Component {
                 name: "size",
                 type: "String",
                 description:
-                  "A two letter string representing size. Options are xs, sm, md, lg, xl.",
+                  "A two letter string representing size. Options are xs, sm, md.",
               },
             ]}
           />

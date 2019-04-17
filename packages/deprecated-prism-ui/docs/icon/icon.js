@@ -5,12 +5,15 @@ import { Example } from "../example";
 import { PropsWindow, PropsList } from "../props";
 
 const HTML_CODE = `<i class="psm-icon-a-check"></i>`;
-const REACT_CODE = `<Icon
-action={() => {
-  console.log("Icon Action");
-}}
-dataTestId="1"
-iconName={this.state.icon}
+const REACT_CODE = `
+import { Icon } from "prism";
+
+<Icon
+  dataTestId="1"
+  iconName={this.state.icon}
+  onClick={() => {
+    console.log("Icon Action");
+  }}
 />`;
 
 export class IconDocs extends React.Component {
@@ -54,11 +57,11 @@ export class IconDocs extends React.Component {
           <div className="component-window psm-card--shadow-1">
             <div className="component-window-child">
               <Icon
-                action={() => {
-                  console.log("Icon Action");
-                }}
                 dataTestId="1"
                 iconName={this.state.icon}
+                onClick={() => {
+                  console.log("Icon Action");
+                }}
               />
             </div>
           </div>
@@ -159,7 +162,7 @@ export class IconDocs extends React.Component {
                 description: "A string holding the icon name to be displayed.",
               },
               {
-                name: "action",
+                name: "onClick",
                 type: "Event",
                 description: "Event to be handled when icon is clicked.",
               },

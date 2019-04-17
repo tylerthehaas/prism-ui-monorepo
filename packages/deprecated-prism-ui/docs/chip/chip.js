@@ -7,17 +7,20 @@ const HTML_CODE = `<div class="psm-chip">Jamison Brogdon</div>
 <div class="psm-chip--selected"> Caitlin Grandjean</div>
 `;
 
-const REACT_CODE = `<Chip
+const REACT_CODE = `
+import { Chip } from "prism";
+
+<Chip
   closeAction={() => alert("Chip Closed")}
+  dataTestId="1"
   label="Jamison Brogdon"
   selectAction={() => alert("Jamison Brogdon selected")}
-  dataTestId="1"
 />
 <Chip
   closeAction={() => alert("Chip Closed")}
+  dataTestId="1"
   label="Caitlin Grandjean"
   selectAction={() => alert("Caitlin Grandjean selected")}
-  dataTestId="1"
 />`;
 
 export class ChipDocs extends React.Component {
