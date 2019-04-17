@@ -72,7 +72,7 @@ const REACT_CODE = `
 import { Pagination } from "prism";
 
 <Pagination
-  dataTestId="1"
+  data-testid="1"
   numPages={15}
   onClick={() => console.log()}
   pagesShown={this.state.pages}
