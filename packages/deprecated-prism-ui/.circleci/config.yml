@@ -3,7 +3,7 @@ jobs:
   test:
     working_directory: ~/octanner/prism-ui
     environment:
-      BABEL_DISABLE_CACHE: "1"
+      BABEL_DISABLE_CACHE: '1'
       NODE_ENV: test
     docker:
       - image: circleci/node:10.11.0-stretch
@@ -11,26 +11,20 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          name: Restore Yarn Package Cache
-          keys:
-            - yarn-packages-{{ checksum "yarn.lock" }}
+          key: dependency-cache-{{ checksum "package.json" }}
 
       # Install deps and cache
-      - run: yarn
-      - save_cache:
-          name: Save Yarn Package Cache
-          key: yarn-packages-{{ checksum "yarn.lock" }}
-          paths:
-            - ~/.cache/yarn
+      - run: npm config set registry "http://registry.npmjs.org"
+      - run: npm cache clean --force
 
-      # Lint
-      - run: yarn lint
+      - run: npm install
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
 
       # Test
-      - run: yarn test:coverage
-
-      # Validate build
-      - run: yarn build
+      - run: npm test
 
 workflows:
   version: 2

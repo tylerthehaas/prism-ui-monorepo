@@ -1,53 +1,53 @@
-const path = require("path");
-const webpack = require("webpack");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const Dashboard = require("webpack-dashboard/plugin");
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
-const UglifyJSPlugin = require("uglifyjs-webpack-plugin");
-const postcssPresetEnv = require("postcss-preset-env");
+const path = require('path');
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const Dashboard = require('webpack-dashboard/plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const postcssPresetEnv = require('postcss-preset-env');
 
-const babelrc = require("./package.json").babel;
+const babelrc = require('./package.json').babel;
 
-const NODE_ENV = process.env.NODE_ENV || "development";
+const NODE_ENV = process.env.NODE_ENV || 'development';
 // Run production build in test env for the CI
-const isProd = NODE_ENV === "production" || NODE_ENV === "test";
+const isProd = NODE_ENV === 'production' || NODE_ENV === 'test';
 
 module.exports = {
   context: path.resolve(__dirname),
   devServer: {
-    contentBase: "./docs",
+    contentBase: './docs',
     historyApiFallback: true,
     overlay: false,
-    publicPath: "http://127.0.0.1:3000",
+    publicPath: 'http://127.0.0.1:3000',
     stats: { colors: true },
     watchContentBase: true,
   },
-  devtool: isProd ? "hidden-source-map" : "cheap-module-source-map",
+  devtool: isProd ? 'hidden-source-map' : 'cheap-module-source-map',
   entry: isProd
     ? {
-        docs: "./docs/index.js",
-        main: "./components/index.js",
+        docs: './docs/index.js',
+        main: './components/index.js',
       }
     : {
         main: [
-          "webpack-dev-server/client?http://0.0.0.0:3000",
-          "./docs/index.js",
+          'webpack-dev-server/client?http://0.0.0.0:3000',
+          './docs/index.js',
         ],
       },
-  mode: isProd ? "production" : "development",
+  mode: isProd ? 'production' : 'development',
   module: {
     rules: [
       {
         include: /node_modules\/prismjs/,
         test: /\.css/,
         use: [
-          isProd ? MiniCssExtractPlugin.loader : "style-loader",
+          isProd ? MiniCssExtractPlugin.loader : 'style-loader',
           {
-            loader: "css-loader",
+            loader: 'css-loader',
             options: {
               importLoaders: 2,
-              localIdentName: "[name]__[local]___[hash:base64:5]",
+              localIdentName: '[name]__[local]___[hash:base64:5]',
               sourceMap: !isProd,
             },
           },
@@ -57,26 +57,26 @@ module.exports = {
         exclude: /node_modules/,
         test: /\.scss/,
         use: [
-          isProd ? MiniCssExtractPlugin.loader : "style-loader",
+          isProd ? MiniCssExtractPlugin.loader : 'style-loader',
           {
-            loader: "css-loader",
+            loader: 'css-loader',
             options: {
               importLoaders: 2,
-              localIdentName: "[name]__[local]___[hash:base64:5]",
+              localIdentName: '[name]__[local]___[hash:base64:5]',
               sourceMap: !isProd,
             },
           },
           {
-            loader: "postcss-loader",
+            loader: 'postcss-loader',
             options: {
               plugins: [
                 postcssPresetEnv({
-                  browsers: ["last 2 versions", "ie >= 11"],
+                  browsers: ['last 2 versions', 'ie >= 11'],
                 }),
               ],
             },
           },
-          "sass-loader",
+          'sass-loader',
         ],
       },
       {
@@ -84,7 +84,7 @@ module.exports = {
         test: /\.jsx?$/,
         use: [
           {
-            loader: "babel-loader",
+            loader: 'babel-loader',
             options: babelrc,
           },
         ],
@@ -92,41 +92,41 @@ module.exports = {
       {
         exclude: /node_modules/,
         test: /\.tsx?$/,
-        loader: "ts-loader",
+        loader: 'ts-loader',
       },
       {
-        loader: "url-loader",
+        loader: 'url-loader',
         options: {
           limit: 8192,
-          name: "images/[name].[ext]",
+          name: 'images/[name].[ext]',
         },
         test: /.(ico|png|jpg|svg)(\?[a-z0-9=.]+)?$/,
       },
 
       {
-        loader: "file-loader",
+        loader: 'file-loader',
         options: {
-          name: "fonts/[name].[ext]",
+          name: 'fonts/[name].[ext]',
         },
         test: /.(woff(2)?|eot|ttf)(\?[a-z0-9=.]+)?$/,
       },
       {
-        loader: "html-loader?interpolate=require",
+        loader: 'html-loader?interpolate=require',
         test: /\.(html)$/,
       },
 
       {
         exclude: /node_modules/,
         test: /\.css$/,
-        loader: "style-loader",
+        loader: 'style-loader',
       },
       {
         exclude: /node_modules/,
         test: /\.css$/,
-        loader: "css-loader",
+        loader: 'css-loader',
         query: {
           modules: true,
-          localIdentName: "[name]__[local]___[hash:base64:5]",
+          localIdentName: '[name]__[local]___[hash:base64:5]',
         },
       },
     ],
@@ -145,9 +145,9 @@ module.exports = {
     splitChunks: {
       cacheGroups: {
         commons: {
-          chunks: "initial",
+          chunks: 'initial',
           minSize: 1,
-          name: "vendor",
+          name: 'vendor',
           test: /node_modules/,
         },
         default: false,
@@ -155,24 +155,24 @@ module.exports = {
     },
   },
   output: {
-    filename: `[name]${isProd ? ".[chunkhash]" : ""}.js`,
-    path: path.join(__dirname, "/dist"),
-    publicPath: "/",
+    filename: `[name]${isProd ? '.[chunkhash]' : ''}.js`,
+    path: path.join(__dirname, '/dist'),
+    publicPath: '/',
   },
   plugins: [
     new webpack.DefinePlugin({
-      "process.env": { NODE_ENV: JSON.stringify(NODE_ENV) },
+      'process.env': { NODE_ENV: JSON.stringify(NODE_ENV) },
     }),
     new HtmlWebpackPlugin({
       cache: false,
-      chunksSortMode: "dependency",
+      chunksSortMode: 'dependency',
       minify: isProd,
-      template: "./docs/index.html",
+      template: './docs/index.html',
     }),
     new MiniCssExtractPlugin(),
   ].concat(isProd ? [] : [new Dashboard()]),
   resolve: {
-    extensions: [".js", ".ts", ".tsx"],
-    modules: [path.resolve("./components"), "node_modules"],
+    extensions: ['.js', '.ts', '.tsx'],
+    modules: [path.resolve('./components'), 'node_modules'],
   },
 };

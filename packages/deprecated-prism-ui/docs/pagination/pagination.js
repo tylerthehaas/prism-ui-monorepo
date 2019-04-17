@@ -72,7 +72,7 @@ const REACT_CODE = `
 import { Pagination } from "prism";
 
 <Pagination
-  data-testid="1"
+  dataTestId="1"
   numPages={15}
   onClick={() => console.log()}
   pagesShown={this.state.pages}
@@ -161,8 +161,9 @@ export class PaginationDocs extends React.Component {
               },
               {
                 name: "onClick",
-                type: "Function",
-                description: "Function to be called when page changes.",
+                type: "Event",
+                description:
+                  "Event that will be handled when a number is clicked.",
               },
             ]}
           />
