@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
-import { Alert, Style, Type } from "alert";
-import { Example } from "../example";
-import { PropsWindow, PropsList } from "../props";
+import { Alert, Style, Type } from 'alert';
+import { Example } from '../example';
+import { PropsWindow, PropsList } from '../props-list';
 
 const HTML_CODE = `
 <div>
@@ -31,15 +31,15 @@ import { Alert } from "prism";
   type={this.state.type || Type.basic}
 />`;
 
-export class AlertDocs extends React.Component {
+export default class AlertDocs extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      message: "Success message",
+      message: 'Success message',
       link: false,
       style: Style.success,
       type: Type.basic,
-      viewType: "html",
+      viewType: 'html',
     };
   }
 
@@ -52,7 +52,7 @@ export class AlertDocs extends React.Component {
   };
 
   buttonClass = viewTarget => {
-    return `psm-button${this.state.viewType === viewTarget ? "--primary" : ""}`;
+    return `psm-button${this.state.viewType === viewTarget ? '--primary' : ''}`;
   };
 
   render() {
@@ -60,14 +60,14 @@ export class AlertDocs extends React.Component {
       <>
         <h2 className="section-header">Alerts</h2>
         <button
-          className={this.buttonClass("html")}
-          onClick={() => this.switchType("html")}
+          className={this.buttonClass('html')}
+          onClick={() => this.switchType('html')}
         >
           HTML
         </button>
         <button
-          className={this.buttonClass("react")}
-          onClick={() => this.switchType("react")}
+          className={this.buttonClass('react')}
+          onClick={() => this.switchType('react')}
         >
           React
         </button>
@@ -75,47 +75,47 @@ export class AlertDocs extends React.Component {
           <div className="component-window psm-card--shadow-1">
             <Alert
               button={{
-                text: "Button",
-                onClick: () => alert("Button clicked!"),
+                text: 'Button',
+                onClick: () => alert('Button clicked!'),
               }}
               link={
                 this.state.link
-                  ? { text: "Link", href: "javascript:alert('Link clicked!')" }
+                  ? { text: 'Link', href: "javascript:alert('Link clicked!')" }
                   : null
               }
-              message={this.state.message || "Success message"}
+              message={this.state.message || 'Success message'}
               style={this.state.style || Style.success}
               type={this.state.type || Type.basic}
             />
           </div>
-          {this.state.viewType === "react" && (
+          {this.state.viewType === 'react' && (
             <PropsWindow
               props={[
                 {
-                  label: "Message",
-                  type: "text",
-                  value: "Success message",
-                  key: "message",
+                  label: 'Message',
+                  type: 'text',
+                  value: 'Success message',
+                  key: 'message',
                 },
                 {
-                  label: "Style",
-                  type: "object",
+                  label: 'Style',
+                  type: 'object',
                   value: Style.success,
-                  key: "style",
+                  key: 'style',
                   options: Style,
                 },
                 {
-                  label: "Type",
-                  type: "object",
+                  label: 'Type',
+                  type: 'object',
                   value: Type.basic,
-                  key: "type",
+                  key: 'type',
                   options: Type,
                 },
                 {
-                  label: "Link",
-                  type: "bool",
+                  label: 'Link',
+                  type: 'bool',
                   value: false,
-                  key: "link",
+                  key: 'link',
                 },
               ]}
               updateProps={this.updateProps}
@@ -129,48 +129,48 @@ export class AlertDocs extends React.Component {
           reactCode={REACT_CODE}
           type={this.state.viewType}
         />
-        {this.state.viewType === "react" && (
+        {this.state.viewType === 'react' && (
           <PropsList
             props={[
               {
-                name: "button",
-                type: "Object",
+                name: 'button',
+                type: 'Object',
                 description:
                   "Object describing alert button's content.<br/>" +
                   "Example usage: <br/><code>import { Alert, Type } from 'alert';<br/> &lt;Alert type={Type.button} button={{text: 'Button', onClick: () => alert('click!')}} /&gt;</code><br/>" +
-                  "<strong>Note</strong>: the button property will be ignored if the Type is not of type button",
+                  '<strong>Note</strong>: the button property will be ignored if the Type is not of type button',
               },
               {
-                name: "link",
-                type: "Object",
+                name: 'link',
+                type: 'Object',
                 description:
-                  "Object adding link content to an alert.<br/>" +
+                  'Object adding link content to an alert.<br/>' +
                   "Example usage: <br/><code>import { Alert, Type } from 'alert';</br> &lt;Alert type={Type.basic} link={{text: 'Link', href: 'http://some-url'}} /&gt;</code><br/>" +
-                  "<strong>Note</strong>: the link property will be ignored if the Type is not of type basic",
+                  '<strong>Note</strong>: the link property will be ignored if the Type is not of type basic',
               },
               {
-                name: "message",
-                type: "String",
+                name: 'message',
+                type: 'String',
                 description:
                   "String representing the alert's content<br/>" +
                   "<strong>Default</strong>: 'Alert message'",
               },
               {
-                name: "style",
-                type: "Enum",
+                name: 'style',
+                type: 'Enum',
                 description:
-                  "Enum denoting the alert style. Options are success, info, warning, error." +
+                  'Enum denoting the alert style. Options are success, info, warning, error.' +
                   "<br/>Example usage: <br/><code>import { Alert, Style } from 'alert';<br/> &lt;Alert style={Style.success} /&gt;</code><br/>" +
-                  "<strong>Default</strong>: Style.info",
+                  '<strong>Default</strong>: Style.info',
               },
               {
-                name: "type",
-                type: "Enum",
+                name: 'type',
+                type: 'Enum',
                 description:
-                  "Enum controlling the type of alert displayed. Options are basic, inline, and button.<br/>" +
+                  'Enum controlling the type of alert displayed. Options are basic, inline, and button.<br/>' +
                   "Example usage: <br/><code>import { Alert, Type } from 'alert';<br/> &lt;Alert type={Type.basic} /&gt;</code><br/>" +
-                  "<strong>Default</strong>: Type.info <br/>" +
-                  "<strong>Note</strong>: only alerts of type basic are dismissable",
+                  '<strong>Default</strong>: Type.info <br/>' +
+                  '<strong>Note</strong>: only alerts of type basic are dismissable',
               },
             ]}
           />

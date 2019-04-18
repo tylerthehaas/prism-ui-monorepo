@@ -1,1 +1,0 @@
-export { SpinnerDocs } from "./spinner";

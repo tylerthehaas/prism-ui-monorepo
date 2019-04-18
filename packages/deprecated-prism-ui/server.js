@@ -3,7 +3,6 @@ const path = require('path');
 const express = require('express');
 const compression = require('compression');
 const expressStaticGzip = require('express-static-gzip');
-const indexHTML = require('./views/index.js');
 const cors = require('cors');
 const helmet = require('helmet');
 
@@ -73,9 +72,9 @@ app.use((err, req, res, next) => {
   res.status(500).send('Internal server error');
 });
 
-app.get('*', (req, res) => {
-  res.sendFile(indexHTML);
-});
+// app.get('*', (req, res) => {
+//   res.sendFile(indexHTML);
+// });
 
 app.use((req, res) => {
   res.status(404).send('Not found');

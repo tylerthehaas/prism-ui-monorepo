@@ -1,8 +1,8 @@
 /* eslint no-console: 0 */
-import { Pagination } from "../../components/pagination";
-import React from "react";
-import { Example } from "../example";
-import { PropsWindow, PropsList } from "../props";
+import { Pagination } from '../../components/pagination';
+import React from 'react';
+import { Example } from '../example';
+import { PropsWindow, PropsList } from '../props-list';
 
 const HTML_CODE = `
 <ul class="psm-pagination">
@@ -78,11 +78,11 @@ import { Pagination } from "prism";
   pagesShown={this.state.pages}
 />`;
 
-export class PaginationDocs extends React.Component {
+export default class PaginationDocs extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      viewType: "html",
+      viewType: 'html',
       pages: 7,
     };
   }
@@ -92,7 +92,7 @@ export class PaginationDocs extends React.Component {
   };
 
   buttonClass = viewTarget => {
-    return `psm-button${this.state.viewType === viewTarget ? "--primary" : ""}`;
+    return `psm-button${this.state.viewType === viewTarget ? '--primary' : ''}`;
   };
 
   updateProps = newState => {
@@ -104,14 +104,14 @@ export class PaginationDocs extends React.Component {
       <>
         <h2 className="section-header">Pagination</h2>
         <button
-          className={this.buttonClass("html")}
-          onClick={() => this.switchType("html")}
+          className={this.buttonClass('html')}
+          onClick={() => this.switchType('html')}
         >
           HTML
         </button>
         <button
-          className={this.buttonClass("react")}
-          onClick={() => this.switchType("react")}
+          className={this.buttonClass('react')}
+          onClick={() => this.switchType('react')}
         >
           React
         </button>
@@ -130,10 +130,10 @@ export class PaginationDocs extends React.Component {
             <PropsWindow
               props={[
                 {
-                  label: "Pages Shown",
-                  type: "text",
-                  value: "7",
-                  key: "pages",
+                  label: 'Pages Shown',
+                  type: 'text',
+                  value: '7',
+                  key: 'pages',
                 },
               ]}
               updateProps={this.updateProps}
@@ -146,24 +146,24 @@ export class PaginationDocs extends React.Component {
           reactCode={REACT_CODE}
           type={this.state.viewType}
         />
-        {this.state.viewType === "react" && (
+        {this.state.viewType === 'react' && (
           <PropsList
             props={[
               {
-                name: "pagesShown",
-                type: "Number",
-                description: "Number of pages to be visible while navigating.",
+                name: 'pagesShown',
+                type: 'Number',
+                description: 'Number of pages to be visible while navigating.',
               },
               {
-                name: "numPages",
-                type: "Number",
-                description: "Number of pages the pagination bar should have.",
+                name: 'numPages',
+                type: 'Number',
+                description: 'Number of pages the pagination bar should have.',
               },
               {
-                name: "onClick",
-                type: "Event",
+                name: 'onClick',
+                type: 'Event',
                 description:
-                  "Event that will be handled when a number is clicked.",
+                  'Event that will be handled when a number is clicked.',
               },
             ]}
           />

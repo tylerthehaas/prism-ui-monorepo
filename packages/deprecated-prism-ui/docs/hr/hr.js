@@ -1,6 +1,6 @@
-import { HR } from "../../components/hr";
-import React from "react";
-import { Example } from "../example";
+import { HR } from '../../components/hr';
+import React from 'react';
+import { Example } from '../example';
 
 const HTML_CODE = `<hr class="psm-hr" />`;
 
@@ -9,11 +9,11 @@ import { HR } from "prism";
 
 <HR />`;
 
-export class HRDocs extends React.Component {
+export default class HRDocs extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      viewType: "html",
+      viewType: 'html',
     };
   }
 
@@ -22,7 +22,7 @@ export class HRDocs extends React.Component {
   };
 
   buttonClass = viewTarget => {
-    return `psm-button${this.state.viewType === viewTarget ? "--primary" : ""}`;
+    return `psm-button${this.state.viewType === viewTarget ? '--primary' : ''}`;
   };
 
   render() {
@@ -30,20 +30,20 @@ export class HRDocs extends React.Component {
       <>
         <h2 className="section-header">Horizontal Rule</h2>
         <button
-          className={this.buttonClass("html")}
-          onClick={() => this.switchType("html")}
+          className={this.buttonClass('html')}
+          onClick={() => this.switchType('html')}
         >
           HTML
         </button>
         <button
-          className={this.buttonClass("react")}
-          onClick={() => this.switchType("react")}
+          className={this.buttonClass('react')}
+          onClick={() => this.switchType('react')}
         >
           React
         </button>
         <div className="window-group">
           <div className="component-window psm-card--shadow-1">
-            <div className="component-window-child" style={{ width: "100%" }}>
+            <div className="component-window-child" style={{ width: '100%' }}>
               <HR />
             </div>
           </div>

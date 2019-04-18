@@ -1,5 +1,5 @@
-import * as React from "react";
-import { number } from "prop-types";
+import * as React from 'react';
+import './radio.scss';
 
 type RadioProps = {
   buttons: Array<{ text: string; onClick?(event: any): any; checked: boolean }>;
@@ -14,7 +14,7 @@ type RadioState = {
   idPrefix: string;
 };
 
-export class Radio extends React.Component<RadioProps, RadioState> {
+export default class Radio extends React.Component<RadioProps, RadioState> {
   constructor(props: RadioProps) {
     super(props);
     this.state = {
@@ -37,10 +37,10 @@ export class Radio extends React.Component<RadioProps, RadioState> {
     }
   };
   componentDidMount() {
-    document.addEventListener("keypress", this.handleEnter, false);
+    document.addEventListener('keypress', this.handleEnter, false);
   }
   componentWillUnmount() {
-    document.removeEventListener("keypress", this.handleEnter, false);
+    document.removeEventListener('keypress', this.handleEnter, false);
   }
 
   public render() {
@@ -53,7 +53,7 @@ export class Radio extends React.Component<RadioProps, RadioState> {
                 id={`radio-div-${index}`}
                 key={index}
                 onFocus={() => this.setState({ isFocused: index })}
-                style={{ width: "fit-content", display: "inline-block" }}
+                style={{ width: 'fit-content', display: 'inline-block' }}
                 tabIndex={0}
               >
                 <input

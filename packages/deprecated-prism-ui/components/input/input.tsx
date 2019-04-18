@@ -1,4 +1,6 @@
-import * as React from "react";
+import * as React from 'react';
+import './input.scss';
+import './input-group.scss';
 
 export type InputProps = {
   required?: boolean;
@@ -13,75 +15,75 @@ export type InputProps = {
   };
 };
 export enum iconType {
-  "zoom-in",
-  "trophy",
-  "trash",
-  "tail-up",
-  "tail-right",
-  "tail-left",
-  "tail-down",
-  "tag",
-  "support",
-  "stre-up",
-  "stre-right",
-  "stre-left",
-  "stre-down",
-  "small-up",
-  "small-triangle-up",
-  "small-triangle-right",
-  "small-triangle-left",
-  "small-triangle-down",
-  "small-right",
-  "small-left",
-  "small-down",
-  "single-content",
-  "single-body",
-  "simple-remove",
-  "simple-add",
-  "share",
-  "settings-gear",
-  "send",
-  "select",
-  "refresh",
-  "print",
-  "path-unite",
-  "multiple",
-  "menu-dots",
-  "menu",
-  "lock",
-  "image",
-  "heartbeat",
-  "heart",
-  "goal",
-  "flag-points",
-  "favorite",
-  "eye",
-  "email",
-  "desktop",
-  "cloud-download",
-  "check",
-  "chat",
-  "chat-alt",
-  "chart-bar",
-  "cart-simple",
-  "calendar-add",
-  "calendar",
-  "bullet-list",
-  "block-down",
-  "bell",
-  "attach",
-  "archive-check",
-  "alert-circle-i",
-  "add",
-  "a-check",
-  "edit-note",
-  "one-on-one",
-  "play-screen",
-  "power",
-  "conversation",
+  'zoom-in',
+  'trophy',
+  'trash',
+  'tail-up',
+  'tail-right',
+  'tail-left',
+  'tail-down',
+  'tag',
+  'support',
+  'stre-up',
+  'stre-right',
+  'stre-left',
+  'stre-down',
+  'small-up',
+  'small-triangle-up',
+  'small-triangle-right',
+  'small-triangle-left',
+  'small-triangle-down',
+  'small-right',
+  'small-left',
+  'small-down',
+  'single-content',
+  'single-body',
+  'simple-remove',
+  'simple-add',
+  'share',
+  'settings-gear',
+  'send',
+  'select',
+  'refresh',
+  'print',
+  'path-unite',
+  'multiple',
+  'menu-dots',
+  'menu',
+  'lock',
+  'image',
+  'heartbeat',
+  'heart',
+  'goal',
+  'flag-points',
+  'favorite',
+  'eye',
+  'email',
+  'desktop',
+  'cloud-download',
+  'check',
+  'chat',
+  'chat-alt',
+  'chart-bar',
+  'cart-simple',
+  'calendar-add',
+  'calendar',
+  'bullet-list',
+  'block-down',
+  'bell',
+  'attach',
+  'archive-check',
+  'alert-circle-i',
+  'add',
+  'a-check',
+  'edit-note',
+  'one-on-one',
+  'play-screen',
+  'power',
+  'conversation',
 }
 
-export class Input extends React.Component<InputProps> {
+export default class Input extends React.Component<InputProps> {
   constructor(props: InputProps) {
     super(props);
     if (this.props.icon) {
@@ -95,7 +97,7 @@ export class Input extends React.Component<InputProps> {
 
   static defaultProps: InputProps = {
     required: true,
-    placeholderText: "Input Text Here",
+    placeholderText: 'Input Text Here',
 
     icon: null,
   };
@@ -118,7 +120,7 @@ export class Input extends React.Component<InputProps> {
         {(this.props.icon && (
           <div
             className={`psm-input-${this.props.icon.position ||
-              "trailing"}-icon`}
+              'trailing'}-icon`}
           >
             <i
               aria-label={`${this.props.icon.name} icon`}
@@ -126,14 +128,14 @@ export class Input extends React.Component<InputProps> {
               data-testid={`${this.props.dataTestId}-icon`}
               onClick={this.props.icon.onClick}
               style={{
-                cursor: this.props.icon.onClick ? "pointer" : "default",
+                cursor: this.props.icon.onClick ? 'pointer' : 'default',
               }}
               tabIndex={0}
             />
             <input
               aria-labelledby="Input field"
               className={`psm-input${
-                this.props.required ? " psm-input--active" : ""
+                this.props.required ? ' psm-input--active' : ''
               }`}
               data-testid={this.props.dataTestId}
               onChange={this.handleChange}
@@ -146,7 +148,7 @@ export class Input extends React.Component<InputProps> {
           <input
             aria-labelledby="Input field"
             className={`psm-input${
-              this.props.required ? " psm-input--active" : ""
+              this.props.required ? ' psm-input--active' : ''
             }`}
             data-testid={this.props.dataTestId}
             onChange={this.handleChange}

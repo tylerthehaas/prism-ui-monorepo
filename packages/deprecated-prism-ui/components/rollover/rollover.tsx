@@ -1,4 +1,5 @@
-import * as React from "react";
+import * as React from 'react';
+import './rollover.scss';
 
 type RolloverProps = {
   position: string;
@@ -19,7 +20,10 @@ type RolloverState = {
   idPrefix: string;
 };
 
-export class Rollover extends React.Component<RolloverProps, RolloverState> {
+export default class Rollover extends React.Component<
+  RolloverProps,
+  RolloverState
+> {
   constructor(props: RolloverProps) {
     super(props);
     this.state = {
@@ -57,15 +61,15 @@ export class Rollover extends React.Component<RolloverProps, RolloverState> {
   };
 
   static defaultProps: RolloverProps = {
-    position: "up",
+    position: 'up',
     content: [
-      { text: "John Smith" },
-      { text: "Jane Smith" },
-      { text: "John Doe" },
-      { text: "Jane Doe" },
+      { text: 'John Smith' },
+      { text: 'Jane Smith' },
+      { text: 'John Doe' },
+      { text: 'Jane Doe' },
     ],
     numShown: 4,
-    hoverText: "Hover over me!",
+    hoverText: 'Hover over me!',
     dotted: true,
     underline: false,
     idPrefix: null,
@@ -100,13 +104,13 @@ export class Rollover extends React.Component<RolloverProps, RolloverState> {
       ? rollClass.push(
           <div
             className="psm-rollover__footer"
-            key={"extra"}
+            key={'extra'}
             onClick={() => this.handleMore()}
           >
             +{more} More
           </div>,
         )
-      : "";
+      : '';
     return rollClass;
   }
 
@@ -116,19 +120,19 @@ export class Rollover extends React.Component<RolloverProps, RolloverState> {
     }
   }
   componentDidMount() {
-    document.addEventListener("keydown", this.escFunction, false);
+    document.addEventListener('keydown', this.escFunction, false);
   }
   componentWillUnmount() {
-    document.removeEventListener("keydown", this.escFunction, false);
+    document.removeEventListener('keydown', this.escFunction, false);
   }
 
   handleOptions() {
     if (!this.props.dotted && !this.props.underline) {
-      return "";
+      return '';
     } else if (this.props.dotted) {
-      return "psm-rollover psm-rollover__text psm-rollover__text-dotted";
+      return 'psm-rollover psm-rollover__text psm-rollover__text-dotted';
     } else if (this.props.underline) {
-      return "psm-rollover psm-rollover__text psm-rollover__text-underline";
+      return 'psm-rollover psm-rollover__text psm-rollover__text-underline';
     }
   }
 
@@ -142,7 +146,7 @@ export class Rollover extends React.Component<RolloverProps, RolloverState> {
           onFocus={this.handleHover}
           onMouseEnter={this.handleHover}
           onMouseLeave={this.handleLeave}
-          style={{ width: "fit-content" }}
+          style={{ width: 'fit-content' }}
           tabIndex={0}
         >
           <span className={`${this.handleOptions()}`}>
@@ -151,12 +155,12 @@ export class Rollover extends React.Component<RolloverProps, RolloverState> {
           <div>
             <div
               className={` psm-rollover__window--${
-                this.state.hovered ? "show" : "hide"
+                this.state.hovered ? 'show' : 'hide'
               } psm-rollover__window--${this.props.position}`}
             >
               <ul>
                 {this.displayRollover()}
-                {!this.state.clicked ? "" : this.state.extra}
+                {!this.state.clicked ? '' : this.state.extra}
               </ul>
             </div>
           </div>

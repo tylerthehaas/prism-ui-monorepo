@@ -1,1 +1,0 @@
-export { PaginationDocs } from "./pagination";

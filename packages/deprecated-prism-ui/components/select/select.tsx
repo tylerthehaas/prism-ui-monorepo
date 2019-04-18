@@ -1,4 +1,5 @@
-import * as React from "react";
+import * as React from 'react';
+import '../input/input.scss';
 
 export type SelectProps = {
   dropdown?: boolean;
@@ -15,7 +16,7 @@ type SelectState = {
   isFocused: number;
 };
 
-export class Select extends React.Component<SelectProps, SelectState> {
+export default class Select extends React.Component<SelectProps, SelectState> {
   constructor(props: SelectProps) {
     super(props);
     this.state = {
@@ -30,13 +31,13 @@ export class Select extends React.Component<SelectProps, SelectState> {
     dropdown: false,
     radio: true,
     content: [
-      { text: "Option 1" },
-      { text: "Option 2" },
-      { text: "Option 3" },
-      { text: "Option 4" },
+      { text: 'Option 1' },
+      { text: 'Option 2' },
+      { text: 'Option 3' },
+      { text: 'Option 4' },
     ],
     onClick: () => {
-      console.log("Selected");
+      console.log('Selected');
     },
   };
   componentWillReceiveProps(props: SelectProps) {
@@ -45,7 +46,7 @@ export class Select extends React.Component<SelectProps, SelectState> {
 
   findClassName() {
     if (!this.props.dropdown && this.props.radio) {
-      return "psm-multi-select--radio";
+      return 'psm-multi-select--radio';
     }
   }
   handleDropDown(index) {
@@ -82,10 +83,10 @@ export class Select extends React.Component<SelectProps, SelectState> {
     }
   };
   componentDidMount() {
-    document.addEventListener("keypress", this.handleEnter, false);
+    document.addEventListener('keypress', this.handleEnter, false);
   }
   componentWillUnmount() {
-    document.removeEventListener("keypress", this.handleEnter, false);
+    document.removeEventListener('keypress', this.handleEnter, false);
   }
 
   handleClick = i => event => {
@@ -124,8 +125,8 @@ export class Select extends React.Component<SelectProps, SelectState> {
                 className={`psm-multi-select${
                   this.state.active.indexOf(index) > -1 ||
                   index === this.state.radioActive
-                    ? "--selected "
-                    : " "
+                    ? '--selected '
+                    : ' '
                 }${this.findClassName()}`}
                 data-testid={`${this.props.dataTestId}-option-${index}`}
                 id={`option-${index}`}

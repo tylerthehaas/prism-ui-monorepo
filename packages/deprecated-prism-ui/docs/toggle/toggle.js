@@ -1,7 +1,7 @@
-import React from "react";
-import { Toggle } from "../../components/toggle";
-import { Example } from "../example";
-import { PropsList } from "../props";
+import React from 'react';
+import { Toggle } from '../../components/toggle';
+import { Example } from '../example';
+import { PropsList } from '../props';
 
 const HTML_CODE = `
 <div class="psm-toggle psm-toggle--inactive">
@@ -24,12 +24,12 @@ import { Toggle } from "prism";
   }}
 />`;
 
-export class ToggleDocs extends React.Component {
+export default class ToggleDocs extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       toggleOn: false,
-      viewType: "html",
+      viewType: 'html',
     };
     this.updateProps = this.updateProps.bind(this);
   }
@@ -43,7 +43,7 @@ export class ToggleDocs extends React.Component {
   };
 
   buttonClass = viewTarget => {
-    return `psm-button${this.state.viewType === viewTarget ? "--primary" : ""}`;
+    return `psm-button${this.state.viewType === viewTarget ? '--primary' : ''}`;
   };
 
   render() {
@@ -51,14 +51,14 @@ export class ToggleDocs extends React.Component {
       <>
         <h2 className="section-header">Toggle Switch</h2>
         <button
-          className={this.buttonClass("html")}
-          onClick={() => this.switchType("html")}
+          className={this.buttonClass('html')}
+          onClick={() => this.switchType('html')}
         >
           HTML
         </button>
         <button
-          className={this.buttonClass("react")}
-          onClick={() => this.switchType("react")}
+          className={this.buttonClass('react')}
+          onClick={() => this.switchType('react')}
         >
           React
         </button>
@@ -77,9 +77,9 @@ export class ToggleDocs extends React.Component {
               <span
                 className="psm-alert psm-alert--success"
                 style={{
-                  margin: "0 auto",
-                  backgroundColor: this.state.toggleOn ? "#28a450" : "white",
-                  transition: "all 0.6s",
+                  margin: '0 auto',
+                  backgroundColor: this.state.toggleOn ? '#28a450' : 'white',
+                  transition: 'all 0.6s',
                   marginTop: 8,
                 }}
               >
@@ -94,19 +94,19 @@ export class ToggleDocs extends React.Component {
           reactCode={REACT_CODE}
           type={this.state.viewType}
         />
-        {this.state.viewType === "react" && (
+        {this.state.viewType === 'react' && (
           <PropsList
             props={[
               {
-                name: "default",
-                type: "Boolean",
+                name: 'default',
+                type: 'Boolean',
                 description:
-                  "If true, the toggle switch will default to turned on.",
+                  'If true, the toggle switch will default to turned on.',
               },
               {
-                name: "handleToggle",
-                type: "Function",
-                description: "Function to be called when toggle is clicked.",
+                name: 'handleToggle',
+                type: 'Function',
+                description: 'Function to be called when toggle is clicked.',
               },
             ]}
           />

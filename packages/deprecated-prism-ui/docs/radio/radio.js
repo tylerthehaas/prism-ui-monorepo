@@ -1,8 +1,8 @@
 /* eslint no-console: 0 */
-import { Radio } from "../../components/radio";
-import { Example } from "../example";
-import React from "react";
-import { PropsList } from "../props";
+import { Radio } from '../../components/radio';
+import { Example } from '../example';
+import React from 'react';
+import { PropsList } from '../props';
 
 const HTML_CODE = `<div>
 <input class="psm-radio" type="radio" id="radio1" name="radio" checked>
@@ -38,11 +38,11 @@ import { Radio } from "prism";
   dataTestId="1"
 />`;
 
-export class RadioDocs extends React.Component {
+export default class RadioDocs extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      viewType: "html",
+      viewType: 'html',
     };
   }
   switchType = triggered => {
@@ -50,21 +50,21 @@ export class RadioDocs extends React.Component {
   };
 
   buttonClass = viewTarget => {
-    return `psm-button${this.state.viewType === viewTarget ? "--primary" : ""}`;
+    return `psm-button${this.state.viewType === viewTarget ? '--primary' : ''}`;
   };
   render() {
     return (
       <>
         <h2 className="section-header">Radio</h2>
         <button
-          className={this.buttonClass("html")}
-          onClick={() => this.switchType("html")}
+          className={this.buttonClass('html')}
+          onClick={() => this.switchType('html')}
         >
           HTML
         </button>
         <button
-          className={this.buttonClass("react")}
-          onClick={() => this.switchType("react")}
+          className={this.buttonClass('react')}
+          onClick={() => this.switchType('react')}
         >
           React
         </button>
@@ -74,18 +74,18 @@ export class RadioDocs extends React.Component {
               <Radio
                 buttons={[
                   {
-                    text: "Option 1",
+                    text: 'Option 1',
                     checked: true,
                   },
                   {
-                    text: "Option 2",
+                    text: 'Option 2',
                     checked: false,
                   },
                 ]}
                 dataTestId="1"
                 name="radio"
                 onSelect={() => {
-                  console.log("Option Selected");
+                  console.log('Option Selected');
                 }}
               />
             </div>
@@ -97,20 +97,20 @@ export class RadioDocs extends React.Component {
           reactCode={REACT_CODE}
           type={this.state.viewType}
         />
-        {this.state.viewType === "react" && (
+        {this.state.viewType === 'react' && (
           <PropsList
             props={[
               {
-                name: "buttons",
-                type: "Object",
+                name: 'buttons',
+                type: 'Object',
                 description:
-                  "Object containing the button information.<br/><b>text:</b> String to be displayed as button title.<br/><b>checked:</b> Boolean deciding whether the button should default to checked.",
+                  'Object containing the button information.<br/><b>text:</b> String to be displayed as button title.<br/><b>checked:</b> Boolean deciding whether the button should default to checked.',
               },
               {
-                name: "onSelect",
-                type: "Event",
+                name: 'onSelect',
+                type: 'Event',
                 description:
-                  "Event that will be handled when an option is selected.",
+                  'Event that will be handled when an option is selected.',
               },
             ]}
           />

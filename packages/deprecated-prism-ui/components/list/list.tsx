@@ -1,9 +1,10 @@
-import * as React from "react";
+import * as React from 'react';
+import './list.scss';
 
 export enum Sizes {
-  "Small" = "sm",
-  "Medium" = "md",
-  "Large" = "lg",
+  'Small' = 'sm',
+  'Medium' = 'md',
+  'Large' = 'lg',
 }
 
 export type ListProps = {
@@ -27,7 +28,7 @@ type ListState = {
   idPrefix: string;
 };
 
-export class List extends React.Component<ListProps, ListState> {
+export default class List extends React.Component<ListProps, ListState> {
   constructor(props: ListProps) {
     super(props);
     this.state = {
@@ -107,12 +108,12 @@ export class List extends React.Component<ListProps, ListState> {
   };
 
   componentDidMount() {
-    document.addEventListener("keydown", this.handleArrow, false);
-    document.addEventListener("keypress", this.handleEnter, false);
+    document.addEventListener('keydown', this.handleArrow, false);
+    document.addEventListener('keypress', this.handleEnter, false);
   }
   componentWillUnmount() {
-    document.removeEventListener("keydown", this.handleArrow, false);
-    document.removeEventListener("keypress", this.handleEnter, false);
+    document.removeEventListener('keydown', this.handleArrow, false);
+    document.removeEventListener('keypress', this.handleEnter, false);
   }
 
   componentWillReceiveProps(props: ListProps) {

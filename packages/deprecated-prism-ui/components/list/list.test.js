@@ -1,99 +1,98 @@
-import React from "react";
-import { render } from "react-testing-library";
+import React from 'react';
+import { render } from 'react-testing-library';
+import 'jest-dom/extend-expect';
 
-import { List } from "./";
+import List from './list';
 
-import Enzyme from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
+import Enzyme from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 
 const { mount } = Enzyme;
 
 Enzyme.configure({ adapter: new Adapter() });
 
-jest.mock("./");
-
-describe("<List />", () => {
-  it("Size is large when large is selected", () => {
+describe('<List />', () => {
+  it('Size is large when large is selected', () => {
     const { container } = render(
       <List
         rows={[
           {
             columns: [
               {
-                text: "Empty Row",
+                text: 'Empty Row',
                 isButton: false,
                 buttonPrimary: true,
               },
             ],
           },
         ]}
-        size={"Large"}
+        size={'Large'}
       />,
     );
     expect(container.firstChild.firstChild.firstChild).toHaveClass(
-      "psm-list__row psm-list__row-lg",
+      'psm-list__row psm-list__row-lg',
     );
   });
-  it("Size is small when small is selected", () => {
+  it('Size is small when small is selected', () => {
     const { container } = render(
       <List
         rows={[
           {
             columns: [
               {
-                text: "Empty Row",
+                text: 'Empty Row',
                 isButton: false,
                 buttonPrimary: true,
               },
             ],
           },
         ]}
-        size={"Small"}
+        size={'Small'}
       />,
     );
     expect(container.firstChild.firstChild.firstChild).toHaveClass(
-      "psm-list__row psm-list__row-sm",
+      'psm-list__row psm-list__row-sm',
     );
   });
-  it("Size is medium with medium is selected", () => {
+  it('Size is medium with medium is selected', () => {
     const { container } = render(
       <List
         rows={[
           {
             columns: [
               {
-                text: "Empty Row",
+                text: 'Empty Row',
                 isButton: false,
                 buttonPrimary: true,
               },
             ],
           },
         ]}
-        size={"Medium"}
+        size={'Medium'}
       />,
     );
     expect(container.firstChild.firstChild.firstChild).toHaveClass(
-      "psm-list__row psm-list__row-md",
+      'psm-list__row psm-list__row-md',
     );
   });
-  it("Row and column test", () => {
+  it('Row and column test', () => {
     const { container } = render(
       <List
         rows={[
           {
             columns: [
               {
-                text: "Empty Row",
+                text: 'Empty Row',
                 isButton: false,
                 buttonPrimary: true,
               },
               {
-                text: "Button",
+                text: 'Button',
                 isButton: true,
                 buttonPrimary: true,
               },
               {
-                text: "Empty Row",
+                text: 'Empty Row',
                 isButton: false,
                 buttonPrimary: true,
               },
@@ -102,72 +101,70 @@ describe("<List />", () => {
           {
             columns: [
               {
-                text: "Button",
+                text: 'Button',
                 isButton: true,
                 buttonPrimary: true,
               },
               {
-                text: "Empty Row",
+                text: 'Empty Row',
                 isButton: false,
                 buttonPrimary: true,
               },
               {
-                text: "Empty Row",
+                text: 'Empty Row',
                 isButton: false,
                 buttonPrimary: true,
               },
             ],
           },
         ]}
-        size={"Medium"}
+        size={'Medium'}
       />,
     );
     expect(container.firstChild.firstChild.firstChild).toHaveClass(
-      "psm-list__row psm-list__row-md",
+      'psm-list__row psm-list__row-md',
     );
   });
-  it("Prop changes row size", () => {
+  it('Prop changes row size', () => {
     const container = mount(
       <List
         rows={[
           {
             columns: [
               {
-                text: "Empty Row",
+                text: 'Empty Row',
                 isButton: false,
                 buttonPrimary: true,
               },
             ],
           },
         ]}
-        size={"Small"}
+        size={'Small'}
       />,
     );
-    container.setProps({ size: "Large" });
-    expect(container.find(".psm-list__row.psm-list__row-lg")).toHaveLength(1);
+    container.setProps({ size: 'Large' });
+    expect(container.find('.psm-list__row.psm-list__row-lg')).toHaveLength(1);
   });
-  it("Focus functions sets focued to current column and row", () => {
+  it('Focus functions sets focued to current column and row', () => {
     const container = mount(
       <List
-        idPrefix={"a1"}
+        idPrefix={'a1'}
         rows={[
           {
             columns: [
               {
-                text: "Empty Row",
+                text: 'Empty Row',
                 isButton: false,
                 buttonPrimary: true,
               },
             ],
           },
         ]}
-        size={"Small"}
+        size={'Small'}
       />,
     );
-    container.find("#a1-row-0-column-div-0").simulate("focus");
-    expect(container.state("isFocusedColumn")).toEqual(0);
-    expect(container.state("isFocusedRow")).toEqual(0);
+    container.find('#a1-row-0-column-div-0').simulate('focus');
+    expect(container.state('isFocusedColumn')).toEqual(0);
+    expect(container.state('isFocusedRow')).toEqual(0);
   });
 });
-
-jest.unmock("./");

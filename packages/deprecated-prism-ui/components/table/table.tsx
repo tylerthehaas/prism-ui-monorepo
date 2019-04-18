@@ -1,4 +1,5 @@
-import * as React from "react";
+import * as React from 'react';
+import './table.scss';
 
 type TableAction = {
   label: string;
@@ -15,7 +16,7 @@ type TableProps = {
   idPrefix?: string;
 };
 
-export class Table extends React.Component<TableProps, any> {
+export default class Table extends React.Component<TableProps, any> {
   constructor(props: TableProps) {
     super(props);
 
@@ -48,22 +49,21 @@ export class Table extends React.Component<TableProps, any> {
             {this.props.title}
           </div>
         )}
-        {this.props.actions &&
-          this.props.actions.length !== 0 && (
-            <div className="psm-table__actions">
-              {this.props.actions.map((a, index) => {
-                return (
-                  <a
-                    className={`psm-button${a.primary ? "--primary" : ""}`}
-                    key={index}
-                    onClick={a.onClick}
-                  >
-                    {a.label}
-                  </a>
-                );
-              })}
-            </div>
-          )}
+        {this.props.actions && this.props.actions.length !== 0 && (
+          <div className="psm-table__actions">
+            {this.props.actions.map((a, index) => {
+              return (
+                <a
+                  className={`psm-button${a.primary ? '--primary' : ''}`}
+                  key={index}
+                  onClick={a.onClick}
+                >
+                  {a.label}
+                </a>
+              );
+            })}
+          </div>
+        )}
         <table className="psm-table">
           <thead>
             <tr className="psm-table__tr">

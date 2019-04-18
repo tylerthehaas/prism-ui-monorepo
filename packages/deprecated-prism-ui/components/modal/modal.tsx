@@ -1,4 +1,5 @@
-import * as React from "react";
+import * as React from 'react';
+import './modal.scss';
 
 export type ModalProps = {
   children: any;
@@ -21,7 +22,7 @@ type ModalState = {
   isFocused: number;
 };
 
-export class Modal extends React.Component<ModalProps, ModalState> {
+export default class Modal extends React.Component<ModalProps, ModalState> {
   constructor(props: ModalProps) {
     super(props);
     this.state = {
@@ -51,14 +52,14 @@ export class Modal extends React.Component<ModalProps, ModalState> {
     }
   }
   componentDidMount() {
-    document.addEventListener("keydown", this.escFunction, false);
-    document.addEventListener("keypress", this.handleEnter, false);
-    document.addEventListener("keydown", this.handleTab, false);
+    document.addEventListener('keydown', this.escFunction, false);
+    document.addEventListener('keypress', this.handleEnter, false);
+    document.addEventListener('keydown', this.handleTab, false);
   }
   componentWillUnmount() {
-    document.removeEventListener("keydown", this.escFunction, false);
-    document.removeEventListener("keypress", this.handleEnter, false);
-    document.removeEventListener("keydown", this.handleTab, false);
+    document.removeEventListener('keydown', this.escFunction, false);
+    document.removeEventListener('keypress', this.handleEnter, false);
+    document.removeEventListener('keydown', this.handleTab, false);
   }
 
   handleTab = event => {
@@ -114,12 +115,12 @@ export class Modal extends React.Component<ModalProps, ModalState> {
             aria-labelledby={this.props.title}
             aria-live="assertive"
             aria-modal="true"
-            className={`psm-modal--${this.state.show ? "show" : "hide"}`}
+            className={`psm-modal--${this.state.show ? 'show' : 'hide'}`}
             role="dialog"
           >
-            <div className="psm-modal__content" style={{ width: "80%" }}>
+            <div className="psm-modal__content" style={{ width: '80%' }}>
               <i
-                aria-label={"Close"}
+                aria-label={'Close'}
                 className="psm-icon-simple-remove psm-modal__close"
                 data-testid={`${this.props.dataTestId}-close-icon`}
                 id={`button-${
@@ -167,7 +168,7 @@ export class Modal extends React.Component<ModalProps, ModalState> {
                       : 3,
                   })
                 }
-                style={{ position: "relative", height: 250 }}
+                style={{ position: 'relative', height: 250 }}
                 tabIndex={0}
               >
                 {this.props.children}
@@ -178,7 +179,7 @@ export class Modal extends React.Component<ModalProps, ModalState> {
                   this.props.actions.map((a, index) => {
                     return (
                       <button
-                        className={`psm-button${a.primary ? "--primary" : ""}`}
+                        className={`psm-button${a.primary ? '--primary' : ''}`}
                         data-testid={`${this.props.dataTestId}-button-${index}`}
                         id={`button-${index}`}
                         key={index}
@@ -186,9 +187,9 @@ export class Modal extends React.Component<ModalProps, ModalState> {
                         onFocus={() => this.setState({ isFocused: index })}
                         style={{
                           float:
-                            a.position && a.position === "left"
-                              ? "left"
-                              : "right",
+                            a.position && a.position === 'left'
+                              ? 'left'
+                              : 'right',
                           margin: 4,
                         }}
                         tabIndex={0}

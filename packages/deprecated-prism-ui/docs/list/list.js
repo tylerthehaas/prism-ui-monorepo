@@ -1,7 +1,7 @@
-import { List } from "../../components/list";
-import React from "react";
-import { Example } from "../example";
-import { PropsWindow, PropsList } from "../props";
+import { List } from '../../components/list';
+import React from 'react';
+import { Example } from '../example';
+import { PropsWindow, PropsList } from '../props-list';
 
 const HTML_CODE = `
 <div>
@@ -34,7 +34,7 @@ const HTML_CODE = `
       <td><a>Click Here</a></td>
     </tr>
   </table>
-  
+
   <table class="psm-list">
     <tr class="psm-list__row psm-list__row-lg">
       <td class="psm-list__row__lead">Utilization Awards</td>
@@ -106,12 +106,12 @@ import { List } from "prism";
   size={this.state.rowSize}
 />`;
 
-export class ListDocs extends React.Component {
+export default class ListDocs extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      viewType: "html",
-      rowSize: "Large",
+      viewType: 'html',
+      rowSize: 'Large',
     };
   }
 
@@ -120,7 +120,7 @@ export class ListDocs extends React.Component {
   };
 
   buttonClass = viewTarget => {
-    return `psm-button${this.state.viewType === viewTarget ? "--primary" : ""}`;
+    return `psm-button${this.state.viewType === viewTarget ? '--primary' : ''}`;
   };
 
   updateProps = newState => {
@@ -132,14 +132,14 @@ export class ListDocs extends React.Component {
       <>
         <h2 className="section-header">List</h2>
         <button
-          className={this.buttonClass("html")}
-          onClick={() => this.switchType("html")}
+          className={this.buttonClass('html')}
+          onClick={() => this.switchType('html')}
         >
           HTML
         </button>
         <button
-          className={this.buttonClass("react")}
-          onClick={() => this.switchType("react")}
+          className={this.buttonClass('react')}
+          onClick={() => this.switchType('react')}
         >
           React
         </button>
@@ -151,31 +151,31 @@ export class ListDocs extends React.Component {
                 rows={[
                   {
                     columns: [
-                      { text: "Utilization Awards", isButton: false },
+                      { text: 'Utilization Awards', isButton: false },
                       {
-                        text: "Mark",
+                        text: 'Mark',
                         isButton: false,
                       },
-                      { text: "50 Days", isButton: false },
+                      { text: '50 Days', isButton: false },
                       {
-                        text: "Button",
+                        text: 'Button',
                         isButton: true,
-                        onClick: () => alert("Button Clicked"),
+                        onClick: () => alert('Button Clicked'),
                       },
                     ],
                   },
                   {
                     columns: [
-                      { text: "Utilization Awards", isButton: false },
+                      { text: 'Utilization Awards', isButton: false },
                       {
-                        text: "Mark",
+                        text: 'Mark',
                         isButton: false,
                       },
-                      { text: "50 Days", isButton: false },
+                      { text: '50 Days', isButton: false },
                       {
-                        text: "Button",
+                        text: 'Button',
                         isButton: true,
-                        onClick: () => alert("Button Clicked"),
+                        onClick: () => alert('Button Clicked'),
                       },
                     ],
                   },
@@ -184,15 +184,15 @@ export class ListDocs extends React.Component {
               />
             </div>
           </div>
-          {this.state.viewType === "react" && (
+          {this.state.viewType === 'react' && (
             <PropsWindow
               props={[
                 {
-                  label: "Row Size",
-                  type: "select",
-                  options: ["Small", "Medium", "Large"],
-                  value: "Large",
-                  key: "rowSize",
+                  label: 'Row Size',
+                  type: 'select',
+                  options: ['Small', 'Medium', 'Large'],
+                  value: 'Large',
+                  key: 'rowSize',
                 },
               ]}
               updateProps={this.updateProps}
@@ -205,20 +205,20 @@ export class ListDocs extends React.Component {
           reactCode={REACT_CODE}
           type={this.state.viewType}
         />
-        {this.state.viewType === "react" && (
+        {this.state.viewType === 'react' && (
           <PropsList
             props={[
               {
-                name: "size",
-                type: "String",
+                name: 'size',
+                type: 'String',
                 description:
-                  "A string representing the size of the rows. Options are Small, Medium, and Large.",
+                  'A string representing the size of the rows. Options are Small, Medium, and Large.',
               },
               {
-                name: "rows",
-                type: "Object",
+                name: 'rows',
+                type: 'Object',
                 description:
-                  "An object containing the columns objects. Every new columns object will results in a new row.<br/><b>text:</b> String representing the text to display in the column.<br/><b>isButton:</b> Boolean deciding whether the text is a button.<br/><b>onClick:</b> Event that will be handled on button click, if isButton is true.",
+                  'An object containing the columns objects. Every new columns object will results in a new row.<br/><b>text:</b> String representing the text to display in the column.<br/><b>isButton:</b> Boolean deciding whether the text is a button.<br/><b>onClick:</b> Event that will be handled on button click, if isButton is true.',
               },
             ]}
           />

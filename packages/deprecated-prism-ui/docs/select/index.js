@@ -1,1 +1,0 @@
-export { SelectDocs } from "./select";

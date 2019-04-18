@@ -1,4 +1,5 @@
-import * as React from "react";
+import * as React from 'react';
+import './chip.scss';
 
 export type ChipProps = {
   label: string;
@@ -16,7 +17,7 @@ type ChipState = {
   isFocused: number;
 };
 
-export class Chip extends React.Component<ChipProps, ChipState> {
+export default class Chip extends React.Component<ChipProps, ChipState> {
   constructor(props: ChipProps) {
     super(props);
     this.state = {
@@ -32,13 +33,13 @@ export class Chip extends React.Component<ChipProps, ChipState> {
     }
   }
   static defaultProps: ChipProps = {
-    label: "Empty Chip",
+    label: 'Empty Chip',
     selectAction: () => {
-      alert("Chip selected");
+      alert('Chip selected');
     },
     show: true,
     isClosed: false,
-    closeAction: () => alert("Chip Closed"),
+    closeAction: () => alert('Chip Closed'),
     isSelected: false,
   };
   componentWillReceiveProps(props: ChipProps) {
@@ -71,19 +72,19 @@ export class Chip extends React.Component<ChipProps, ChipState> {
     }
   };
   componentDidMount() {
-    document.addEventListener("keypress", this.handleEnter, false);
+    document.addEventListener('keypress', this.handleEnter, false);
   }
   componentWillUnmount() {
-    document.removeEventListener("keypress", this.handleEnter, false);
+    document.removeEventListener('keypress', this.handleEnter, false);
   }
 
   public render() {
     return (
       <>
         {this.state.show && (
-          <div style={{ display: "inline-block" }}>
+          <div style={{ display: 'inline-block' }}>
             <div
-              className={`psm-chip${this.state.isSelected ? "--selected" : ""}`}
+              className={`psm-chip${this.state.isSelected ? '--selected' : ''}`}
             >
               <div
                 aria-labelledby={this.props.label}
@@ -95,7 +96,7 @@ export class Chip extends React.Component<ChipProps, ChipState> {
                     : this.handleClick()
                 }
                 onFocus={() => this.setState({ isFocused: 0 })}
-                style={{ display: "inline-block" }}
+                style={{ display: 'inline-block' }}
                 tabIndex={0}
               >
                 {this.props.label}

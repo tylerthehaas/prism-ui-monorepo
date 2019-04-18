@@ -1,7 +1,7 @@
-import React from "react";
-import { Rollover } from "../../components/rollover";
-import { PropsWindow, PropsList } from "../props";
-import { Example } from "../example";
+import React from 'react';
+import { Rollover } from '../../components/rollover';
+import { PropsWindow, PropsList } from '../props';
+import { Example } from '../example';
 
 const HTML_CODE = `<div style="width: 33%; display: inline-block;">
 <span>Displayed Rollover Window</span>
@@ -69,14 +69,14 @@ import { Rollover } from "prism";
   dataTestId="1"
 />`;
 
-export class RolloverDocs extends React.Component {
+export default class RolloverDocs extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       pickDotted: true,
       pickUnderline: false,
-      pickPosition: "down",
-      viewType: "html",
+      pickPosition: 'down',
+      viewType: 'html',
     };
     this.updateProps = this.updateProps.bind(this);
   }
@@ -92,7 +92,7 @@ export class RolloverDocs extends React.Component {
   };
 
   buttonClass = viewTarget => {
-    return `psm-button${this.state.viewType === viewTarget ? "--primary" : ""}`;
+    return `psm-button${this.state.viewType === viewTarget ? '--primary' : ''}`;
   };
 
   render() {
@@ -100,14 +100,14 @@ export class RolloverDocs extends React.Component {
       <>
         <h2 className="section-header">Rollover</h2>
         <button
-          className={this.buttonClass("html")}
-          onClick={() => this.switchType("html")}
+          className={this.buttonClass('html')}
+          onClick={() => this.switchType('html')}
         >
           HTML
         </button>
         <button
-          className={this.buttonClass("react")}
-          onClick={() => this.switchType("react")}
+          className={this.buttonClass('react')}
+          onClick={() => this.switchType('react')}
         >
           React
         </button>
@@ -116,45 +116,45 @@ export class RolloverDocs extends React.Component {
             <div className="component-window-child">
               <Rollover
                 content={[
-                  { text: "John Smith" },
-                  { text: "Jane Smith" },
-                  { text: "John Doe" },
-                  { text: "Jane Doe" },
-                  { text: "John Smith" },
-                  { text: "Jane Smith" },
-                  { text: "John Doe" },
-                  { text: "Jane Doe" },
+                  { text: 'John Smith' },
+                  { text: 'Jane Smith' },
+                  { text: 'John Doe' },
+                  { text: 'Jane Doe' },
+                  { text: 'John Smith' },
+                  { text: 'Jane Smith' },
+                  { text: 'John Doe' },
+                  { text: 'Jane Doe' },
                 ]}
                 dataTestId="1"
                 dotted={this.state.pickDotted}
-                hoverText={"Hover over me!"}
+                hoverText={'Hover over me!'}
                 numShown={4}
                 position={this.state.pickPosition}
                 underline={this.state.pickUnderline}
               />
             </div>
           </div>
-          {this.state.viewType === "react" && (
+          {this.state.viewType === 'react' && (
             <PropsWindow
               props={[
                 {
-                  label: "Position",
-                  type: "select",
-                  options: ["up", "down"],
-                  value: "down",
-                  key: "pickPosition",
+                  label: 'Position',
+                  type: 'select',
+                  options: ['up', 'down'],
+                  value: 'down',
+                  key: 'pickPosition',
                 },
                 {
-                  label: "Dotted Underline",
-                  type: "bool",
+                  label: 'Dotted Underline',
+                  type: 'bool',
                   value: true,
-                  key: "pickDotted",
+                  key: 'pickDotted',
                 },
                 {
-                  label: "Solid Underline",
-                  type: "bool",
+                  label: 'Solid Underline',
+                  type: 'bool',
                   value: false,
-                  key: "pickUnderline",
+                  key: 'pickUnderline',
                 },
               ]}
               updateProps={this.updateProps}
@@ -167,43 +167,43 @@ export class RolloverDocs extends React.Component {
           reactCode={REACT_CODE}
           type={this.state.viewType}
         />
-        {this.state.viewType === "react" && (
+        {this.state.viewType === 'react' && (
           <PropsList
             props={[
               {
-                name: "position",
-                type: "String",
+                name: 'position',
+                type: 'String',
                 description:
-                  "A string containing the position of the rollover. Options are <code>up</code> or <code>down</code>",
+                  'A string containing the position of the rollover. Options are <code>up</code> or <code>down</code>',
               },
               {
-                name: "content",
-                type: "Object",
+                name: 'content',
+                type: 'Object',
                 description:
-                  "Object containing the text to be displayed in the rollover pop-up.<br/><b>text:</b> The text that will be displayed in one row of the pop-up.",
+                  'Object containing the text to be displayed in the rollover pop-up.<br/><b>text:</b> The text that will be displayed in one row of the pop-up.',
               },
               {
-                name: "numShown",
-                type: "Number",
+                name: 'numShown',
+                type: 'Number',
                 description:
-                  "Number of content rows that will display.<br/>If there are more rows than numShown allows to show, a + more will appear and when clicked, will expand the pop-up to display the rest.",
+                  'Number of content rows that will display.<br/>If there are more rows than numShown allows to show, a + more will appear and when clicked, will expand the pop-up to display the rest.',
               },
               {
-                name: "hoverText",
-                type: "String",
-                description: "A string containing the text to be hovered over.",
+                name: 'hoverText',
+                type: 'String',
+                description: 'A string containing the text to be hovered over.',
               },
               {
-                name: "dotted",
-                type: "Boolean",
+                name: 'dotted',
+                type: 'Boolean',
                 description:
-                  "If true, a dotted line will appear under the hoverable text.",
+                  'If true, a dotted line will appear under the hoverable text.',
               },
               {
-                name: "underline",
-                type: "Boolean",
+                name: 'underline',
+                type: 'Boolean',
                 description:
-                  "If true, a solid underline will appear under the hoverable text. Dotted lines take precedence over underline, both cannot be displayed at the same time.",
+                  'If true, a solid underline will appear under the hoverable text. Dotted lines take precedence over underline, both cannot be displayed at the same time.',
               },
             ]}
           />

@@ -1,6 +1,7 @@
-import * as React from "react";
+import * as React from 'react';
+import './hr.scss';
 
-export class HR extends React.Component<any, any> {
+export default class HR extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
   }

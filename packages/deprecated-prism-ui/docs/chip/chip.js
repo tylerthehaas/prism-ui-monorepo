@@ -1,7 +1,7 @@
-import { Chip } from "../../components/chip";
-import React from "react";
-import { Example } from "../example";
-import { PropsList } from "../props";
+import { Chip } from '../../components/chip';
+import React from 'react';
+import { Example } from '../example';
+import { PropsList } from '../props';
 
 const HTML_CODE = `<div class="psm-chip">Jamison Brogdon</div>
 <div class="psm-chip--selected"> Caitlin Grandjean</div>
@@ -23,11 +23,11 @@ import { Chip } from "prism";
   selectAction={() => alert("Caitlin Grandjean selected")}
 />`;
 
-export class ChipDocs extends React.Component {
+export default class ChipDocs extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      viewType: "html",
+      viewType: 'html',
       resetButton: false,
     };
   }
@@ -37,7 +37,7 @@ export class ChipDocs extends React.Component {
   };
 
   buttonClass = viewTarget => {
-    return `psm-button${this.state.viewType === viewTarget ? "--primary" : ""}`;
+    return `psm-button${this.state.viewType === viewTarget ? '--primary' : ''}`;
   };
 
   updateProps = newState => {
@@ -49,14 +49,14 @@ export class ChipDocs extends React.Component {
       <>
         <h2 className="section-header">Chip</h2>
         <button
-          className={this.buttonClass("html")}
-          onClick={() => this.switchType("html")}
+          className={this.buttonClass('html')}
+          onClick={() => this.switchType('html')}
         >
           HTML
         </button>
         <button
-          className={this.buttonClass("react")}
-          onClick={() => this.switchType("react")}
+          className={this.buttonClass('react')}
+          onClick={() => this.switchType('react')}
         >
           React
         </button>
@@ -64,16 +64,16 @@ export class ChipDocs extends React.Component {
           <div className="component-window psm-card--shadow-1">
             <div className="component-window-child">
               <Chip
-                closeAction={() => alert("Chip Closed")}
+                closeAction={() => alert('Chip Closed')}
                 dataTestId="1"
                 label="Jamison Brogdon"
-                selectAction={() => alert("Jamison Brogdon selected")}
+                selectAction={() => alert('Jamison Brogdon selected')}
               />
               <Chip
-                closeAction={() => alert("Chip Closed")}
+                closeAction={() => alert('Chip Closed')}
                 dataTestId="1"
                 label="Caitlin Grandjean"
-                selectAction={() => alert("Caitlin Grandjean selected")}
+                selectAction={() => alert('Caitlin Grandjean selected')}
               />
             </div>
           </div>
@@ -84,26 +84,26 @@ export class ChipDocs extends React.Component {
           reactCode={REACT_CODE}
           type={this.state.viewType}
         />
-        {this.state.viewType === "react" && (
+        {this.state.viewType === 'react' && (
           <PropsList
             props={[
               {
-                name: "closeAction",
-                type: "Event",
+                name: 'closeAction',
+                type: 'Event',
                 description:
-                  "An event to be handled when the close icon gets clicked.",
+                  'An event to be handled when the close icon gets clicked.',
               },
               {
-                name: "label",
-                type: "Boolean",
+                name: 'label',
+                type: 'Boolean',
                 description:
-                  "A string containing the text to appear on the chip.",
+                  'A string containing the text to appear on the chip.',
               },
               {
-                name: "selectAction",
-                type: "Event",
+                name: 'selectAction',
+                type: 'Event',
                 description:
-                  "Event that gets handled when the chip is selected.",
+                  'Event that gets handled when the chip is selected.',
               },
             ]}
           />

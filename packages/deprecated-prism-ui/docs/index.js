@@ -1,13 +1,12 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-import { Docs } from "./docs";
+import { Docs } from './docs';
 
-import "prismjs/themes/prism-tomorrow.css";
-import "../components/index";
-import "./docs.scss";
+import 'prismjs/themes/prism-tomorrow.css';
+import './docs.scss';
 
-document.addEventListener("DOMContentLoaded", () => {
-  const target = document.getElementById("react-target");
+document.addEventListener('DOMContentLoaded', () => {
+  const target = document.getElementById('react-target');
   ReactDOM.render(<Docs />, target);
 });

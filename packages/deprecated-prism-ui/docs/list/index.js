@@ -1,1 +1,0 @@
-export { ListDocs } from "./list";

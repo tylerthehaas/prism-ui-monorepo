@@ -1,4 +1,5 @@
-import * as React from "react";
+import * as React from 'react';
+import './nav.scss';
 
 type NavProps = {
   tabs: Array<{ tab: string; onClick?(event: any): any }>;
@@ -11,7 +12,7 @@ type NavState = {
   isTab: boolean;
 };
 
-export class Nav extends React.Component<NavProps, NavState> {
+export default class Nav extends React.Component<NavProps, NavState> {
   constructor(props: NavProps) {
     super(props);
     this.state = {
@@ -40,12 +41,12 @@ export class Nav extends React.Component<NavProps, NavState> {
     }
   };
   componentDidMount() {
-    document.addEventListener("keypress", this.handleEnter, false);
-    document.addEventListener("keydown", this.handleFocus, false);
+    document.addEventListener('keypress', this.handleEnter, false);
+    document.addEventListener('keydown', this.handleFocus, false);
   }
   componentWillUnmount() {
-    document.removeEventListener("keypress", this.handleEnter, false);
-    document.removeEventListener("keydown", this.handleFocus, false);
+    document.removeEventListener('keypress', this.handleEnter, false);
+    document.removeEventListener('keydown', this.handleFocus, false);
   }
 
   public render() {
@@ -56,7 +57,7 @@ export class Nav extends React.Component<NavProps, NavState> {
             <li
               aria-labelledby={t.tab}
               className={`psm-nav__tab ${
-                this.state.active === index ? "psm-nav__active" : ""
+                this.state.active === index ? 'psm-nav__active' : ''
               }`}
               id={`tab-${index}`}
               key={index}
@@ -66,7 +67,7 @@ export class Nav extends React.Component<NavProps, NavState> {
               onFocus={() => {
                 this.setState({ isFocused: index });
               }}
-              style={{ outline: this.state.isTab ? null : "none" }}
+              style={{ outline: this.state.isTab ? null : 'none' }}
               tabIndex={0}
             >
               <span>{t.tab}</span>

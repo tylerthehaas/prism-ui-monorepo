@@ -1,4 +1,5 @@
-import * as React from "react";
+import * as React from 'react';
+import './card.scss';
 
 export type CardProps = {
   shadowType?: string;
@@ -19,7 +20,7 @@ const shadowTypes = {
   large: 3,
 };
 
-export class Card extends React.Component<CardProps, CardState> {
+export default class Card extends React.Component<CardProps, CardState> {
   constructor(props: CardProps) {
     super(props);
     this.state = {

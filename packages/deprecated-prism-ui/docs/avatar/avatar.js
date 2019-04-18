@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react';
 
-import { Avatar } from "avatar";
-import { Example } from "../example";
-import { PropsWindow, PropsList } from "../props";
+import { Avatar } from 'avatar';
+import { Example } from '../example';
+import { PropsWindow, PropsList } from '../props-list';
 
-import tobias from "../images/tobias.jpg";
+import tobias from '../images/tobias.jpg';
 
 const REACT_CODE = `
 import { Avatar, sizes } from "prism";
@@ -28,14 +28,14 @@ const HTML_CODE = `
 </div>
 `;
 
-export class AvatarDocs extends React.Component {
+export default class AvatarDocs extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      size: "xl",
+      size: 'xl',
       image: true,
       initials: true,
-      viewType: "html",
+      viewType: 'html',
     };
     this.updateProps = this.updateProps.bind(this);
   }
@@ -49,7 +49,7 @@ export class AvatarDocs extends React.Component {
   };
 
   buttonClass = viewTarget => {
-    return `psm-button${this.state.viewType === viewTarget ? "--primary" : ""}`;
+    return `psm-button${this.state.viewType === viewTarget ? '--primary' : ''}`;
   };
 
   render() {
@@ -57,14 +57,14 @@ export class AvatarDocs extends React.Component {
       <>
         <h2 className="section-header">Avatars</h2>
         <button
-          className={this.buttonClass("html")}
-          onClick={() => this.switchType("html")}
+          className={this.buttonClass('html')}
+          onClick={() => this.switchType('html')}
         >
           HTML
         </button>
         <button
-          className={this.buttonClass("react")}
-          onClick={() => this.switchType("react")}
+          className={this.buttonClass('react')}
+          onClick={() => this.switchType('react')}
         >
           React
         </button>
@@ -73,33 +73,33 @@ export class AvatarDocs extends React.Component {
             <div className="component-window-child">
               <Avatar
                 dataTestId="1"
-                initials={this.state.initials ? "TF" : null}
+                initials={this.state.initials ? 'TF' : null}
                 size={this.state.size}
                 src={this.state.image ? tobias : null}
               />
             </div>
           </div>
-          {this.state.viewType === "react" && (
+          {this.state.viewType === 'react' && (
             <PropsWindow
               props={[
                 {
-                  label: "Image",
-                  type: "bool",
+                  label: 'Image',
+                  type: 'bool',
                   value: true,
-                  key: "image",
+                  key: 'image',
                 },
                 {
-                  label: "Initials",
-                  type: "bool",
+                  label: 'Initials',
+                  type: 'bool',
                   value: true,
-                  key: "initials",
+                  key: 'initials',
                 },
                 {
-                  label: "Size",
-                  type: "select",
-                  value: "xl",
-                  key: "size",
-                  options: ["xs", "sm", "md", "lg", "xl"],
+                  label: 'Size',
+                  type: 'select',
+                  value: 'xl',
+                  key: 'size',
+                  options: ['xs', 'sm', 'md', 'lg', 'xl'],
                 },
               ]}
               updateProps={this.updateProps}
@@ -113,23 +113,23 @@ export class AvatarDocs extends React.Component {
           reactCode={REACT_CODE}
           type={this.state.viewType}
         />
-        {this.state.viewType === "react" && (
+        {this.state.viewType === 'react' && (
           <PropsList
             props={[
               {
-                name: "src",
-                type: "Image",
+                name: 'src',
+                type: 'Image',
                 description:
                   "A variable that points to an image file like <code>import tobias from '../images/tobias.jpg';</code> or path to an image file",
               },
               {
-                name: "initials",
-                type: "String",
-                description: "A two letter string",
+                name: 'initials',
+                type: 'String',
+                description: 'A two letter string',
               },
               {
-                name: "size",
-                type: "String/Enum",
+                name: 'size',
+                type: 'String/Enum',
                 description:
                   "A two letter string representing size. Options are xs, sm, md, lg, xl.<br/>Alternatively, <code>import { Avatar, sizes } from 'avatar'; </code>provides the enum <code>sizes.large, sizes.extraLarge</code>, etc.",
               },

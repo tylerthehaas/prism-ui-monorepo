@@ -1,94 +1,95 @@
-import React from "react";
-import { render } from "react-testing-library";
+import React from 'react';
+import { render } from 'react-testing-library';
+import 'jest-dom/extend-expect';
 
-import { Table } from "./";
+import Table from './table';
 
-describe("<Table />", () => {
-  it("Box defaults to false", () => {
+describe('<Table />', () => {
+  it('Box defaults to false', () => {
     const { container } = render(
       <Table
         actions={[
           {
-            label: "Create New Initiative",
+            label: 'Create New Initiative',
             primary: true,
             onClick() {
-              alert("Initiative Created");
+              alert('Initiative Created');
             },
           },
         ]}
         columns={[
-          { label: "Name", key: "name" },
-          { label: "Assigned To", key: "assignedTo" },
-          { label: "Time Remaining", key: "timeRemaining" },
-          { label: "Status", key: "status" },
+          { label: 'Name', key: 'name' },
+          { label: 'Assigned To', key: 'assignedTo' },
+          { label: 'Time Remaining', key: 'timeRemaining' },
+          { label: 'Status', key: 'status' },
         ]}
         data={[
           {
-            name: "Utilization Awards",
-            assignedTo: "Mark",
-            timeRemaining: "50 Days",
-            status: "In Progress",
+            name: 'Utilization Awards',
+            assignedTo: 'Mark',
+            timeRemaining: '50 Days',
+            status: 'In Progress',
           },
           {
-            name: "Improvement Cards",
-            assignedTo: "Stephanie",
-            timeRemaining: "12 Days",
-            status: "In Progress",
+            name: 'Improvement Cards',
+            assignedTo: 'Stephanie',
+            timeRemaining: '12 Days',
+            status: 'In Progress',
           },
           {
-            name: "Safety Hero",
-            assignedTo: "Steve",
-            timeRemaining: "0 Days",
-            status: "Complete",
+            name: 'Safety Hero',
+            assignedTo: 'Steve',
+            timeRemaining: '0 Days',
+            status: 'Complete',
           },
         ]}
-        title={"Current Initiatives"}
+        title={'Current Initiatives'}
       />,
     );
-    expect(container.firstChild).toHaveClass("psm-table-header");
+    expect(container.firstChild).toHaveClass('psm-table-header');
   });
-  it("Box works", () => {
+  it('Box works', () => {
     const { container } = render(
       <Table
         actions={[
           {
-            label: "Create New Initiative",
+            label: 'Create New Initiative',
             primary: true,
             onClick() {
-              alert("Initiative Created");
+              alert('Initiative Created');
             },
           },
         ]}
         box={true}
         columns={[
-          { label: "Name", key: "name" },
-          { label: "Assigned To", key: "assignedTo" },
-          { label: "Time Remaining", key: "timeRemaining" },
-          { label: "Status", key: "status" },
+          { label: 'Name', key: 'name' },
+          { label: 'Assigned To', key: 'assignedTo' },
+          { label: 'Time Remaining', key: 'timeRemaining' },
+          { label: 'Status', key: 'status' },
         ]}
         data={[
           {
-            name: "Utilization Awards",
-            assignedTo: "Mark",
-            timeRemaining: "50 Days",
-            status: "In Progress",
+            name: 'Utilization Awards',
+            assignedTo: 'Mark',
+            timeRemaining: '50 Days',
+            status: 'In Progress',
           },
           {
-            name: "Improvement Cards",
-            assignedTo: "Stephanie",
-            timeRemaining: "12 Days",
-            status: "In Progress",
+            name: 'Improvement Cards',
+            assignedTo: 'Stephanie',
+            timeRemaining: '12 Days',
+            status: 'In Progress',
           },
           {
-            name: "Safety Hero",
-            assignedTo: "Steve",
-            timeRemaining: "0 Days",
-            status: "Complete",
+            name: 'Safety Hero',
+            assignedTo: 'Steve',
+            timeRemaining: '0 Days',
+            status: 'Complete',
           },
         ]}
-        title={"Current Initiatives"}
+        title={'Current Initiatives'}
       />,
     );
-    expect(container.firstChild).toHaveClass("psm-table--box");
+    expect(container.firstChild).toHaveClass('psm-table--box');
   });
 });

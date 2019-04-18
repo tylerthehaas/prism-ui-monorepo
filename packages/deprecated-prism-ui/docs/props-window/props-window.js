@@ -1,8 +1,7 @@
-/* eslint jsx-a11y/no-onchange: 0 */
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 
-export class PropsWindow extends React.Component {
+export default class PropsWindow extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -49,9 +48,9 @@ export class PropsWindow extends React.Component {
         {this.state.props.map((p, index) => {
           return (
             <div key={index}>
-              {p.type !== "button" && <b>{p.label}:</b>}
+              {p.type !== 'button' && <b>{p.label}:</b>}
 
-              {p.type === "text" && (
+              {p.type === 'text' && (
                 <input
                   className="psm-input"
                   onChange={e => {
@@ -61,22 +60,22 @@ export class PropsWindow extends React.Component {
                 />
               )}
 
-              {p.type === "bool" && (
+              {p.type === 'bool' && (
                 <input
                   checked={p.value}
                   onChange={e => {
                     this.handleCheck(e, index);
                   }}
-                  style={{ float: "right" }}
+                  style={{ float: 'right' }}
                   type="checkbox"
                 />
               )}
 
-              {p.type === "select" && (
+              {p.type === 'select' && (
                 <select
                   className="psm-input"
                   defaultValue={p.value}
-                  onChange={e => {
+                  onBlur={e => {
                     this.handleChange(e, index);
                   }}
                 >
@@ -86,11 +85,11 @@ export class PropsWindow extends React.Component {
                 </select>
               )}
 
-              {p.type === "object" && (
+              {p.type === 'object' && (
                 <select
                   className="psm-input"
                   defaultValue={p.value}
-                  onChange={e => {
+                  onBlur={e => {
                     this.handleChange(e, index);
                   }}
                 >
@@ -103,11 +102,11 @@ export class PropsWindow extends React.Component {
                   })}
                 </select>
               )}
-              {p.type === "button" && (
+              {p.type === 'button' && (
                 <button
                   className="psm-button psm-button--primary"
                   onClick={this.props.updateProps}
-                  style={{ margin: "0 auto", width: "100%" }}
+                  style={{ margin: '0 auto', width: '100%' }}
                 >
                   {p.label}
                 </button>
@@ -123,55 +122,4 @@ export class PropsWindow extends React.Component {
 PropsWindow.propTypes = {
   props: PropTypes.array,
   updateProps: PropTypes.func,
-};
-
-export class PropsList extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-  render() {
-    return (
-      <>
-        <h2
-          style={{
-            marginTop: 20,
-            marginBottom: 20,
-            padding: 10,
-            textAlign: "center",
-          }}
-        >
-          Props
-        </h2>
-        <div>
-          {this.props.props.map(p => {
-            return (
-              <div key={p.name}>
-                <p
-                  style={{
-                    fontSize: 18,
-                    backgroundColor: "#f8f8f8",
-                    padding: 8,
-                  }}
-                >
-                  <b>Name: </b>
-                  {p.name}, <b>Type: </b>
-                  {p.type}
-                </p>
-                <p
-                  dangerouslySetInnerHTML={{ __html: p.description }}
-                  style={{ paddingLeft: 8 }}
-                />
-                <br />
-              </div>
-            );
-          })}
-        </div>
-      </>
-    );
-  }
-}
-
-PropsList.propTypes = {
-  props: PropTypes.array,
 };

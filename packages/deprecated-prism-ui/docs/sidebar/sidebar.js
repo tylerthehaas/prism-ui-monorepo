@@ -1,141 +1,141 @@
 /* eslint-disable */
 
-import React from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import styles from "./style.css";
-import PropTypes from "prop-types";
-import { AlertDocs } from "../alert";
-import { AvatarDocs } from "../avatar";
-import { ButtonDocs } from "../button";
-import { CardDocs } from "../card";
-import { ChipDocs } from "../chip";
-import { DropdownDocs } from "../dropdown";
-import { HRDocs } from "../hr";
-import { IconDocs } from "../icon";
-import { InputDocs } from "../input";
-import { ListDocs } from "../list";
-import { ModalDocs } from "../modal";
-import { NavDocs } from "../nav";
-import { PaginationDocs } from "../pagination";
-import { RadioDocs } from "../radio";
-import { RolloverDocs } from "../rollover";
-import { SelectDocs } from "../select";
-import { SpinnerDocs } from "../spinner";
-import { TableDocs } from "../table";
-import { ToggleDocs } from "../toggle";
+import React from 'react';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import styles from './style.css';
+import PropTypes from 'prop-types';
+import { AlertDocs } from '../alert';
+import { AvatarDocs } from '../avatar';
+import { ButtonDocs } from '../button';
+import { CardDocs } from '../card';
+import { ChipDocs } from '../chip';
+import { DropdownDocs } from '../dropdown';
+import { HRDocs } from '../hr';
+import { IconDocs } from '../icon';
+import { InputDocs } from '../input';
+import { ListDocs } from '../list';
+import { ModalDocs } from '../modal';
+import { NavDocs } from '../nav';
+import { PaginationDocs } from '../pagination';
+import { RadioDocs } from '../radio';
+import { RolloverDocs } from '../rollover';
+import { SelectDocs } from '../select';
+import { SpinnerDocs } from '../spinner';
+import { TableDocs } from '../table';
+import { ToggleDocs } from '../toggle';
 
-import octanner from "../images/octanner.jpg";
+import octanner from '../images/octanner.jpg';
 
 const components = [
   {
-    name: "Alert",
-    path: "/alert",
+    name: 'Alert',
+    path: '/alert',
     main: AlertDocs,
   },
   {
-    name: "Avatar",
-    path: "/avatar",
+    name: 'Avatar',
+    path: '/avatar',
     main: AvatarDocs,
   },
   {
-    name: "Button",
-    path: "/button",
+    name: 'Button',
+    path: '/button',
     main: ButtonDocs,
   },
   {
-    name: "Card",
-    path: "/card",
+    name: 'Card',
+    path: '/card',
     main: CardDocs,
   },
   {
-    name: "Chip",
-    path: "/chip",
+    name: 'Chip',
+    path: '/chip',
     main: ChipDocs,
   },
   {
-    name: "Dropdown",
-    path: "/dropdown",
+    name: 'Dropdown',
+    path: '/dropdown',
     main: DropdownDocs,
   },
   {
-    name: "Horizontal Rule",
-    path: "/hr",
+    name: 'Horizontal Rule',
+    path: '/hr',
     main: HRDocs,
   },
   {
-    name: "Icons",
-    path: "/icon",
+    name: 'Icons',
+    path: '/icon',
     main: IconDocs,
   },
   {
-    name: "Inputs",
-    path: "/input",
+    name: 'Inputs',
+    path: '/input',
     main: InputDocs,
   },
   {
-    name: "List",
-    path: "/list",
+    name: 'List',
+    path: '/list',
     main: ListDocs,
   },
   {
-    name: "Modal",
-    path: "/modal",
+    name: 'Modal',
+    path: '/modal',
     main: ModalDocs,
   },
   {
-    name: "Navbar",
-    path: "/navbar",
+    name: 'Navbar',
+    path: '/navbar',
     main: NavDocs,
   },
   {
-    name: "Pagination",
-    path: "/pagination",
+    name: 'Pagination',
+    path: '/pagination',
     main: PaginationDocs,
   },
   {
-    name: "Radio",
-    path: "/radio",
+    name: 'Radio',
+    path: '/radio',
     main: RadioDocs,
   },
   {
-    name: "Rollover",
-    path: "/rollover",
+    name: 'Rollover',
+    path: '/rollover',
     main: RolloverDocs,
   },
   {
-    name: "Select",
-    path: "/select",
+    name: 'Select',
+    path: '/select',
     main: SelectDocs,
   },
   {
-    name: "Spinner",
-    path: "/spinner",
+    name: 'Spinner',
+    path: '/spinner',
     main: SpinnerDocs,
   },
   {
-    name: "Table",
-    path: "/table",
+    name: 'Table',
+    path: '/table',
     main: TableDocs,
   },
   {
-    name: "Toggle",
-    path: "/toggle",
+    name: 'Toggle',
+    path: '/toggle',
     main: ToggleDocs,
   },
 ];
 
 const libraries = [
-  "HTML",
-  "React",
+  'HTML',
+  'React',
   // "Vue",
   // "Angular"
 ];
 
-export class SideBar extends React.Component {
+export default class SideBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      component: "welcome",
+      component: 'welcome',
     };
   }
   render() {
@@ -150,7 +150,7 @@ export class SideBar extends React.Component {
                 src={octanner}
               />
             </div>
-            <div style={{ textAlign: "right" }}>
+            <div style={{ textAlign: 'right' }}>
               {components.map(c => {
                 return (
                   <Route
@@ -160,7 +160,7 @@ export class SideBar extends React.Component {
                       <div className={styles.sidebarList}>
                         <Link
                           to={c.path}
-                          className={match ? styles.selected : "hoverable"}
+                          className={match ? styles.selected : 'hoverable'}
                         >
                           {c.name}
                         </Link>
@@ -174,8 +174,8 @@ export class SideBar extends React.Component {
           <div
             className="psm-paragraph language-xml"
             style={{
-              maxHeight: "97vh",
-              overflowY: "scroll",
+              maxHeight: '97vh',
+              overflowY: 'scroll',
               paddingLeft: 300,
               paddingRight: 16,
             }}

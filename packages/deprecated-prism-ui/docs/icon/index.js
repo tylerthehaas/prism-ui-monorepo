@@ -1,1 +1,0 @@
-export { IconDocs } from "./icon";

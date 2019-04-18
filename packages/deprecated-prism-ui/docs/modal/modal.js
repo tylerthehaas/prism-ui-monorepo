@@ -1,8 +1,8 @@
 /* eslint no-console: 0 */
-import { Modal } from "../../components/modal";
-import React from "react";
-import { Example } from "../example";
-import { PropsList } from "../props";
+import { Modal } from '../../components/modal';
+import React from 'react';
+import { Example } from '../example';
+import { PropsList } from '../props-list';
 
 const HTML_CODE = `
 <div class="psm-modal--show" style="position: relative; height: 550px">
@@ -58,12 +58,12 @@ import { Modal } from "prism";
     </p>
 </Modal>`;
 
-export class ModalDocs extends React.Component {
+export default class ModalDocs extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       show: false,
-      viewType: "html",
+      viewType: 'html',
     };
   }
 
@@ -80,7 +80,7 @@ export class ModalDocs extends React.Component {
   };
 
   buttonClass = viewTarget => {
-    return `psm-button${this.state.viewType === viewTarget ? "--primary" : ""}`;
+    return `psm-button${this.state.viewType === viewTarget ? '--primary' : ''}`;
   };
 
   render() {
@@ -88,14 +88,14 @@ export class ModalDocs extends React.Component {
       <>
         <h2 className="section-header">Modal</h2>
         <button
-          className={this.buttonClass("html")}
-          onClick={() => this.switchType("html")}
+          className={this.buttonClass('html')}
+          onClick={() => this.switchType('html')}
         >
           HTML
         </button>
         <button
-          className={this.buttonClass("react")}
-          onClick={() => this.switchType("react")}
+          className={this.buttonClass('react')}
+          onClick={() => this.switchType('react')}
         >
           React
         </button>
@@ -107,23 +107,23 @@ export class ModalDocs extends React.Component {
                 id="show-modal-button"
                 onClick={this.showModal}
               >
-                {" "}
+                {' '}
                 Show Modal
               </button>
               <Modal
                 actions={[
                   {
                     onClick: () => {
-                      console.log("Alert: Button Clicked");
+                      console.log('Alert: Button Clicked');
                     },
-                    label: "Button",
+                    label: 'Button',
                     primary: true,
                   },
                   {
                     onClick: () => {
-                      console.log("Alert: Modal Canceled.");
+                      console.log('Alert: Modal Canceled.');
                     },
-                    label: "Cancel",
+                    label: 'Cancel',
                     primary: false,
                     shouldCloseModal: true,
                   },
@@ -149,26 +149,26 @@ export class ModalDocs extends React.Component {
           reactCode={REACT_CODE}
           type={this.state.viewType}
         />
-        {this.state.viewType === "react" && (
+        {this.state.viewType === 'react' && (
           <PropsList
             props={[
               {
-                name: "content",
-                type: "String",
+                name: 'content',
+                type: 'String',
                 description:
-                  "A string containing the text to display in the body of the modal.",
+                  'A string containing the text to display in the body of the modal.',
               },
               {
-                name: "title",
-                type: "String",
+                name: 'title',
+                type: 'String',
                 description:
-                  "A string containing the text that will be the title of the modal.",
+                  'A string containing the text that will be the title of the modal.',
               },
               {
-                name: "actions",
-                type: "Object",
+                name: 'actions',
+                type: 'Object',
                 description:
-                  "An object containting the buttons to display on the modal.<br/><b>onClick:</b> Event to be handled when button is clicked.<br/><b>label:</b> String that will be displayed on the button.<br/><b>primary:</b> Boolean deciding whether or not the button is primary.<br/><b>shouldCloseModal:</b> Boolean that defaults to false and decides whether a button should close the modal.",
+                  'An object containting the buttons to display on the modal.<br/><b>onClick:</b> Event to be handled when button is clicked.<br/><b>label:</b> String that will be displayed on the button.<br/><b>primary:</b> Boolean deciding whether or not the button is primary.<br/><b>shouldCloseModal:</b> Boolean that defaults to false and decides whether a button should close the modal.',
               },
             ]}
           />

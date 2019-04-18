@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import Prism from "prismjs";
-import "prismjs/components/prism-jsx";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import Prism from 'prismjs';
+import 'prismjs/components/prism-jsx';
 
-export class Example extends Component {
+export default class Example extends Component {
   static propTypes = {
     htmlCode: PropTypes.string.isRequired,
     reactCode: PropTypes.string.isRequired,
@@ -12,7 +12,7 @@ export class Example extends Component {
 
   state = {};
 
-  highlight = code => Prism.highlight(code.trim(), Prism.languages.jsx, "jsx");
+  highlight = code => Prism.highlight(code.trim(), Prism.languages.jsx, 'jsx');
 
   setCodeType = codeType => () => this.setState(() => ({ codeType }));
 
@@ -24,7 +24,7 @@ export class Example extends Component {
           <code
             dangerouslySetInnerHTML={{
               __html: this.highlight(
-                this.props.type === "react" ? reactCode : htmlCode,
+                this.props.type === 'react' ? reactCode : htmlCode,
               ),
             }}
           />

@@ -1,4 +1,5 @@
-import * as React from "react";
+import * as React from 'react';
+import './spinner.scss';
 
 export type SpinnerProps = {
   size: sizes;
@@ -6,14 +7,14 @@ export type SpinnerProps = {
 };
 
 export enum sizes {
-  "xl",
-  "xs",
-  "lg",
-  "md",
-  "sm",
+  'xl',
+  'xs',
+  'lg',
+  'md',
+  'sm',
 }
 
-export class Spinner extends React.Component<SpinnerProps> {
+export default class Spinner extends React.Component<SpinnerProps> {
   constructor(props: SpinnerProps) {
     super(props);
     this.state = {

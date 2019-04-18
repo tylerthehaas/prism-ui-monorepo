@@ -1,35 +1,34 @@
-import React from "react";
-import { render } from "react-testing-library";
+import React from 'react';
+import { render } from 'react-testing-library';
+import 'jest-dom/extend-expect';
 
-import { Modal } from "./";
+import Modal from './modal';
 
-import Enzyme from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
+import Enzyme from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 
 const { mount } = Enzyme;
 
 Enzyme.configure({ adapter: new Adapter() });
 
-jest.mock("./");
-
-describe("<Modal />", () => {
-  it("Shows when show is true", () => {
+describe('<Modal />', () => {
+  it('Shows when show is true', () => {
     const { container } = render(<Modal show={true} />);
-    expect(container.firstChild).toHaveClass("psm-modal--show");
+    expect(container.firstChild).toHaveClass('psm-modal--show');
   });
-  it("Have default close", () => {
+  it('Have default close', () => {
     const { container } = render(<Modal show={true} />);
     expect(container.firstChild.firstChild.firstChild).toHaveClass(
-      "psm-icon-simple-remove psm-modal__close",
+      'psm-icon-simple-remove psm-modal__close',
     );
   });
-  it("Button focus sets state sets focus to index", () => {
+  it('Button focus sets state sets focus to index', () => {
     const container = mount(
       <Modal
         actions={[
           {
             action: () => {},
-            label: "Button",
+            label: 'Button',
             primary: true,
           },
         ]}
@@ -45,16 +44,16 @@ describe("<Modal />", () => {
         </p>
       </Modal>,
     );
-    container.find("#button-0").simulate("focus");
-    expect(container.state("isFocused")).toEqual(0);
+    container.find('#button-0').simulate('focus');
+    expect(container.state('isFocused')).toEqual(0);
   });
-  it("Body Focus sets state sets focus to index", () => {
+  it('Body Focus sets state sets focus to index', () => {
     const container = mount(
       <Modal
         actions={[
           {
             action: () => {},
-            label: "Button",
+            label: 'Button',
             primary: true,
           },
         ]}
@@ -70,16 +69,16 @@ describe("<Modal />", () => {
         </p>
       </Modal>,
     );
-    container.find("#button-4").simulate("focus");
-    expect(container.state("isFocused")).toEqual(4);
+    container.find('#button-4').simulate('focus');
+    expect(container.state('isFocused')).toEqual(4);
   });
-  it("Close Icon focus sets state sets focus to index", () => {
+  it('Close Icon focus sets state sets focus to index', () => {
     const container = mount(
       <Modal
         actions={[
           {
             action: () => {},
-            label: "Button",
+            label: 'Button',
             primary: true,
           },
         ]}
@@ -95,10 +94,10 @@ describe("<Modal />", () => {
         </p>
       </Modal>,
     );
-    container.find("#button-2").simulate("focus");
-    expect(container.state("isFocused")).toEqual(2);
+    container.find('#button-2').simulate('focus');
+    expect(container.state('isFocused')).toEqual(2);
   });
-  it("Close Icon closes modal", () => {
+  it('Close Icon closes modal', () => {
     const func = jest.fn();
     const container = mount(
       <Modal
@@ -115,17 +114,17 @@ describe("<Modal />", () => {
         </p>
       </Modal>,
     );
-    container.find("#button-1").simulate("click");
-    expect(container.state("show")).toEqual(false);
+    container.find('#button-1').simulate('click');
+    expect(container.state('show')).toEqual(false);
     expect(func.mock.calls).toHaveLength(1);
   });
-  it("Header Icon focus sets state sets focus to index", () => {
+  it('Header Icon focus sets state sets focus to index', () => {
     const container = mount(
       <Modal
         actions={[
           {
             action: () => {},
-            label: "Button",
+            label: 'Button',
             primary: true,
           },
         ]}
@@ -141,9 +140,7 @@ describe("<Modal />", () => {
         </p>
       </Modal>,
     );
-    container.find("#button-3").simulate("focus");
-    expect(container.state("isFocused")).toEqual(3);
+    container.find('#button-3').simulate('focus');
+    expect(container.state('isFocused')).toEqual(3);
   });
 });
-
-jest.unmock("./");

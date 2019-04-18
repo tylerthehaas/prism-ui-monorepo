@@ -1,1 +1,0 @@
-export { HRDocs } from "./hr";

@@ -1,13 +1,15 @@
-/* eslint jsx-a11y/no-noninteractive-tabindex: 0 */ import React from "react";
-import PropTypes from "prop-types";
-import { values } from "ramda";
+/* eslint jsx-a11y/no-noninteractive-tabindex: 0 */ import React from 'react';
+import './avatar.scss';
+
+import PropTypes from 'prop-types';
+import { values } from 'ramda';
 
 export const sizes = {
-  extraLarge: "xl",
-  extraSmall: "xs",
-  large: "lg",
-  medium: "md",
-  small: "sm",
+  extraLarge: 'xl',
+  extraSmall: 'xs',
+  large: 'lg',
+  medium: 'md',
+  small: 'sm',
 };
 
 const getAvatarContent = (initials, src) => {
@@ -29,7 +31,7 @@ const getAvatarContent = (initials, src) => {
   );
 };
 
-export const Avatar = ({ initials, size = "md", src }) => (
+const Avatar = ({ initials, size = 'md', src }) => (
   <div className={`psm-avatar--${size}`} tabIndex={0}>
     {getAvatarContent(initials, src)}
   </div>
@@ -40,3 +42,5 @@ Avatar.propTypes = {
   size: PropTypes.oneOf(values(sizes)),
   src: PropTypes.string,
 };
+
+export default Avatar;

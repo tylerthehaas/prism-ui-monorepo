@@ -1,22 +1,22 @@
-import React from "react";
+import React from 'react';
 
-import { AlertDocs } from "./alert";
-import { AvatarDocs } from "./avatar";
-import { SideBar } from "./sidebar";
-import { ToggleDocs } from "./toggle";
-import { TableDocs } from "./table";
-import { RolloverDocs } from "./rollover";
-import { NavDocs } from "./nav";
-import { ModalDocs } from "./modal";
-import { ListDocs } from "./list";
-import { HRDocs } from "./hr";
-import { ButtonDocs } from "./button";
+import { AlertDocs } from './alert';
+import { AvatarDocs } from './avatar';
+import { SideBar } from './sidebar';
+import { ToggleDocs } from './toggle';
+import { TableDocs } from './table';
+import { RolloverDocs } from './rollover';
+import { NavDocs } from './nav';
+import { ModalDocs } from './modal';
+import { ListDocs } from './list';
+import { HRDocs } from './hr';
+import { ButtonDocs } from './button';
 
-export class Docs extends React.Component {
+export default class Docs extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      view: "welcome",
+      view: 'welcome',
     };
     this.navigate = this.navigate.bind(this);
     this.getDocs = this.getDocs.bind(this);
@@ -37,21 +37,21 @@ export class Docs extends React.Component {
       <section>
         {
           {
-            ["Alert"]: <AlertDocs />,
-            ["Avatar"]: <AvatarDocs />,
-            ["Button"]: <ButtonDocs />,
+            ['Alert']: <AlertDocs />,
+            ['Avatar']: <AvatarDocs />,
+            ['Button']: <ButtonDocs />,
             // ["Card"]: <CardDocs />,
             // ["Chip"]: <ChipDocs />,
-            ["Horizontal Rule"]: <HRDocs />,
+            ['Horizontal Rule']: <HRDocs />,
             // ["Input"]: <InputDocs />,
-            ["List"]: <ListDocs />,
-            ["Modal"]: <ModalDocs />,
-            ["Nav"]: <NavDocs />,
+            ['List']: <ListDocs />,
+            ['Modal']: <ModalDocs />,
+            ['Nav']: <NavDocs />,
             // ["Pagination"]: <PaginationDocs />,
             // ["Radio"]: <RadioDocs />,
-            ["Rollover"]: <RolloverDocs />,
-            ["Table"]: <TableDocs />,
-            ["Toggle"]: <ToggleDocs />,
+            ['Rollover']: <RolloverDocs />,
+            ['Table']: <TableDocs />,
+            ['Toggle']: <ToggleDocs />,
           }[this.state.view]
         }
       </section>
@@ -70,8 +70,8 @@ export class Docs extends React.Component {
         <div
           className="psm-paragraph language-xml"
           style={{
-            maxHeight: "97vh",
-            overflowY: "scroll",
+            maxHeight: '97vh',
+            overflowY: 'scroll',
             paddingLeft: 300,
             paddingRight: 16,
           }}

@@ -1,8 +1,8 @@
 /* eslint no-console: 0 */
-import React from "react";
-import { Button } from "../../components/button";
-import { Example } from "../example";
-import { PropsWindow, PropsList } from "../props";
+import React from 'react';
+import { Button } from '../../components/button';
+import { Example } from '../example';
+import { PropsWindow, PropsList } from '../props';
 
 const HTML_CODE = `<div class="buttons">
 <button class="psm-button">Button</button>
@@ -45,7 +45,7 @@ import { Button } from "prism";
   small={this.state.pickSize}
 />`;
 
-export class ButtonDocs extends React.Component {
+export default class ButtonDocs extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -54,7 +54,7 @@ export class ButtonDocs extends React.Component {
       pickLink: false,
       pickPrimary: true,
       pickSize: false,
-      viewType: "html",
+      viewType: 'html',
     };
   }
 
@@ -63,14 +63,16 @@ export class ButtonDocs extends React.Component {
   };
 
   buttonClass = viewTarget => {
-    return `psm-button${this.state.viewType === viewTarget ? "--primary" : ""}`;
+    return `psm-button${this.state.viewType === viewTarget ? '--primary' : ''}`;
   };
 
   updateProps = newState => {
-    this.setState({ pickDisable: newState.pickDisable });
-    this.setState({ pickLink: newState.pickLink });
-    this.setState({ pickPrimary: newState.pickPrimary });
-    this.setState({ pickSize: newState.pickSize });
+    this.setState({
+      pickDisable: newState.pickDisable,
+      pickLink: newState.pickLink,
+      pickPrimary: newState.pickPrimary,
+      pickSize: newState.pickSize,
+    });
   };
 
   render() {
@@ -78,14 +80,14 @@ export class ButtonDocs extends React.Component {
       <>
         <h2 className="section-header">Button</h2>
         <button
-          className={this.buttonClass("html")}
-          onClick={() => this.switchType("html")}
+          className={this.buttonClass('html')}
+          onClick={() => this.switchType('html')}
         >
           HTML
         </button>
         <button
-          className={this.buttonClass("react")}
-          onClick={() => this.switchType("react")}
+          className={this.buttonClass('react')}
+          onClick={() => this.switchType('react')}
         >
           React
         </button>
@@ -96,39 +98,39 @@ export class ButtonDocs extends React.Component {
                 dataTestId="1"
                 disabled={this.state.pickDisable}
                 label="Button"
-                linkRef={this.state.pickLink ? "/#" : null}
-                onClick={() => console.log("button clicked")}
+                linkRef={this.state.pickLink ? '/#' : null}
+                onClick={() => console.log('button clicked')}
                 primary={this.state.pickPrimary}
                 small={this.state.pickSize}
               />
             </div>
           </div>
-          {this.state.viewType === "react" && (
+          {this.state.viewType === 'react' && (
             <PropsWindow
               props={[
                 {
-                  label: "Linked Button",
-                  type: "bool",
+                  label: 'Linked Button',
+                  type: 'bool',
                   value: false,
-                  key: "pickLink",
+                  key: 'pickLink',
                 },
                 {
-                  label: "Primary Button",
-                  type: "bool",
+                  label: 'Primary Button',
+                  type: 'bool',
                   value: true,
-                  key: "pickPrimary",
+                  key: 'pickPrimary',
                 },
                 {
-                  label: "Small Button",
-                  type: "bool",
+                  label: 'Small Button',
+                  type: 'bool',
                   value: false,
-                  key: "pickSize",
+                  key: 'pickSize',
                 },
                 {
-                  label: "Disable Button",
-                  type: "bool",
+                  label: 'Disable Button',
+                  type: 'bool',
                   value: false,
-                  key: "pickDisable",
+                  key: 'pickDisable',
                 },
               ]}
               updateProps={this.updateProps}
@@ -141,43 +143,43 @@ export class ButtonDocs extends React.Component {
           reactCode={REACT_CODE}
           type={this.state.viewType}
         />
-        {this.state.viewType === "react" && (
+        {this.state.viewType === 'react' && (
           <PropsList
             props={[
               {
-                name: "primary",
-                type: "Boolean",
+                name: 'primary',
+                type: 'Boolean',
                 description:
-                  "A boolean that removes the <code>--primary</code> style from the button. Default is <code>true</code>.",
+                  'A boolean that removes the <code>--primary</code> style from the button. Default is <code>true</code>.',
               },
               {
-                name: "small",
-                type: "Boolean",
+                name: 'small',
+                type: 'Boolean',
                 description:
-                  "A boolean that changes the button size from large to small. Default is <code>false</code>.",
+                  'A boolean that changes the button size from large to small. Default is <code>false</code>.',
               },
               {
-                name: "disabled",
-                type: "Boolean",
+                name: 'disabled',
+                type: 'Boolean',
                 description:
-                  "A boolean that disables the button. Default is <code>false</code>.",
+                  'A boolean that disables the button. Default is <code>false</code>.',
               },
               {
-                name: "linkRef",
-                type: "String",
+                name: 'linkRef',
+                type: 'String',
                 description:
-                  "A URL in string format that the button will navigate to when clicked. If the button should not be a link, then this prop can either be set to <code>null</code> or be left out entirely.",
+                  'A URL in string format that the button will navigate to when clicked. If the button should not be a link, then this prop can either be set to <code>null</code> or be left out entirely.',
               },
               {
-                name: "label",
-                type: "String",
+                name: 'label',
+                type: 'String',
                 description:
-                  "Text that appears on the button. Default is <code>Button</code>",
+                  'Text that appears on the button. Default is <code>Button</code>',
               },
               {
-                name: "onClick",
-                type: "Event",
-                description: "Event to be handled when button is clicked.",
+                name: 'onClick',
+                type: 'Event',
+                description: 'Event to be handled when button is clicked.',
               },
             ]}
           />

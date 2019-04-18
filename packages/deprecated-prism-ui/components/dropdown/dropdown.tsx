@@ -1,4 +1,5 @@
-import * as React from "react";
+import * as React from 'react';
+import '../button/button.scss';
 
 export type DropdownProps = {
   dropdownMenu: Array<{ label?: string; onClick(event: any): any }>;
@@ -18,7 +19,10 @@ type DropdownState = {
   idPrefix: string;
 };
 
-export class Dropdown extends React.Component<DropdownProps, DropdownState> {
+export default class Dropdown extends React.Component<
+  DropdownProps,
+  DropdownState
+> {
   constructor(props) {
     super(props);
     this.state = {
@@ -36,27 +40,27 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
   static defaultProps: DropdownProps = {
     dropdownMenu: [
       {
-        label: "Menu Item",
+        label: 'Menu Item',
         onClick: () => {
-          console.log("Menu Item Clicked");
+          console.log('Menu Item Clicked');
         },
       },
       {
-        label: "Menu Item",
+        label: 'Menu Item',
         onClick: () => {
-          console.log("Menu Item Clicked");
+          console.log('Menu Item Clicked');
         },
       },
       {
-        label: "Menu Item",
+        label: 'Menu Item',
         onClick: () => {
-          console.log("Menu Item Clicked");
+          console.log('Menu Item Clicked');
         },
       },
     ],
     primary: true,
     disabled: false,
-    label: "Button",
+    label: 'Button',
     showMenu: false,
     idPrefix: null,
     dataTestId: null,
@@ -97,14 +101,14 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
     }
   };
   componentDidMount() {
-    document.addEventListener("keydown", this.escFunction, false);
-    document.addEventListener("keypress", this.handleEnter, false);
-    document.addEventListener("keydown", this.handleArrow, false);
+    document.addEventListener('keydown', this.escFunction, false);
+    document.addEventListener('keypress', this.handleEnter, false);
+    document.addEventListener('keydown', this.handleArrow, false);
   }
   componentWillUnmount() {
-    document.removeEventListener("keydown", this.escFunction, false);
-    document.removeEventListener("keypress", this.handleEnter, false);
-    document.removeEventListener("keydown", this.handleArrow, false);
+    document.removeEventListener('keydown', this.escFunction, false);
+    document.removeEventListener('keypress', this.handleEnter, false);
+    document.removeEventListener('keydown', this.handleArrow, false);
   }
 
   handleArrow = event => {
@@ -162,12 +166,12 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
       <>
         <div
           onBlur={this.blurFunction}
-          style={{ width: "fit-content", display: "inline-block" }}
+          style={{ width: 'fit-content', display: 'inline-block' }}
         >
           {
             <button
               aria-labelledby={this.props.label}
-              className={`psm-dropdown${this.props.primary ? "--primary" : ""}`}
+              className={`psm-dropdown${this.props.primary ? '--primary' : ''}`}
               data-testid={this.props.dataTestId}
               disabled={this.props.disabled}
               id={`${this.state.idPrefix}-dropdown-button`}
@@ -201,7 +205,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
                     );
                   })}
                 </ul>
-              </div>{" "}
+              </div>{' '}
             </>
           )}
         </div>

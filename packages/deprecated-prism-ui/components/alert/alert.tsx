@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from 'react';
 
 type Link = {
   text: string;
@@ -11,16 +11,16 @@ type AlertButton = {
 };
 
 export enum Type {
-  basic = "",
-  button = "psm-alert--btn",
-  inline = "psm-alert--inline",
+  basic = '',
+  button = 'psm-alert--btn',
+  inline = 'psm-alert--inline',
 }
 
 export enum Style {
-  error = "psm-alert--error",
-  info = "psm-alert--info",
-  success = "psm-alert--success",
-  warning = "psm-alert--warning",
+  error = 'psm-alert--error',
+  info = 'psm-alert--info',
+  success = 'psm-alert--success',
+  warning = 'psm-alert--warning',
 }
 
 type AlertProps = {
@@ -32,7 +32,7 @@ type AlertProps = {
   button?: AlertButton;
 };
 
-export class Alert extends React.Component<AlertProps, any> {
+export default class Alert extends React.Component<AlertProps, any> {
   constructor(props: AlertProps) {
     super(props);
     this.state = {
@@ -42,7 +42,7 @@ export class Alert extends React.Component<AlertProps, any> {
   }
 
   static defaultProps: AlertProps = {
-    message: "Alert message",
+    message: 'Alert message',
     style: Style.info,
     type: Type.basic,
   };
@@ -56,14 +56,14 @@ export class Alert extends React.Component<AlertProps, any> {
   };
 
   messageClass = () => {
-    return this.props.type !== Type.inline ? "psm-alert__msg" : "";
+    return this.props.type !== Type.inline ? 'psm-alert__msg' : '';
   };
 
   componentDidMount() {
-    document.addEventListener("keypress", this.handleEnter, false);
+    document.addEventListener('keypress', this.handleEnter, false);
   }
   componentWillUnmount() {
-    document.removeEventListener("keypress", this.handleEnter, false);
+    document.removeEventListener('keypress', this.handleEnter, false);
   }
 
   handleEnter = event => {
@@ -99,7 +99,7 @@ export class Alert extends React.Component<AlertProps, any> {
             )}
             {this.props.type === Type.basic && (
               <i
-                aria-label={this.state.isFocused ? "Close button" : ""}
+                aria-label={this.state.isFocused ? 'Close button' : ''}
                 className="psm-alert__close psm-icon-simple-remove"
                 data-testid={`${this.props.dataTestId}-icon`}
                 onClick={this.handleDismiss}

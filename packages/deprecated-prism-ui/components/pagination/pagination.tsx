@@ -1,4 +1,5 @@
-import * as React from "react";
+import * as React from 'react';
+import './pagination.scss';
 
 export type PaginationProps = {
   pagesShown?: number;
@@ -12,7 +13,7 @@ type PaginationState = {
   pages: number;
 };
 
-export class Pagination extends React.Component<
+export default class Pagination extends React.Component<
   PaginationProps,
   PaginationState
 > {
@@ -26,7 +27,7 @@ export class Pagination extends React.Component<
   static defaultProps: PaginationProps = {
     pagesShown: 7,
     numPages: 10,
-    onClick: () => console.log("page changed"),
+    onClick: () => console.log('page changed'),
     defaultPage: 1,
   };
   handlePageChange = (index, action) => {
@@ -49,9 +50,9 @@ export class Pagination extends React.Component<
   }
   findActive(index) {
     if (index + 1 === this.state.active) {
-      return "psm-pagination__active";
+      return 'psm-pagination__active';
     } else {
-      return "";
+      return '';
     }
   }
 
@@ -144,7 +145,7 @@ export class Pagination extends React.Component<
           />
           <li
             className={`psm-pagination__number ${
-              1 === this.state.active ? "psm-pagination__active" : ""
+              1 === this.state.active ? 'psm-pagination__active' : ''
             }`}
             data-testid={`${this.props.dataTestId}-1`}
             onClick={() => this.handlePageChange(1, this.props.onClick)}
@@ -155,8 +156,8 @@ export class Pagination extends React.Component<
           <li
             className={`psm-pagination__number ${
               this.props.numPages === this.state.active
-                ? "psm-pagination__active"
-                : ""
+                ? 'psm-pagination__active'
+                : ''
             }`}
             data-testid={`${this.props.dataTestId}-${this.props.numPages}`}
             id={`pagination-number-${this.props.numPages}`}

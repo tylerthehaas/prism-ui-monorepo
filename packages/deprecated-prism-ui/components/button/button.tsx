@@ -1,4 +1,5 @@
-import * as React from "react";
+import * as React from 'react';
+import './button.scss';
 
 export type ButtonProps = {
   onClick?(event: any): any;
@@ -22,7 +23,7 @@ type ButtonState = {
   showMenu?: boolean;
 };
 
-export class Button extends React.Component<ButtonProps, ButtonState> {
+export default class Button extends React.Component<ButtonProps, ButtonState> {
   constructor(props: ButtonProps) {
     super(props);
     this.state = {
@@ -40,7 +41,7 @@ export class Button extends React.Component<ButtonProps, ButtonState> {
     primary: true,
     small: false,
     disabled: false,
-    label: "Button",
+    label: 'Button',
     showMenu: false,
     linkRef: null,
     dataTestId: null,
@@ -75,23 +76,23 @@ export class Button extends React.Component<ButtonProps, ButtonState> {
     action(event);
   };
   buttonClassName = () => {
-    var buttonString = ["psm-"];
+    var buttonString = ['psm-'];
     {
       this.props.dropdown
-        ? buttonString.push("dropdown")
-        : buttonString.push("button psm-button");
+        ? buttonString.push('dropdown')
+        : buttonString.push('button psm-button');
     }
     {
       this.props.primary
-        ? buttonString.push("--primary")
-        : buttonString.push(" ");
+        ? buttonString.push('--primary')
+        : buttonString.push(' ');
     }
     {
       this.props.small &&
         !this.props.dropdown &&
-        buttonString.push(" psm-button--small");
+        buttonString.push(' psm-button--small');
     }
-    return buttonString.join("");
+    return buttonString.join('');
   };
 
   public render() {
@@ -144,7 +145,7 @@ export class Button extends React.Component<ButtonProps, ButtonState> {
                     );
                   })}
                 </ul>
-              </div>{" "}
+              </div>{' '}
             </>
           )}
         </div>

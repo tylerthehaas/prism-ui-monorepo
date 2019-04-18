@@ -1,1 +1,0 @@
-export { ChipDocs } from "./chip";

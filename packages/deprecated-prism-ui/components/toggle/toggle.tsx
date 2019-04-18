@@ -1,7 +1,8 @@
 /* eslint jsx-a11y/click-events-have-key-events: 0 */
 /* eslint jsx-a11y/no-static-element-interactions: 0 */
 
-import * as React from "react";
+import * as React from 'react';
+import './toggle.scss';
 
 type ToggleProps = {
   default?: boolean;
@@ -12,7 +13,7 @@ type ToggleState = {
   active: boolean;
 };
 
-export class Toggle extends React.Component<ToggleProps, ToggleState> {
+export default class Toggle extends React.Component<ToggleProps, ToggleState> {
   constructor(props: ToggleProps) {
     super(props);
     this.state = {
@@ -27,10 +28,10 @@ export class Toggle extends React.Component<ToggleProps, ToggleState> {
     }
   };
   componentDidMount() {
-    document.addEventListener("keypress", this.handleEnter, false);
+    document.addEventListener('keypress', this.handleEnter, false);
   }
   componentWillUnmount() {
-    document.removeEventListener("keypress", this.handleEnter, false);
+    document.removeEventListener('keypress', this.handleEnter, false);
   }
 
   handleToggle = (event: any) => {
@@ -49,9 +50,9 @@ export class Toggle extends React.Component<ToggleProps, ToggleState> {
       <div
         aria-label="toggle"
         className={`psm-toggle ${
-          this.state.active ? "psm-toggle--active" : "psm-toggle--inactive"
+          this.state.active ? 'psm-toggle--active' : 'psm-toggle--inactive'
         }`}
-        data-testid={"psm-toggle"}
+        data-testid={'psm-toggle'}
         onClick={this.handleToggle}
         tabIndex={0}
       >

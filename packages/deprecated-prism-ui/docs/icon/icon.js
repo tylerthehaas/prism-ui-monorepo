@@ -1,8 +1,8 @@
 /* eslint no-console: 0 */
-import { Icon } from "../../components/icon";
-import React from "react";
-import { Example } from "../example";
-import { PropsWindow, PropsList } from "../props";
+import { Icon } from '../../components/icon';
+import React from 'react';
+import { Example } from '../example';
+import { PropsWindow, PropsList } from '../props-list';
 
 const HTML_CODE = `<i class="psm-icon-a-check"></i>`;
 const REACT_CODE = `
@@ -16,12 +16,12 @@ import { Icon } from "prism";
   }}
 />`;
 
-export class IconDocs extends React.Component {
+export default class IconDocs extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      icon: "a-check",
-      viewType: "html",
+      icon: 'a-check',
+      viewType: 'html',
     };
     this.updateProps = this.updateProps.bind(this);
   }
@@ -31,7 +31,7 @@ export class IconDocs extends React.Component {
   };
 
   buttonClass = viewTarget => {
-    return `psm-button${this.state.viewType === viewTarget ? "--primary" : ""}`;
+    return `psm-button${this.state.viewType === viewTarget ? '--primary' : ''}`;
   };
 
   updateProps = newState => {
@@ -42,14 +42,14 @@ export class IconDocs extends React.Component {
       <>
         <h2 className="section-header">Icons</h2>
         <button
-          className={this.buttonClass("html")}
-          onClick={() => this.switchType("html")}
+          className={this.buttonClass('html')}
+          onClick={() => this.switchType('html')}
         >
           HTML
         </button>
         <button
-          className={this.buttonClass("react")}
-          onClick={() => this.switchType("react")}
+          className={this.buttonClass('react')}
+          onClick={() => this.switchType('react')}
         >
           React
         </button>
@@ -60,87 +60,87 @@ export class IconDocs extends React.Component {
                 dataTestId="1"
                 iconName={this.state.icon}
                 onClick={() => {
-                  console.log("Icon Action");
+                  console.log('Icon Action');
                 }}
               />
             </div>
           </div>
-          {this.state.viewType === "react" && (
+          {this.state.viewType === 'react' && (
             <PropsWindow
               props={[
                 {
-                  label: "Icon",
-                  type: "select",
+                  label: 'Icon',
+                  type: 'select',
                   options: [
-                    "zoom-in",
-                    "trophy",
-                    "trash",
-                    "tail-up",
-                    "tail-right",
-                    "tail-left",
-                    "tail-down",
-                    "tag",
-                    "support",
-                    "stre-up",
-                    "stre-right",
-                    "stre-left",
-                    "stre-down",
-                    "small-up",
-                    "small-triangle-up",
-                    "small-triangle-right",
-                    "small-triangle-left",
-                    "small-triangle-down",
-                    "small-right",
-                    "small-left",
-                    "small-down",
-                    "single-content",
-                    "single-body",
-                    "simple-remove",
-                    "simple-add",
-                    "share",
-                    "settings-gear",
-                    "send",
-                    "select",
-                    "refresh",
-                    "print",
-                    "path-unite",
-                    "multiple",
-                    "menu-dots",
-                    "menu",
-                    "lock",
-                    "image",
-                    "heartbeat",
-                    "heart",
-                    "goal",
-                    "flag-points",
-                    "favorite",
-                    "eye",
-                    "email",
-                    "desktop",
-                    "cloud-download",
-                    "check",
-                    "chat",
-                    "chat-alt",
-                    "chart-bar",
-                    "cart-simple",
-                    "calendar-add",
-                    "calendar",
-                    "bullet-list",
-                    "block-down",
-                    "bell",
-                    "attach",
-                    "archive-check",
-                    "alert-circle-i",
-                    "add",
-                    "a-check",
-                    "edit-note",
-                    "one-on-one",
-                    "play-screen",
-                    "power",
-                    "conversation",
+                    'zoom-in',
+                    'trophy',
+                    'trash',
+                    'tail-up',
+                    'tail-right',
+                    'tail-left',
+                    'tail-down',
+                    'tag',
+                    'support',
+                    'stre-up',
+                    'stre-right',
+                    'stre-left',
+                    'stre-down',
+                    'small-up',
+                    'small-triangle-up',
+                    'small-triangle-right',
+                    'small-triangle-left',
+                    'small-triangle-down',
+                    'small-right',
+                    'small-left',
+                    'small-down',
+                    'single-content',
+                    'single-body',
+                    'simple-remove',
+                    'simple-add',
+                    'share',
+                    'settings-gear',
+                    'send',
+                    'select',
+                    'refresh',
+                    'print',
+                    'path-unite',
+                    'multiple',
+                    'menu-dots',
+                    'menu',
+                    'lock',
+                    'image',
+                    'heartbeat',
+                    'heart',
+                    'goal',
+                    'flag-points',
+                    'favorite',
+                    'eye',
+                    'email',
+                    'desktop',
+                    'cloud-download',
+                    'check',
+                    'chat',
+                    'chat-alt',
+                    'chart-bar',
+                    'cart-simple',
+                    'calendar-add',
+                    'calendar',
+                    'bullet-list',
+                    'block-down',
+                    'bell',
+                    'attach',
+                    'archive-check',
+                    'alert-circle-i',
+                    'add',
+                    'a-check',
+                    'edit-note',
+                    'one-on-one',
+                    'play-screen',
+                    'power',
+                    'conversation',
                   ].sort(),
-                  value: "a-check",
-                  key: "icon",
+                  value: 'a-check',
+                  key: 'icon',
                 },
               ]}
               updateProps={this.updateProps}
@@ -153,18 +153,18 @@ export class IconDocs extends React.Component {
           reactCode={REACT_CODE}
           type={this.state.viewType}
         />
-        {this.state.viewType === "react" && (
+        {this.state.viewType === 'react' && (
           <PropsList
             props={[
               {
-                name: "iconName",
-                type: "String",
-                description: "A string holding the icon name to be displayed.",
+                name: 'iconName',
+                type: 'String',
+                description: 'A string holding the icon name to be displayed.',
               },
               {
-                name: "onClick",
-                type: "Event",
-                description: "Event to be handled when icon is clicked.",
+                name: 'onClick',
+                type: 'Event',
+                description: 'Event to be handled when icon is clicked.',
               },
             ]}
           />
