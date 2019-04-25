@@ -15,7 +15,7 @@ module.exports = {
   // cacheDirectory: "/private/var/folders/8g/zf0h5rv91bl0gx5d97y14b4s1zxr20/T/jest_iv6t6o",
 
   // Automatically clear mock calls and instances between every test
-  clearMocks: true,
+  // clearMocks: true,
 
   // Indicates whether the coverage information should be collected while executing the test
   // collectCoverage: false,
@@ -94,7 +94,7 @@ module.exports = {
   // reporters: undefined,
 
   // Automatically reset mock state between every test
-  resetMocks: true,
+  // resetMocks: true,
 
   // Reset the module registry before running each individual test
   // resetModules: false,

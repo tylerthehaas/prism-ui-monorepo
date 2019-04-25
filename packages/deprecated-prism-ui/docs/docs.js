@@ -1,16 +1,16 @@
 import React from 'react';
 
-import { AlertDocs } from './alert';
-import { AvatarDocs } from './avatar';
-import { SideBar } from './sidebar';
-import { ToggleDocs } from './toggle';
-import { TableDocs } from './table';
-import { RolloverDocs } from './rollover';
-import { NavDocs } from './nav';
-import { ModalDocs } from './modal';
-import { ListDocs } from './list';
-import { HRDocs } from './hr';
-import { ButtonDocs } from './button';
+import AlertDocs from './alert-docs/AlertDocs';
+import AvatarDocs from './avatar-docs/AvatarDocs';
+import SideBar from './sidebar/Sidebar';
+import ToggleDocs from './toggle-docs/ToggleDocs';
+import TableDocs from './table-docs/TableDocs';
+import RolloverDocs from './rollover-docs/RolloverDocs';
+import NavDocs from './nav-docs/NavDocs';
+import ModalDocs from './modal-docs/ModalDocs';
+import ListDocs from './list-docs/ListDocs';
+import HRDocs from './hr-docs/HrDocs';
+import ButtonDocs from './button-docs/ButtonDocs';
 
 export default class Docs extends React.Component {
   constructor(props) {
