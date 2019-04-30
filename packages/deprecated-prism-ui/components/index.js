@@ -15,7 +15,7 @@ import Chip from './chip/Chip';
 import Modal from './modal/Modal';
 import Avatar from './avatar/Avatar';
 
-export {
+const prismui = {
   Button,
   Input,
   Radio,
@@ -33,3 +33,5 @@ export {
   Modal,
   Avatar,
 };
+
+export default prismui;
