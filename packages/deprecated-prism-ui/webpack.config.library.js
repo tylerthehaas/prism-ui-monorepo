@@ -1,6 +1,5 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const Dashboard = require('webpack-dashboard/plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const postcssPresetEnv = require('postcss-preset-env');
@@ -21,7 +20,7 @@ module.exports = {
         include: /node_modules\/prismjs/,
         test: /\.css/,
         use: [
-          isProd ? MiniCssExtractPlugin.loader : 'style-loader',
+          MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',
             options: {
@@ -36,7 +35,7 @@ module.exports = {
         exclude: /node_modules/,
         test: /\.scss/,
         use: [
-          isProd ? MiniCssExtractPlugin.loader : 'style-loader',
+          MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',
             options: {
@@ -109,7 +108,7 @@ module.exports = {
     ],
   },
   optimization: {
-    minimize: isProd,
+    minimize: true,
     minimizer: [
       new UglifyJSPlugin({
         cache: true,

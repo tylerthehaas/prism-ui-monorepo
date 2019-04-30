@@ -1,10 +1,12 @@
 {
   "name": "prism-ui",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "engines": {
     "node": ">=10.0.0 <11.0.0"
   },
   "description": "Common UI for OC Tanner",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
   "scripts": {
     "build": "rm -rf ./dist/ && NODE_ENV=production webpack -p",
     "build:library": "rm -rf ./dist/ && NODE_ENV=production webpack --config webpack.config.library.js",
