@@ -4,7 +4,6 @@ import ReactDOM from 'react-dom';
 import Docs from './docs';
 
 import 'prismjs/themes/prism-tomorrow.css';
-import '../components/index';
 import './docs.scss';
 
 document.addEventListener('DOMContentLoaded', () => {

@@ -1,12 +1,13 @@
 {
   "name": "prism-ui",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "engines": {
     "node": ">=10.0.0 <11.0.0"
   },
   "description": "Common UI for OC Tanner",
   "scripts": {
     "build": "rm -rf ./dist/ && NODE_ENV=production webpack -p",
+    "build:library": "rm -rf ./dist/ && NODE_ENV=production webpack --config webpack.config.library.js",
     "dev:simple": "webpack-dev-server --port 3000",
     "dev": "webpack-dashboard -- webpack-dev-server --port 3000 --inline --progress",
     "start": "nodemon server.js",
@@ -36,6 +37,7 @@
   },
   "dependencies": {
     "babel-eslint": "^10.0.1",
+    "babel-loader": "^8.0.5",
     "classnames": "^2.2.6",
     "compression": "^1.7.3",
     "core-js": "2.5.x",
@@ -98,6 +100,7 @@
     "react-testing-library": "^5.1.1",
     "ts-jest": "^23.10.5",
     "webpack-dev-server": "^3.2.1",
+    "webpack-node-externals": "^1.7.2",
     "yarnhook": "^0.3.0"
   }
 }
