@@ -40,4 +40,5 @@ Starts Webpack dev server on port 3000
 #### Usage
 
 To pull in the css file, use `import 'prismui/dist/main.css'`
-To use React components, use specific imports, e.g. `import { Avatar } from 'prismui'`
+If you want to use React components as well, then use `import prismui from 'prism-ui'`, then
+destructure for specific components, e.g. `const { Avatar, Button } = prismui`
