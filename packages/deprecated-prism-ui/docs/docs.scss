@@ -1,6 +1,7 @@
-$psm-mount-location: "/prism-ui";
+$psm-mount-location: '/prism-ui';
 
-@import "../components/core/color/variables";
+@import '../components/core/color/variables';
+@import '../components/core/type/type';
 
 p > code {
   color: #ff2e35;
@@ -73,7 +74,7 @@ code {
   }
   dd {
     margin-left: 200px;
-    height: 6em;
+    min-height: 6em;
   }
 }
 
@@ -82,7 +83,7 @@ code {
   width: 300px;
   margin: 20px 0 60px;
 
-  input:not([type="checkbox"]):not([type="radio"]),
+  input:not([type='checkbox']):not([type='radio']),
   textarea,
   select {
     margin-bottom: 20px;

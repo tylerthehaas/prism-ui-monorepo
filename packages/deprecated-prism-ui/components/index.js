@@ -14,6 +14,7 @@ import Rollover from './rollover/Rollover';
 import Chip from './chip/Chip';
 import Modal from './modal/Modal';
 import Avatar from './avatar/Avatar';
+import '../docs/docs.scss';
 
 const prismui = {
   Button,
