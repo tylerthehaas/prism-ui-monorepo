@@ -7,8 +7,6 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const postcssPresetEnv = require('postcss-preset-env');
 
-const babelrc = require('./package.json').babel;
-
 const NODE_ENV = process.env.NODE_ENV || 'development';
 // Run production build in test env for the CI
 const isProd = NODE_ENV === 'production' || NODE_ENV === 'test';
@@ -85,7 +83,7 @@ module.exports = {
         use: [
           {
             loader: 'babel-loader',
-            options: babelrc,
+            options: { babelrc: true },
           },
         ],
       },
