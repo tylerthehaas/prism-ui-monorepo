@@ -1,6 +1,6 @@
-@import "../core/color/variables";
-@import "../core/spacing/variables";
-@import "../core/icon/variables";
+@import '../core/color/variables';
+@import '../core/spacing/variables';
+@import '../core/icon/variables';
 
 .psm-chip,
 %psm-chip {
@@ -22,7 +22,7 @@
 }
 
 .psm-chip__close {
-  font-family: "#{$icomoon-font-family}" !important;
+  font-family: '#{$icomoon-font-family}' !important;
   content: $psm-icon-simple-remove;
   color: $psm-color-gray-300;
   height: $psm-spacing-lg;

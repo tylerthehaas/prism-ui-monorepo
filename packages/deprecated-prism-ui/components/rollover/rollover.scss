@@ -1,5 +1,5 @@
-@import "../core/color/variables";
-@import "../core/spacing/variables";
+@import '../core/color/variables';
+@import '../core/spacing/variables';
 
 .psm-rollover,
 %psm-rollover {
@@ -19,7 +19,7 @@
   }
 }
 .psm-rollover .psm-rollover__footer {
-  content: "";
+  content: '';
   bottom: ($psm-spacing-md);
   border-top: 1px solid $psm-color-gray-600;
   cursor: pointer;
@@ -52,7 +52,7 @@
     left: 50%;
     margin-left: -60px;
     &.psm-rollover__window--down::after {
-      content: " ";
+      content: ' ';
       position: absolute;
       bottom: 100%;
       left: 50%;
@@ -68,7 +68,7 @@
     left: 50%;
     margin-left: -60px;
     &.psm-rollover__window--up::after {
-      content: "";
+      content: '';
       position: absolute;
       top: 100%;
       left: 50%;

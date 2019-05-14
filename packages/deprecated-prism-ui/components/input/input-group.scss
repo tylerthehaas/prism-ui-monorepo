@@ -1,39 +1,39 @@
-@import "../core/color/variables";
-@import "../core/spacing/variables";
-@import "../core/icon/variables";
+@import '../core/color/variables';
+@import '../core/spacing/variables';
+@import '../core/icon/variables';
 
 .psm-input-leading-icon,
 .psm-input-trailing-icon {
   position: relative;
   overflow: hidden;
 
-  & > [class^="psm-icon"],
-  [class*=" psm-icon"] {
+  & > [class^='psm-icon'],
+  [class*=' psm-icon'] {
     position: absolute;
     top: 14px;
   }
 }
 
 .psm-input-leading-icon {
-  & > [class^="psm-icon"],
-  [class*=" psm-icon"] {
+  & > [class^='psm-icon'],
+  [class*=' psm-icon'] {
     left: $psm-spacing-md;
     right: initial;
   }
 
-  & > input:not([type="checkbox"]):not([type="radio"]) {
+  & > input:not([type='checkbox']):not([type='radio']) {
     padding-left: 36px;
   }
 }
 
 .psm-input-trailing-icon {
-  & > [class^="psm-icon"],
-  [class*=" psm-icon"] {
+  & > [class^='psm-icon'],
+  [class*=' psm-icon'] {
     left: initial;
     right: $psm-spacing-md;
   }
 
-  & > input:not([type="checkbox"]):not([type="radio"]) {
+  & > input:not([type='checkbox']):not([type='radio']) {
     padding-right: 36px;
   }
 }

@@ -2,7 +2,7 @@ import React from 'react';
 
 import AlertDocs from './alert-docs/AlertDocs';
 import AvatarDocs from './avatar-docs/AvatarDocs';
-import SideBar from './sidebar/sidebar';
+import SideBar from './sidebar/Sidebar';
 import ToggleDocs from './toggle-docs/ToggleDocs';
 import TableDocs from './table-docs/TableDocs';
 import RolloverDocs from './rollover-docs/RolloverDocs';

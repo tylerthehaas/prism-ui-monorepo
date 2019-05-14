@@ -1,7 +1,7 @@
-@import "../core/color/variables";
-@import "../core/spacing/variables";
-@import "../core/type/variables";
-@import "../core/icon/variables";
+@import '../core/color/variables';
+@import '../core/spacing/variables';
+@import '../core/type/variables';
+@import '../core/icon/variables';
 
 .psm-input {
   font-family: $psm-type-font-family;
@@ -54,7 +54,7 @@
   }
 
   &::before {
-    content: "";
+    content: '';
     background-color: #ffffff;
     height: 12px;
     width: 12px;
@@ -85,7 +85,7 @@
   }
 
   &::before {
-    font-family: "#{$icomoon-font-family}" !important;
+    font-family: '#{$icomoon-font-family}' !important;
     content: $psm-icon-check;
     border: none;
     color: $psm-color-primary-500;

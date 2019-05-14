@@ -1,8 +1,8 @@
 import React from 'react';
-import Rollover from '../../components/rollover/rollover';
+import Rollover from '../../components/rollover/Rollover';
 import PropsWindow from '../props-window/PropsWindow';
 import PropsList from '../props-list/PropsList';
-import Example from '../example/example';
+import Example from '../example/Example';
 
 const HTML_CODE = `<div style="width: 33%; display: inline-block;">
 <span>Displayed Rollover Window</span>

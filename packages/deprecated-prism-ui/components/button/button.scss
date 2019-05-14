@@ -1,6 +1,6 @@
-@import "../core/color/variables";
-@import "../core/spacing/variables";
-@import "../core/icon/variables";
+@import '../core/color/variables';
+@import '../core/spacing/variables';
+@import '../core/icon/variables';
 
 $psm-button-height: 36px;
 $psm-border-width: 1px;
@@ -86,7 +86,7 @@ $psm-border-width: 1px;
   @extend %psm-button;
 
   &::after {
-    font-family: "#{$icomoon-font-family}" !important;
+    font-family: '#{$icomoon-font-family}' !important;
     content: $psm-icon-small-triangle-down;
     color: $psm-color-gray-200;
     padding: 0 0 0 $psm-spacing-md;
@@ -101,7 +101,7 @@ $psm-border-width: 1px;
   @extend %psm-button--primary;
 
   &::after {
-    font-family: "#{$icomoon-font-family}" !important;
+    font-family: '#{$icomoon-font-family}' !important;
     content: $psm-icon-small-triangle-down;
     color: #ffffff;
     padding: 0 0 0 $psm-spacing-md;

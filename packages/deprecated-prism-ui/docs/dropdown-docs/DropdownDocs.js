@@ -1,7 +1,7 @@
 /* eslint no-console: 0 */
 import React from 'react';
-import Dropdown from '../../components/dropdown/dropdown';
-import Example from '../example/example';
+import Dropdown from '../../components/dropdown/Dropdown';
+import Example from '../example/Example';
 import PropsWindow from '../props-window/PropsWindow';
 import PropsList from '../props-list/PropsList';
 

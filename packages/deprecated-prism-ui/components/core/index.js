@@ -1,3 +1,3 @@
-import "./color";
-import "./icon";
-import "./type";
+import './color';
+import './icon';
+import './type';

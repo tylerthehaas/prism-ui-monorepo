@@ -1,7 +1,7 @@
 /* eslint no-console: 0 */
 import React from 'react';
-import Select from '../../components/select/select';
-import Example from '../example/example';
+import Select from '../../components/select/Select';
+import Example from '../example/Example';
 import PropsWindow from '../props-window/PropsWindow';
 import PropsList from '../props-list/PropsList';
 
