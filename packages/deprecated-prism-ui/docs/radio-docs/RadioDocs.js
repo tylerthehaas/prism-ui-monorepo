@@ -1,6 +1,6 @@
 /* eslint no-console: 0 */
-import Radio from '../../components/radio/Radio';
-import Example from '../example/Example';
+import Radio from '../../components/radio/radio';
+import Example from '../example/example';
 import React from 'react';
 import PropsList from '../props-list/PropsList';
 

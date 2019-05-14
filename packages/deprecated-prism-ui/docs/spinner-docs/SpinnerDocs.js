@@ -1,6 +1,6 @@
 import React from 'react';
-import Spinner from '../../components/spinner/Spinner';
-import Example from '../example/Example';
+import Spinner from '../../components/spinner/spinner';
+import Example from '../example/example';
 import PropsWindow from '../props-window/PropsWindow';
 import PropsList from '../props-list/PropsList';
 

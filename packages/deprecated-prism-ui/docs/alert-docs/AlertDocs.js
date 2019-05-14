@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Alert, { Style, Type } from '../../components/alert/Alert';
-import Example from '../example/Example';
+import Alert, { Style, Type } from '../../components/alert/alert';
+import Example from '../example/example';
 import PropsWindow from '../props-window/PropsWindow';
 import PropsList from '../props-list/PropsList';
 

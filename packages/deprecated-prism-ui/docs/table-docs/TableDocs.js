@@ -1,8 +1,8 @@
 import React from 'react';
-import Table from '../../components/table/Table';
+import Table from '../../components/table/table';
 import PropsWindow from '../props-window/PropsWindow';
 import PropsList from '../props-list/PropsList';
-import Example from '../example/Example';
+import Example from '../example/example';
 
 const HTML_CODE = `
 <div class="psm-table-header">Current Initiatives</div>

@@ -1,6 +1,6 @@
-import HR from '../../components/hr/Hr';
+import HR from '../../components/hr/hr';
 import React from 'react';
-import Example from '../example/Example';
+import Example from '../example/example';
 
 const HTML_CODE = `<hr class="psm-hr" />`;
 
