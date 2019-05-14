@@ -1,8 +1,7 @@
 {
   "compilerOptions": {
     "sourceMap": true,
-    "jsx": "react",
-    "forceConsistentCasingInFileNames": true
+    "jsx": "react"
   },
 
   "include": ["./components/**/*.tsx", "**/*"]

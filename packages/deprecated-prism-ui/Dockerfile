@@ -1,7 +1,7 @@
 FROM quay.octanner.io/base/oct-node:10
 
-WORKDIR /usr/src/app
-COPY . /usr/src/app
+WORKDIR /usr/src
+COPY . /usr/src
 
 # Install dev deps so the build works
 RUN [ "npm", "install"]
