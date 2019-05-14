@@ -4,7 +4,8 @@ WORKDIR /usr/src/app
 COPY . /usr/src/app
 
 # Install dev deps so the build works
-RUN [ "yarn", "install", "--production" ]
-RUN [ "yarn", "build" ]
+RUN [ "npm", "install"]
+RUN ["npm", "rebuild", "node-sass"]
+RUN [ "npm", "run", "build" ]
 
-CMD [ "yarn", "start" ]
+CMD [ "npm", "start" ]

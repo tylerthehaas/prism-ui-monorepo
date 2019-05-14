@@ -14,7 +14,7 @@ import Rollover from './rollover/Rollover';
 import Chip from './chip/Chip';
 import Modal from './modal/Modal';
 import Avatar from './avatar/Avatar';
-import Icon from './icon/icon';
+import Icon from './icon/Icon';
 import '../docs/docs.scss';
 
 const prismui = {
