@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from 'react-testing-library';
 import 'jest-dom/extend-expect';
 
-import Input from './input';
+import Input from './Input';
 
 import Enzyme from 'enzyme';
 const { mount } = Enzyme;

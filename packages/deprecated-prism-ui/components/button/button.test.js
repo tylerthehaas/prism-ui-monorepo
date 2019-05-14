@@ -3,7 +3,7 @@ import { render } from 'react-testing-library';
 import 'jest-dom/extend-expect';
 
 import Enzyme from 'enzyme';
-import Button from './button';
+import Button from './Button';
 import Adapter from 'enzyme-adapter-react-16';
 
 const { mount } = Enzyme;

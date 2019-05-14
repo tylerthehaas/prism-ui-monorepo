@@ -1,7 +1,7 @@
 /* eslint no-console: 0 */
 import Modal from '../../components/modal/Modal';
 import React from 'react';
-import Example from '../example/Example';
+import Example from '../example/example';
 import PropsList from '../props-list/PropsList';
 
 const HTML_CODE = `

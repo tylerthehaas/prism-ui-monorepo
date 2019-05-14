@@ -1,7 +1,7 @@
 /* eslint no-console: 0 */
 import React from 'react';
 import Button from '../../components/button/Button';
-import Example from '../example/Example';
+import Example from '../example/example';
 import PropsWindow from '../props-window/PropsWindow';
 import PropsList from '../props-list/PropsList';
 

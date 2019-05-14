@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from 'react-testing-library';
 import 'jest-dom/extend-expect';
 
-import HR from './hr';
+import HR from './Hr';
 
 describe('<HR />', () => {
   it('Has a  horizontal rule', () => {

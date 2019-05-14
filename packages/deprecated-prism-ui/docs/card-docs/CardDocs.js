@@ -1,6 +1,6 @@
 import React from 'react';
 import Card from '../../components/card/Card';
-import Example from '../example/Example';
+import Example from '../example/example';
 import PropsWindow from '../props-window/PropsWindow';
 import PropsList from '../props-list/PropsList';
 

@@ -1,6 +1,6 @@
 import List from '../../components/list/List';
 import React from 'react';
-import Example from '../example/Example';
+import Example from '../example/example';
 import PropsWindow from '../props-window/PropsWindow';
 import PropsList from '../props-list/PropsList';
 

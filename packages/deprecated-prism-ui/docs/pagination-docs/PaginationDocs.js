@@ -1,7 +1,7 @@
 /* eslint no-console: 0 */
 import Pagination from '../../components/pagination/Pagination';
 import React from 'react';
-import Example from '../example/Example';
+import Example from '../example/example';
 import PropsWindow from '../props-window/PropsWindow';
 import PropsList from '../props-list/PropsList';
 

@@ -2,7 +2,7 @@ import React from 'react';
 // import { map, pipe, prop, reverse, sortBy, values } from "ramda";
 
 import Avatar from '../../components/avatar/Avatar';
-import Example from '../example/Example';
+import Example from '../example/example';
 import PropsWindow from '../props-window/PropsWindow';
 import PropsList from '../props-list/PropsList';
 

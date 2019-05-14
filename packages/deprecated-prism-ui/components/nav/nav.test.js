@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from 'react-testing-library';
 import 'jest-dom/extend-expect';
 
-import Nav from './nav';
+import Nav from './Nav';
 
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';

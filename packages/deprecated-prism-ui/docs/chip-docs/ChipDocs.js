@@ -1,6 +1,6 @@
 import Chip from '../../components/chip/Chip';
 import React from 'react';
-import Example from '../example/Example';
+import Example from '../example/example';
 import PropsList from '../props-list/PropsList';
 
 const HTML_CODE = `<div class="psm-chip">Jamison Brogdon</div>

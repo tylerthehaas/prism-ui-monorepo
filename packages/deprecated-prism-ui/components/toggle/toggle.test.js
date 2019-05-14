@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from 'react-testing-library';
 import 'jest-dom/extend-expect';
 
-import Toggle from './toggle';
+import Toggle from './Toggle';
 
 describe('<Toggle />', () => {
   it('Defaults to false', () => {

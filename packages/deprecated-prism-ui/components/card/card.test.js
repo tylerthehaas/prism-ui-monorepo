@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from 'react-testing-library';
 import 'jest-dom/extend-expect';
 
-import Card from './card';
+import Card from './Card';
 
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';

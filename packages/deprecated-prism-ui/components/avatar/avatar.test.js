@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from 'react-testing-library';
 import 'jest-dom/extend-expect';
 
-import Avatar, { sizes } from './avatar';
+import Avatar, { sizes } from './Avatar';
 
 import tobias from '../../docs/images/tobias.jpg';
 

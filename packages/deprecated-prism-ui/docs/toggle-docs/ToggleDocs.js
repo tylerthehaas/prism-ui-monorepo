@@ -1,7 +1,7 @@
 import React from 'react';
 import Toggle from '../../components/toggle/Toggle';
 // import { PropsWindow } from "../props";
-import Example from '../example/Example';
+import Example from '../example/example';
 import PropsList from '../props-list/PropsList';
 
 const HTML_CODE = `

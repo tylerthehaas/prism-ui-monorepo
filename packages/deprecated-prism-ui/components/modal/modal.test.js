@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from 'react-testing-library';
 import 'jest-dom/extend-expect';
 
-import Modal from './modal';
+import Modal from './Modal';
 
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
