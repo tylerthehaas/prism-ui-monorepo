@@ -1,4 +1,5 @@
 import * as React from 'react';
+import AllIcons from '../core/svg-icons';
 
 export type IconProps = {
   iconName: iconName;
@@ -93,13 +94,21 @@ export default class Icon extends React.Component<IconProps> {
 
   public render() {
     return (
-      <i
+      <span
         aria-label={`${this.props.iconName} icon`}
         className={`psm-icon-${this.props.iconName}`}
         data-testid={this.props.dataTestId}
         onClick={this.handleClick}
         tabIndex={0}
-      />
+      >
+        <AllIcons
+          name={this.props.iconName}
+          height="16px"
+          width="16px"
+          fill="#707070"
+          className=""
+        />
+      </span>
     );
   }
 }
