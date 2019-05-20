@@ -63,7 +63,9 @@ describe('<Alert/>', () => {
   describe('Type is changed', () => {
     it('is a basic alert', () => {
       const { container } = render(<Alert type={Type.basic} />);
-      expect(container.querySelector('i')).toHaveClass('psm-alert__close');
+      expect(container.querySelector('svg').parentElement).toHaveClass(
+        'psm-alert__close',
+      );
     });
 
     it('is a button alert', () => {
@@ -84,7 +86,7 @@ describe('<Alert/>', () => {
   describe('Dismissed', () => {
     it('removes the element', () => {
       const { container } = render(<Alert />);
-      fireEvent.click(container.querySelector('i'));
+      fireEvent.click(container.querySelector('svg'));
       expect(container).toBeEmpty();
     });
   });

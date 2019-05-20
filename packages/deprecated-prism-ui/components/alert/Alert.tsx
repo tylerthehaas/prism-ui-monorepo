@@ -1,5 +1,6 @@
 import * as React from 'react';
 import './alert.scss';
+import Icon from '../core/svg-icons';
 
 type Link = {
   text: string;
@@ -99,16 +100,25 @@ export default class Alert extends React.Component<AlertProps, any> {
               </a>
             )}
             {this.props.type === Type.basic && (
-              <i
+              <span
                 aria-label={this.state.isFocused ? 'Close button' : ''}
-                className="psm-alert__close psm-icon-simple-remove"
+                className="psm-alert__close"
                 data-testid={`${this.props.dataTestId}-icon`}
                 onClick={this.handleDismiss}
                 onFocus={() => {
                   this.setState({ isFocused: true });
                 }}
                 tabIndex={0}
-              />
+              >
+                <Icon
+                  name="close"
+                  height="12px"
+                  width="12px"
+                  fill={
+                    this.props.style == 'psm-alert--warning' ? 'black' : 'white'
+                  }
+                />
+              </span>
             )}
             {this.props.type === Type.button && (
               <button
