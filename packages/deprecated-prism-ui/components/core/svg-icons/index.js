@@ -75,6 +75,20 @@ import Refresh from './svg/refresh.js';
 import Releases from './svg/releases.js';
 import RoadMap from './svg/road-map.js';
 import Search from './svg/search.js';
+import Select from './svg/select.js';
+import Send from './svg/send.js';
+import SettingsGear from './svg/settings-gear.js';
+import Share from './svg/share.js';
+import Share2 from './svg/share2.js';
+import ShoppingCart from './svg/shopping-cart.js';
+import StarFilled from './svg/star-filled.js';
+import Tag from './svg/tag.js';
+import Trash from './svg/trash.js';
+import Trophy from './svg/trophy.js';
+import Unlock from './svg/unlock';
+import Wellness from './svg/wellness';
+import Yearbook from './svg/yearbook';
+import ZoomIn from './svg/zoom-in.js';
 
 const Icon = props => {
   switch (props.name) {
@@ -260,6 +274,35 @@ const Icon = props => {
       return <RoadMap {...props} />;
     case 'search':
       return <Search {...props} />;
+    case 'select':
+      return <Select {...props} />;
+    case 'send':
+      return <Send {...props} />;
+    case 'settings-gear':
+      return <SettingsGear {...props} />;
+    case 'share':
+      return <Share {...props} />;
+    case 'share2':
+      return <Share2 {...props} />;
+    case 'shopping-cart':
+      return <ShoppingCart {...props} />;
+    case 'star-filled':
+      return <StarFilled {...props} />;
+    case 'tag':
+      return <Tag {...props} />;
+    case 'trash':
+      return <Trash {...props} />;
+    case 'trophy':
+      return <Trophy {...props} />;
+    case 'unlock':
+      return <Unlock {...props} />;
+    case 'wellness':
+      return <Wellness {...props} />;
+    case 'yearbook':
+      return <Yearbook {...props} />;
+    case 'zoom':
+    case 'zoom-in':
+      return <ZoomIn {...props} />;
     default:
       return <div>Not Working :(</div>;
   }
