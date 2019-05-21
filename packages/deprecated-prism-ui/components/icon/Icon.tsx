@@ -113,7 +113,7 @@ export default class Icon extends React.Component<IconProps> {
     return (
       <span
         aria-label={`${this.props.iconName} icon`}
-        className={`psm-icon-${this.props.iconName}`}
+        className={`psm-svg-icon-${this.props.iconName}`}
         data-testid={this.props.dataTestId}
         onClick={this.handleClick}
         tabIndex={0}
