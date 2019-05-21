@@ -58,7 +58,6 @@ export enum iconName {
   'goal',
   'globe',
   'flag-points',
-  'favorite',
   'filter',
   'eye',
   'email',

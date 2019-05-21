@@ -218,10 +218,8 @@ const Icon = props => {
     case 'group':
       return <Group {...props} />;
     case 'heart-empty':
-    case 'heartbeat':
       return <HeartEmpty {...props} />;
     case 'heart-filled':
-    case 'heart':
       return <HeartFilled {...props} />;
     case 'image':
       return <Image {...props} />;
@@ -287,6 +285,7 @@ const Icon = props => {
     case 'shopping-cart':
       return <ShoppingCart {...props} />;
     case 'star-filled':
+    case 'favorite':
       return <StarFilled {...props} />;
     case 'tag':
       return <Tag {...props} />;
