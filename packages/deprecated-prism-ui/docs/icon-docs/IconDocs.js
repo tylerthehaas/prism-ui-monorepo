@@ -5,7 +5,7 @@ import Example from '../example/example';
 import PropsWindow from '../props-window/PropsWindow';
 import PropsList from '../props-list/PropsList';
 
-const HTML_CODE = `<i class="psm-icon-a-check"></i>`;
+const HTML_CODE = `<i class="psm-icon-add"></i>`;
 const REACT_CODE = `
 import { Icon } from "prism";
 
@@ -21,7 +21,7 @@ export default class IconDocs extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      icon: 'a-check',
+      icon: 'add',
       viewType: 'html',
     };
     this.updateProps = this.updateProps.bind(this);
@@ -81,7 +81,6 @@ export default class IconDocs extends React.Component {
                     'tail-left',
                     'tail-down',
                     'tag',
-                    'support',
                     'stre-up',
                     'stre-right',
                     'stre-left',
@@ -102,22 +101,34 @@ export default class IconDocs extends React.Component {
                     'settings-gear',
                     'send',
                     'select',
+                    'search',
                     'refresh',
+                    'radio-select',
+                    'radio-unselect',
+                    'releases',
+                    'road-map',
                     'print',
-                    'path-unite',
-                    'multiple',
+                    'pause',
+                    'person',
+                    'play',
                     'menu-dots',
                     'menu',
                     'lock',
+                    'loader',
                     'image',
+                    'invoice-spreadsheet',
                     'heartbeat',
                     'heart',
+                    'group',
                     'goal',
+                    'globe',
                     'flag-points',
                     'favorite',
+                    'filter',
                     'eye',
                     'email',
                     'desktop',
+                    'document',
                     'cloud-download',
                     'check',
                     'chat',
@@ -126,21 +137,31 @@ export default class IconDocs extends React.Component {
                     'cart-simple',
                     'calendar-add',
                     'calendar',
+                    'checkbox-fill',
+                    'checkbox-unselected',
                     'bullet-list',
                     'block-down',
                     'bell',
+                    'bookmark-unfilled',
+                    'bookmark-filled',
                     'attach',
                     'archive-check',
                     'alert-circle-i',
+                    'agenda',
+                    'align',
+                    'announcements',
+                    'avatar-add',
                     'add',
-                    'a-check',
+                    'avatar-check',
+                    'avatar-circle',
+                    'avatar',
                     'edit-note',
                     'one-on-one',
                     'play-screen',
                     'power',
                     'conversation',
                   ].sort(),
-                  value: 'a-check',
+                  value: 'add',
                   key: 'icon',
                 },
               ]}

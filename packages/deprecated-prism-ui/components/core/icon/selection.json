@@ -734,13 +734,13 @@
         "isMulticolor": false,
         "isMulticolor2": false,
         "grid": 0,
-        "tags": ["multiple"]
+        "tags": ["group"]
       },
       "attrs": [{}, {}, {}, {}, {}, {}],
       "properties": {
         "order": 33,
         "id": 36,
-        "name": "multiple",
+        "name": "group",
         "prevSize": 32,
         "code": 59678
       },
@@ -783,13 +783,13 @@
         "isMulticolor": false,
         "isMulticolor2": false,
         "grid": 0,
-        "tags": ["path-unite"]
+        "tags": ["agenda"]
       },
       "attrs": [{}, {}],
       "properties": {
         "order": 35,
         "id": 34,
-        "name": "path-unite",
+        "name": "agenda",
         "prevSize": 32,
         "code": 59680
       },

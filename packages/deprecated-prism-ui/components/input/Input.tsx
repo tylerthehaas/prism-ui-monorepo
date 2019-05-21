@@ -1,6 +1,7 @@
 import * as React from 'react';
 import './input.scss';
 import './input-group.scss';
+import AllIcons from '../core/svg-icons';
 
 export type InputProps = {
   required?: boolean;
@@ -46,14 +47,14 @@ export enum iconType {
   'select',
   'refresh',
   'print',
-  'path-unite',
-  'multiple',
+  'agenda',
   'menu-dots',
   'menu',
   'lock',
   'image',
   'heartbeat',
   'heart',
+  'group',
   'goal',
   'flag-points',
   'favorite',
@@ -75,7 +76,7 @@ export enum iconType {
   'archive-check',
   'alert-circle-i',
   'add',
-  'a-check',
+  'avatar-check',
   'edit-note',
   'one-on-one',
   'play-screen',
@@ -122,7 +123,7 @@ export default class Input extends React.Component<InputProps> {
             className={`psm-input-${this.props.icon.position ||
               'trailing'}-icon`}
           >
-            <i
+            <span
               aria-label={`${this.props.icon.name} icon`}
               className={`psm-icon-${this.props.icon.name}`}
               data-testid={`${this.props.dataTestId}-icon`}
@@ -131,7 +132,14 @@ export default class Input extends React.Component<InputProps> {
                 cursor: this.props.icon.onClick ? 'pointer' : 'default',
               }}
               tabIndex={0}
-            />
+            >
+              <AllIcons
+                name={this.props.icon.name}
+                height="16px"
+                width="16px"
+                fill="#707070"
+              />
+            </span>
             <input
               aria-labelledby="Input field"
               className={`psm-input${

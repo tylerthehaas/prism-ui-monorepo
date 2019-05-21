@@ -1,17 +1,17 @@
-@import "variables";
+@import 'variables';
 
 @font-face {
-  font-family: "#{$icomoon-font-family}";
-  src: url("#{$icomoon-font-path}/#{$icomoon-font-family}.woff?oyzs53")
-    format("woff");
+  font-family: '#{$icomoon-font-family}';
+  src: url('#{$icomoon-font-path}/#{$icomoon-font-family}.woff?oyzs53')
+    format('woff');
   font-weight: normal;
   font-style: normal;
 }
 
-[class^="psm-icon-"],
-[class*=" psm-icon-"] {
+[class^='psm-icon-'],
+[class*=' psm-icon-'] {
   /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: "#{$icomoon-font-family}" !important;
+  font-family: '#{$icomoon-font-family}' !important;
   speak: none;
   font-style: normal;
   font-weight: normal;
@@ -174,9 +174,9 @@
     content: $psm-icon-menu-dots;
   }
 }
-.psm-icon-multiple {
+.psm-icon-group {
   &:before {
-    content: $psm-icon-multiple;
+    content: $psm-icon-group;
   }
 }
 .psm-icon-one-on-one {
@@ -184,9 +184,9 @@
     content: $psm-icon-one-on-one;
   }
 }
-.psm-icon-path-unite {
+.psm-icon-agenda {
   &:before {
-    content: $psm-icon-path-unite;
+    content: $psm-icon-agenda;
   }
 }
 .psm-icon-play-screen {

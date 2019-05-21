@@ -1,5 +1,6 @@
 import * as React from 'react';
 import './chip.scss';
+import AllIcons from '../core/svg-icons';
 
 export type ChipProps = {
   label: string;
@@ -101,7 +102,7 @@ export default class Chip extends React.Component<ChipProps, ChipState> {
               >
                 {this.props.label}
               </div>
-              <i
+              <span
                 aria-label={`Close ${this.props.label} chip`}
                 className="psm-icon-simple-remove psm-chip__close"
                 data-testid={`${this.props.dataTestId}-icon`}
@@ -109,7 +110,14 @@ export default class Chip extends React.Component<ChipProps, ChipState> {
                 onClick={() => this.handleClose()}
                 onFocus={() => this.setState({ isFocused: 1 })}
                 tabIndex={0}
-              />
+              >
+                <AllIcons
+                  name="close"
+                  height="16px"
+                  width="16px"
+                  fill="#d4d4d4"
+                />
+              </span>
             </div>
           </div>
         )}

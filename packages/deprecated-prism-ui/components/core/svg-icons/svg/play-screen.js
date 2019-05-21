@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const SVG = ({
+  fill = '#000',
   height = '100%',
   width = '100%',
   className = '',
@@ -20,37 +21,24 @@ const SVG = ({
     xmlnsXlink="http://www.w3.org/1999/xlink"
     y="0px"
   >
-    {/* Generator: Sketch 50 (54983) - http://www.bohemiancoding.com/sketch */}
-    <title>Rectangle 29</title>
-    <desc>Created with Sketch.</desc>
-    <defs />
-    <g
-      fill="none"
-      fillRule="evenodd"
-      id="Symbols"
-      stroke="none"
-      strokeWidth="1"
-    >
+    <g className="nc-icon-wrapper" fill={fill}>
+      <title>tech-16px_desktop</title>
       <g
-        fill="#FFFFFF"
-        id="Country-List"
-        stroke="#D4D4D4"
-        transform="translate(-16.000000, -12.000000)"
+        fill={fill}
+        fillRule="evenodd"
+        stroke="none"
+        strokeWidth="1"
+        transform="translate(-872 -725) translate(872 725)"
       >
-        <rect
-          height="15"
-          id="Rectangle-29"
-          rx="3"
-          width="15"
-          x="16.5"
-          y="12.5"
-        />
+        <path d="M15 0H1C.4 0 0 .4 0 1v11c0 .6.4 1 1 1h5v1H3v2h10v-2h-3v-1h5c.6 0 1-.4 1-1V1c0-.6-.4-1-1-1zm-1 2v7H2V2h12z" />
+        <path d="M6 3v5l5-2.5z" />
       </g>
     </g>
   </svg>
 );
 
 SVG.propTypes = {
+  fill: PropTypes.string,
   height: PropTypes.string,
   width: PropTypes.string,
   className: PropTypes.string,

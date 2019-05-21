@@ -52,7 +52,6 @@ import Goal from './svg/goal.js';
 import Group from './svg/group.js';
 import HeartEmpty from './svg/heart-empty.js';
 import HeartFilled from './svg/heart-filled.js';
-import Help from './svg/help.js';
 import Image from './svg/image.js';
 import InboxCheck from './svg/inbox-check.js';
 import InformationCircle from './svg/information-circle.js';
@@ -66,6 +65,16 @@ import Notification from './svg/notification.js';
 import OneOnOne from './svg/one-on-one.js';
 import Pause from './svg/pause.js';
 import Person from './svg/person.js';
+import PlayScreen from './svg/play-screen.js';
+import Play from './svg/play.js';
+import Power from './svg/power.js';
+import Print from './svg/print.js';
+import RadioSelect from './svg/radio-select.js';
+import RadioUnselect from './svg/radio-unselect.js';
+import Refresh from './svg/refresh.js';
+import Releases from './svg/releases.js';
+import RoadMap from './svg/road-map.js';
+import Search from './svg/search.js';
 
 const Icon = props => {
   switch (props.name) {
@@ -135,19 +144,21 @@ const Icon = props => {
       return <AvatarCheck {...props} />;
     case 'avatar-circle':
       return <AvatarCircle {...props} />;
-    case 'Avatar':
+    case 'avatar':
       return <Avatar {...props} />;
     case 'bookmark-filled':
       return <BookmarkFilled {...props} />;
     case 'bookmark-unfilled':
       return <BookmarkUnfilled {...props} />;
     case 'bulletpoint':
+    case 'bullet-list':
       return <Bulletpoint {...props} />;
     case 'calendar-add':
       return <CalendarAdd {...props} />;
     case 'calendar':
       return <Calendar {...props} />;
     case 'chart':
+    case 'chart-bar':
       return <Chart {...props} />;
     case 'chat-empty':
     case 'chat':
@@ -175,6 +186,7 @@ const Icon = props => {
     case 'cloud-download':
       return <DownloadCloud {...props} />;
     case 'download':
+    case 'block-down':
       return <Download {...props} />;
     case 'edit-note':
       return <EditNote {...props} />;
@@ -197,14 +209,12 @@ const Icon = props => {
     case 'heart-filled':
     case 'heart':
       return <HeartFilled {...props} />;
-    case 'help':
-      return <Help {...props} />;
     case 'image':
       return <Image {...props} />;
     case 'inbox-check':
     case 'archive-check':
       return <InboxCheck {...props} />;
-    case 'informationCircle':
+    case 'information-circle':
     case 'alert-circle-i':
       return <InformationCircle {...props} />;
     case 'invoice-spreadsheet':
@@ -230,6 +240,26 @@ const Icon = props => {
       return <Pause {...props} />;
     case 'person':
       return <Person {...props} />;
+    case 'play-screen':
+      return <PlayScreen {...props} />;
+    case 'play':
+      return <Play {...props} />;
+    case 'power':
+      return <Power {...props} />;
+    case 'print':
+      return <Print {...props} />;
+    case 'radio-select':
+      return <RadioSelect {...props} />;
+    case 'radio-unselect':
+      return <RadioUnselect {...props} />;
+    case 'refresh':
+      return <Refresh {...props} />;
+    case 'releases':
+      return <Releases {...props} />;
+    case 'road-map':
+      return <RoadMap {...props} />;
+    case 'search':
+      return <Search {...props} />;
     default:
       return <div>Not Working :(</div>;
   }
