@@ -29,6 +29,8 @@ const Prism = {
   Chip,
   Modal,
   Avatar,
+  Table,
+  Icon,
 };
 
 export default Prism;
