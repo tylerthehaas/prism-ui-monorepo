@@ -1,6 +1,6 @@
 {
   "name": "prism-ui",
-  "version": "1.0.18",
+  "version": "1.0.19",
   "engines": {
     "node": ">=10.0.0 <11.0.0"
   },

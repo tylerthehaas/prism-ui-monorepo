@@ -1,40 +1,34 @@
-import Button from './button/Button';
-import Input from './input/Input';
-import Radio from './radio/Radio';
-import * as Core from './core';
-import Alert from './alert/Alert';
-import Pagination from './pagination/Pagination';
-import Nav from './nav/Nav';
-import List from './list/List';
-import Toggle from './toggle/Toggle';
-import Table from './table/Table';
-import Card from './card/Card';
-import Hr from './hr/Hr';
-import Rollover from './rollover/Rollover';
-import Chip from './chip/Chip';
-import Modal from './modal/Modal';
-import Avatar from './avatar/Avatar';
-import Icon from './icon/Icon';
-import '../docs/docs.scss';
+export const Button = require('./button/Button');
+export const Input = require('./input/Input');
+export const Radio = require('./radio/Radio');
+export const Alert = require('./alert/Alert');
+export const Pagination = require('./pagination/Pagination.tsx');
+export const Nav = require('./nav/Nav.tsx');
+export const List = require('./list/List.tsx');
+export const Toggle = require('./toggle/Toggle.tsx');
+export const Table = require('./table/Table.tsx');
+export const Card = require('./card/Card.tsx');
+export const Hr = require('./hr/Hr.tsx');
+export const Rollover = require('./rollover/Rollover.tsx');
+export const Chip = require('./chip/Chip.tsx');
+export const Modal = require('./modal/Modal.tsx');
+export const Avatar = require('./avatar/Avatar');
 
-const prismui = {
+const Prism = {
   Button,
   Input,
   Radio,
-  Core,
   Alert,
   Pagination,
   Nav,
   List,
   Toggle,
-  Table,
   Card,
   Hr,
   Rollover,
   Chip,
   Modal,
   Avatar,
-  Icon,
 };
 
-export default prismui;
+export default Prism;
