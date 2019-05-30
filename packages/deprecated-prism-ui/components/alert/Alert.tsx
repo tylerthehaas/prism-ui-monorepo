@@ -112,8 +112,8 @@ export default class Alert extends React.Component<AlertProps, any> {
               >
                 <Icon
                   name="close"
-                  height="12px"
-                  width="12px"
+                  height="16px"
+                  width="16px"
                   fill={
                     this.props.style == 'psm-alert--warning' ? 'black' : 'white'
                   }

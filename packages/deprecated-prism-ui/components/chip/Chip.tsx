@@ -104,7 +104,7 @@ export default class Chip extends React.Component<ChipProps, ChipState> {
               </div>
               <span
                 aria-label={`Close ${this.props.label} chip`}
-                className="psm-icon-simple-remove psm-chip__close"
+                className="psm-chip__close"
                 data-testid={`${this.props.dataTestId}-icon`}
                 onBlur={() => this.setState({ isFocused: null })}
                 onClick={() => this.handleClose()}

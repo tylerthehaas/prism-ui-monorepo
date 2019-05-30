@@ -18,7 +18,10 @@
     cursor: pointer;
     float: right;
     margin: 1px -12px;
-    transform: scale(0.6);
+    transform: scale(0.5);
+    svg {
+      vertical-align: middle;
+    }
   }
   & > .psm-alert__action {
     color: white;

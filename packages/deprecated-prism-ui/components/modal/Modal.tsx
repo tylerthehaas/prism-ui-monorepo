@@ -1,5 +1,6 @@
 import * as React from 'react';
 import './modal.scss';
+import AllIcons from '../core/svg-icons';
 
 export type ModalProps = {
   children: any;
@@ -119,9 +120,9 @@ export default class Modal extends React.Component<ModalProps, ModalState> {
             role="dialog"
           >
             <div className="psm-modal__content" style={{ width: '80%' }}>
-              <i
+              <span
                 aria-label={'Close'}
-                className="psm-icon-simple-remove psm-modal__close"
+                className="psm-modal__close"
                 data-testid={`${this.props.dataTestId}-close-icon`}
                 id={`button-${
                   this.props.actions ? this.props.actions.length + 1 : 1
@@ -138,7 +139,14 @@ export default class Modal extends React.Component<ModalProps, ModalState> {
                   })
                 }
                 tabIndex={0}
-              />
+              >
+                <AllIcons
+                  name="close"
+                  height="16px"
+                  width="16px"
+                  fill="#707070"
+                />
+              </span>
 
               <h3
                 className="psm-modal__header"

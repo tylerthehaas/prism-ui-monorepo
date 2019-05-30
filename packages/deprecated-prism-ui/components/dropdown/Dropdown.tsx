@@ -1,5 +1,6 @@
 import * as React from 'react';
 import '../button/button.scss';
+import AllIcons from '../core/svg-icons';
 
 export type DropdownProps = {
   dropdownMenu: Array<{ label?: string; onClick(event: any): any }>;
@@ -181,6 +182,14 @@ export default class Dropdown extends React.Component<
               }
             >
               {this.props.label}
+              <div>
+                <AllIcons
+                  name="small-triangle-down"
+                  height="16px"
+                  width="16px"
+                  fill="white"
+                />
+              </div>
             </button>
           }
           {this.state.showMenu && (

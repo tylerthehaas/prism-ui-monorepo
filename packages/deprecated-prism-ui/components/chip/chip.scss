@@ -25,8 +25,11 @@
   font-family: '#{$icomoon-font-family}' !important;
   content: $psm-icon-simple-remove;
   color: $psm-color-gray-300;
-  height: $psm-spacing-lg;
+  height: 100%;
   margin-left: $psm-spacing-lg;
   display: inline-block;
   vertical-align: middle;
+  svg {
+    vertical-align: text-bottom;
+  }
 }

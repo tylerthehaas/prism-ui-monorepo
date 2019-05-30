@@ -1,5 +1,6 @@
 import * as React from 'react';
 import './pagination.scss';
+import AllIcons from '../core/svg-icons';
 
 export type PaginationProps = {
   pagesShown?: number;
@@ -138,11 +139,18 @@ export default class Pagination extends React.Component<
       <>
         <ul className="psm-pagination">
           <li
-            className="psm-icon-small-left"
+            className="psm-svg-icon-small-left"
             data-testid={`${this.props.dataTestId}-left-arrow`}
             key="pagination-left-arrow"
             onClick={() => this.handleLeftArrow()}
-          />
+          >
+            <AllIcons
+              name="small-left"
+              height="16px"
+              width="16px"
+              fill="#707070"
+            />
+          </li>
           <li
             className={`psm-pagination__number ${
               1 === this.state.active ? 'psm-pagination__active' : ''
@@ -168,11 +176,18 @@ export default class Pagination extends React.Component<
             {this.props.numPages}
           </li>
           <li
-            className="psm-icon-small-right"
+            className="psm-svg-icon-small-right"
             data-testid={`${this.props.dataTestId}-right-arrow`}
             key="pagination-right-arrow"
             onClick={() => this.handleRightArrow()}
-          />
+          >
+            <AllIcons
+              name="small-right"
+              height="16px"
+              width="16px"
+              fill="#707070"
+            />
+          </li>
         </ul>
       </>
     );

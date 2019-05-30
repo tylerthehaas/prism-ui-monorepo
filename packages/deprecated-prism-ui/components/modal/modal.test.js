@@ -19,7 +19,7 @@ describe('<Modal />', () => {
   it('Have default close', () => {
     const { container } = render(<Modal show={true} />);
     expect(container.firstChild.firstChild.firstChild).toHaveClass(
-      'psm-icon-simple-remove psm-modal__close',
+      'psm-modal__close',
     );
   });
   it('Button focus sets state sets focus to index', () => {

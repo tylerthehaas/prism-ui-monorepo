@@ -125,7 +125,7 @@ export default class Input extends React.Component<InputProps> {
           >
             <span
               aria-label={`${this.props.icon.name} icon`}
-              className={`psm-icon-${this.props.icon.name}`}
+              className={`psm-icon-svg-${this.props.icon.name}`}
               data-testid={`${this.props.dataTestId}-icon`}
               onClick={this.props.icon.onClick}
               style={{

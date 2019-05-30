@@ -43,30 +43,34 @@ describe('<Input />', () => {
     const { container } = render(
       <Input icon={{ name: 'desktop', position: 'leading' }} />,
     );
-    expect(container.firstChild.firstChild).toHaveClass('psm-icon-desktop');
+    expect(container.firstChild.firstChild).toHaveClass('psm-icon-svg-desktop');
   });
   it('Icon type: one-on-one', () => {
     const { container } = render(
       <Input icon={{ name: 'one-on-one', position: 'leading' }} />,
     );
-    expect(container.firstChild.firstChild).toHaveClass('psm-icon-one-on-one');
+    expect(container.firstChild.firstChild).toHaveClass(
+      'psm-icon-svg-one-on-one',
+    );
   });
   it('Icon type: tail-down', () => {
     const { container } = render(
       <Input icon={{ name: 'tail-down', position: 'leading' }} />,
     );
-    expect(container.firstChild.firstChild).toHaveClass('psm-icon-tail-down');
+    expect(container.firstChild.firstChild).toHaveClass(
+      'psm-icon-svg-tail-down',
+    );
   });
   it('Icon type: send', () => {
     const { container } = render(
       <Input icon={{ name: 'send', position: 'leading' }} />,
     );
-    expect(container.firstChild.firstChild).toHaveClass('psm-icon-send');
+    expect(container.firstChild.firstChild).toHaveClass('psm-icon-svg-send');
   });
   it('Icon type: goal', () => {
     const { container } = render(
       <Input icon={{ name: 'goal', position: 'leading' }} />,
     );
-    expect(container.firstChild.firstChild).toHaveClass('psm-icon-goal');
+    expect(container.firstChild.firstChild).toHaveClass('psm-icon-svg-goal');
   });
 });

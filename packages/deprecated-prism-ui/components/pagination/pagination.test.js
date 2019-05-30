@@ -18,7 +18,7 @@ describe('<Pagination />', () => {
   });
   it('Click on right arrow sets active + 1', () => {
     const container = mount(<Pagination />);
-    container.find('.psm-icon-small-right').simulate('click');
+    container.find('.psm-svg-icon-small-right').simulate('click');
     expect(container.state('active')).toEqual(2);
   });
   it('Click on last page sets active to last page', () => {
@@ -28,7 +28,7 @@ describe('<Pagination />', () => {
   });
   it('Click on left arrow sets active - 1', () => {
     const container = mount(<Pagination defaultPage={10} />);
-    container.find('.psm-icon-small-left').simulate('click');
+    container.find('.psm-svg-icon-small-left').simulate('click');
     expect(container.state('active')).toEqual(9);
   });
   it('Click on page sets active to page number', () => {
