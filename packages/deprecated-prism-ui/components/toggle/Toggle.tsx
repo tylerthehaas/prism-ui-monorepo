@@ -11,6 +11,7 @@ type ToggleProps = {
 
 type ToggleState = {
   active: boolean;
+  isTab: boolean;
 };
 
 export default class Toggle extends React.Component<ToggleProps, ToggleState> {
@@ -18,6 +19,7 @@ export default class Toggle extends React.Component<ToggleProps, ToggleState> {
     super(props);
     this.state = {
       active: !!this.props.default,
+      isTab: false,
     };
     this.handleToggle = this.handleToggle.bind(this);
   }
@@ -27,11 +29,18 @@ export default class Toggle extends React.Component<ToggleProps, ToggleState> {
       this.handleToggle(event);
     }
   };
+  handleTab = event => {
+    if (event.keyCode === 9) {
+      this.setState({ isTab: true });
+    }
+  };
   componentDidMount() {
     document.addEventListener('keypress', this.handleEnter, false);
+    document.addEventListener('keydown', this.handleTab, false);
   }
   componentWillUnmount() {
     document.removeEventListener('keypress', this.handleEnter, false);
+    document.removeEventListener('keydown', this.handleTab, false);
   }
 
   handleToggle = (event: any) => {
@@ -53,7 +62,11 @@ export default class Toggle extends React.Component<ToggleProps, ToggleState> {
           this.state.active ? 'psm-toggle--active' : 'psm-toggle--inactive'
         }`}
         data-testid={'psm-toggle'}
-        onClick={this.handleToggle}
+        onClick={() => {
+          this.handleToggle(event);
+          this.setState({ isTab: false });
+        }}
+        style={{ outlineStyle: this.state.isTab ? null : 'none' }}
         tabIndex={0}
       >
         <div className="psm-toggle__switch" />

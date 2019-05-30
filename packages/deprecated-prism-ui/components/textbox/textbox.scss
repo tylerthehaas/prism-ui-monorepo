@@ -1,0 +1,117 @@
+@import "../core/color/variables";
+@import "../core/spacing/variables";
+@import "../core/type/variables";
+@import "../core/icon/variables";
+
+.psm-form__textarea {
+  //   resize: none;
+  //   -webkit-appearance: none;
+  width: 100%;
+  max-width: 100%;
+  min-width: 100%;
+  margin-top: 8px;
+  padding: 7px 12px;
+  font-size: $psm-paragraph-font-size;
+  box-sizing: border-box;
+  border: 1px solid $psm-color-gray-300;
+  justify-content: left;
+  border-radius: 3px;
+  outline-style: none;
+  min-height: 200px;
+  color: $psm-color-gray-900;
+  &::placeholder {
+    color: $psm-color-gray-500;
+  }
+
+  &.psm-form__textarea--clicked {
+    border-color: #42a5f5;
+    box-shadow: 0 0 0 $psm-spacing-xs #e3f2fd;
+    &.psm-form__textarea--error,
+    &.psm-form__textarea:invalid {
+      box-shadow: 0 0 0 $psm-spacing-xs #fceded;
+    }
+  }
+
+  &:hover {
+    border-color: #42a5f5;
+    box-shadow: 0 0 0 $psm-spacing-xs #e3f2fd;
+    &.psm-form__textarea--error,
+    &.psm-form__textarea:invalid {
+      box-shadow: 0 0 0 $psm-spacing-xs #fceded;
+    }
+  }
+
+  &.psm-form__textarea--error,
+  &.psm-form__textarea:invalid {
+    border-color: #d70e16;
+  }
+  &:disabled {
+    background-color: #f8f8f8;
+    border: 1px solid $psm-color-gray-300 !important;
+    box-shadow: none !important;
+    color: $psm-color-gray-400;
+    &::placeholder {
+      color: $psm-color-gray-400;
+    }
+  }
+}
+.psm-form__label {
+  margin: 16px 0px 0px;
+  color: $psm-color-gray-900;
+  font-size: $psm-paragraph-font-size;
+  line-height: $psm-paragraph-font-size;
+  font-weight: 900;
+  text-align: left;
+}
+.psm-form__optional {
+  margin-left: 8px;
+  color: $psm-color-gray-700;
+  font-size: $psm-paragraph-font-size;
+  font-weight: normal;
+}
+
+.psm-form__subtext,
+%psm-form__subtext {
+  text-align: left;
+  margin-bottom: 8px;
+  font-size: $psm-subtext-font-size;
+  line-height: $psm-subtext-font-size;
+}
+.psm-form__info-text {
+  @extend %psm-form__subtext;
+  color: $psm-color-gray-700;
+}
+
+.psm-form__error-text {
+  @extend %psm-form__subtext;
+  color: $psm-color-error;
+}
+
+.psm-form__max-chars {
+  float: right;
+  font-weight: normal;
+  font-size: $psm-subtext-font-size;
+  line-height: $psm-subtext-font-size;
+  color: $psm-color-gray-700;
+  &.psm-form__max-chars--error {
+    color: $psm-color-error;
+  }
+}
+
+.psm-form__textarea > ul {
+  margin: 0;
+  & li {
+    list-style-type: disc;
+    position: relative;
+    left: 20px;
+    width: fit-content;
+    display: list-item;
+    margin: 0;
+  }
+}
+
+div[contenteditable="true"]:empty:before {
+  content: attr(placeholder);
+  display: block; /* For Firefox */
+  color: $psm-color-gray-500;
+}

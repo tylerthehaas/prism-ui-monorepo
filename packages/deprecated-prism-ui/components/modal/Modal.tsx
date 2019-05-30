@@ -160,6 +160,7 @@ export default class Modal extends React.Component<ModalProps, ModalState> {
                       : 2,
                   })
                 }
+                style={{ outline: 'none' }}
                 tabIndex={0}
               >
                 {this.props.title}
@@ -176,7 +177,7 @@ export default class Modal extends React.Component<ModalProps, ModalState> {
                       : 3,
                   })
                 }
-                style={{ position: 'relative', height: 250 }}
+                style={{ position: 'relative', height: 250, outline: 'none' }}
                 tabIndex={0}
               >
                 {this.props.children}

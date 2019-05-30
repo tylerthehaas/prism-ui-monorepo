@@ -4,9 +4,14 @@ import './input-group.scss';
 import AllIcons from '../core/svg-icons';
 
 export type InputProps = {
-  required?: boolean;
+  invalid?: boolean;
+  disabled?: boolean;
   placeholderText?: string;
   dataTestId?: String;
+  required?: boolean;
+  label?: string;
+  infoText?: string;
+  errorText?: string;
 
   change?(event: any): any;
   icon?: {
@@ -84,31 +89,34 @@ export enum iconType {
   'conversation',
 }
 
-export default class Input extends React.Component<InputProps> {
+export type InputState = {
+  isClicked: boolean;
+  isRequired: boolean;
+};
+
+export default class Input extends React.Component<InputProps, InputState> {
   constructor(props: InputProps) {
     super(props);
-    if (this.props.icon) {
-      this.state = {
-        name: this.props.icon.name,
-        position: this.props.icon.position,
-      };
-    }
+    this.state = {
+      isClicked: false,
+      isRequired: false,
+    };
     this.handleChange = this.handleChange.bind(this);
   }
 
   static defaultProps: InputProps = {
+    invalid: false,
     required: true,
+    disabled: false,
     placeholderText: 'Input Text Here',
-
+    label: null,
     icon: null,
+    infoText: null,
+    errorText: null,
   };
 
   componentWillReceiveProps(props: InputProps) {
-    this.setState({ isRequired: props.required });
-    if (this.props.icon) {
-      this.setState({ position: props.icon.position });
-      this.setState({ name: props.icon.name });
-    }
+    this.setState({ isRequired: props.invalid });
   }
   handleChange = event => {
     if (this.props.change) {
@@ -119,51 +127,98 @@ export default class Input extends React.Component<InputProps> {
     return (
       <>
         {(this.props.icon && (
-          <div
-            className={`psm-input-${this.props.icon.position ||
-              'trailing'}-icon`}
-          >
-            <span
-              aria-label={`${this.props.icon.name} icon`}
-              className={`psm-icon-svg-${this.props.icon.name}`}
-              data-testid={`${this.props.dataTestId}-icon`}
-              onClick={this.props.icon.onClick}
-              style={{
-                cursor: this.props.icon.onClick ? 'pointer' : 'default',
-              }}
-              tabIndex={0}
+          <>
+            {this.props.label && (
+              <div className="psm-form__label">
+                {this.props.label}
+                {!this.props.required && (
+                  <span className="psm-form__optional">Optional</span>
+                )}
+              </div>
+            )}
+            <div
+              className={`psm-input-${this.props.icon.position ||
+                'trailing'}-icon`}
             >
-              <AllIcons
-                name={this.props.icon.name}
-                height="16px"
-                width="16px"
-                fill="#707070"
+              <i
+                aria-label={`${this.props.icon.name} icon`}
+                className={`psm-icon-${this.props.icon.name}`}
+                data-testid={`${this.props.dataTestId}-icon`}
+                onClick={this.props.icon.onClick}
+                style={{
+                  cursor: this.props.icon.onClick ? 'pointer' : 'default',
+                }}
+                tabIndex={0}
               />
-            </span>
+              <input
+                aria-labelledby="Input field"
+                className={`psm-input ${
+                  this.state.isClicked ? 'psm-input--clicked' : ''
+                } ${this.props.invalid ? 'psm-input--error' : ''}`}
+                data-testid={this.props.dataTestId}
+                disabled={this.props.disabled}
+                onBlur={() => this.setState({ isClicked: false })}
+                onChange={this.handleChange}
+                onClick={() => this.setState({ isClicked: true })}
+                placeholder={this.props.placeholderText}
+                required={this.props.required}
+                type="text"
+              />
+            </div>
+            {(this.props.infoText || this.props.errorText) && (
+              <div
+                className={`${
+                  this.props.invalid
+                    ? 'psm-form__error-text'
+                    : 'psm-form__info-text'
+                }`}
+              >
+                {this.props.invalid
+                  ? this.props.errorText
+                  : this.props.infoText}
+              </div>
+            )}
+          </>
+        )) || (
+          <>
+            {this.props.label && (
+              <div className="psm-form__label">
+                {this.props.label}
+                {!this.props.required && (
+                  <span className="psm-form__optional">Optional</span>
+                )}
+              </div>
+            )}
             <input
               aria-labelledby="Input field"
               className={`psm-input${
-                this.props.required ? ' psm-input--active' : ''
+                this.props.invalid ? ' psm-input--active' : ''
+              } ${this.state.isClicked ? 'psm-input--clicked' : ''} ${
+                this.props.invalid ? 'psm-input--error' : ''
               }`}
               data-testid={this.props.dataTestId}
+              disabled={this.props.disabled}
+              onBlur={() => this.setState({ isClicked: false })}
               onChange={this.handleChange}
+              onClick={() => this.setState({ isClicked: true })}
               placeholder={this.props.placeholderText}
               required={this.props.required}
               type="text"
             />
-          </div>
-        )) || (
-          <input
-            aria-labelledby="Input field"
-            className={`psm-input${
-              this.props.required ? ' psm-input--active' : ''
-            }`}
-            data-testid={this.props.dataTestId}
-            onChange={this.handleChange}
-            placeholder={this.props.placeholderText}
-            required={this.props.required}
-            type="text"
-          />
+            {(this.props.infoText || this.props.errorText) && (
+              <div
+                className={`${
+                  this.props.invalid
+                    ? 'psm-form__error-text'
+                    : 'psm-form__info-text'
+                }`}
+              >
+                {this.props.invalid
+                  ? this.props.errorText
+                  : this.props.infoText}
+              </div>
+            )}
+          </>
         )}
       </>
     );

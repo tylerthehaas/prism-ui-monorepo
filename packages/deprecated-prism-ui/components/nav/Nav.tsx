@@ -2,7 +2,12 @@ import * as React from 'react';
 import './nav.scss';
 
 type NavProps = {
-  tabs: Array<{ tab: string; onClick?(event: any): any }>;
+  tabs: Array<{
+    tab: string;
+    onClick?(event: any): any;
+    numErrors: number;
+    isNew: boolean;
+  }>;
   active?: number;
   navigate(event: any, index: number, value: string): any;
 };
@@ -58,19 +63,46 @@ export default class Nav extends React.Component<NavProps, NavState> {
               aria-labelledby={t.tab}
               className={`psm-nav__tab ${
                 this.state.active === index ? 'psm-nav__active' : ''
+              } ${
+                this.state.isFocused === index && this.state.active !== index
+                  ? 'psm-nav__hovered'
+                  : ''
               }`}
               id={`tab-${index}`}
               key={index}
+              onBlur={() => {
+                this.setState({ isFocused: null });
+              }}
               onClick={event => {
                 this.handleClick(index, t, event);
+                this.setState({ isTab: false });
               }}
               onFocus={() => {
                 this.setState({ isFocused: index });
               }}
-              style={{ outline: this.state.isTab ? null : 'none' }}
+              onMouseEnter={() => this.setState({ isFocused: index })}
+              onMouseLeave={() => this.setState({ isFocused: null })}
+              style={{ outline: 'none' }}
               tabIndex={0}
             >
-              <span>{t.tab}</span>
+              <span>
+                {t.tab}
+                {t.numErrors && (
+                  <span
+                    className={`psm-nav__tab ${
+                      t.isNew ? 'psm-nav__new' : 'psm-nav__badge'
+                    }`}
+                  >
+                    <span
+                      className={`${
+                        t.isNew ? 'psm-nav__new-text' : 'psm-nav__badge-text'
+                      }`}
+                    >
+                      {t.isNew ? 'new' : t.numErrors}
+                    </span>
+                  </span>
+                )}
+              </span>
             </li>
           );
         })}

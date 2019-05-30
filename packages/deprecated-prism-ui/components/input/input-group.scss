@@ -5,12 +5,11 @@
 .psm-input-leading-icon,
 .psm-input-trailing-icon {
   position: relative;
-  overflow: hidden;
 
   & > [class^='psm-icon'],
   [class*=' psm-icon'] {
     position: absolute;
-    top: 14px;
+    top: 21px;
   }
 }
 
@@ -19,6 +18,7 @@
   [class*=' psm-icon'] {
     left: $psm-spacing-md;
     right: initial;
+    color: $psm-color-gray-900;
   }
 
   & > input:not([type='checkbox']):not([type='radio']) {
@@ -31,6 +31,7 @@
   [class*=' psm-icon'] {
     left: initial;
     right: $psm-spacing-md;
+    color: $psm-color-gray-900;
   }
 
   & > input:not([type='checkbox']):not([type='radio']) {

@@ -14,6 +14,7 @@ type SelectState = {
   dropdown?: boolean;
   radio?: boolean;
   isFocused: number;
+  isTab: boolean;
 };
 
 export default class Select extends React.Component<SelectProps, SelectState> {
@@ -25,6 +26,7 @@ export default class Select extends React.Component<SelectProps, SelectState> {
       dropdown: this.props.dropdown,
       radio: this.props.radio,
       isFocused: null,
+      isTab: false,
     };
   }
   static defaultProps: SelectProps = {
@@ -77,6 +79,12 @@ export default class Select extends React.Component<SelectProps, SelectState> {
     }
   }
 
+  handleTab = event => {
+    if (event.keyCode === 9) {
+      this.setState({ isTab: true });
+    }
+  };
+
   handleEnter = event => {
     if (event.charCode === 13) {
       this.handleClick(this.state.isFocused)(event);
@@ -84,9 +92,11 @@ export default class Select extends React.Component<SelectProps, SelectState> {
   };
   componentDidMount() {
     document.addEventListener('keypress', this.handleEnter, false);
+    document.addEventListener('keydown', this.handleTab, false);
   }
   componentWillUnmount() {
     document.removeEventListener('keypress', this.handleEnter, false);
+    document.removeEventListener('keydown', this.handleTab, false);
   }
 
   handleClick = i => event => {
@@ -113,6 +123,7 @@ export default class Select extends React.Component<SelectProps, SelectState> {
     if (this.props.dropdown) {
       this.props.onClick(event);
     }
+    this.setState({ isTab: false });
   };
 
   public render() {
@@ -134,6 +145,7 @@ export default class Select extends React.Component<SelectProps, SelectState> {
                 onBlur={() => this.setState({ isFocused: null })}
                 onClick={this.handleClick(index)}
                 onFocus={() => this.setState({ isFocused: index })}
+                style={{ outline: this.state.isTab ? null : 'none' }}
                 tabIndex={0}
               >
                 {t.text}

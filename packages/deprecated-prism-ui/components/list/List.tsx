@@ -26,6 +26,7 @@ type ListState = {
   isFocusedColumn: number;
   isFocusedRow: number;
   idPrefix: string;
+  isTab: boolean;
 };
 
 export default class List extends React.Component<ListProps, ListState> {
@@ -35,6 +36,7 @@ export default class List extends React.Component<ListProps, ListState> {
       size: this.props.size,
       isFocusedColumn: 0,
       isFocusedRow: 0,
+      isTab: false,
       idPrefix:
         this.props.idPrefix ||
         Math.random()
@@ -57,6 +59,7 @@ export default class List extends React.Component<ListProps, ListState> {
       } else {
         this.setState({ isFocusedRow: this.props.rows.length - 1 });
       }
+      this.setState({ isTab: true });
     }
 
     if (event.keyCode === 40) {
@@ -65,6 +68,7 @@ export default class List extends React.Component<ListProps, ListState> {
       } else {
         this.setState({ isFocusedRow: 0 });
       }
+      this.setState({ isTab: true });
     }
 
     if (event.keyCode === 39) {
@@ -73,6 +77,7 @@ export default class List extends React.Component<ListProps, ListState> {
       } else {
         this.setState({ isFocusedColumn: 0 });
       }
+      this.setState({ isTab: true });
     }
 
     if (event.keyCode === 37) {
@@ -81,6 +86,11 @@ export default class List extends React.Component<ListProps, ListState> {
       } else {
         this.setState({ isFocusedColumn: columnsLength - 1 });
       }
+      this.setState({ isTab: true });
+    }
+
+    if (event.keyCode === 9) {
+      this.setState({ isTab: true });
     }
 
     if (event.keyCode !== 9) {
@@ -104,6 +114,7 @@ export default class List extends React.Component<ListProps, ListState> {
           this.state.isFocusedColumn
         ].onClick;
       }
+      this.setState({ isTab: false });
     }
   };
 
@@ -148,7 +159,11 @@ export default class List extends React.Component<ListProps, ListState> {
                               this.state.idPrefix
                             }-row-${i}-column-div-${index}`}
                             key={index}
+                            onClick={() => this.setState({ isTab: false })}
                             role="listitem"
+                            style={{
+                              outline: this.state.isTab ? null : 'none',
+                            }}
                             tabIndex={0}
                           >
                             {c.text}
@@ -160,7 +175,7 @@ export default class List extends React.Component<ListProps, ListState> {
                             aria-label={`${c.text}-button`}
                             key={index}
                             role="listitem"
-                            tabIndex={0}
+                            tabIndex={-1}
                           >
                             <button
                               className="psm-button--primary"
@@ -171,8 +186,14 @@ export default class List extends React.Component<ListProps, ListState> {
                                 this.state.idPrefix
                               }-row-${i}-column-div-${index}`}
                               key={index}
-                              onClick={c.onClick}
-                              tabIndex={-1}
+                              onClick={() => {
+                                c.onClick;
+                                this.setState({ isTab: false });
+                              }}
+                              style={{
+                                outline: this.state.isTab ? null : 'none',
+                              }}
+                              tabIndex={0}
                             >
                               {c.text}
                             </button>
@@ -190,7 +211,11 @@ export default class List extends React.Component<ListProps, ListState> {
                               this.state.idPrefix
                             }-row-${i}-column-div-${index}`}
                             key={index}
+                            onClick={() => this.setState({ isTab: false })}
                             role="listitem"
+                            style={{
+                              outline: this.state.isTab ? null : 'none',
+                            }}
                             tabIndex={0}
                           >
                             {c.text}
@@ -214,8 +239,14 @@ export default class List extends React.Component<ListProps, ListState> {
                                 this.state.idPrefix
                               }-row-${i}-column-div-${index}`}
                               key={index}
-                              onClick={c.onClick}
-                              tabIndex={-1}
+                              onClick={() => {
+                                c.onClick();
+                                this.setState({ isTab: false });
+                              }}
+                              style={{
+                                outline: this.state.isTab ? null : 'none',
+                              }}
+                              tabIndex={0}
                             >
                               {c.text}
                             </button>

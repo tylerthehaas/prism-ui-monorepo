@@ -67,10 +67,11 @@ describe('<Radio />', () => {
             checked: true,
           },
         ]}
-        idPrefix={'1'}
+        idPrefix={'pre'}
+        name={'radio'}
       />,
     );
-    container.find('#radio-div-0').simulate('focus');
+    container.find('#pre-radio-0').simulate('focus');
     expect(container.state('isFocused')).toEqual(0);
   });
   it('CLick sets selectedOption to current index', () => {
@@ -88,10 +89,11 @@ describe('<Radio />', () => {
             checked: true,
           },
         ]}
-        idPrefix={'1'}
+        idPrefix={'pre'}
+        name={'radio'}
       />,
     );
-    container.find('#radio-div-0').simulate('click');
+    container.find('#pre-radio-0').simulate('click');
     expect(container.state('selectedOption')).toEqual(0);
   });
 });

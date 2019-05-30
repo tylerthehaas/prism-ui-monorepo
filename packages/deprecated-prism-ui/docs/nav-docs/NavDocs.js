@@ -67,9 +67,33 @@ export default class NavDocs extends React.Component {
                   console.log(`index: ${index}\nvalue: ${value}`);
                 }}
                 tabs={[
-                  { tab: 'Received', onClick: () => console.log('Received') },
-                  { tab: 'Given', onClick: () => console.log('Given') },
-                  { tab: 'Personal', onClick: () => console.log('Personal') },
+                  {
+                    tab: 'Received',
+                    onClick: () => console.log('Received'),
+                    numErrors: 10,
+                    isNew: true,
+                  },
+                  {
+                    tab: 'Given',
+                    onClick: () => console.log('Given'),
+                    numErrors: 9,
+                  },
+                  {
+                    tab: 'Personal',
+                    onClick: () => console.log('Personal'),
+                    numErrors: 8,
+                  },
+                  {
+                    tab: 'Personal',
+                    onClick: () => console.log('Personal'),
+                    numErrors: 7,
+                    isNew: true,
+                  },
+                  {
+                    tab: 'Personal',
+                    onClick: () => console.log('Personal'),
+                    numErrors: 6,
+                  },
                 ]}
               />
             </div>

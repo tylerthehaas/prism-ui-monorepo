@@ -2,23 +2,7 @@ import * as React from 'react';
 import './alert.scss';
 import Icon from '../core/svg-icons';
 
-type Link = {
-  text: string;
-  href: string;
-};
-
-type AlertButton = {
-  text: string;
-  onClick(event: any): any;
-};
-
 export enum Type {
-  basic = '',
-  button = 'psm-alert--btn',
-  inline = 'psm-alert--inline',
-}
-
-export enum Style {
   error = 'psm-alert--error',
   info = 'psm-alert--info',
   success = 'psm-alert--success',
@@ -27,38 +11,18 @@ export enum Style {
 
 type AlertProps = {
   dataTestId?: String;
-  message: string;
-  style: Style;
   type: Type;
-  link?: Link;
-  button?: AlertButton;
+  onDismiss?(event: any): any;
 };
 
 export default class Alert extends React.Component<AlertProps, any> {
   constructor(props: AlertProps) {
     super(props);
-    this.state = {
-      dismissed: false,
-      isFocused: false,
-    };
+    this.state = {};
   }
 
   static defaultProps: AlertProps = {
-    message: 'Alert message',
-    style: Style.info,
-    type: Type.basic,
-  };
-
-  hasLink = () => {
-    return this.props.link !== undefined && this.props.link !== null;
-  };
-
-  handleDismiss = () => {
-    this.setState({ dismissed: true });
-  };
-
-  messageClass = () => {
-    return this.props.type !== Type.inline ? 'psm-alert__msg' : '';
+    type: Type.info,
   };
 
   componentDidMount() {
@@ -69,8 +33,11 @@ export default class Alert extends React.Component<AlertProps, any> {
   }
 
   handleEnter = event => {
-    if (event.charCode === 13 && this.state.isFocused) {
-      this.handleDismiss();
+    if (
+      event.charCode === 13 &&
+      document.activeElement === document.getElementById('alert-nub-close')
+    ) {
+      this.props.onDismiss(event);
     }
   };
 
@@ -79,57 +46,37 @@ export default class Alert extends React.Component<AlertProps, any> {
       <>
         {!this.state.dismissed && (
           <div
-            className={`psm-alert ${this.props.style} ${this.props.type}`}
+            className={`psm-alert ${this.props.type}`}
             data-testid={this.props.dataTestId}
             role="alert"
-            tabIndex={0}
           >
-            <span className={`${this.messageClass()}`}>
-              {this.props.message}
-            </span>
-            {this.hasLink() && (
-              <a
-                aria-labelledby={this.props.link.text}
-                className="psm-alert__action"
-                data-testid={`${this.props.dataTestId}-link`}
-                href={this.props.link.href}
-                role="link"
-                tabIndex={0}
-              >
-                {this.props.link.text}
-              </a>
-            )}
-            {this.props.type === Type.basic && (
-              <span
-                aria-label={this.state.isFocused ? 'Close button' : ''}
-                className="psm-alert__close"
-                data-testid={`${this.props.dataTestId}-icon`}
-                onClick={this.handleDismiss}
-                onFocus={() => {
-                  this.setState({ isFocused: true });
-                }}
-                tabIndex={0}
-              >
-                <Icon
-                  name="close"
-                  height="16px"
-                  width="16px"
-                  fill={
-                    this.props.style == 'psm-alert--warning' ? 'black' : 'white'
-                  }
+            <div
+              className={`psm-alert__not-nub`}
+              id={`alert-not-nub`}
+              onClick={() => {
+                document.getElementById('alert-not-nub').blur();
+              }}
+              tabIndex={0}
+            >
+              <span>{this.props.children}</span>
+            </div>
+            <div
+              className={`psm-alert__nub `}
+              id={`alert-nub-close`}
+              onClick={() => {
+                this.props.onDismiss;
+                document.getElementById('alert-nub-close').blur();
+              }}
+              tabIndex={0}
+            >
+              <div className="psm-alert__close ">
+                <i
+                  aria-label={'Close alert'}
+                  className="psm-icon-simple-remove"
+                  data-testid={`${this.props.dataTestId}-icon`}
                 />
-              </span>
-            )}
-            {this.props.type === Type.button && (
-              <button
-                aria-labelledby={this.props.button.text}
-                className="psm-alert__btn psm-button"
-                data-testid={`${this.props.dataTestId}-button`}
-                onClick={this.props.button.onClick}
-              >
-                {this.props.button.text}
-              </button>
-            )}
+              </div>
+            </div>
           </div>
         )}
       </>

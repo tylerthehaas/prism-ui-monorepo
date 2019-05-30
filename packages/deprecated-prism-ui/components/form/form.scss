@@ -1,0 +1,51 @@
+@import "../core/color/variables";
+@import "../core/spacing/variables";
+@import "../core/type/variables";
+@import "../core/icon/variables";
+
+.psm-form {
+  text-align: left;
+  &.psm-form__header {
+    font-family: $psm-type-font-header;
+    font-weight: bold;
+    color: $psm-color-gray-900;
+    font-size: $psm-form-header-font-size;
+  }
+
+  &.psm-form__paragraph {
+    color: $psm-color-gray-900;
+    font-size: $psm-paragraph-font-size;
+  }
+  &.psm-form__button {
+    background-color: $psm-color-active-indicator;
+    border-color: $psm-color-active-indicator;
+    outline-style: none;
+    color: white;
+    margin-top: 8px;
+
+    &.psm-form__button--secondary {
+      color: $psm-color-gray-900;
+      min-width: 0px;
+      margin-left: 8px;
+      border-color: transparent;
+      background-color: transparent;
+      &:hover {
+        background-color: $psm-color-gray-100;
+      }
+    }
+  }
+}
+
+.psm-form__input-half {
+  display: flex;
+  justify-content: space-between;
+  & > div {
+    // display: inline-block;
+    width: calc(50% - 8px);
+  }
+}
+
+.psm-form-textarea {
+  -webkit-appearance: none;
+  width: 100%;
+}

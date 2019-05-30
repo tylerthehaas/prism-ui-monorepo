@@ -3,20 +3,70 @@
 @import '../core/icon/variables';
 
 .psm-nav__tab {
-  height: 36px;
-  padding: 0 $psm-spacing-xl;
+  height: 44px;
+  padding: 0 $psm-spacing-lg;
   width: fit-content;
   margin: 0;
+  position: relative;
+  font-weight: bold;
+  color: $psm-color-gray-900;
   cursor: pointer;
+  line-height: 44px;
+  border-bottom: $psm-spacing-sm solid transparent;
   &.psm-nav__active {
-    border-bottom: $psm-spacing-xs solid #008ae5;
-    // outline-style: unset;
+    border-bottom: $psm-spacing-sm solid $psm-color-active-indicator;
+  }
+  &.psm-nav__hovered {
+    border-bottom: $psm-spacing-sm solid #d4d4d4;
   }
   &.psm-nav__click {
     outline-style: none;
+  }
+  &.psm-nav__badge {
+    padding: 0;
+    height: 12px;
+    background-color: $psm-color-error;
+    color: white;
+    border-radius: 3px;
+    margin-left: 8px;
+    font-weight: bold;
+    display: inline-block;
+    line-height: 16px;
+  }
+  &.psm-nav__new {
+    padding: 0;
+    height: 12px;
+    background-color: $psm-color-info;
+    color: white;
+    border-radius: 3px;
+    margin-left: 8px;
+    display: inline-block;
+    line-height: 16px;
   }
 }
 
 .psm-nav {
   border-bottom: 1px solid #dadcdd;
+}
+
+.psm-nav__badge-text {
+  text-rendering: optimizeLegibility;
+  display: inline-block;
+  position: relative;
+  bottom: 1px;
+  font-weight: bold;
+  color: white;
+  font-size: 11px;
+  margin: 0 3px;
+  line-height: 14px;
+}
+.psm-nav__new-text {
+  display: inline-block;
+  position: relative;
+  bottom: 2px;
+  font-weight: normal;
+  color: white;
+  font-size: 11px;
+  margin: 0 3px;
+  line-height: 14px;
 }

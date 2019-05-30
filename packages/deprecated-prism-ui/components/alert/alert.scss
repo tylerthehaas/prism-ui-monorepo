@@ -1,26 +1,59 @@
 @import '../core/color/variables';
 @import '../core/spacing/variables';
 @import '../core/icon/variables';
+@import '../core/color/functions';
 
 .psm-alert {
-  width: fit-content;
+  width: 100%;
   display: block;
-  min-width: 312px;
-  text-align: center;
-  border-radius: $psm-spacing-sm;
-  padding: $psm-spacing-sm $psm-spacing-lg;
+  min-height: 56px;
+  line-height: 24px;
+  text-align: left;
+  outline: none;
+  border-radius: 4px;
+  position: relative;
 
+  & .psm-alert__nub {
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 56px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    cursor: pointer;
+    outline: none;
+  }
+  & .psm-alert__not-nub {
+    height: calc(100% - 32px);
+    outline: none;
+    padding: 16px 0 16px 16px;
+    width: calc(100% - 72px);
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+  }
   & > .psm-alert__msg {
     vertical-align: middle;
-    padding: 0 $psm-spacing-md;
   }
-  & > .psm-alert__close {
+  & .psm-alert__close {
     cursor: pointer;
-    float: right;
-    margin: 1px -12px;
-    transform: scale(0.5);
-    svg {
-      vertical-align: middle;
+    position: absolute;
+    right: 16px;
+    top: 16px;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    font-weight: normal;
+    justify-content: center;
+    align-items: center;
+    outline-style: none;
+    & > .psm-icon-simple-remove {
+      height: fit-content;
+      display: inline-block;
+      transform: scale(1.1);
+      line-height: 24px;
+      outline-style: none;
     }
   }
   & > .psm-alert__action {
@@ -35,105 +68,129 @@
   }
 }
 .psm-alert--warning {
-  color: #282921;
-  background-color: #f0c32c;
-  &:hover {
-    background-color: #e6b613;
+  color: $psm-color-warning;
+  background-color: $psm-color-warning-background;
+  & a {
+    color: $psm-color-warning !important;
+    font-weight: bold;
+  }
+  & .psm-alert__not-nub {
+    & .psm-alert--hover {
+      background-color: alpha-blend($psm-color-warning-background, 0.94, black);
+    }
+    &:hover {
+      background-color: alpha-blend($psm-color-warning-background, 0.94, black);
+    }
+  }
+  & .psm-alert__close:hover {
+    color: alpha-blend($psm-color-warning-background, 0.4, black);
+  }
+  & .psm-alert__nub {
+    background-color: $psm-color-warning-background;
+    &:hover {
+      background-color: alpha-blend($psm-color-warning-background, 0.94, black);
+      & .psm-icon-simple-remove {
+        color: alpha-blend($psm-color-warning, 0.4, black);
+      }
+    }
+    & .psm-alert--hover {
+      background-color: alpha-blend($psm-color-warning-background, 0.94, black);
+    }
   }
 }
 
 .psm-alert--info {
-  background-color: #0178d3;
-  color: white;
-  &:hover {
-    background-color: #005ea5;
+  background-color: $psm-color-info-background;
+  color: $psm-color-info;
+  & a {
+    color: $psm-color-info !important;
+    font-weight: bold;
   }
-  & > .psm-alert__btn {
-    outline-color: white;
+  & .psm-alert__not-nub {
+    & .psm-alert--hover {
+      background-color: alpha-blend($psm-color-info-background, 0.94, black);
+    }
+    &:hover {
+      background-color: alpha-blend($psm-color-info-background, 0.94, black);
+    }
+  }
+  & .psm-alert__close:hover {
+    color: alpha-blend($psm-color-info-background, 0.4, black);
+  }
+  & .psm-alert__nub {
+    background-color: $psm-color-info-background;
+    &:hover {
+      background-color: alpha-blend($psm-color-info-background, 0.94, black);
+      & .psm-icon-simple-remove {
+        color: alpha-blend($psm-color-info, 0.4, black);
+      }
+    }
+    & .psm-alert--hover {
+      background-color: alpha-blend($psm-color-info-background, 0.94, black);
+    }
   }
 }
 
 .psm-alert--error {
-  background-color: #d0021b;
-  color: white;
-  &:hover {
-    background-color: #aa0015;
+  background-color: $psm-color-error-background;
+  color: $psm-color-error;
+  & a {
+    color: $psm-color-error !important;
+    font-weight: bold;
   }
-  & > .psm-alert__btn {
-    outline-color: white;
+  & .psm-alert__not-nub {
+    & .psm-alert--hover {
+      background-color: alpha-blend($psm-color-error-background, 0.94, black);
+    }
+    &:hover {
+      background-color: alpha-blend($psm-color-error-background, 0.94, black);
+    }
+  }
+  & .psm-alert__close:hover {
+    color: alpha-blend($psm-color-error-background, 0.4, black);
+  }
+  & .psm-alert__nub {
+    background-color: $psm-color-error-background;
+    &:hover {
+      background-color: alpha-blend($psm-color-error-background, 0.94, black);
+      & .psm-icon-simple-remove {
+        color: alpha-blend($psm-color-error, 0.4, black);
+      }
+    }
+    & .psm-alert--hover {
+      background-color: alpha-blend($psm-color-error-background, 0.94, black);
+    }
   }
 }
 
 .psm-alert--success {
-  background-color: #28a450;
-  color: white;
-  &:hover {
-    background-color: #0b8b34;
+  background-color: $psm-color-success-background;
+  color: $psm-color-success;
+  & a {
+    color: $psm-color-success !important;
+    font-weight: bold;
   }
-  & > .psm-alert__btn {
-    outline-color: white;
-  }
-}
-
-.psm-alert--inline {
-  text-align: center;
-  display: inline-block;
-  min-width: unset;
-  min-height: unset;
-  padding: 0 $psm-spacing-sm;
-}
-
-.psm-alert--btn {
-  text-align: left;
-  min-width: 512px;
-  padding: $psm-spacing-lg;
-
-  & > .psm-alert__btn {
-    float: right;
-    background-color: white;
-    color: black;
-    border-radius: $psm-spacing-sm;
-    margin: -5px 0px;
-  }
-
-  & > .psm-alert__msg {
-    padding: 0 $psm-spacing-lg 0 0;
-  }
-}
-
-.psm-alert--inline.psm-alert--warning {
-  & > .psm-alert__inline-icon {
-    color: #282921;
-    background-color: #f0c32c;
+  & .psm-alert__not-nub {
+    &:focus {
+      background-color: alpha-blend($psm-color-success-background, 0.94, black);
+    }
     &:hover {
-      background-color: #e6b613;
+      background-color: alpha-blend($psm-color-success-background, 0.94, black);
     }
   }
-}
-.psm-alert--inline.psm-alert--info {
-  & > .psm-alert__inline-icon {
-    background-color: #0178d3;
-    color: white;
-    &:hover {
-      background-color: #005ea5;
-    }
+  & .psm-alert__close:hover {
+    color: alpha-blend($psm-color-success-background, 0.4, black);
   }
-}
-.psm-alert--inline.psm-alert--error {
-  & > .psm-alert__inline-icon {
-    background-color: #d0021b;
-    color: white;
+  & .psm-alert__nub {
+    background-color: $psm-color-success-background;
     &:hover {
-      background-color: #aa0015;
+      background-color: alpha-blend($psm-color-success-background, 0.94, black);
+      & .psm-icon-simple-remove {
+        color: alpha-blend($psm-color-success, 0.4, black);
+      }
     }
-  }
-}
-.psm-alert--inline.psm-alert--success {
-  & > .psm-alert__inline-icon {
-    background-color: #28a450;
-    color: white;
-    &:hover {
-      background-color: #0b8b34;
+    &:focus {
+      background-color: alpha-blend($psm-color-success-background, 0.94, black);
     }
   }
 }

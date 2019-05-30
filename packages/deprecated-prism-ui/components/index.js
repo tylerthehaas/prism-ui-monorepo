@@ -1,5 +1,3 @@
-const assert = require('assert');
-
 const ButtonSource = require('./button/Button');
 const InputSource = require('./input/Input');
 const RadioSource = require('./radio/Radio');
@@ -16,6 +14,9 @@ const ChipSource = require('./chip/Chip');
 const ModalSource = require('./modal/Modal');
 const AvatarSource = require('./avatar/Avatar');
 const IconSource = require('./icon/Icon');
+const FormSource = require('./form/form');
+const SliderSource = require('./slider/slider');
+const SpinnerSource = require('./spinner/Spinner');
 
 export const Button = ButtonSource.default;
 export const Input = InputSource.default;
@@ -33,6 +34,9 @@ export const Modal = ModalSource.default;
 export const Avatar = AvatarSource.default;
 export const Table = TableSource.default;
 export const Icon = IconSource.default;
+export const Form = FormSource.default;
+export const Slider = SliderSource.default;
+export const Spinner = SpinnerSource.default;
 
 const Prism = {
   Button,
@@ -51,6 +55,9 @@ const Prism = {
   Avatar,
   Table,
   Icon,
+  Form,
+  Slider,
+  Spinner,
 };
 
 export default Prism;

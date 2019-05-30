@@ -1,18 +1,22 @@
 import React from 'react';
-import { render, fireEvent } from 'react-testing-library';
+import { render } from 'react-testing-library';
 import 'jest-dom/extend-expect';
 
-import Alert, { Style, Type } from './Alert';
+import Alert, { Type } from './Alert';
 
 describe('<Alert/>', () => {
   describe('Component Defaults', () => {
-    it('defaults to Style.info', () => {
+    it('defaults to Type.info', () => {
       const { container } = render(<Alert />);
       expect(container.firstChild).toHaveClass('psm-alert--info');
     });
 
-    it("defaults to 'Alert message'", () => {
-      const { getByText } = render(<Alert />);
+    it('accepts children', () => {
+      const { getByText } = render(
+        <Alert>
+          <span>Alert message</span>
+        </Alert>,
+      );
       expect(getByText('Alert message')).toBeInTheDocument();
     });
 
@@ -22,72 +26,25 @@ describe('<Alert/>', () => {
     });
   });
 
-  describe('Style is changed', () => {
+  describe('Type is changed', () => {
     it('is a success type', () => {
-      const { container } = render(<Alert style={Style.success} />);
+      const { container } = render(<Alert type={Type.success} />);
       expect(container.firstChild).toHaveClass('psm-alert--success');
     });
 
     it('is an info type', () => {
-      const { container } = render(<Alert style={Style.info} />);
+      const { container } = render(<Alert type={Type.info} />);
       expect(container.firstChild).toHaveClass('psm-alert--info');
     });
 
     it('is a warning type', () => {
-      const { container } = render(<Alert style={Style.warning} />);
+      const { container } = render(<Alert type={Type.warning} />);
       expect(container.firstChild).toHaveClass('psm-alert--warning');
     });
 
     it('is an error type', () => {
-      const { container } = render(<Alert style={Style.error} />);
+      const { container } = render(<Alert type={Type.error} />);
       expect(container.firstChild).toHaveClass('psm-alert--error');
-    });
-  });
-
-  describe('Message is defined', () => {
-    it('uses the custom message', () => {
-      const alertMessage = 'A custom alert message';
-      const { getByText } = render(<Alert message={alertMessage} />);
-      expect(getByText(alertMessage)).toBeInTheDocument();
-    });
-  });
-
-  describe('Alert with a link', () => {
-    it('includes a link', () => {
-      const link = { text: 'Alert link', href: '#' };
-      const { getByText } = render(<Alert link={link} />);
-      expect(getByText('Alert link')).toBeInTheDocument();
-    });
-  });
-
-  describe('Type is changed', () => {
-    it('is a basic alert', () => {
-      const { container } = render(<Alert type={Type.basic} />);
-      expect(container.querySelector('svg').parentElement).toHaveClass(
-        'psm-alert__close',
-      );
-    });
-
-    it('is a button alert', () => {
-      const { container } = render(
-        <Alert button={{ text: 'Button', onClick: null }} type={Type.button} />,
-      );
-      expect(container.querySelector('button')).toHaveClass('psm-alert__btn');
-    });
-
-    it('is an inline alert', () => {
-      const { container } = render(
-        <Alert link={{ text: 'Link', href: null }} type={Type.inline} />,
-      );
-      expect(container.firstChild).toHaveClass('psm-alert--inline');
-    });
-  });
-
-  describe('Dismissed', () => {
-    it('removes the element', () => {
-      const { container } = render(<Alert />);
-      fireEvent.click(container.querySelector('svg'));
-      expect(container).toBeEmpty();
     });
   });
 });

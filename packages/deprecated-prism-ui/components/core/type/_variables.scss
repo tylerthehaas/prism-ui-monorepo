@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
 $psm-mount-location: '' !default;
 $psm-type-font-safe: 'Helvetica', 'Arial', sans-serif !default;
-$psm-type-font-family: 'ProximaNova-Reg', $psm-type-font-safe;
+$psm-type-font-header: 'ProximaNova-Reg', $psm-type-font-safe;
+$psm-type-font-family: 'Roboto', sans-serif;
+
+$psm-paragraph-font-size: 14px;
+$psm-subtext-font-size: 12px;
+$psm-form-header-font-size: 18px;

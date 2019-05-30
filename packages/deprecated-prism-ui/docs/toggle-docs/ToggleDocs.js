@@ -78,10 +78,9 @@ export default class ToggleDocs extends React.Component {
               <span
                 className="psm-alert psm-alert--success"
                 style={{
-                  margin: '0 auto',
-                  backgroundColor: this.state.toggleOn ? '#28a450' : 'white',
+                  backgroundColor: this.state.toggleOn ? '#edf6f3' : 'white',
+                  color: this.state.toggleOn ? '#0f7d52' : 'white',
                   transition: 'all 0.6s',
-                  marginTop: 8,
                 }}
               >
                 The switch is on!

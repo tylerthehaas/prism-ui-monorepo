@@ -4,26 +4,83 @@
 @import '../core/icon/variables';
 
 .psm-input {
-  font-family: $psm-type-font-family;
   width: 100%;
-  height: 36px;
-  margin: 3px 0;
-  padding: 6px $psm-spacing-lg;
-  font-size: 0.875rem;
+  height: 40px;
+  margin: 8px 0;
+  padding: 7px 12px;
+  font-size: $psm-paragraph-font-size;
   box-sizing: border-box;
-  border: 1px solid $psm-color-gray-200;
+  border: 1px solid $psm-color-gray-300;
   border-radius: 3px;
+  outline-style: none;
+  color: $psm-color-gray-900;
+  &::placeholder {
+    color: $psm-color-gray-500;
+  }
+
+  &.psm-input--clicked {
+    border-color: #42a5f5;
+    box-shadow: 0 0 0 $psm-spacing-xs #e3f2fd;
+    &.psm-input--error,
+    &.psm-input:invalid {
+      box-shadow: 0 0 0 $psm-spacing-xs #fceded;
+    }
+  }
 
   &:hover {
     border-color: #42a5f5;
     box-shadow: 0 0 0 $psm-spacing-xs #e3f2fd;
+    &.psm-input--error,
+    &.psm-input:invalid {
+      box-shadow: 0 0 0 $psm-spacing-xs #fceded;
+    }
   }
 
   &.psm-input--error,
-  &.psm-input--active:invalid {
-    border-color: #f44923;
-    box-shadow: 0 0 0 $psm-spacing-xs rgba(244, 73, 35, 0.2);
+  &.psm-input:invalid {
+    border-color: #d70e16;
   }
+  &:disabled {
+    background-color: #f8f8f8;
+    border: 1px solid $psm-color-gray-300 !important;
+    box-shadow: none !important;
+    color: $psm-color-gray-400;
+    &::placeholder {
+      color: $psm-color-gray-400;
+    }
+  }
+}
+.psm-form__label {
+  margin: 16px 0px 0px;
+  color: $psm-color-gray-900;
+  font-size: $psm-paragraph-font-size;
+  line-height: $psm-paragraph-font-size;
+  font-weight: 900;
+  text-align: left;
+}
+.psm-form__optional {
+  margin-left: 8px;
+  color: $psm-color-gray-700;
+  font-size: $psm-paragraph-font-size;
+  font-weight: normal;
+}
+
+.psm-form__subtext,
+%psm-form__subtext {
+  text-align: left;
+  margin-bottom: 8px;
+  font-size: $psm-subtext-font-size;
+  line-height: $psm-subtext-font-size;
+}
+
+.psm-form__info-text {
+  @extend %psm-form__subtext;
+  color: $psm-color-gray-700;
+}
+
+.psm-form__error-text {
+  @extend %psm-form__subtext;
+  color: $psm-color-error;
 }
 
 .psm-select {
@@ -56,8 +113,8 @@
   &::before {
     content: '';
     background-color: #ffffff;
-    height: 12px;
-    width: 12px;
+    height: $psm-subtext-font-size;
+    width: $psm-subtext-font-size;
     border: 1px solid $psm-color-gray-300;
     padding: 0;
     margin: 0 $psm-spacing-lg 0 0;
