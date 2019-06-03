@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Input from '../input/input';
+import Input from '../input/Input';
 import TextBox from '../textbox/textbox';
 
 export enum InputTypes {

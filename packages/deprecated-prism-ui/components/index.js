@@ -1,63 +1,21 @@
-const ButtonSource = require('./button/Button');
-const InputSource = require('./input/Input');
-const RadioSource = require('./radio/Radio');
-const AlertSource = require('./alert/Alert');
-const PaginationSource = require('./pagination/Pagination');
-const NavSource = require('./nav/Nav');
-const ListSource = require('./list/List');
-const ToggleSource = require('./toggle/Toggle');
-const TableSource = require('./table/Table');
-const CardSource = require('./card/Card');
-const HrSource = require('./hr/Hr');
-const RolloverSource = require('./rollover/Rollover');
-const ChipSource = require('./chip/Chip');
-const ModalSource = require('./modal/Modal');
-const AvatarSource = require('./avatar/Avatar');
-const IconSource = require('./icon/Icon');
-const FormSource = require('./form/form');
-const SliderSource = require('./slider/slider');
-const SpinnerSource = require('./spinner/Spinner');
-
-export const Button = ButtonSource.default;
-export const Input = InputSource.default;
-export const Radio = RadioSource.default;
-export const Alert = AlertSource.default;
-export const Pagination = PaginationSource.default;
-export const Nav = NavSource.default;
-export const List = ListSource.default;
-export const Toggle = ToggleSource.default;
-export const Card = CardSource.default;
-export const Hr = HrSource.default;
-export const Rollover = RolloverSource.default;
-export const Chip = ChipSource.default;
-export const Modal = ModalSource.default;
-export const Avatar = AvatarSource.default;
-export const Table = TableSource.default;
-export const Icon = IconSource.default;
-export const Form = FormSource.default;
-export const Slider = SliderSource.default;
-export const Spinner = SpinnerSource.default;
-
-const Prism = {
-  Button,
-  Input,
-  Radio,
-  Alert,
-  Pagination,
-  Nav,
-  List,
-  Toggle,
-  Card,
-  Hr,
-  Rollover,
-  Chip,
-  Modal,
-  Avatar,
-  Table,
-  Icon,
-  Form,
-  Slider,
-  Spinner,
-};
-
-export default Prism;
+export { default as Alert } from './alert/Alert';
+export { default as Avatar } from './avatar/Avatar';
+export { default as Button } from './button/Button';
+export { default as Card } from './card/Card';
+export { default as Chip } from './chip/Chip';
+export { default as Form } from './form/form';
+export { default as Hr } from './hr/Hr';
+export { default as Icon } from './icon/Icon';
+export { default as Input } from './input/Input';
+export { default as List } from './list/List';
+export { default as Modal } from './modal/Modal';
+export { default as Nav } from './nav/Nav';
+export { default as Pagination } from './pagination/Pagination';
+export { default as Radio } from './radio/Radio';
+export { default as Rollover } from './rollover/Rollover';
+export { default as Table } from './table/Table';
+export { default as Select } from './select/Select';
+export { default as Slider } from './slider/slider';
+export { default as Spinner } from './spinner/Spinner';
+export { default as Textbox } from './textbox/textbox';
+export { default as Toggle } from './toggle/Toggle';

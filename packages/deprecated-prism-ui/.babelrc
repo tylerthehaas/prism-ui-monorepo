@@ -9,13 +9,13 @@
     "@babel/preset-react",
     "@babel/preset-typescript",
     [
-      "@babel/preset-env",
-      {
+      "@babel/preset-env", {
         "modules": false,
         "targets": {
           "browsers": ["last 2 versions", "ie >= 11"]
         },
-        "useBuiltIns": "usage"
+        "useBuiltIns": "usage",
+        "corejs": 3
       }
     ]
   ],

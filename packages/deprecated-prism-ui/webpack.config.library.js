@@ -5,14 +5,9 @@ const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const postcssPresetEnv = require('postcss-preset-env');
 const nodeModules = require('webpack-node-externals');
 
-const NODE_ENV = process.env.NODE_ENV || 'development';
-// Run production build in test env for the CI
-const isProd = NODE_ENV === 'production' || NODE_ENV === 'test';
-
 module.exports = {
   mode: 'production',
   context: path.resolve(__dirname),
-  devtool: 'hidden-source-map',
   entry: './components/index.js',
   module: {
     rules: [
@@ -26,7 +21,6 @@ module.exports = {
             options: {
               importLoaders: 2,
               localIdentName: '[name]__[local]___[hash:base64:5]',
-              sourceMap: !isProd,
             },
           },
         ],
@@ -41,7 +35,6 @@ module.exports = {
             options: {
               importLoaders: 2,
               localIdentName: '[name]__[local]___[hash:base64:5]',
-              sourceMap: !isProd,
             },
           },
           {
@@ -113,22 +106,11 @@ module.exports = {
       new UglifyJSPlugin({
         cache: true,
         parallel: true,
-        sourceMap: true,
       }),
       new OptimizeCSSAssetsPlugin({}),
     ],
+    moduleIds: 'total-size',
     runtimeChunk: false,
-    splitChunks: {
-      cacheGroups: {
-        commons: {
-          chunks: 'initial',
-          minSize: 1,
-          name: 'vendor',
-          test: /node_modules/,
-        },
-        default: false,
-      },
-    },
   },
   output: {
     filename: 'app.bundle.js',
