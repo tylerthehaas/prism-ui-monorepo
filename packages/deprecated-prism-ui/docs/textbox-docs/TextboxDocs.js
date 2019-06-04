@@ -1,13 +1,13 @@
 import React from 'react';
 import TextBox from '../../components/textbox/textbox';
-// import { PropsWindow, PropsList } from '../props';
-import { Example } from '../example';
+// import PropsWindow from '../props-window/PropsWindow';
+import Example from '../example/example';
 
 const HTML_CODE = `HTML Component Coming Soon`;
 
 const REACT_CODE = `React Component Coming Soon`;
 
-export class TextBoxDocs extends React.Component {
+export default class TextBoxDocs extends React.Component {
   constructor(props) {
     super(props);
     this.state = {

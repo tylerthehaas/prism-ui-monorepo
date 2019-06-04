@@ -1,6 +1,6 @@
 import * as React from 'react';
 import './pagination.scss';
-import AllIcons from '../core/svg-icons';
+import Icons from '../core/svg-icons';
 
 export type PaginationProps = {
   pagesShown?: number;
@@ -144,7 +144,7 @@ export default class Pagination extends React.Component<
             key="pagination-left-arrow"
             onClick={() => this.handleLeftArrow()}
           >
-            <AllIcons
+            <Icons
               name="small-left"
               height="16px"
               width="16px"
@@ -181,7 +181,7 @@ export default class Pagination extends React.Component<
             key="pagination-right-arrow"
             onClick={() => this.handleRightArrow()}
           >
-            <AllIcons
+            <Icons
               name="small-right"
               height="16px"
               width="16px"

@@ -1,13 +1,14 @@
 import React from 'react';
-import { Form } from '../../components/form';
-import { PropsWindow } from '../props';
-import { Example } from '../example';
+import Form from '../../components/form/form';
+import Example from '../example/example';
+import PropsWindow from '../props-window/PropsWindow';
+// import PropsList from '../props-list/PropsList';
 
 const HTML_CODE = `HTML Component Coming Soon`;
 
 const REACT_CODE = `React Component Coming Soon`;
 
-export class FormDocs extends React.Component {
+export default class FormDocs extends React.Component {
   constructor(props) {
     super(props);
     this.state = {

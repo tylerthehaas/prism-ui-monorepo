@@ -102,6 +102,16 @@ $psm-border-width: 1px;
 
 .psm-dropdown--primary {
   @extend %psm-button--primary;
+  div {
+    border-left: 1px solid white;
+    display: inline-block;
+    margin-left: 10px;
+    padding: 0px 8px;
+    margin-right: -16px;
+    svg {
+      vertical-align: text-bottom;
+    }
+  }
   &::after {
     font-family: '#{$icomoon-font-family}' !important;
     color: #ffffff;

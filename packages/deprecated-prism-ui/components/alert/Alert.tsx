@@ -41,6 +41,20 @@ export default class Alert extends React.Component<AlertProps, any> {
     }
   };
 
+  changeSvgColor = alertType => {
+    console.log(alertType);
+    switch (alertType) {
+      case 'psm-alert--warning':
+        return '#bd5316';
+      case 'psm-alert--error':
+        return '#d70e16';
+      case 'psm-alert--info':
+        return '#0066ed';
+      default:
+        return '#0f7d52';
+    }
+  };
+
   render() {
     return (
       <>
@@ -70,11 +84,27 @@ export default class Alert extends React.Component<AlertProps, any> {
               tabIndex={0}
             >
               <div className="psm-alert__close ">
-                <i
+                <span
                   aria-label={'Close alert'}
                   className="psm-icon-simple-remove"
                   data-testid={`${this.props.dataTestId}-icon`}
-                />
+                >
+                  <Icon
+                    name="close"
+                    height="16px"
+                    width="16px"
+                    // fill={
+                    //   this.props.type == 'psm-alert--warning'
+                    //     ? '#bd5316'
+                    //     : this.props.type == 'psm-alert--error'
+                    //       ? '#d70e16'
+                    //       : this.props.type == 'psm-alert--info'
+                    //         ? '#0066ed'
+                    //         : '#0f7d52'
+                    // }
+                    fill={this.changeSvgColor(this.props.type)}
+                  />
+                </span>
               </div>
             </div>
           </div>

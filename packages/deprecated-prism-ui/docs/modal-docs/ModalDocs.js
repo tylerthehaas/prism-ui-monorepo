@@ -5,24 +5,29 @@ import Example from '../example/example';
 import PropsList from '../props-list/PropsList';
 
 const HTML_CODE = `
-<div class="psm-modal--show" style="position: relative; height: 550px">
-    <h1 style="float: right; margin: 20px;">Browser Window</h1>
-    <div class="psm-modal__content" style="width: 80%;">
-      <i class="psm-icon-simple-remove psm-modal__close"></i>
-      <h3 class="psm-modal__header">Modal Header</h3>
-      <div class="psm-modal__body" style="max-height: 250px">
-        <p>Paragraph text that is contained inside the modal body. Paragraph text that is contained inside the modal
-          body. Paragraph text that is contained inside the modal body. Paragraph text that is contained inside the
-          modal.
-          body. Paragraph text that is contained inside the modal body. Paragraph text that is contained inside the
-          modal. </p>
-      </div>
-      <div class="psm-modal__footer">
-        <button class="psm-button" style="float: left;">Button</button>
-        <button class="psm-button psm-button--primary" style="float: right;">Button</button>
-      </div>
+<div className="psm-modal--show" style="position: relative; height: 550px">
+  <h1 style="float: right; margin: 20px;">Browser Window</h1>
+  <div className="psm-modal__content" style="width: 80%;">
+    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 16 16" xml:space="preserve" width="16" height="16">
+      <g className="nc-icon-wrapper" fill="#111111">
+        <path d="M14.7,1.3c-0.4-0.4-1-0.4-1.4,0L8,6.6L2.7,1.3c-0.4-0.4-1-0.4-1.4,0s-0.4,1,0,1.4L6.6,8l-5.3,5.3 c-0.4,0.4-0.4,1,0,1.4C1.5,14.9,1.7,15,2,15s0.5-0.1,0.7-0.3L8,9.4l5.3,5.3c0.2,0.2,0.5,0.3,0.7,0.3s0.5-0.1,0.7-0.3 c0.4-0.4,0.4-1,0-1.4L9.4,8l5.3-5.3C15.1,2.3,15.1,1.7,14.7,1.3z" fill="#111111"/>
+      </g>
+    </svg>
+    <h3 className="psm-modal__header">Modal Header</h3>
+    <div className="psm-modal__body" style="max-height: 250px">
+      <p>Paragraph text that is contained inside the modal body. Paragraph text that is contained inside the modal
+        body. Paragraph text that is contained inside the modal body. Paragraph text that is contained inside the
+        modal.
+        body. Paragraph text that is contained inside the modal body. Paragraph text that is contained inside the
+        modal. </p>
     </div>
-  </div>`;
+    <div className="psm-modal__footer">
+      <button className="psm-button" style="float: left;">Button</button>
+      <button className="psm-button psm-button--primary" style="float: right;">Button</button>
+    </div>
+  </div>
+</div>
+`;
 
 const REACT_CODE = `
 import { Modal } from "prism";

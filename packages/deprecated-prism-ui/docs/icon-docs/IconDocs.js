@@ -5,7 +5,13 @@ import Example from '../example/example';
 import PropsWindow from '../props-window/PropsWindow';
 import PropsList from '../props-list/PropsList';
 
-const HTML_CODE = `<i class="psm-icon-add"></i>`;
+const HTML_CODE = `
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 16 16" xml:space="preserve" width="16" height="16">
+  <g class="nc-icon-wrapper" fill="#111111">
+    <path fill="#111111" d="M15,7H9V1c0-0.6-0.4-1-1-1S7,0.4,7,1v6H1C0.4,7,0,7.4,0,8s0.4,1,1,1h6v6c0,0.6,0.4,1,1,1s1-0.4,1-1V9h6 c0.6,0,1-0.4,1-1S15.6,7,15,7z"></path>
+  </g>
+</svg>
+`;
 const REACT_CODE = `
 import { Icon } from "prism";
 

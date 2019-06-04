@@ -5,18 +5,29 @@ import Example from '../example/example';
 import PropsWindow from '../props-window/PropsWindow';
 import PropsList from '../props-list/PropsList';
 
-const HTML_CODE = `<div class="narrow">
-<input class="psm-input" type="text" placeholder="Text input">
-<input class="psm-input psm-input--active" type="text" placeholder="Text input in error state" required>
-<div class="psm-input-leading-icon">
-  <i class="psm-icon-calendar"></i>
-  <input class="psm-input" type="text" placeholder="Input with leading icon">
+const HTML_CODE = `
+<div className="narrow">
+  <input className="psm-input" placeholder="Text input" type="text" />
+  <input className="psm-input psm-input--active" placeholder="Text input in error state" required type="text" />
+  <div className="psm-input-leading-icon">
+  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 16 16" xml:space="preserve" width="16" height="16">
+      <g className="nc-icon-wrapper" fill="#111111">
+        <path d="M15,2h-2V0h-3v2H6V0H3v2H1C0.448,2,0,2.448,0,3v12c0,0.552,0.448,1,1,1h14c0.552,0,1-0.448,1-1V3 C16,2.448,15.552,2,15,2z M14,14H2V7h12V14z" fill="#111111"></path>
+      </g>
+    </svg>
+    <input className="psm-input" placeholder="Input with leading icon" type="text" />
+  </div>
+  <div className="psm-input-trailing-icon">
+  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 16 16" xml:space="preserve" width="16" height="16">
+    <g className="nc-icon-wrapper" fill="#111111">
+      <polygon fill="#111111" points="9.3,1.3 7.9,2.7 12.2,7 0,7 0,9 12.2,9 7.9,13.3 9.3,14.7 16,8 "></polygon>
+    </g>
+  </svg>
+    <input className="psm-input" placeholder="Input with trailing icon" type="text" />
+  </div>
+  <select className="psm-input psm-select"></select>
 </div>
-<div class="psm-input-trailing-icon">
-  <i class="psm-icon-tail-right"></i>
-  <input class="psm-input" type="text" placeholder="Input with trailing icon">
-</div>
-<select class="psm-input psm-select">`;
+`;
 
 const REACT_CODE = `<Input
 icon={{

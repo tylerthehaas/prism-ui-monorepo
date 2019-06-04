@@ -7,16 +7,34 @@ import PropsList from '../props-list/PropsList';
 
 const HTML_CODE = `
 <ul class="psm-pagination">
-  <li class="psm-icon-small-left"></li>
+  <li class="psm-icon">
+    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 16 16" xml:space="preserve" width="16" height="16">
+      <g className="nc-icon-wrapper" fill="#111111">
+        <polygon fill="#111111" points="10,13.4 4.6,8 10,2.6 11.4,4 7.4,8 11.4,12 "></polygon>
+      </g>
+    </svg>
+  </li>
   <li class="psm-pagination__number">1</li>
   <li class="psm-pagination__number">2</li>
   <li class="psm-pagination__number psm-pagination__active">3</li>
   <li class="psm-pagination__number">4</li>
   <li class="psm-pagination__number">5</li>
-  <li class="psm-icon-small-right"></li>
+  <li class="psm-icon">
+    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 16 16" xml:space="preserve" width="16" height="16">
+      <g className="nc-icon-wrapper" fill="#111111">
+        <polygon fill="#111111" points="6,13.4 4.6,12 8.6,8 4.6,4 6,2.6 11.4,8 " />
+      </g>
+    </svg>
+  </li>
 </ul>
 <ul class="psm-pagination">
-  <li class="psm-icon-small-left"></li>
+  <li class="psm-icon">
+    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 16 16" xml:space="preserve" width="16" height="16">
+      <g className="nc-icon-wrapper" fill="#111111">
+        <polygon fill="#111111" points="10,13.4 4.6,8 10,2.6 11.4,4 7.4,8 11.4,12 "></polygon>
+      </g>
+    </svg>
+  </li>
   <li class="psm-pagination__number">1</li>
   <li class="psm-pagination__elipses"></li>
   <li class="psm-pagination__number">8</li>
@@ -26,10 +44,22 @@ const HTML_CODE = `
   <li class="psm-pagination__number">12</li>
   <li class="psm-pagination__elipses"></li>
   <li class="psm-pagination__number">37</li>
-  <li class="psm-icon-small-right"></li>
+  <li class="psm-icon">
+    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 16 16" xml:space="preserve" width="16" height="16">
+      <g className="nc-icon-wrapper" fill="#111111">
+        <polygon fill="#111111" points="6,13.4 4.6,12 8.6,8 4.6,4 6,2.6 11.4,8 " />
+      </g>
+    </svg>
+  </li>
 </ul>
 <ul class="psm-pagination">
-  <li class="psm-icon-small-left"></li>
+  <li class="psm-icon">
+    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 16 16" xml:space="preserve" width="16" height="16">
+      <g className="nc-icon-wrapper" fill="#111111">
+        <polygon fill="#111111" points="10,13.4 4.6,8 10,2.6 11.4,4 7.4,8 11.4,12 "></polygon>
+      </g>
+    </svg>
+  </li>
   <li class="psm-pagination__number">1</li>
   <li class="psm-pagination__number">2</li>
   <li class="psm-pagination__number psm-pagination__active">3</li>
@@ -37,35 +67,13 @@ const HTML_CODE = `
   <li class="psm-pagination__number">5</li>
   <li class="psm-pagination__elipses"></li>
   <li class="psm-pagination__number">37</li>
-  <li class="psm-icon-small-right"></li>
-</ul>
-<ul class="psm-pagination">
-  <li class="psm-icon-small-left psm-pagination__disabled"></li>
-  <li class="psm-pagination__number psm-pagination__active">1</li>
-  <li class="psm-pagination__number">2</li>
-  <li class="psm-pagination__number ">3</li>
-  <li class="psm-pagination__number">4</li>
-  <li class="psm-icon-small-right"></li>
-</ul>
-<ul class="psm-pagination">
-  <li class="psm-icon-small-left"></li>
-  <li class="psm-pagination__number">1</li>
-  <li class="psm-pagination__number">2</li>
-  <li class="psm-pagination__number">3</li>
-  <li class="psm-pagination__number psm-pagination__active">4</li>
-  <li class="psm-pagination__number">5</li>
-  <li class="psm-pagination__number">6</li>
-  <li class="psm-pagination__number">7</li>
-  <li class="psm-icon-small-right"></li>
-</ul>
-<ul class="psm-pagination">
-  <li class="psm-icon-small-left"></li>
-  <li class="psm-pagination__number">1</li>
-  <li class="psm-pagination__elipses"></li>
-  <li class="psm-pagination__number">35</li>
-  <li class="psm-pagination__number">36</li>
-  <li class="psm-pagination__number psm-pagination__active">37</li>
-  <li class="psm-icon-small-right psm-pagination__disabled"></li>
+  <li class="psm-icon">
+    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 16 16" xml:space="preserve" width="16" height="16">
+      <g className="nc-icon-wrapper" fill="#111111">
+        <polygon fill="#111111" points="6,13.4 4.6,12 8.6,8 4.6,4 6,2.6 11.4,8 " />
+      </g>
+    </svg>
+  </li>
 </ul>
 </div>`;
 

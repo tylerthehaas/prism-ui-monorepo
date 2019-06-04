@@ -10,6 +10,7 @@ import ButtonDocs from '../button-docs/ButtonDocs';
 import CardDocs from '../card-docs/CardDocs';
 import ChipDocs from '../chip-docs/ChipDocs';
 import DropdownDocs from '../dropdown-docs/DropdownDocs';
+import FormDocs from '../form-docs/FormDocs';
 import HRDocs from '../hr-docs/HrDocs';
 import IconDocs from '../icon-docs/IconDocs';
 import InputDocs from '../input-docs/InputDocs';
@@ -20,8 +21,10 @@ import PaginationDocs from '../pagination-docs/PaginationDocs';
 import RadioDocs from '../radio-docs/RadioDocs';
 import RolloverDocs from '../rollover-docs/RolloverDocs';
 import SelectDocs from '../select-docs/SelectDocs';
+import SliderDocs from '../slider-docs/SliderDocs';
 import SpinnerDocs from '../spinner-docs/SpinnerDocs';
 import TableDocs from '../table-docs/TableDocs';
+import TextBoxDocs from '../textbox-docs/TextboxDocs';
 import ToggleDocs from '../toggle-docs/ToggleDocs';
 
 import octanner from '../images/octanner.jpg';
@@ -56,6 +59,11 @@ const components = [
     name: 'Dropdown',
     path: '/dropdown',
     main: DropdownDocs,
+  },
+  {
+    name: 'Form',
+    path: '/form',
+    main: FormDocs,
   },
   {
     name: 'Horizontal Rule',
@@ -108,6 +116,11 @@ const components = [
     main: SelectDocs,
   },
   {
+    name: 'Slider',
+    path: '/slider',
+    main: SliderDocs,
+  },
+  {
     name: 'Spinner',
     path: '/spinner',
     main: SpinnerDocs,
@@ -116,6 +129,11 @@ const components = [
     name: 'Table',
     path: '/table',
     main: TableDocs,
+  },
+  {
+    name: 'Textbox',
+    path: '/textbox',
+    main: TextBoxDocs,
   },
   {
     name: 'Toggle',

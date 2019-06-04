@@ -1,7 +1,7 @@
 import * as React from 'react';
 import './input.scss';
 import './input-group.scss';
-import AllIcons from '../core/svg-icons';
+import Icons from '../core/svg-icons';
 
 export type InputProps = {
   invalid?: boolean;
@@ -140,16 +140,24 @@ export default class Input extends React.Component<InputProps, InputState> {
               className={`psm-input-${this.props.icon.position ||
                 'trailing'}-icon`}
             >
-              <i
+              <span
                 aria-label={`${this.props.icon.name} icon`}
-                className={`psm-icon-${this.props.icon.name}`}
+                className={`psm-icon-svg-${this.props.icon.name}`}
                 data-testid={`${this.props.dataTestId}-icon`}
                 onClick={this.props.icon.onClick}
                 style={{
                   cursor: this.props.icon.onClick ? 'pointer' : 'default',
                 }}
                 tabIndex={0}
-              />
+              >
+                <Icons
+                  name={this.props.icon.name}
+                  height="16px"
+                  width="16px"
+                  fill="#707070"
+                  className={`svg-icon-${this.props.icon.name}`}
+                />
+              </span>
               <input
                 aria-labelledby="Input field"
                 className={`psm-input ${

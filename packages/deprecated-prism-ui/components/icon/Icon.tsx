@@ -1,5 +1,7 @@
 import * as React from 'react';
-import AllIcons from '../core/svg-icons';
+import Icons from '../core/svg-icons';
+
+import IconList from '../core/svg-icons/icon-list.js';
 
 export type IconProps = {
   iconName: iconName;
@@ -117,12 +119,12 @@ export default class Icon extends React.Component<IconProps> {
         onClick={this.handleClick}
         tabIndex={0}
       >
-        <AllIcons
+        <Icons
           name={this.props.iconName}
           height="16px"
           width="16px"
           fill="#707070"
-          className=""
+          className={`svg-icon-${this.props.iconName}`}
         />
       </span>
     );

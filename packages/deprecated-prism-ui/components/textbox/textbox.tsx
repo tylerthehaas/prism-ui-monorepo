@@ -1,4 +1,5 @@
 import * as React from 'react';
+import './textbox.scss';
 
 export type TextBoxProps = {
   invalid?: boolean;
@@ -60,6 +61,7 @@ export default class TextBox extends React.Component<
     }
     this.setState({ numChars: event.target.value.length });
   }
+
   public render() {
     return (
       <>

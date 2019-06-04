@@ -1,9 +1,9 @@
 import React from 'react';
 import Slider from '../../components/slider/slider';
-import { PropsWindow } from '../props';
+import PropsWindow from '../props-window/PropsWindow';
 // import { Example } from '../example';
 
-export class SliderDocs extends React.Component {
+export default class SliderDocs extends React.Component {
   constructor(props) {
     super(props);
     this.state = {

@@ -89,7 +89,7 @@ export default class PropsWindow extends React.Component {
                 <select
                   className="psm-input"
                   defaultValue={p.value}
-                  onBlur={e => {
+                  onChange={e => {
                     this.handleChange(e, index);
                   }}
                 >

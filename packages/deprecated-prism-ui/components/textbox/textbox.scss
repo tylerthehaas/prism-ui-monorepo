@@ -1,11 +1,11 @@
-@import "../core/color/variables";
-@import "../core/spacing/variables";
-@import "../core/type/variables";
-@import "../core/icon/variables";
+@import '../core/color/variables';
+@import '../core/spacing/variables';
+@import '../core/type/variables';
+@import '../core/icon/variables';
 
 .psm-form__textarea {
   //   resize: none;
-  //   -webkit-appearance: none;
+  // -webkit-appearance: none;
   width: 100%;
   max-width: 100%;
   min-width: 100%;
@@ -110,7 +110,7 @@
   }
 }
 
-div[contenteditable="true"]:empty:before {
+div[contenteditable='true']:empty:before {
   content: attr(placeholder);
   display: block; /* For Firefox */
   color: $psm-color-gray-500;

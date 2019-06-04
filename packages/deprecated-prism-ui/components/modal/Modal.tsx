@@ -1,6 +1,6 @@
 import * as React from 'react';
 import './modal.scss';
-import AllIcons from '../core/svg-icons';
+import Icons from '../core/svg-icons';
 
 export type ModalProps = {
   children: any;
@@ -140,12 +140,7 @@ export default class Modal extends React.Component<ModalProps, ModalState> {
                 }
                 tabIndex={0}
               >
-                <AllIcons
-                  name="close"
-                  height="16px"
-                  width="16px"
-                  fill="#707070"
-                />
+                <Icons name="close" height="16px" width="16px" fill="#707070" />
               </span>
 
               <h3

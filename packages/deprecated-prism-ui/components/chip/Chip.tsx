@@ -1,6 +1,6 @@
 import * as React from 'react';
 import './chip.scss';
-import AllIcons from '../core/svg-icons';
+import Icons from '../core/svg-icons/index.js';
 
 export type ChipProps = {
   label: string;
@@ -111,12 +111,7 @@ export default class Chip extends React.Component<ChipProps, ChipState> {
                 onFocus={() => this.setState({ isFocused: 1 })}
                 tabIndex={0}
               >
-                <AllIcons
-                  name="close"
-                  height="16px"
-                  width="16px"
-                  fill="#d4d4d4"
-                />
+                <Icons name="close" height="16px" width="16px" fill="#d4d4d4" />
               </span>
             </div>
           </div>

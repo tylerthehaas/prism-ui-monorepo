@@ -1,4 +1,5 @@
 import * as React from 'react';
+import './slider.scss';
 
 export type SliderProps = {
   defaultValue: number;
