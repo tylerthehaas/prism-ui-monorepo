@@ -4,6 +4,13 @@ import 'jest-dom/extend-expect';
 
 import Alert, { Type } from './Alert';
 
+import Enzyme from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+
+const { mount } = Enzyme;
+
+Enzyme.configure({ adapter: new Adapter() });
+
 describe('<Alert/>', () => {
   describe('Component Defaults', () => {
     it('defaults to Type.info', () => {
@@ -45,6 +52,21 @@ describe('<Alert/>', () => {
     it('is an error type', () => {
       const { container } = render(<Alert type={Type.error} />);
       expect(container.firstChild).toHaveClass('psm-alert--error');
+    });
+  });
+
+  describe('Event Listeners', () => {
+    it('event listener is added and removed', () => {
+      const adder = jest
+        .spyOn(global, 'addEventListener')
+        .mockImplementation(() => {});
+      const remover = jest
+        .spyOn(global, 'removeEventListener')
+        .mockImplementation(() => {});
+      const container = mount(<Alert type={Type.success} />);
+      expect(adder).toHaveBeenCalled();
+      container.unmount();
+      expect(remover).toHaveBeenCalled();
     });
   });
 });

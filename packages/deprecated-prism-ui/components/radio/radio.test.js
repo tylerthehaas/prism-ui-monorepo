@@ -96,4 +96,29 @@ describe('<Radio />', () => {
     container.find('#pre-radio-0').simulate('click');
     expect(container.state('selectedOption')).toEqual(0);
   });
+  it('Removes event listners on unmount', () => {
+    const remover = jest
+      .spyOn(global, 'removeEventListener')
+      .mockImplementation(() => {});
+    const container = mount(
+      <Radio
+        buttons={[
+          {
+            text: 'Option 1',
+            action: () => {},
+            checked: false,
+          },
+          {
+            text: 'Option 2',
+            action: () => {},
+            checked: true,
+          },
+        ]}
+        idPrefix={'pre'}
+        name={'radio'}
+      />,
+    );
+    container.unmount();
+    expect(remover).toHaveBeenCalled();
+  });
 });

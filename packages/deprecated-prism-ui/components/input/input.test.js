@@ -10,6 +10,8 @@ import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 Enzyme.configure({ adapter: new Adapter() });
 
+const { mount } = Enzyme;
+
 describe('<Input />', () => {
   it('Required defualts to false', () => {
     const { container } = render(<Input />);
@@ -41,4 +43,14 @@ describe('<Input />', () => {
       );
     });
   }
+
+  it('Sets isClicked to true on click and false on blur', () => {
+    const container = mount(
+      <Input icon={{ name: 'desktop', position: 'leading' }} />,
+    );
+    container.find('input').simulate('click');
+    expect(container.state('isClicked')).toBe(true);
+    container.find('input').simulate('blur');
+    expect(container.state('isClicked')).toBe(false);
+  });
 });

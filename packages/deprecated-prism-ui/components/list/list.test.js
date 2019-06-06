@@ -167,4 +167,142 @@ describe('<List />', () => {
     expect(container.state('isFocusedColumn')).toEqual(0);
     expect(container.state('isFocusedRow')).toEqual(0);
   });
+
+  it('OnClick sets isTab to false on index=0 and not a button', () => {
+    const container = mount(
+      <List
+        idPrefix={'a1'}
+        rows={[
+          {
+            columns: [
+              {
+                text: 'Empty Row',
+                isButton: false,
+                buttonPrimary: true,
+              },
+            ],
+          },
+        ]}
+        size={'Small'}
+      />,
+    );
+    container.setState({ isTab: true });
+    expect(container.state('isTab')).toEqual(true);
+    container.find('#a1-row-0-column-div-0').simulate('click');
+    expect(container.state('isTab')).toEqual(false);
+  });
+
+  it('OnClick sets tab to false when index != 0 and not a button', () => {
+    const container = mount(
+      <List
+        idPrefix="a1"
+        rows={[
+          {
+            columns: [
+              {
+                text: 'Empty Row',
+                isButton: false,
+                buttonPrimary: true,
+              },
+              {
+                text: 'Empty Row',
+                isButton: false,
+                buttonPrimary: true,
+              },
+            ],
+          },
+        ]}
+        size={'Large'}
+      />,
+    );
+    container.setState({ isTab: true });
+    expect(container.state('isTab')).toEqual(true);
+    container.find('#a1-row-0-column-div-1').simulate('click');
+    expect(container.state('isTab')).toBe(false);
+  });
+
+  it('OnClick sets tab to false with button', () => {
+    const container = mount(
+      <List
+        idPrefix="a1"
+        rows={[
+          {
+            columns: [
+              {
+                text: 'Empty Row',
+                isButton: true,
+                buttonPrimary: true,
+              },
+            ],
+          },
+        ]}
+        size={'Large'}
+      />,
+    );
+    container.setState({ isTab: true });
+    expect(container.state('isTab')).toEqual(true);
+    container.find('#a1-row-0-column-div-0').simulate('click');
+    expect(container.state('isTab')).toBe(false);
+  });
+
+  it('OnClick sets tab to false and calls function', () => {
+    const container = mount(
+      <List
+        idPrefix="a1"
+        rows={[
+          {
+            columns: [
+              {
+                text: 'Empty Row',
+                isButton: false,
+                buttonPrimary: true,
+                onClick: () => {},
+              },
+              {
+                text: 'Empty Row',
+                isButton: true,
+                buttonPrimary: true,
+                onClick: () => {},
+              },
+            ],
+          },
+        ]}
+        size={'Large'}
+      />,
+    );
+    container.find('#a1-row-0-column-div-1').simulate('click');
+    expect(container.prop('onClick')).toBe(container.instance().onClick);
+    expect(container.state('isTab')).toBe(false);
+  });
+
+  it('Removes event listeners on unmount', () => {
+    const remover = jest
+      .spyOn(global, 'removeEventListener')
+      .mockImplementation(() => {});
+    const container = mount(
+      <List
+        idPrefix="a1"
+        rows={[
+          {
+            columns: [
+              {
+                text: 'Empty Row',
+                isButton: false,
+                buttonPrimary: true,
+              },
+              {
+                text: 'Empty Row',
+                isButton: true,
+                buttonPrimary: true,
+                onClick: () => {},
+              },
+            ],
+          },
+        ]}
+        size={'Large'}
+      />,
+    );
+    container.unmount();
+    expect(remover).toHaveBeenCalled();
+  });
 });

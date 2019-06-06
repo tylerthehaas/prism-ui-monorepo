@@ -93,15 +93,6 @@ export default class Alert extends React.Component<AlertProps, any> {
                     name="close"
                     height="16px"
                     width="16px"
-                    // fill={
-                    //   this.props.type == 'psm-alert--warning'
-                    //     ? '#bd5316'
-                    //     : this.props.type == 'psm-alert--error'
-                    //       ? '#d70e16'
-                    //       : this.props.type == 'psm-alert--info'
-                    //         ? '#0066ed'
-                    //         : '#0f7d52'
-                    // }
                     fill={this.changeSvgColor(this.props.type)}
                   />
                 </span>
