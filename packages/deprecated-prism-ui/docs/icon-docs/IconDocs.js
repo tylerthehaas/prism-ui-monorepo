@@ -1,7 +1,7 @@
 /* eslint no-console: 0 */
 import Icon from '../../components/icon/Icon';
 import React from 'react';
-import Example from '../example/example';
+import Example from '../example/Example';
 import PropsWindow from '../props-window/PropsWindow';
 import PropsList from '../props-list/PropsList';
 

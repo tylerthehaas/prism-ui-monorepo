@@ -1,7 +1,7 @@
 import React from 'react';
 import TextBox from '../../components/textbox/textbox';
 // import PropsWindow from '../props-window/PropsWindow';
-import Example from '../example/example';
+import Example from '../example/Example';
 
 const HTML_CODE = `HTML Component Coming Soon`;
 

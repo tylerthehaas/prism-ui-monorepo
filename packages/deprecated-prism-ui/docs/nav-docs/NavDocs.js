@@ -1,7 +1,7 @@
 /* eslint no-console: 0 */
 import Nav from '../../components/nav/Nav';
 import React from 'react';
-import Example from '../example/example';
+import Example from '../example/Example';
 import PropsList from '../props-list/PropsList';
 
 const HTML_CODE = `

@@ -24,15 +24,15 @@ module.exports = {
   devtool: isProd ? 'hidden-source-map' : 'cheap-module-source-map',
   entry: isProd
     ? {
-        docs: './docs/index.js',
-        main: './components/index.js',
-      }
+      docs: './docs/index.js',
+      main: './components/index.js',
+    }
     : {
-        main: [
-          'webpack-dev-server/client?http://0.0.0.0:3000',
-          './docs/index.js',
-        ],
-      },
+      main: [
+        'webpack-dev-server/client?http://0.0.0.0:3000',
+        './docs/index.js',
+      ],
+    },
   mode: isProd ? 'production' : 'development',
   module: {
     rules: [
@@ -74,7 +74,16 @@ module.exports = {
               ],
             },
           },
-          'sass-loader',
+          {
+            loader: 'resolve-url-loader'
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true,
+              sourceMapContents: false
+            }
+          },
         ],
       },
       {
@@ -100,13 +109,12 @@ module.exports = {
         },
         test: /.(ico|png|jpg|svg)(\?[a-z0-9=.]+)?$/,
       },
-
       {
         loader: 'file-loader',
         options: {
           name: 'fonts/[name].[ext]',
         },
-        test: /.(woff(2)?|eot|ttf)(\?[a-z0-9=.]+)?$/,
+        test: /\.(svg|eot|ttf|woff|woff2)$/,
       },
       {
         loader: 'html-loader?interpolate=require',

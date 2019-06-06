@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Alert, { Type } from '../../components/alert/Alert';
-import Example from '../example/example';
+import Example from '../example/Example';
 
 import PropsWindow from '../props-window/PropsWindow';
 import PropsList from '../props-list/PropsList';
@@ -78,6 +78,7 @@ export default class AlertDocs extends React.Component {
         <div className="window-group">
           <div className="component-window psm-card--shadow-1">
             <Alert
+              // eslint-disable-next-line
               onDismiss={() => console.log('alert closed')}
               type={this.state.style || Type.success}
             >

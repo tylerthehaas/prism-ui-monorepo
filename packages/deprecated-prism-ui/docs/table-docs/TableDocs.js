@@ -2,7 +2,7 @@ import React from 'react';
 import Table from '../../components/table/Table';
 import PropsWindow from '../props-window/PropsWindow';
 import PropsList from '../props-list/PropsList';
-import Example from '../example/example';
+import Example from '../example/Example';
 
 const HTML_CODE = `
 <div class="psm-table-header">Current Initiatives</div>
@@ -121,14 +121,14 @@ export default class TableDocs extends React.Component {
                 actions={
                   this.state.actions
                     ? [
-                        {
-                          label: 'Create New Initiative',
-                          primary: true,
-                          onClick() {
-                            alert('Initiative Created');
-                          },
+                      {
+                        label: 'Create New Initiative',
+                        primary: true,
+                        onClick() {
+                          alert('Initiative Created');
                         },
-                      ]
+                      },
+                    ]
                     : null
                 }
                 box={this.state.box}

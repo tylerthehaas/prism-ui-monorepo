@@ -1,6 +1,6 @@
 import React from 'react';
 import Form from '../../components/form/form';
-import Example from '../example/example';
+import Example from '../example/Example';
 import PropsWindow from '../props-window/PropsWindow';
 // import PropsList from '../props-list/PropsList';
 

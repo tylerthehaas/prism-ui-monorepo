@@ -1,7 +1,7 @@
 import React from 'react';
 import Slider from '../../components/slider/slider';
 import PropsWindow from '../props-window/PropsWindow';
-// import { Example } from '../example';
+// import Example from '../example/Example';
 
 export default class SliderDocs extends React.Component {
   constructor(props) {
@@ -50,10 +50,10 @@ export default class SliderDocs extends React.Component {
                 maxValue={parseFloat(this.state.inputMax)}
                 minValue={parseFloat(this.state.inputMin)}
                 stepValue={parseFloat(this.state.inputStep)}
-                // defaultValue={60}
-                // maxValue={100}
-                // minValue={10}
-                // stepValue={1}
+              // defaultValue={60}
+              // maxValue={100}
+              // minValue={10}
+              // stepValue={1}
               />
             </div>
           </div>

@@ -72,6 +72,7 @@ export default class PropsWindow extends React.Component {
               )}
 
               {p.type === 'select' && (
+                // eslint-disable-next-line jsx-a11y/no-onchange
                 <select
                   className="psm-input"
                   defaultValue={p.value}
@@ -86,6 +87,7 @@ export default class PropsWindow extends React.Component {
               )}
 
               {p.type === 'object' && (
+                // eslint-disable-next-line jsx-a11y/no-onchange
                 <select
                   className="psm-input"
                   defaultValue={p.value}
