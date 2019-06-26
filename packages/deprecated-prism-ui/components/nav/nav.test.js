@@ -51,4 +51,60 @@ describe('<Nav />', () => {
     container.find('#tab-1').simulate('keypress', { charCode: '13' });
     expect(container.state('isTab')).toEqual(false);
   });
+
+  it('event listener is removed', () => {
+    const remover = jest
+      .spyOn(global, 'removeEventListener')
+      .mockImplementation(() => {});
+    const container = mount(<Nav tabs={['Recieved', 'Given', 'Personal']} />);
+    container.unmount();
+    expect(remover).toHaveBeenCalled();
+  });
+
+  it('handles blur', () => {
+    const container = mount(
+      <Nav tabs={['Recieved', 'Given', 'Personal']} />,
+    );
+    container.setState({ isFocused: 1 });
+    expect(container.state('isFocused')).toBe(1);
+    container.find('#tab-1').simulate('blur');
+    expect(container.state('isFocused')).toBeNull();
+  });
+
+  it('handles mouseenter and mouseleave', () => {
+    const container = mount(
+      <Nav tabs={['Recieved', 'Given', 'Personal']} />,
+    );
+    expect(container.state('isFocused')).toBeNull();
+    container.find('#tab-1').simulate('mouseenter');
+    expect(container.state('isFocused')).toBe(1);
+    container.find('#tab-1').simulate('mouseleave');
+    expect(container.state('isFocused')).toBeNull();
+  });
+
+  it('handles tab', () => {
+    const map = {};
+    document.addEventListener = jest.fn((event, cb) => {
+      map[event] = cb;
+    });
+    const container = mount(
+      <Nav tabs={['Recieved', 'Given', 'Personal']} />,
+    );
+    expect(container.state('isTab')).toBe(false);
+    map.keydown({ keyCode: 9 })
+    expect(container.state('isTab')).toBe(true);
+  });
+
+  it('handles enter', () => {
+    const map = {};
+    document.addEventListener = jest.fn((event, cb) => {
+      map[event] = cb;
+    });
+    const container = mount(
+      <Nav tabs={['Recieved', 'Given', 'Personal']} />,
+    );
+    container.setState({ isFocused: 1 });
+    map.keypress({ charCode: 13 })
+    expect(container.state('isTab')).toBe(false);
+  });
 });

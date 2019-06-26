@@ -49,4 +49,31 @@ describe('<Select />', () => {
     container.find('#option-0').simulate('click');
     expect(func.mock.calls).toHaveLength(1);
   });
+  it('Removes event listeners on unmount', () => {
+    const remover = jest
+        .spyOn(global, 'removeEventListener')
+        .mockImplementation(() => {});
+    const container = mount(<Select dropdown={false} />);
+    container.unmount();
+    expect(remover).toHaveBeenCalled();
+  });
+  it('Handle enter calls handleClick', () => {
+    const map = {};
+    document.addEventListener = jest.fn((event, cb) => {
+      map[event] = cb;
+    });
+    const container = mount(<Select dropdown={false} radio={true} />);
+    container.setState({ isFocused: 1, radioActive: 1 })
+    map.keypress({ charCode: 13 });
+    expect(container.state("radioActive")).toBeNull();
+  });
+  it('Handle tab', () => {
+    const map = {};
+    document.addEventListener = jest.fn((event, cb) => {
+      map[event] = cb;
+    });
+    const container = mount(<Select dropdown={false} />);
+    map.keydown({ keyCode: 9 });
+    expect(container.state("isTab")).toBe(true);
+  });
 });

@@ -44,9 +44,19 @@ describe('<Input />', () => {
     });
   }
 
-  it('Sets isClicked to true on click and false on blur', () => {
+  it('Input with icon sets isClicked to true on click and false on blur', () => {
     const container = mount(
       <Input icon={{ name: 'desktop', position: 'leading' }} />,
+    );
+    container.find('input').simulate('click');
+    expect(container.state('isClicked')).toBe(true);
+    container.find('input').simulate('blur');
+    expect(container.state('isClicked')).toBe(false);
+  });
+
+  it('Input without icon sets isClicked to true on click and false on blur', () => {
+    const container = mount(
+      <Input />,
     );
     container.find('input').simulate('click');
     expect(container.state('isClicked')).toBe(true);

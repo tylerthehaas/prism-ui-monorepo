@@ -121,4 +121,67 @@ describe('<Radio />', () => {
     container.unmount();
     expect(remover).toHaveBeenCalled();
   });
+
+  it('handles tab', () => {
+    const map = {};
+    document.addEventListener = jest.fn((event, cb) => {
+      map[event] = cb;
+    });
+    render(<button id="show-modal-button">Show Modal</button>);
+    const container = mount(
+      <Radio
+        buttons={[
+          {
+            text: 'Option 1',
+            action: () => {},
+            checked: false,
+          },
+          {
+            text: 'Option 2',
+            action: () => {},
+            checked: true,
+          },
+        ]}
+        idPrefix={'pre'}
+        name={'radio'}
+      />,
+    );
+
+    // tab with shift key
+    container.setState({ isTab: false })
+    map.keydown({ keyCode: 9 });
+    expect(container.state('isTab')).toBe(true);
+  });
+
+  it('handles enter', () => {
+    const map = {};
+    document.addEventListener = jest.fn((event, cb) => {
+      map[event] = cb;
+    });
+    render(<button id="show-modal-button">Show Modal</button>);
+    const container = mount(
+      <Radio
+        buttons={[
+          {
+            text: 'Option 1',
+            action: () => {},
+            checked: false,
+          },
+          {
+            text: 'Option 2',
+            action: () => {},
+            checked: true,
+          },
+        ]}
+        idPrefix={'pre'}
+        name={'radio'}
+        onSelect={() => {}}
+      />,
+    );
+
+    container.setState({ isFocused: 1 })
+    map.keypress({ charCode: 13 });
+    expect(container.state("selectedOption")).toBe(1);
+    expect(container.state("isTab")).toBe(false);
+  });
 });

@@ -62,7 +62,7 @@ export default class Toggle extends React.Component<ToggleProps, ToggleState> {
           this.state.active ? 'psm-toggle--active' : 'psm-toggle--inactive'
         }`}
         data-testid={'psm-toggle'}
-        onClick={() => {
+        onClick={(event) => {
           this.handleToggle(event);
           this.setState({ isTab: false });
         }}

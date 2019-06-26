@@ -69,4 +69,17 @@ describe('<Alert/>', () => {
       expect(remover).toHaveBeenCalled();
     });
   });
+
+  describe('onClick functions', () => {
+    it('alert-not-nub onClick funciton', () => {
+      const container = mount(<Alert type={Type.success} />);
+      container.find('#alert-not-nub').simulate('click');
+      expect(container.find('#alert-not-nub').is(':focus')).toBe(false);
+    });
+    it('alert-nub-close onClick funciton', () => {
+      const container = mount(<Alert type={Type.success} />);
+      container.find('#alert-nub-close').simulate('click');
+      expect(container.find('#alert-nub-close').is(':focus')).toBe(false);
+    });
+  });
 });

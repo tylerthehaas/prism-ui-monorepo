@@ -305,4 +305,137 @@ describe('<List />', () => {
     container.unmount();
     expect(remover).toHaveBeenCalled();
   });
+
+  it('handles enter', () => {
+    const map = {};
+    document.addEventListener = jest.fn((event, cb) => {
+      map[event] = cb;
+    });
+    const container = mount(
+      <List
+        idPrefix="a1"
+        rows={[
+          {
+            columns: [
+              {
+                text: 'Empty Row',
+                isButton: true,
+                buttonPrimary: true,
+              },
+            ],
+          },
+        ]}
+        size={'Large'}
+      />,
+    );
+    map.keypress({ charCode: 13 })
+    expect(container.state('isTab')).toBe(false);
+  });
+
+  it('handles arrow keys', () => {
+    const map = {};
+    document.addEventListener = jest.fn((event, cb) => {
+      map[event] = cb;
+    });
+    const container = mount(
+      <List
+        idPrefix="a1"
+        rows={[
+          {
+            columns: [
+              {
+                text: 'Empty Row',
+                isButton: true,
+                buttonPrimary: true,
+              },
+              {
+                text: 'Empty Row',
+                isButton: true,
+                buttonPrimary: true,
+              },
+            ],
+          },
+          {
+            columns: [
+              {
+                text: 'Empty Row',
+                isButton: true,
+                buttonPrimary: true,
+              },
+              {
+                text: 'Empty Row',
+                isButton: true,
+                buttonPrimary: true,
+              },
+            ],
+          },
+        ]}
+        size={'Large'}
+      />, { attachTo: document.body }
+    );
+
+    // left arrow - keyCode: 37
+    expect(container.state('isTab')).toBe(false);
+    container.setState({ isFocusedColumn: 1 });
+    map.keydown({ keyCode: 37 })
+    expect(container.state('isFocusedColumn')).toBe(0);
+    expect(container.state('isTab')).toBe(true);
+    container.setState({ isFocusedColumn: 0 });
+    map.keydown({ keyCode: 37 })
+    expect(container.state('isFocusedColumn')).toBe(1);
+
+    // up arrow - keyCode: 38
+    container.setState({ isFocusedRow: 1, isTab: false});
+    map.keydown({ keyCode: 38 })
+    expect(container.state('isFocusedRow')).toBe(0);
+    expect(container.state('isTab')).toBe(true);
+    container.setState({ isFocusedRow: 0 });
+    map.keydown({ keyCode: 38 })
+    expect(container.state('isFocusedRow')).toBe(1);
+
+    // right arrow - keyCode: 39
+    container.setState({ isFocusedColumn: 0, isTab: false });
+    map.keydown({ keyCode: 39 })
+    expect(container.state('isFocusedColumn')).toBe(1);
+    expect(container.state('isTab')).toBe(true);
+    container.setState({ isFocusedColumn: 1 });
+    map.keydown({ keyCode: 39 })
+    expect(container.state('isFocusedColumn')).toBe(0);
+
+    // down arrow - keyCode: 40
+    container.setState({ isFocusedRow: 0, isTab: false});
+    map.keydown({ keyCode: 40 })
+    expect(container.state('isFocusedRow')).toBe(1);
+    expect(container.state('isTab')).toBe(true);
+    container.setState({ isFocusedRow: 1 });
+    map.keydown({ keyCode: 40 })
+    expect(container.state('isFocusedRow')).toBe(0);
+  });
+
+  it('handles tab', () => {
+    const map = {};
+    document.addEventListener = jest.fn((event, cb) => {
+      map[event] = cb;
+    });
+    const container = mount(
+      <List
+        idPrefix="a1"
+        rows={[
+          {
+            columns: [
+              {
+                text: 'Empty Row',
+                isButton: true,
+                buttonPrimary: true,
+              },
+            ],
+          },
+        ]}
+        size={'Large'}
+      />,
+    );
+    container.setState({ isTab: false })
+    map.keydown({ keyCode: 9 })
+    expect(container.state('isTab')).toBe(true);
+  });
 });
