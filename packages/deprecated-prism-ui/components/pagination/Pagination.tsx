@@ -161,20 +161,23 @@ export default class Pagination extends React.Component<
             1
           </li>
           {this.handleDisplay()}
-          <li
-            className={`psm-pagination__number ${
-              this.props.numPages === this.state.active
-                ? 'psm-pagination__active'
-                : ''
-            }`}
-            data-testid={`${this.props.dataTestId}-${this.props.numPages}`}
-            id={`pagination-number-${this.props.numPages}`}
-            onClick={() =>
-              this.handlePageChange(this.props.numPages, this.props.onClick)
-            }
-          >
-            {this.props.numPages}
-          </li>
+          {this.props.numPages > 1 && (
+            <li
+              className={`psm-pagination__number ${
+                this.props.numPages === this.state.active
+                  ? 'psm-pagination__active'
+                  : ''
+              }`}
+              data-testid={`${this.props.dataTestId}-${this.props.numPages}`}
+              id={`pagination-number-${this.props.numPages}`}
+              onClick={() =>
+                this.handlePageChange(this.props.numPages, this.props.onClick)
+              }
+            >
+              {this.props.numPages}
+            </li>
+          )}
+
           <li
             className="psm-svg-icon-small-right"
             data-testid={`${this.props.dataTestId}-right-arrow`}

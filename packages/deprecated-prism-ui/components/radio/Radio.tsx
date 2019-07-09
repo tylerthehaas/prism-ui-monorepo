@@ -85,8 +85,10 @@ export default class Radio extends React.Component<RadioProps, RadioState> {
               <input
                 checked={this.state.selectedOption === index}
                 className="psm-radio"
-                id={`${this.state.idPrefix}-${this.props.name}-${index}`}
-                name={this.props.name}
+                id={`${this.state.idPrefix}-${
+                  this.props.name ? this.props.name : 'radio'
+                }-${index}`}
+                name={this.props.name ? this.props.name : 'radio'}
                 onChange={this.handleClick(b, index)}
                 tabIndex={-1}
                 type="radio"

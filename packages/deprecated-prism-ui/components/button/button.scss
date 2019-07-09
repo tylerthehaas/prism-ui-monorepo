@@ -123,6 +123,28 @@ $psm-border-width: 1px;
   }
 }
 
+.psm-dropdown--component {
+  position: relative;
+  display: inline-block;
+  width: fit-content;
+}
+
+.psm-dropdown__menu {
+  position: absolute;
+  left: 0px;
+  z-index: 3;
+  background: #fff;
+}
+
+.psm-dropdown--btn {
+  > span {
+    float: left;
+  }
+  > div {
+    float: right;
+  }
+}
+
 .psm-dropdown__menu,
 %psm-dropdown__menu {
   border-radius: 3px;

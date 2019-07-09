@@ -4,7 +4,7 @@ import '../input/input.scss';
 export type SelectProps = {
   dropdown?: boolean;
   radio?: boolean;
-  content: Array<{ text: string }>;
+  content: Array<{ text: string; value: number | string }>;
   onClick(event: any): any;
   dataTestId?: String;
 };
@@ -33,10 +33,10 @@ export default class Select extends React.Component<SelectProps, SelectState> {
     dropdown: false,
     radio: true,
     content: [
-      { text: 'Option 1' },
-      { text: 'Option 2' },
-      { text: 'Option 3' },
-      { text: 'Option 4' },
+      { text: 'Option 1', value: 1 },
+      { text: 'Option 2', value: 2 },
+      { text: 'Option 3', value: 3 },
+      { text: 'Option 4', value: 4 },
     ],
     onClick: () => {
       console.log('Selected');
@@ -69,6 +69,7 @@ export default class Select extends React.Component<SelectProps, SelectState> {
               <option
                 data-testid={`${this.props.dataTestId}-option-${index}`}
                 key={index}
+                value={t.value}
               >
                 {t.text}
               </option>

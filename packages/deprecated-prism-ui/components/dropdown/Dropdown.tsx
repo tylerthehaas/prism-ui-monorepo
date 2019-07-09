@@ -165,14 +165,13 @@ export default class Dropdown extends React.Component<
   public render() {
     return (
       <>
-        <div
-          onBlur={this.blurFunction}
-          style={{ width: 'fit-content', display: 'inline-block' }}
-        >
+        <div onBlur={this.blurFunction} className="psm-dropdown--component">
           {
             <button
               aria-labelledby={this.props.label}
-              className={`psm-dropdown${this.props.primary ? '--primary' : ''}`}
+              className={`psm-dropdown--btn psm-dropdown${
+                this.props.primary ? '--primary' : ''
+              }`}
               data-testid={this.props.dataTestId}
               disabled={this.props.disabled}
               id={`${this.state.idPrefix}-dropdown-button`}
@@ -181,7 +180,7 @@ export default class Dropdown extends React.Component<
                 this.setState({ isFocused: this.props.dropdownMenu.length + 1 })
               }
             >
-              {this.props.label}
+              <span>{this.props.label}</span>
               <div>
                 <Icons
                   name="small-triangle-down"

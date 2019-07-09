@@ -19,3 +19,4 @@ export { default as Slider } from './slider/slider';
 export { default as Spinner } from './spinner/Spinner';
 export { default as Textbox } from './textbox/textbox';
 export { default as Toggle } from './toggle/Toggle';
+export { default as Dropdown } from './dropdown/Dropdown';
