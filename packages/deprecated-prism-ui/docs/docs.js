@@ -5,6 +5,7 @@ import AvatarDocs from './avatar-docs/AvatarDocs';
 import SideBar from './sidebar/Sidebar';
 import ToggleDocs from './toggle-docs/ToggleDocs';
 import TableDocs from './table-docs/TableDocs';
+import TagDocs from './tag-docs/TagDocs';
 import RolloverDocs from './rollover-docs/RolloverDocs';
 import NavDocs from './nav-docs/NavDocs';
 import ModalDocs from './modal-docs/ModalDocs';
@@ -51,6 +52,7 @@ export default class Docs extends React.Component {
             // ["Radio"]: <RadioDocs />,
             ['Rollover']: <RolloverDocs />,
             ['Table']: <TableDocs />,
+            ['Tag']: <TagDocs />,
             ['Toggle']: <ToggleDocs />,
           }[this.state.view]
         }

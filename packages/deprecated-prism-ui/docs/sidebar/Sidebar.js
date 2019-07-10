@@ -24,6 +24,7 @@ import SelectDocs from '../select-docs/SelectDocs';
 import SliderDocs from '../slider-docs/SliderDocs';
 import SpinnerDocs from '../spinner-docs/SpinnerDocs';
 import TableDocs from '../table-docs/TableDocs';
+import TagDocs from '../tag-docs/TagDocs';
 import TextBoxDocs from '../textbox-docs/TextboxDocs';
 import ToggleDocs from '../toggle-docs/ToggleDocs';
 
@@ -129,6 +130,11 @@ const components = [
     name: 'Table',
     path: '/table',
     main: TableDocs,
+  },
+  {
+    name: 'Tag',
+    path: '/tag',
+    main: TagDocs,
   },
   {
     name: 'Textbox',
