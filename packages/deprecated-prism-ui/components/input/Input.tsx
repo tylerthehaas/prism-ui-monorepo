@@ -14,6 +14,7 @@ export type InputProps = {
   errorText?: string;
 
   change?(event: any): any;
+  focus?(event: HTMLInputElement): HTMLInputElement;
   icon?: {
     name: string;
     position: string;
@@ -102,6 +103,7 @@ export default class Input extends React.Component<InputProps, InputState> {
       isRequired: false,
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleFocus = this.handleFocus.bind(this);
   }
 
   static defaultProps: InputProps = {
@@ -121,6 +123,11 @@ export default class Input extends React.Component<InputProps, InputState> {
   handleChange = event => {
     if (this.props.change) {
       this.props.change(event);
+    }
+  };
+  handleFocus = event => {
+    if (this.props.focus) {
+      this.props.focus(event);
     }
   };
   public render() {
@@ -167,6 +174,7 @@ export default class Input extends React.Component<InputProps, InputState> {
                 disabled={this.props.disabled}
                 onBlur={() => this.setState({ isClicked: false })}
                 onChange={this.handleChange}
+                onFocus={this.handleFocus}
                 onClick={() => this.setState({ isClicked: true })}
                 placeholder={this.props.placeholderText}
                 required={this.props.required}

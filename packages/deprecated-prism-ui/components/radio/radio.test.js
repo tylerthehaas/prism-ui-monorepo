@@ -71,7 +71,7 @@ describe('<Radio />', () => {
         name={'radio'}
       />,
     );
-    container.find('#pre-radio-0').simulate('focus');
+    container.find('#pre-0').simulate('focus');
     expect(container.state('isFocused')).toEqual(0);
   });
   it('CLick sets selectedOption to current index', () => {
@@ -93,7 +93,7 @@ describe('<Radio />', () => {
         name={'radio'}
       />,
     );
-    container.find('#pre-radio-0').simulate('click');
+    container.find('#pre-0').simulate('click');
     expect(container.state('selectedOption')).toEqual(0);
   });
   it('Removes event listners on unmount', () => {
@@ -148,7 +148,7 @@ describe('<Radio />', () => {
     );
 
     // tab with shift key
-    container.setState({ isTab: false })
+    container.setState({ isTab: false });
     map.keydown({ keyCode: 9 });
     expect(container.state('isTab')).toBe(true);
   });
@@ -179,9 +179,9 @@ describe('<Radio />', () => {
       />,
     );
 
-    container.setState({ isFocused: 1 })
+    container.setState({ isFocused: 1 });
     map.keypress({ charCode: 13 });
-    expect(container.state("selectedOption")).toBe(1);
-    expect(container.state("isTab")).toBe(false);
+    expect(container.state('selectedOption')).toBe(1);
+    expect(container.state('isTab')).toBe(false);
   });
 });
