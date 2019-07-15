@@ -1,110 +1,66 @@
 import React from 'react';
-import { render } from 'react-testing-library';
-import 'jest-dom/extend-expect';
+import { render, fireEvent } from '@testing-library/react';
 
 import Nav from './Nav';
 
-import Enzyme from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-
-const { mount } = Enzyme;
-
-Enzyme.configure({ adapter: new Adapter() });
+const testTabs = [
+  {
+    tabName: `Unfortunately, as you probably already know, people`,
+    onClick: () => console.log('R.I.P. @Horse_ebooks'),
+    isNew: false,
+  },
+  {
+    tabName: `a lot of people say to me, things, but i am to busy brushing my hair and being a beautiful model. thats what life is all about`,
+    onClick: () => console.log('credit to @wolfpupy'),
+  },
+];
 
 describe('<Nav />', () => {
-  it('Active defaults to 0', () => {
-    const { container } = render(
-      <Nav tabs={['Recieved', 'Given', 'Personal']} />,
+  test('Active tab defaults to 0', () => {
+    const { getByText } = render(<Nav tabs={testTabs} />);
+
+    const tabIsActive = getByText(
+      `Unfortunately, as you probably already know, people`,
     );
-    expect(container.firstChild.firstChild).toHaveClass(
-      'psm-nav__tab psm-nav__active',
-    );
-  });
-  it('Active sets to 1 when 1 is selected', () => {
-    const { container } = render(
-      <Nav active={1} tabs={['Recieved', 'Given', 'Personal']} />,
-    );
-    expect(container.firstChild.firstChild.nextSibling).toHaveClass(
-      'psm-nav__tab psm-nav__active',
-    );
-  });
-  it('Active sets to 1 when 1 is selected #2', () => {
-    const { container } = render(
-      <Nav active={2} tabs={['Recieved', 'Given', 'Personal']} />,
-    );
-    expect(container.firstChild.lastChild).toHaveClass(
-      'psm-nav__tab psm-nav__active',
-    );
-  });
-  it('On focus sets isFocused to current index', () => {
-    const container = mount(<Nav tabs={['Recieved', 'Given', 'Personal']} />);
-    container.find('#tab-0').simulate('focus');
-    expect(container.state('isFocused')).toEqual(0);
-  });
-  it('OnClick sets active to current index', () => {
-    const container = mount(<Nav tabs={['Recieved', 'Given', 'Personal']} />);
-    container.find('#tab-1').simulate('click');
-    expect(container.state('active')).toEqual(1);
-  });
-  it('Enter sets tab to false', () => {
-    const container = mount(<Nav tabs={['Recieved', 'Given', 'Personal']} />);
-    container.find('#tab-1').simulate('keypress', { charCode: '13' });
-    expect(container.state('isTab')).toEqual(false);
+
+    expect(tabIsActive.parentElement).toHaveClass('psm-nav__active');
   });
 
-  it('event listener is removed', () => {
-    const remover = jest
-      .spyOn(global, 'removeEventListener')
-      .mockImplementation(() => {});
-    const container = mount(<Nav tabs={['Recieved', 'Given', 'Personal']} />);
-    container.unmount();
-    expect(remover).toHaveBeenCalled();
+  test('Active sets to 1 when 1 is selected', () => {
+    const { getByText } = render(<Nav active={1} tabs={testTabs} />);
+
+    const secondTabIsActive = getByText(
+      `a lot of people say to me, things, but i am to busy brushing my hair and being a beautiful model. thats what life is all about`,
+    );
+
+    expect(secondTabIsActive.parentElement).toHaveClass('psm-nav__active');
   });
 
-  it('handles blur', () => {
-    const container = mount(
-      <Nav tabs={['Recieved', 'Given', 'Personal']} />,
+  test('Focusing activates the hover effect', () => {
+    const { getByText } = render(<Nav tabs={testTabs} />);
+
+    const hoverOverTab = getByText(
+      `a lot of people say to me, things, but i am to busy brushing my hair and being a beautiful model. thats what life is all about`,
     );
-    container.setState({ isFocused: 1 });
-    expect(container.state('isFocused')).toBe(1);
-    container.find('#tab-1').simulate('blur');
-    expect(container.state('isFocused')).toBeNull();
+
+    fireEvent.mouseOver(hoverOverTab);
+
+    expect(hoverOverTab.parentElement).toHaveClass(
+      'psm-nav__tab  psm-nav__hovered',
+    );
   });
 
-  it('handles mouseenter and mouseleave', () => {
-    const container = mount(
-      <Nav tabs={['Recieved', 'Given', 'Personal']} />,
-    );
-    expect(container.state('isFocused')).toBeNull();
-    container.find('#tab-1').simulate('mouseenter');
-    expect(container.state('isFocused')).toBe(1);
-    container.find('#tab-1').simulate('mouseleave');
-    expect(container.state('isFocused')).toBeNull();
-  });
+  test('Clicking a tab makes it the active tab', () => {
+    const { getByText } = render(<Nav tabs={testTabs} />);
 
-  it('handles tab', () => {
-    const map = {};
-    document.addEventListener = jest.fn((event, cb) => {
-      map[event] = cb;
-    });
-    const container = mount(
-      <Nav tabs={['Recieved', 'Given', 'Personal']} />,
+    const clickOnTab = getByText(
+      `a lot of people say to me, things, but i am to busy brushing my hair and being a beautiful model. thats what life is all about`,
     );
-    expect(container.state('isTab')).toBe(false);
-    map.keydown({ keyCode: 9 })
-    expect(container.state('isTab')).toBe(true);
-  });
 
-  it('handles enter', () => {
-    const map = {};
-    document.addEventListener = jest.fn((event, cb) => {
-      map[event] = cb;
-    });
-    const container = mount(
-      <Nav tabs={['Recieved', 'Given', 'Personal']} />,
+    fireEvent.click(clickOnTab);
+
+    expect(clickOnTab.parentElement).toHaveClass(
+      'psm-nav__tab  psm-nav__active',
     );
-    container.setState({ isFocused: 1 });
-    map.keypress({ charCode: 13 })
-    expect(container.state('isTab')).toBe(false);
   });
 });

@@ -1,51 +1,25 @@
-import * as React from 'react';
+import React from 'react';
 import './card.scss';
 
-export type CardProps = {
-  shadowType?: string;
+interface CardProps {
+  shadowType?: 'sm' | 'md' | 'lg';
   children?: any;
-  dataTestId?: String;
-};
-
-type CardState = {
-  shadowType: string;
-};
-
-const shadowTypes = {
-  sm: 1,
-  md: 2,
-  lg: 3,
-  small: 1,
-  medium: 2,
-  large: 3,
-};
-
-export default class Card extends React.Component<CardProps, CardState> {
-  constructor(props: CardProps) {
-    super(props);
-    this.state = {
-      shadowType: this.props.shadowType,
-    };
-  }
-
-  componentWillReceiveProps(props: CardProps) {
-    this.setState({ shadowType: props.shadowType });
-  }
-  getShadowType() {
-    return shadowTypes[this.state.shadowType];
-  }
-
-  public render() {
-    return (
-      <>
-        <div
-          className={`psm-card psm-card--shadow-${this.getShadowType() || 1}`}
-          data-testid={this.props.dataTestId}
-          tabIndex={0}
-        >
-          {this.props.children}
-        </div>
-      </>
-    );
-  }
+  'data-testid'?: string;
 }
+
+export const Card = ({
+  shadowType = 'sm',
+  children,
+  'data-testid': testid = '',
+}: CardProps) => (
+  <div
+    className={`psm-card psm-card--shadow-${shadowType}`}
+    data-testid={testid}
+    tabIndex={0}
+  >
+    {children}
+  </div>
+);
+// react-docgen-typescript-loader needs a named export to work,
+// but default exports are convenient so we're using both
+export default Card;

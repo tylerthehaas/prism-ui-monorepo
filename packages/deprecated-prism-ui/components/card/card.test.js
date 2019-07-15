@@ -1,36 +1,43 @@
 import React from 'react';
-import { render } from 'react-testing-library';
-import 'jest-dom/extend-expect';
+import { render } from '@testing-library/react';
 
 import Card from './Card';
 
-import Enzyme from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-
-const { mount } = Enzyme;
-
-Enzyme.configure({ adapter: new Adapter() });
+const testText = 'Pick up artists and garbage men should switch names';
 
 describe('<Card />', () => {
-  it('Defaults to shadow type 1', () => {
-    const { container } = render(<Card />);
-    expect(container.firstChild).toHaveClass('psm-card psm-card--shadow-1');
+  test('Defaults to small shadow', () => {
+    const { getByText } = render(<Card>{testText}</Card>);
+
+    const defaultCard = getByText(
+      'Pick up artists and garbage men should switch names',
+    );
+    expect(defaultCard).toHaveClass('psm-card psm-card--shadow-sm');
   });
-  it('Shadow Type 1', () => {
-    const { container } = render(<Card shadowType={'sm'} />);
-    expect(container.firstChild).toHaveClass('psm-card psm-card--shadow-1');
+
+  test('Small shadow', () => {
+    const { getByText } = render(<Card shadowType="sm">{testText}</Card>);
+    const shadow1 = getByText(
+      'Pick up artists and garbage men should switch names',
+    );
+    expect(shadow1).toHaveClass('psm-card psm-card--shadow-sm');
   });
-  it('Shadow Type 2', () => {
-    const { container } = render(<Card shadowType={'md'} />);
-    expect(container.firstChild).toHaveClass('psm-card psm-card--shadow-2');
+
+  test('Medium shadow', () => {
+    const { getByText } = render(<Card shadowType="md">{testText}</Card>);
+    const shadow2 = getByText(
+      'Pick up artists and garbage men should switch names',
+    );
+
+    expect(shadow2).toHaveClass('psm-card psm-card--shadow-md');
   });
-  it('Shadow Type 3', () => {
-    const { container } = render(<Card shadowType={'lg'} />);
-    expect(container.firstChild).toHaveClass('psm-card psm-card--shadow-3');
-  });
-  it('Sets props to shadow type 1', () => {
-    const container = mount(<Card shadowType={'sm'} />);
-    container.setProps({ shadowType: 'md' });
-    expect(container.find('.psm-card.psm-card--shadow-2')).toHaveLength(1);
+
+  test('Large shadow', () => {
+    const { getByText } = render(<Card shadowType="lg">{testText}</Card>);
+    const shadow3 = getByText(
+      'Pick up artists and garbage men should switch names',
+    );
+
+    expect(shadow3).toHaveClass('psm-card psm-card--shadow-lg');
   });
 });

@@ -1,171 +1,123 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import './rollover.scss';
 
-type RolloverProps = {
-  position: string;
-  content: Array<{ text: string }>;
-  numShown: number;
+interface RolloverProps {
+  content: string[];
+  'data-testid'?: string;
   hoverText: string;
-  dotted: boolean;
-  underline: boolean;
-  idPrefix: string;
-};
+  hoverTextStyle: RolloverStyle;
+  numShown: number;
+  position?: 'up' | 'down';
+}
 
-type RolloverState = {
-  hovered: boolean;
-  position: string;
-  extra: Array<any>;
-  clicked: boolean;
-  escaped: boolean;
-  idPrefix: string;
-};
+type RolloverStyle = 'dotted' | 'underlined' | 'none';
 
-export default class Rollover extends React.Component<
-  RolloverProps,
-  RolloverState
-> {
-  constructor(props: RolloverProps) {
-    super(props);
-    this.state = {
-      hovered: false,
-      position: this.props.position,
-      extra: [],
-      clicked: false,
-      escaped: false,
-      idPrefix:
-        this.props.idPrefix ||
-        Math.random()
-          .toString(36)
-          .substring(7),
-    };
-    this.handleHover = this.handleHover.bind(this);
-    this.handleLeave = this.handleLeave.bind(this);
-    this.escFunction = this.escFunction.bind(this);
+interface RolloverState {
+  visible: boolean;
+  rolloverContent: JSX.Element[] | string[];
+  contentState: any;
+  showMoreButton: boolean;
+}
+
+export const Rollover = ({
+  content = [],
+  'data-testid': testid = '',
+  hoverText = 'Hover over me!',
+  hoverTextStyle = 'dotted',
+  numShown = content.length,
+  position = 'up',
+}: RolloverProps) => {
+  const [visible, setVisible] = useState<RolloverState['visible']>(false);
+  const [showMoreButton, setShowMoreButton] = useState<
+    RolloverState['showMoreButton']
+  >(true);
+
+  const expandedContent = content.map((item: React.ReactNode) => (
+    <li>{item}</li>
+  ));
+
+  const initialContent = content
+    .map((item: React.ReactNode) => <li>{item}</li>)
+    .filter((item: React.ReactNode, index: number) => index < numShown);
+
+  const [rolloverContent, setRolloverContent] = useState<
+    RolloverState['rolloverContent']
+  >(initialContent);
+
+  function updateRollover() {
+    setRolloverContent(expandedContent);
+    setShowMoreButton(false);
   }
 
-  componentWillReceiveProps(props: RolloverProps) {
-    this.setState({ position: props.position });
-  }
+  const expandButton = (
+    <button
+      className="psm-rollover__footer"
+      key="extra"
+      type="button"
+      onClick={() => updateRollover()}
+      onFocus={() => updateRollover()}
+      onKeyDown={event => {
+        if (event.key === 'Enter') updateRollover();
+      }}
+      tabIndex={0}
+    >
+      +{content.length - numShown} More
+    </button>
+  );
 
-  handleHover = () => {
-    this.setState({
-      hovered: true,
-    });
-  };
-
-  handleLeave = () => {
-    this.setState({
-      hovered: false,
-      clicked: false,
-    });
-  };
-
-  static defaultProps: RolloverProps = {
-    position: 'up',
-    content: [
-      { text: 'John Smith' },
-      { text: 'Jane Smith' },
-      { text: 'John Doe' },
-      { text: 'Jane Doe' },
-    ],
-    numShown: 4,
-    hoverText: 'Hover over me!',
-    dotted: true,
-    underline: false,
-    idPrefix: null,
-  };
-
-  handleMore() {
-    let moreClass = [];
-    this.props.content.map((c, index) => {
-      if (index >= this.props.numShown) {
-        moreClass.push(<li key={index}>{c.text}</li>);
-      }
-    });
-    this.setState({ clicked: true });
-    this.setState({
-      extra: moreClass,
-    });
-  }
-
-  displayRollover() {
-    let rollClass = [];
-    let more = 0;
-    let extra = false;
-    this.props.content.map((c, index) => {
-      if (index < this.props.numShown) {
-        rollClass.push(<li key={index}>{c.text}</li>);
-      } else {
-        more = more + 1;
-        extra = true;
-      }
-    });
-    extra && !this.state.clicked
-      ? rollClass.push(
-          <div
-            className="psm-rollover__footer"
-            key={'extra'}
-            onClick={() => this.handleMore()}
-          >
-            +{more} More
-          </div>,
-        )
-      : '';
-    return rollClass;
-  }
-
-  escFunction(event) {
-    if (event.keyCode === 27) {
-      document.getElementById(`${this.state.idPrefix}-rollover-div`).blur();
-    }
-  }
-  componentDidMount() {
-    document.addEventListener('keydown', this.escFunction, false);
-  }
-  componentWillUnmount() {
-    document.removeEventListener('keydown', this.escFunction, false);
-  }
-
-  handleOptions() {
-    if (!this.props.dotted && !this.props.underline) {
-      return '';
-    } else if (this.props.dotted) {
-      return 'psm-rollover psm-rollover__text psm-rollover__text-dotted';
-    } else if (this.props.underline) {
-      return 'psm-rollover psm-rollover__text psm-rollover__text-underline';
+  function handleOptions() {
+    switch (hoverTextStyle) {
+      case 'none':
+        return '';
+      case 'dotted':
+        return 'psm-rollover psm-rollover__text psm-rollover__text-dotted';
+      case 'underlined':
+        return 'psm-rollover psm-rollover__text psm-rollover__text-underline';
+      default:
+        return '';
     }
   }
 
-  public render() {
+  function resetDropdown() {
+    setVisible(false);
+    setShowMoreButton(true);
+    setRolloverContent(initialContent);
+  }
+
+  if (visible) {
     return (
-      <div>
+      <div
+        className="psm-rollover"
+        data-testid={testid}
+        id={`${testid}-rollover-div`}
+        onBlur={() => resetDropdown()}
+        onMouseLeave={() => resetDropdown()}
+      >
+        <span className={`${handleOptions()}`}>{hoverText}</span>
         <div
-          className="psm-rollover"
-          id={`${this.state.idPrefix}-rollover-div`}
-          onBlur={this.handleLeave}
-          onFocus={this.handleHover}
-          onMouseEnter={this.handleHover}
-          onMouseLeave={this.handleLeave}
-          style={{ width: 'fit-content' }}
-          tabIndex={0}
+          className={` psm-rollover__window--${
+            visible ? 'show' : 'hide'
+          } psm-rollover__window--${position}`}
         >
-          <span className={`${this.handleOptions()}`}>
-            {this.props.hoverText}
-          </span>
-          <div>
-            <div
-              className={` psm-rollover__window--${
-                this.state.hovered ? 'show' : 'hide'
-              } psm-rollover__window--${this.props.position}`}
-            >
-              <ul>
-                {this.displayRollover()}
-                {!this.state.clicked ? '' : this.state.extra}
-              </ul>
-            </div>
-          </div>
+          <ul>
+            {rolloverContent}
+            {showMoreButton ? expandButton : ''}
+          </ul>
         </div>
       </div>
     );
   }
-}
+  return (
+    <div
+      className="psm-rollover"
+      data-testid={testid}
+      id={`${testid}-rollover-div`}
+      onFocus={() => setVisible(true)}
+      onMouseEnter={() => setVisible(true)}
+    >
+      <span className={`${handleOptions()}`}>{hoverText}</span>
+    </div>
+  );
+};
+
+export default Rollover;

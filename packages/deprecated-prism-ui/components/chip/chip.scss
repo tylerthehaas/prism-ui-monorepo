@@ -19,6 +19,7 @@
 .psm-chip--selected {
   @extend %psm-chip;
   box-shadow: 0 0 0 $psm-spacing-xs $psm-color-primary-100;
+  display: inline-block;
 }
 
 .psm-chip__close {

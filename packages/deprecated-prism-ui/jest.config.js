@@ -64,15 +64,14 @@ module.exports = {
   // moduleDirectories: [
   //   "node_modules"
   // ],
-
   // An array of file extensions your modules use
-  moduleFileExtensions: ['js', 'json', 'jsx', 'ts', 'tsx', 'node'],
+  // moduleFileExtensions: ['js', 'json', 'jsx', 'tsx', 'node'],
 
   // A map from regular expressions to module names that allow to stub out resources with a single module
   moduleNameMapper: {
-    '\\.(css|scss)$': '<rootDir>/__mocks__/styleMock.js',
+    '\\.(css|scss)$': '<rootDir>/test-config/__mocks__/styleMock.js',
     '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
-      '<rootDir>/__mocks__/fileMock.js',
+      '<rootDir>/test-config/__mocks__/fileMock.js',
   },
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
@@ -120,10 +119,7 @@ module.exports = {
   // setupFiles: [],
 
   // A list of paths to modules that run some code to configure or set up the testing framework before each test
-  // setupFilesAfterEnv: [
-  //   'react-testing-library/render',
-  //   'react-testing-library/cleanup-after-each',
-  // ],
+  setupFilesAfterEnv: ['<rootDir>/test-config/test-setup.js'],
 
   // A list of paths to snapshot serializer modules Jest should use for snapshot testing
   // snapshotSerializers: [],

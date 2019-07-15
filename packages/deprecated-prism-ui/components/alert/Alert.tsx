@@ -1,106 +1,95 @@
-import * as React from 'react';
+import React, { ReactNode, useState } from 'react';
 import './alert.scss';
-import Icon from '../core/svg-icons';
+import Icon from '../icon/Icon';
 
-export enum Type {
-  error = 'psm-alert--error',
-  info = 'psm-alert--info',
-  success = 'psm-alert--success',
-  warning = 'psm-alert--warning',
+enum AlertType {
+  Error = 'error',
+  Info = 'info',
+  Success = 'success',
+  Warning = 'warning',
 }
 
-type AlertProps = {
-  dataTestId?: String;
-  type: Type;
-  onDismiss?(event: any): any;
-};
+interface AlertProps {
+  /** Alert type determines alert color */
+  alertType?: AlertType;
+  children: ReactNode;
+  'data-testid'?: string;
+  /** Called when an alert is dismissed */
+  onDismiss: (
+    event?: React.MouseEvent<HTMLSpanElement | HTMLDivElement>,
+  ) => void;
+}
 
-export default class Alert extends React.Component<AlertProps, any> {
-  constructor(props: AlertProps) {
-    super(props);
-    this.state = {};
+interface AlertState {
+  dismissed: boolean;
+}
+
+const Alert = ({
+  alertType = AlertType.Info,
+  'data-testid': testid = 'alert',
+  onDismiss,
+  children,
+}: AlertProps) => {
+  const [dismissed, setDismissed] = useState<AlertState['dismissed']>(false);
+
+  function handleDismiss(
+    event: React.MouseEvent<HTMLSpanElement, MouseEvent> | undefined,
+  ) {
+    onDismiss(event);
+    setDismissed(true);
   }
 
-  static defaultProps: AlertProps = {
-    type: Type.info,
-  };
-
-  componentDidMount() {
-    document.addEventListener('keypress', this.handleEnter, false);
-  }
-  componentWillUnmount() {
-    document.removeEventListener('keypress', this.handleEnter, false);
-  }
-
-  handleEnter = event => {
-    if (
-      event.charCode === 13 &&
-      document.activeElement === document.getElementById('alert-nub-close')
-    ) {
-      this.props.onDismiss(event);
-    }
-  };
-
-  changeSvgColor = alertType => {
-    console.log(alertType);
+  function changeSvgColor(alertType: 'error' | 'info' | 'success' | 'warning') {
     switch (alertType) {
-      case 'psm-alert--warning':
+      case 'warning':
         return '#bd5316';
-      case 'psm-alert--error':
+      case 'error':
         return '#d70e16';
-      case 'psm-alert--info':
+      case 'info':
         return '#0066ed';
-      default:
+      case 'success':
         return '#0f7d52';
+      default:
+        return '';
     }
-  };
+  }
 
-  render() {
-    return (
-      <>
-        {!this.state.dismissed && (
+  return (
+    <>
+      {!dismissed && (
+        <div
+          className={`psm-alert psm-alert--${alertType}`}
+          data-testid={testid}
+          role="alert"
+        >
+          <div className="psm-alert__not-nub" id="alert-not-nub">
+            <span>{children}</span>
+          </div>
           <div
-            className={`psm-alert ${this.props.type}`}
-            data-testid={this.props.dataTestId}
-            role="alert"
+            className="psm-alert__nub"
+            id="alert-nub-close"
+            onClick={onDismiss}
           >
-            <div
-              className={`psm-alert__not-nub`}
-              id={`alert-not-nub`}
-              onClick={() => {
-                document.getElementById('alert-not-nub').blur();
-              }}
-              tabIndex={0}
-            >
-              <span>{this.props.children}</span>
-            </div>
-            <div
-              className={`psm-alert__nub `}
-              id={`alert-nub-close`}
-              onClick={() => {
-                this.props.onDismiss;
-                document.getElementById('alert-nub-close').blur();
-              }}
-              tabIndex={0}
-            >
-              <div className="psm-alert__close ">
-                <span
-                  aria-label={'Close alert'}
-                  className="psm-icon-simple-remove"
-                  data-testid={`${this.props.dataTestId}-icon`}
-                >
-                  <Icon
-                    name="close"
-                    height="16px"
-                    width="16px"
-                    fill={this.changeSvgColor(this.props.type)}
-                  />
-                </span>
-              </div>
+            <div className="psm-alert__close">
+              <span
+                onClick={handleDismiss}
+                aria-label="Close alert"
+                className="psm-icon-simple-remove"
+                data-testid={`${testid}-icon`}
+              >
+                <Icon
+                  iconName="close"
+                  height="16px"
+                  width="16px"
+                  fill={changeSvgColor(alertType)}
+                />
+              </span>
             </div>
           </div>
-        )}
-      </>
-    );
-  }
-}
+        </div>
+      )}
+    </>
+  );
+};
+
+export default Alert;

@@ -1,6 +1,5 @@
 import React from 'react';
-import { render } from 'react-testing-library';
-import 'jest-dom/extend-expect';
+import { render } from '@testing-library/react';
 
 import Table from './Table';
 
@@ -43,7 +42,7 @@ describe('<Table />', () => {
             status: 'Complete',
           },
         ]}
-        title={'Current Initiatives'}
+        title="Current Initiatives"
       />,
     );
     expect(container.firstChild).toHaveClass('psm-table-header');
@@ -60,7 +59,7 @@ describe('<Table />', () => {
             },
           },
         ]}
-        box={true}
+        box
         columns={[
           { label: 'Name', key: 'name' },
           { label: 'Assigned To', key: 'assignedTo' },
@@ -87,7 +86,7 @@ describe('<Table />', () => {
             status: 'Complete',
           },
         ]}
-        title={'Current Initiatives'}
+        title="Current Initiatives"
       />,
     );
     expect(container.firstChild).toHaveClass('psm-table--box');

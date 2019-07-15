@@ -6,6 +6,7 @@ const Dashboard = require('webpack-dashboard/plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const postcssPresetEnv = require('postcss-preset-env');
+const nodeModules = require('webpack-node-externals');
 
 const NODE_ENV = process.env.NODE_ENV || 'development';
 // Run production build in test env for the CI
@@ -24,20 +25,23 @@ module.exports = {
   devtool: isProd ? 'hidden-source-map' : 'cheap-module-source-map',
   entry: isProd
     ? {
-      docs: './docs/index.js',
-      main: './components/index.js',
-    }
+        docs: './docs/index.js',
+        main: './components/index.js',
+      }
     : {
-      main: [
-        'webpack-dev-server/client?http://0.0.0.0:3000',
-        './docs/index.js',
-      ],
-    },
+        main: [
+          'webpack-dev-server/client?http://0.0.0.0:3000',
+          './docs/index.js',
+        ],
+      },
   mode: isProd ? 'production' : 'development',
   module: {
     rules: [
       {
-        include: /node_modules\/prismjs/,
+        include: [
+          /node_modules\/prismjs/,
+          /node_modules\/@storybook\/addon-info/,
+        ],
         test: /\.css/,
         use: [
           isProd ? MiniCssExtractPlugin.loader : 'style-loader',
@@ -55,7 +59,7 @@ module.exports = {
         exclude: /node_modules/,
         test: /\.scss/,
         use: [
-          isProd ? MiniCssExtractPlugin.loader : 'style-loader',
+          'style-loader',
           {
             loader: 'css-loader',
             options: {
@@ -75,14 +79,14 @@ module.exports = {
             },
           },
           {
-            loader: 'resolve-url-loader'
+            loader: 'resolve-url-loader',
           },
           {
             loader: 'sass-loader',
             options: {
               sourceMap: true,
-              sourceMapContents: false
-            }
+              sourceMapContents: false,
+            },
           },
         ],
       },
@@ -98,8 +102,8 @@ module.exports = {
       },
       {
         exclude: /node_modules/,
-        test: /\.tsx?$/,
-        loader: 'ts-loader',
+        test: /\.ts(x)?$/,
+        use: ['ts-loader', 'react-docgen-typescript-loader'],
       },
       {
         loader: 'url-loader',
@@ -137,6 +141,10 @@ module.exports = {
       },
     ],
   },
+  node: {
+    fs: 'empty',
+  },
+  target: 'node',
   optimization: {
     minimize: isProd,
     minimizer: [
@@ -171,7 +179,6 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       cache: false,
-      chunksSortMode: 'dependency',
       minify: isProd,
       template: './docs/index.html',
     }),
@@ -181,4 +188,5 @@ module.exports = {
     extensions: ['.js', '.ts', '.tsx'],
     modules: [path.resolve('./components'), 'node_modules'],
   },
+  externals: [nodeModules()],
 };

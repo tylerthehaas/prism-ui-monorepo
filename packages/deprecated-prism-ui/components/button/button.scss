@@ -123,6 +123,11 @@ $psm-border-width: 1px;
   }
 }
 
+.psm-dropdown__container {
+  width: fit-content;
+  display: inline-block;
+}
+
 .psm-dropdown--component {
   position: relative;
   display: inline-block;

@@ -1,242 +1,145 @@
-import * as React from 'react';
+import React, { useState } from 'react';
+import FocusLock from 'react-focus-lock';
 import './input.scss';
 import './input-group.scss';
-import Icons from '../core/svg-icons';
+import Icon, { IconNames } from '../icon/Icon';
 
-export type InputProps = {
-  invalid?: boolean;
+export interface InputProps {
+  change?: (event?: React.ChangeEvent<HTMLInputElement>) => void;
+  'data-testid'?: string;
   disabled?: boolean;
-  placeholderText?: string;
-  dataTestId?: String;
-  required?: boolean;
-  label?: string;
-  infoText?: string;
   errorText?: string;
-
-  change?(event: any): any;
-  focus?(event: HTMLInputElement): HTMLInputElement;
-  icon?: {
-    name: string;
-    position: string;
-    onClick(event: any): any;
-  };
-};
-export enum iconType {
-  'zoom-in',
-  'trophy',
-  'trash',
-  'tail-up',
-  'tail-right',
-  'tail-left',
-  'tail-down',
-  'tag',
-  'support',
-  'stre-up',
-  'stre-right',
-  'stre-left',
-  'stre-down',
-  'small-up',
-  'small-triangle-up',
-  'small-triangle-right',
-  'small-triangle-left',
-  'small-triangle-down',
-  'small-right',
-  'small-left',
-  'small-down',
-  'single-content',
-  'single-body',
-  'simple-remove',
-  'simple-add',
-  'share',
-  'settings-gear',
-  'send',
-  'select',
-  'refresh',
-  'print',
-  'agenda',
-  'menu-dots',
-  'menu',
-  'lock',
-  'image',
-  'heartbeat',
-  'heart',
-  'group',
-  'goal',
-  'flag-points',
-  'favorite',
-  'eye',
-  'email',
-  'desktop',
-  'cloud-download',
-  'check',
-  'chat',
-  'chat-alt',
-  'chart-bar',
-  'cart-simple',
-  'calendar-add',
-  'calendar',
-  'bullet-list',
-  'block-down',
-  'bell',
-  'attach',
-  'archive-check',
-  'alert-circle-i',
-  'add',
-  'avatar-check',
-  'edit-note',
-  'one-on-one',
-  'play-screen',
-  'power',
-  'conversation',
+  icon?: iconType;
+  infoText?: string;
+  invalid?: boolean;
+  label?: string;
+  placeholderText?: string;
+  required?: boolean;
 }
 
-export type InputState = {
-  isClicked: boolean;
-  isRequired: boolean;
+export interface iconType {
+  name: IconNames;
+  onClick?: (event?: React.MouseEvent<HTMLSpanElement>) => void;
+  position?: string;
+}
+
+const defaultIcon: iconType = {
+  name: 'tail-right',
 };
 
-export default class Input extends React.Component<InputProps, InputState> {
-  constructor(props: InputProps) {
-    super(props);
-    this.state = {
-      isClicked: false,
-      isRequired: false,
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleFocus = this.handleFocus.bind(this);
-  }
+export interface InputState {
+  isClicked: boolean;
+}
 
-  static defaultProps: InputProps = {
-    invalid: false,
-    required: true,
-    disabled: false,
-    placeholderText: 'Input Text Here',
-    label: null,
-    icon: null,
-    infoText: null,
-    errorText: null,
-  };
-
-  componentWillReceiveProps(props: InputProps) {
-    this.setState({ isRequired: props.invalid });
-  }
-  handleChange = event => {
-    if (this.props.change) {
-      this.props.change(event);
-    }
-  };
-  handleFocus = event => {
-    if (this.props.focus) {
-      this.props.focus(event);
-    }
-  };
-  public render() {
-    return (
-      <>
-        {(this.props.icon && (
-          <>
-            {this.props.label && (
-              <div className="psm-form__label">
-                {this.props.label}
-                {!this.props.required && (
-                  <span className="psm-form__optional">Optional</span>
-                )}
-              </div>
-            )}
-            <div
-              className={`psm-input-${this.props.icon.position ||
-                'trailing'}-icon`}
-            >
-              <span
-                aria-label={`${this.props.icon.name} icon`}
-                className={`psm-icon-svg-${this.props.icon.name}`}
-                data-testid={`${this.props.dataTestId}-icon`}
-                onClick={this.props.icon.onClick}
-                style={{
-                  cursor: this.props.icon.onClick ? 'pointer' : 'default',
-                }}
-                tabIndex={0}
-              >
-                <Icons
-                  name={this.props.icon.name}
-                  height="16px"
-                  width="16px"
-                  fill="#707070"
-                  className={`svg-icon-${this.props.icon.name}`}
-                />
-              </span>
-              <input
-                aria-labelledby="Input field"
-                className={`psm-input ${
-                  this.state.isClicked ? 'psm-input--clicked' : ''
-                } ${this.props.invalid ? 'psm-input--error' : ''}`}
-                data-testid={this.props.dataTestId}
-                disabled={this.props.disabled}
-                onBlur={() => this.setState({ isClicked: false })}
-                onChange={this.handleChange}
-                onFocus={this.handleFocus}
-                onClick={() => this.setState({ isClicked: true })}
-                placeholder={this.props.placeholderText}
-                required={this.props.required}
-                type="text"
-              />
+export const Input = ({
+  change = () => {},
+  disabled = false,
+  errorText = '',
+  icon = defaultIcon,
+  infoText = '',
+  invalid = false,
+  label = '',
+  placeholderText = 'Input Text Here',
+  required = true,
+  'data-testid': testid = '',
+}: InputProps) => {
+  const [isClicked, setIsClicked] = useState<InputState['isClicked']>(false);
+  return (
+    <FocusLock>
+      {(icon && (
+        <>
+          {label && (
+            <div className="psm-form__label">
+              {label}
+              {!required && (
+                <span className="psm-form__optional">Optional</span>
+              )}
             </div>
-            {(this.props.infoText || this.props.errorText) && (
-              <div
-                className={`${
-                  this.props.invalid
-                    ? 'psm-form__error-text'
-                    : 'psm-form__info-text'
-                }`}
-              >
-                {this.props.invalid
-                  ? this.props.errorText
-                  : this.props.infoText}
-              </div>
-            )}
-          </>
-        )) || (
-          <>
-            {this.props.label && (
-              <div className="psm-form__label">
-                {this.props.label}
-                {!this.props.required && (
-                  <span className="psm-form__optional">Optional</span>
-                )}
-              </div>
-            )}
+          )}
+          <div className={`psm-input-${icon.position || 'trailing'}-icon`}>
+            <span
+              aria-label={`${icon.name} icon`}
+              className={`psm-icon-svg-${icon.name}`}
+              data-testid={`${testid}--icon`}
+              onClick={e => {
+                if (icon.onClick) icon.onClick(e);
+              }}
+              style={{
+                cursor: icon.onClick ? 'pointer' : 'default',
+              }}
+              tabIndex={0}
+            >
+              {console.log(icon)}
+              <Icon
+                iconName={icon.name}
+                height="16px"
+                width="16px"
+                fill="#707070"
+                className={`svg-icon-${icon.name}`}
+              />
+            </span>
             <input
               aria-labelledby="Input field"
-              className={`psm-input${
-                this.props.invalid ? ' psm-input--active' : ''
-              } ${this.state.isClicked ? 'psm-input--clicked' : ''} ${
-                this.props.invalid ? 'psm-input--error' : ''
+              className={`psm-input ${isClicked ? 'psm-input--clicked' : ''} ${
+                invalid ? 'psm-input--error' : ''
               }`}
-              data-testid={this.props.dataTestId}
-              disabled={this.props.disabled}
-              onBlur={() => this.setState({ isClicked: false })}
-              onChange={this.handleChange}
-              onClick={() => this.setState({ isClicked: true })}
-              placeholder={this.props.placeholderText}
-              required={this.props.required}
+              data-testid={testid}
+              disabled={disabled}
+              onBlur={() => setIsClicked(false)}
+              onChange={change}
+              onClick={() => setIsClicked(true)}
+              placeholder={placeholderText}
+              required={required}
               type="text"
             />
-            {(this.props.infoText || this.props.errorText) && (
-              <div
-                className={`${
-                  this.props.invalid
-                    ? 'psm-form__error-text'
-                    : 'psm-form__info-text'
-                }`}
-              >
-                {this.props.invalid
-                  ? this.props.errorText
-                  : this.props.infoText}
-              </div>
-            )}
-          </>
-        )}
-      </>
-    );
-  }
-}
+          </div>
+          {(infoText || errorText) && (
+            <div
+              className={`${
+                invalid ? 'psm-form__error-text' : 'psm-form__info-text'
+              }`}
+            >
+              {invalid ? errorText : infoText}
+            </div>
+          )}
+        </>
+      )) || (
+        <>
+          {label && (
+            <div className="psm-form__label">
+              {label}
+              {!required && (
+                <span className="psm-form__optional">Optional</span>
+              )}
+            </div>
+          )}
+          <input
+            aria-labelledby="Input field"
+            className={`psm-input${invalid ? ' psm-input--active' : ''} ${
+              isClicked ? 'psm-input--clicked' : ''
+            } ${invalid ? 'psm-input--error' : ''}`}
+            data-testid={testid}
+            disabled={disabled}
+            onBlur={() => setIsClicked(false)}
+            onChange={change}
+            onClick={() => setIsClicked(true)}
+            placeholder={placeholderText}
+            required={required}
+            type="text"
+          />
+          {(infoText || errorText) && (
+            <div
+              className={`${
+                invalid ? 'psm-form__error-text' : 'psm-form__info-text'
+              }`}
+            >
+              {invalid ? errorText : infoText}
+            </div>
+          )}
+        </>
+      )}
+    </FocusLock>
+  );
+};
+
+export default Input;

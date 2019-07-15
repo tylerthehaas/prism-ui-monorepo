@@ -83,20 +83,6 @@
   color: $psm-color-error;
 }
 
-.psm-select {
-  padding: 0 $psm-spacing-lg;
-  line-height: 36px;
-  background-color: white;
-  appearance: none;
-  display: inline-block;
-  background-image: url(./icons/psm-select-arrow.svg);
-  background-position: right 9px;
-  background-repeat: no-repeat;
-  &::-ms-expand {
-    display: none;
-  }
-}
-
 .psm-multi-select,
 %psm-multi-select {
   display: inline-block;
@@ -150,5 +136,19 @@
     padding: 0 0 0 0;
     display: inline-block;
     vertical-align: middle;
+  }
+}
+
+.psm-select {
+  padding: 0 $psm-spacing-lg;
+  line-height: 36px;
+  background-color: white;
+  appearance: none;
+  display: inline-block;
+  background-image: url(./icons/psm-select-arrow.svg);
+  background-position: right 9px;
+  background-repeat: no-repeat;
+  &::-ms-expand {
+    display: none;
   }
 }

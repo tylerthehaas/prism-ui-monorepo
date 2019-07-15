@@ -1,223 +1,131 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import '../button/button.scss';
-import Icons from '../core/svg-icons';
+import Icon from '../icon/Icon';
 
-export type DropdownProps = {
-  dropdownMenu: Array<{ label?: string; onClick(event: any): any }>;
-  primary?: boolean;
+export interface DropdownProps {
+  'data-testid'?: string;
   disabled?: boolean;
-  label?: string;
-  showMenu?: boolean;
+  dropdownMenu: Dropdown[];
   idPrefix?: string;
-  dataTestId: String;
-};
-
-type DropdownState = {
-  primary: boolean;
-  disabled: boolean;
+  label?: string;
+  primary?: boolean;
   showMenu?: boolean;
+}
+
+export interface Dropdown {
+  label?: string;
+  onClick?: (event?: React.MouseEvent<HTMLLIElement>) => void;
+}
+export interface DropdownState {
   isFocused: number;
-  idPrefix: string;
-};
+  showMenu?: boolean;
+}
 
-export default class Dropdown extends React.Component<
-  DropdownProps,
-  DropdownState
-> {
-  constructor(props) {
-    super(props);
-    this.state = {
-      primary: this.props.primary,
-      disabled: this.props.disabled,
-      showMenu: this.props.showMenu,
-      isFocused: 0,
-      idPrefix:
-        this.props.idPrefix ||
-        Math.random()
-          .toString(36)
-          .substring(7),
-    };
-  }
-  static defaultProps: DropdownProps = {
-    dropdownMenu: [
-      {
-        label: 'Menu Item',
-        onClick: () => {
-          console.log('Menu Item Clicked');
-        },
-      },
-      {
-        label: 'Menu Item',
-        onClick: () => {
-          console.log('Menu Item Clicked');
-        },
-      },
-      {
-        label: 'Menu Item',
-        onClick: () => {
-          console.log('Menu Item Clicked');
-        },
-      },
-    ],
-    primary: true,
-    disabled: false,
-    label: 'Button',
-    showMenu: false,
-    idPrefix: null,
-    dataTestId: null,
-  };
+const defaultDropdown = [
+  {
+    label: 'Menu Item',
+    onClick: () => {
+      console.log('Menu Item Clicked');
+    },
+  },
+  {
+    label: 'Menu Item',
+    onClick: () => {
+      console.log('Menu Item Clicked');
+    },
+  },
+  {
+    label: 'Menu Item',
+    onClick: () => {
+      console.log('Menu Item Clicked');
+    },
+  },
+];
 
-  componentWillReceiveProps(props: DropdownProps) {
-    const { disabled, primary } = props;
+export const Dropdown = ({
+  'data-testid': testid = '',
+  disabled = false,
+  dropdownMenu = defaultDropdown,
+  idPrefix = '',
+  label = 'Dropdown Label',
+  primary = true,
+  showMenu = false,
+}: DropdownProps) => {
+  const [showMenuState, setShowMenuState] = useState<DropdownState['showMenu']>(
+    showMenu,
+  );
 
-    this.setState({
-      disabled,
-      primary,
-    });
+  function menuClick(action: Dropdown) {
+    if (action.onClick) action.onClick();
+    setShowMenuState(!showMenuState);
   }
 
-  handleClick() {
-    this.setState({ showMenu: !this.state.showMenu });
-  }
-  menuClick = (a, index) => {
-    this.props.dropdownMenu[index].onClick(a.onClick);
-    this.handleClick();
-  };
-
-  blurFunction = e => {
-    var currentTarget = e.currentTarget;
+  function blurFunction(event: { currentTarget: any }) {
+    const { currentTarget } = event;
 
     setTimeout(() => {
       if (!currentTarget.contains(document.activeElement)) {
-        this.setState({ showMenu: false });
+        setShowMenuState(false);
       }
     }, 0);
-    return;
-  };
-
-  escFunction = event => {
-    if (event.keyCode === 27) {
-      this.setState({ showMenu: false });
-      document.getElementById(`${this.state.idPrefix}-dropdown-button`).focus();
-    }
-  };
-  componentDidMount() {
-    document.addEventListener('keydown', this.escFunction, false);
-    document.addEventListener('keypress', this.handleEnter, false);
-    document.addEventListener('keydown', this.handleArrow, false);
-  }
-  componentWillUnmount() {
-    document.removeEventListener('keydown', this.escFunction, false);
-    document.removeEventListener('keypress', this.handleEnter, false);
-    document.removeEventListener('keydown', this.handleArrow, false);
   }
 
-  handleArrow = event => {
-    if (event.keyCode === 38) {
-      if (this.state.isFocused !== 0) {
-        this.setState({ isFocused: this.state.isFocused - 1 });
-      } else {
-        this.setState({ isFocused: this.props.dropdownMenu.length - 1 });
-      }
-      document
-        .getElementById(
-          `${this.state.idPrefix}-menu-item-${this.state.isFocused}`,
-        )
-        .focus();
+  function handleEscape(event: React.KeyboardEvent<HTMLDivElement>) {
+    if (event.key === 'Escape') {
+      setShowMenuState(false);
     }
+  }
 
-    if (event.keyCode === 40) {
-      if (this.state.isFocused + 1 !== this.props.dropdownMenu.length) {
-        this.setState({ isFocused: this.state.isFocused + 1 });
-      } else {
-        this.setState({ isFocused: 0 });
+  return (
+    <div onBlur={blurFunction} className="psm-dropdown__container">
+      {
+        <button
+          aria-labelledby={label}
+          className={`psm-dropdown${primary ? '--primary' : ''}`}
+          data-testid={testid}
+          disabled={disabled}
+          onClick={() => setShowMenuState(!showMenu)}
+          type="button"
+        >
+          {label}
+          <Icon
+            iconName="small-triangle-down"
+            height="16px"
+            width="16px"
+            fill="white"
+          />
+        </button>
       }
-      document
-        .getElementById(
-          `${this.state.idPrefix}-menu-item-${this.state.isFocused}`,
-        )
-        .focus();
-    }
-  };
-
-  handleEnter = event => {
-    if (event.charCode === 13) {
-      if (this.state.isFocused <= this.props.dropdownMenu.length) {
-        this.menuClick(
-          this.props.dropdownMenu[this.state.isFocused],
-          this.state.isFocused,
-        );
-        document
-          .getElementById(`${this.state.idPrefix}-dropdown-button`)
-          .focus();
-      } else {
-        setTimeout(
-          () =>
-            document
-              .getElementById(`${this.state.idPrefix}-menu-item-0`)
-              .focus(),
-          0,
-        );
-      }
-    }
-  };
-
-  public render() {
-    return (
-      <>
-        <div onBlur={this.blurFunction} className="psm-dropdown--component">
-          {
-            <button
-              aria-labelledby={this.props.label}
-              className={`psm-dropdown--btn psm-dropdown${
-                this.props.primary ? '--primary' : ''
-              }`}
-              data-testid={this.props.dataTestId}
-              disabled={this.props.disabled}
-              id={`${this.state.idPrefix}-dropdown-button`}
-              onClick={() => this.handleClick()}
-              onFocus={() =>
-                this.setState({ isFocused: this.props.dropdownMenu.length + 1 })
-              }
-            >
-              <span>{this.props.label}</span>
-              <div>
-                <Icons
-                  name="small-triangle-down"
-                  height="16px"
-                  width="16px"
-                  fill="white"
-                />
-              </div>
-            </button>
-          }
-          {this.state.showMenu && (
-            <>
-              <div />
-              <div className="psm-dropdown__menu">
-                <ul className="psm-dropdown__ul">
-                  {this.props.dropdownMenu.map((a, index) => {
-                    return (
-                      <li
-                        className="psm-dropdown__li"
-                        data-testid={`${this.props.dataTestId}-option-${index}`}
-                        id={`${this.state.idPrefix}-menu-item-${index}`}
-                        key={index}
-                        onClick={() => this.menuClick(a, index)}
-                        onFocus={() => this.setState({ isFocused: index })}
-                        role="menuitem"
-                        tabIndex={0}
-                      >
-                        {a.label}
-                      </li>
-                    );
-                  })}
-                </ul>
-              </div>{' '}
-            </>
-          )}
+      {showMenu && (
+        <div
+          className="psm-dropdown__menu"
+          onKeyDown={handleEscape}
+          role="button"
+          tabIndex={0}
+        >
+          <ul className="psm-dropdown__ul">
+            {dropdownMenu.map((action, index) => {
+              return (
+                <li
+                  className="psm-dropdown__li"
+                  data-testid={`${testid}-option-${index}`}
+                  key={index}
+                  onClick={() => menuClick(action)}
+                  onKeyDown={event => {
+                    if (event.key === 'Enter') menuClick(action);
+                  }}
+                  role="menuitem"
+                  tabIndex={0}
+                >
+                  {action.label}
+                </li>
+              );
+            })}
+          </ul>
         </div>
-      </>
-    );
-  }
-}
+      )}
+    </div>
+  );
+};
+
+export default Dropdown;

@@ -1,122 +1,117 @@
-import * as React from 'react';
+import React, { useState, useRef } from 'react';
 import './chip.scss';
-import Icons from '../core/svg-icons/index.js';
+import Icon from '../icon/Icon';
 
-export type ChipProps = {
-  label: string;
-  selectAction(event: any): any;
-  show?: boolean;
+interface ChipProps {
+  'data-testid'?: string;
+  closeAction?: (
+    event?:
+      | React.MouseEvent<HTMLSpanElement>
+      | React.KeyboardEvent<HTMLSpanElement>,
+  ) => void;
   isClosed?: boolean;
-  closeAction(event: any): any;
   isSelected?: boolean;
-  dataTestId?: String;
-};
-type ChipState = {
+  label: string;
+  selectAction?: (
+    event?:
+      | React.MouseEvent<HTMLSpanElement>
+      | React.KeyboardEvent<HTMLSpanElement>,
+  ) => void;
   show?: boolean;
-  isSelected: boolean;
-  isClosed: boolean;
-  isFocused: number;
+}
+
+interface ChipState {
+  isOpen: false | { isOpen: true; isSelected: boolean };
+}
+
+export const Chip = ({
+  closeAction = (
+    event?:
+      | React.MouseEvent<HTMLSpanElement>
+      | React.KeyboardEvent<HTMLSpanElement>,
+  ) => console.log(event, 'Chip closed'),
+  'data-testid': testid = '',
+  label = 'Empty Chip',
+  selectAction = (
+    event?:
+      | React.MouseEvent<HTMLSpanElement>
+      | React.KeyboardEvent<HTMLSpanElement>,
+  ) => console.log(event, 'Chip action'),
+}: ChipProps) => {
+  const [isOpen, setIsOpen] = useState<ChipState['isOpen']>({
+    isOpen: true,
+    isSelected: false,
+  });
+  const [isSelected, setIsSelected] = useState<ChipState['isOpen']>({
+    isOpen: true,
+    isSelected: false,
+  });
+
+  const chipRef = useRef<HTMLDivElement>(null);
+
+  function handleClose(
+    event?:
+      | React.MouseEvent<HTMLSpanElement, MouseEvent>
+      | React.KeyboardEvent<HTMLSpanElement>,
+  ) {
+    setIsOpen(false);
+    if (event) closeAction(event);
+  }
+
+  function handleClick(
+    event?:
+      | React.MouseEvent<HTMLSpanElement, MouseEvent>
+      | React.KeyboardEvent<HTMLSpanElement>,
+  ) {
+    setIsSelected({ isOpen: true, isSelected: true });
+    if (event) selectAction(event);
+  }
+
+  return (
+    <>
+      {isOpen && (
+        <div className={`psm-chip${isSelected ? '--selected' : ''}`}>
+          <span
+            aria-labelledby={label}
+            data-testid={testid}
+            role="button"
+            onClick={event =>
+              !isOpen && isSelected
+                ? setIsSelected(!isSelected)
+                : handleClick(event)
+            }
+            onKeyDown={event =>
+              !isOpen && isSelected
+                ? setIsSelected(!isSelected)
+                : handleClick(event)
+            }
+            onMouseEnter={() => {
+              if (chipRef.current) chipRef.current.focus();
+            }}
+            onMouseLeave={() => {
+              if (chipRef.current) chipRef.current.blur();
+            }}
+            tabIndex={0}
+          >
+            {label}
+          </span>
+          <span
+            aria-label={`Close ${label} chip`}
+            role="button"
+            className="psm-chip__close"
+            data-testid={`${testid}-icon`}
+            onClick={handleClose}
+            onKeyDown={handleClose}
+            tabIndex={0}
+          >
+            <Icon iconName="close" height="16px" width="16px" fill="#d4d4d4" />
+          </span>
+        </div>
+      )}
+    </>
+  );
 };
 
-export default class Chip extends React.Component<ChipProps, ChipState> {
-  constructor(props: ChipProps) {
-    super(props);
-    this.state = {
-      show: this.props.show,
-      isSelected: false,
-      isClosed: false,
-      isFocused: null,
-    };
-  }
-  componentDidUpdate(prevState) {
-    if (this.state.isClosed === prevState.isClosed) {
-      this.setState({ isClosed: true });
-    }
-  }
-  static defaultProps: ChipProps = {
-    label: 'Empty Chip',
-    selectAction: () => {
-      alert('Chip selected');
-    },
-    show: true,
-    isClosed: false,
-    closeAction: () => alert('Chip Closed'),
-    isSelected: false,
-  };
-  componentWillReceiveProps(props: ChipProps) {
-    this.setState({ isClosed: props.isClosed });
-  }
-
-  handleClose() {
-    this.setState({
-      isClosed: true,
-      show: false,
-      isFocused: null,
-    });
-    this.props.closeAction(this.props.closeAction);
-  }
-  handleClick() {
-    this.setState({ isSelected: true });
-    this.props.selectAction(this.props.selectAction);
-  }
-
-  handleEnter = event => {
-    if (event.charCode === 13) {
-      if (this.state.isFocused === 0) {
-        this.handleClick();
-      } else if (this.state.isFocused === 1) {
-        this.setState({
-          isFocused: null,
-        });
-        this.handleClose();
-      }
-    }
-  };
-  componentDidMount() {
-    document.addEventListener('keypress', this.handleEnter, false);
-  }
-  componentWillUnmount() {
-    document.removeEventListener('keypress', this.handleEnter, false);
-  }
-
-  public render() {
-    return (
-      <>
-        {this.state.show && (
-          <div style={{ display: 'inline-block' }}>
-            <div
-              className={`psm-chip${this.state.isSelected ? '--selected' : ''}`}
-            >
-              <div
-                aria-labelledby={this.props.label}
-                data-testid={this.props.dataTestId}
-                onBlur={() => this.setState({ isFocused: null })}
-                onClick={() =>
-                  this.state.isClosed && this.state.isSelected
-                    ? this.setState({ isSelected: !this.state.isSelected })
-                    : this.handleClick()
-                }
-                onFocus={() => this.setState({ isFocused: 0 })}
-                style={{ display: 'inline-block' }}
-                tabIndex={0}
-              >
-                {this.props.label}
-              </div>
-              <span
-                aria-label={`Close ${this.props.label} chip`}
-                className="psm-chip__close"
-                data-testid={`${this.props.dataTestId}-icon`}
-                onBlur={() => this.setState({ isFocused: null })}
-                onClick={() => this.handleClose()}
-                onFocus={() => this.setState({ isFocused: 1 })}
-                tabIndex={0}
-              >
-                <Icons name="close" height="16px" width="16px" fill="#d4d4d4" />
-              </span>
-            </div>
-          </div>
-        )}
-      </>
-    );
-  }
-}
+// react-docgen-typescript-loader needs a named export to work,
+// but default exports are convenient so we're using both
+export default Chip;

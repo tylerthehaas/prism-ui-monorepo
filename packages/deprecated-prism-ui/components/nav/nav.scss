@@ -1,6 +1,11 @@
 @import '../core/color/variables';
 @import '../core/spacing/variables';
 @import '../core/icon/variables';
+@import '../core/type/type.scss';
+
+li {
+  outline: none;
+}
 
 .psm-nav__tab {
   height: 44px;

@@ -1,42 +1,50 @@
 import * as React from 'react';
 import './spinner.scss';
 
-export type SpinnerProps = {
-  size: sizes;
-  dataTestId?: String;
+export interface SpinnerProps {
+  size?:
+    | 'extra-small'
+    | 'xs'
+    | 'small'
+    | 'sm'
+    | 'medium'
+    | 'md'
+    | 'large'
+    | 'lg'
+    | 'extra-large'
+    | 'xl';
+  'data-testid'?: String;
+}
+
+function spinnerSize(size: string) {
+  switch (size) {
+    case 'extra-small' || 'xs':
+      return 'xs';
+    case 'small' || 'sm':
+      return 'sm';
+    case 'medium' || 'md':
+      return 'md';
+    case 'large' || 'lg':
+      return 'lg';
+    case 'extra-large' || 'xl':
+      return 'xl';
+    default:
+      return 'md';
+  }
+}
+
+export const Spinner = ({
+  size = 'md',
+  'data-testid': testid = '',
+}: SpinnerProps) => {
+  return (
+    <div className={`psm-spinner--${spinnerSize(size)}`} data-testid={testid}>
+      <div />
+      <div />
+      <div />
+      <div />
+    </div>
+  );
 };
 
-export enum sizes {
-  'xl',
-  'xs',
-  'lg',
-  'md',
-  'sm',
-}
-
-export default class Spinner extends React.Component<SpinnerProps> {
-  constructor(props: SpinnerProps) {
-    super(props);
-    this.state = {
-      size: this.props.size,
-    };
-  }
-
-  componentWillReceiveProps(props: SpinnerProps) {
-    this.setState({ size: props.size });
-  }
-
-  public render() {
-    return (
-      <div
-        className={`psm-spinner--${this.props.size}`}
-        data-testid={this.props.dataTestId}
-      >
-        <div />
-        <div />
-        <div />
-        <div />
-      </div>
-    );
-  }
-}
+export default Spinner;

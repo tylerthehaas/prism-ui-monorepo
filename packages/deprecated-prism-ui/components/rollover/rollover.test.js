@@ -1,74 +1,184 @@
 import React from 'react';
-import { render } from 'react-testing-library';
-import 'jest-dom/extend-expect';
+import { render, fireEvent } from '@testing-library/react';
 
 import Rollover from './Rollover';
 
-import Enzyme from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-
-const { mount } = Enzyme;
-
-Enzyme.configure({ adapter: new Adapter() });
+const testRolloverContent = [
+  'Hello sir, I-*briefcase full of jellybeans falls open*',
+  '[burglar gently waking me] you live like this?',
+  `"Anime is real," Barack Obama said in his inauguration speech earlier. "Pokémon are real. Geodude is real, and strong, and he's my friend."`,
+  `The basketball shot clock was invented in 1954 after a player hid the ball under his shirt for 48 minutes and told everyone he was pregnant.`,
+];
+const testTriggerPhrase = `You can't spend your whole life gently rollerblading away from your problems`;
 
 describe('<Rollover />', () => {
-  it('Defaults to show above text', () => {
-    const { container } = render(<Rollover />);
-    expect(container.firstChild.firstChild.lastChild.firstChild).toHaveClass(
-      'psm-rollover__window--hide psm-rollover__window--up',
+  test('Shows rollover above trigger by default', () => {
+    const { getByText } = render(
+      <Rollover content={testRolloverContent} hoverText={testTriggerPhrase} />,
+    );
+
+    const getTriggerPhrase = getByText(
+      `You can't spend your whole life gently rollerblading away from your problems`,
+    );
+
+    fireEvent.mouseOver(getTriggerPhrase);
+
+    const getContent = getByText(
+      'Hello sir, I-*briefcase full of jellybeans falls open*',
+    );
+
+    expect(getContent.parentElement.parentElement).toHaveClass(
+      'psm-rollover__window--show psm-rollover__window--up',
     );
   });
-  it('Rollover shown above text when down is false', () => {
-    const { container } = render(<Rollover position={'down'} />);
-    expect(container.firstChild.firstChild.lastChild.firstChild).toHaveClass(
-      'psm-rollover__window--hide psm-rollover__window--down',
+
+  test('Rollover is underneath trigger phrase if position is down', () => {
+    const { getByText } = render(
+      <Rollover
+        content={testRolloverContent}
+        hoverText={testTriggerPhrase}
+        position="down"
+      />,
+    );
+
+    const getTriggerPhrase = getByText(
+      `You can't spend your whole life gently rollerblading away from your problems`,
+    );
+
+    fireEvent.mouseOver(getTriggerPhrase);
+
+    const getContent = getByText(
+      'Hello sir, I-*briefcase full of jellybeans falls open*',
+    );
+
+    expect(getContent.parentElement.parentElement).toHaveClass(
+      'psm-rollover__window--show psm-rollover__window--down',
     );
   });
-  it('Dotted underline when dotted underline is true', () => {
-    const { container } = render(<Rollover dotted={true} down={false} />);
-    expect(container.firstChild.firstChild.firstChild).toHaveClass(
-      'psm-rollover psm-rollover__text psm-rollover__text-dotted',
+
+  test('Hover text is dotted when hoverTextStyle = dotted', () => {
+    const { getByText } = render(
+      <Rollover hoverText={testTriggerPhrase} hoverTextStyle="dotted" />,
+    );
+
+    const getUnderlinedTriggerPhrase = getByText(
+      `You can't spend your whole life gently rollerblading away from your problems`,
+    );
+
+    expect(getUnderlinedTriggerPhrase).toHaveClass('psm-rollover__text-dotted');
+  });
+
+  test('Hover text is underlined when hoverTextStyle = underlined', () => {
+    const { getByText } = render(
+      <Rollover hoverText={testTriggerPhrase} hoverTextStyle="underlined" />,
+    );
+
+    const getUnderlinedTriggerPhrase = getByText(
+      `You can't spend your whole life gently rollerblading away from your problems`,
+    );
+
+    expect(getUnderlinedTriggerPhrase).toHaveClass(
+      'psm-rollover__text-underline',
     );
   });
-  it('Solid underline when solid underline is true', () => {
-    const { container } = render(
-      <Rollover dotted={false} down={false} underline={true} />,
+
+  test('Hover text has no additional styles when hoverTextStyle = none', () => {
+    const { getByText } = render(
+      <Rollover hoverText={testTriggerPhrase} hoverTextStyle="none" />,
     );
-    expect(container.firstChild.firstChild.firstChild).toHaveClass(
-      'psm-rollover psm-rollover__text psm-rollover__text-underline',
+
+    const getUnderlinedTriggerPhrase = getByText(
+      `You can't spend your whole life gently rollerblading away from your problems`,
+    );
+
+    expect(getUnderlinedTriggerPhrase).not.toHaveClass();
+  });
+
+  test(`'Show More' will appear when there are more items than the numShown prop allows`, () => {
+    const { getByText } = render(
+      <Rollover
+        content={testRolloverContent}
+        hoverText={testTriggerPhrase}
+        numShown={2}
+      />,
+    );
+
+    const hoverText = getByText(
+      `You can't spend your whole life gently rollerblading away from your problems`,
+    );
+
+    fireEvent.mouseEnter(hoverText);
+
+    const secondRolloverItem = getByText(
+      '[burglar gently waking me] you live like this?',
+    );
+
+    expect(secondRolloverItem.nextElementSibling).toHaveClass(
+      'psm-rollover__footer',
     );
   });
-  it('No underline when no underline is picked', () => {
-    const { container } = render(
-      <Rollover dotted={false} down={false} underline={false} />,
+
+  test(`'Show More' displays the previously hidden content when clicked`, () => {
+    const { getByText } = render(
+      <Rollover
+        content={testRolloverContent}
+        hoverText={testTriggerPhrase}
+        numShown={2}
+      />,
     );
-    expect(container.firstChild.firstChild.firstChild).not.toHaveClass(
-      'psm-rollover',
+
+    const hoverText = getByText(
+      `You can't spend your whole life gently rollerblading away from your problems`,
     );
-  });
-  it('Display more when there are more to show than should be shown', () => {
-    const container = mount(<Rollover numShown={2} underline={false} />);
-    expect(container.find('.psm-rollover__footer')).toHaveLength(1);
-  });
-  it('Shows more when more is clicked', () => {
-    const container = mount(<Rollover numShown={2} underline={false} />);
-    container.find('.psm-rollover__footer').simulate('click');
-    expect(container.state('clicked')).toEqual(true);
-    expect(container.state('extra')).not.toHaveLength(0);
-  });
-  it('OnBlur closes rollover', () => {
-    const container = mount(
-      <Rollover dotted={false} numShown={2} underline={false} />,
+
+    fireEvent.mouseEnter(hoverText);
+
+    const getShowMore = getByText('+2 More');
+
+    fireEvent.click(getShowMore);
+
+    const thirdRolloverItem = getByText(
+      `"Anime is real," Barack Obama said in his inauguration speech earlier. "Pokémon are real. Geodude is real, and strong, and he's my friend."`,
     );
-    container.find('.psm-rollover').simulate('blur');
-    expect(container.state('hovered')).toEqual(false);
-    expect(container.state('clicked')).toEqual(false);
-  });
-  it('OnMouseEnter opens rollover', () => {
-    const container = mount(
-      <Rollover dotted={false} numShown={2} underline={false} />,
+
+    const fourthRolloverItem = getByText(
+      `The basketball shot clock was invented in 1954 after a player hid the ball under his shirt for 48 minutes and told everyone he was pregnant.`,
     );
-    container.find('.psm-rollover').simulate('mouseenter');
-    expect(container.state('hovered')).toEqual(true);
+
+    expect(thirdRolloverItem).toBeTruthy();
+    expect(fourthRolloverItem).toBeTruthy();
+  });
+
+  test('OnBlur closes rollover', () => {
+    const { getByText, queryByText } = render(
+      <Rollover
+        content={testRolloverContent}
+        hoverText={testTriggerPhrase}
+        numShown={2}
+      />,
+    );
+
+    const hoverText = getByText(
+      `You can't spend your whole life gently rollerblading away from your problems`,
+    );
+
+    fireEvent.mouseEnter(hoverText);
+
+    const getShowMore = getByText('+2 More');
+
+    fireEvent.click(getShowMore);
+
+    fireEvent.blur(hoverText);
+
+    const thirdRolloverItem = queryByText(
+      `"Anime is real," Barack Obama said in his inauguration speech earlier. "Pokémon are real. Geodude is real, and strong, and he's my friend."`,
+    );
+
+    const fourthRolloverItem = queryByText(
+      `The basketball shot clock was invented in 1954 after a player hid the ball under his shirt for 48 minutes and told everyone he was pregnant.`,
+    );
+
+    expect(thirdRolloverItem).toBeFalsy();
+    expect(fourthRolloverItem).toBeFalsy();
   });
 });

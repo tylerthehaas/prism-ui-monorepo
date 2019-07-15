@@ -175,16 +175,17 @@ input[type='range']::-ms-tooltip {
 }
 
 .psm-input__slider-right-side {
-  height: 4px;
-  margin-left: auto;
-  position: relative;
-  margin-top: -11px;
-  margin-right: 0px;
   background: $psm-color-gray-200;
   border-radius: 25px;
-  z-index: 10;
+  height: 4px;
+  margin-left: auto;
+  margin-right: 0px;
+  margin-top: -11px;
   pointer-events: none;
+  position: relative;
+  z-index: 10;
 }
+
 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
   .psm-input__slider-right-side {
     display: none;

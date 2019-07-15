@@ -13,7 +13,7 @@ const app = express();
 const { PORT } = process.env || 3000;
 const CACHE_CONTROL = 'private, max-age=3600';
 
-app.use(express.static(path.join(__dirname, '../dist')));
+app.use(express.static(path.join(__dirname, '../storybook-static')));
 
 app.use(
   cors({
@@ -22,7 +22,7 @@ app.use(
 );
 
 app.use(compression());
-app.use(express.static(path.resolve(`${__dirname}`, 'dist')));
+app.use(express.static(path.resolve(`${__dirname}`, 'storybook-static')));
 app.use((req, res, next) => {
   res.header(
     'Access-Control-Allow-Headers',
@@ -70,10 +70,6 @@ app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send('Internal server error');
 });
-
-// app.get('*', (req, res) => {
-//   res.sendFile(indexHTML);
-// });
 
 app.use((req, res) => {
   res.status(404).send('Not found');

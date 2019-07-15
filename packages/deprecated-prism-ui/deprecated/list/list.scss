@@ -1,0 +1,39 @@
+@import '../core/color/variables';
+@import '../core/spacing/variables';
+@import '../core/icon/variables';
+@import '../core/spacing/variables';
+
+.psm-list {
+  border-collapse: collapse;
+  width: 100%;
+
+  .psm-list__row {
+    width: 100%;
+    border-top: 1px solid #dadcdd;
+    border-bottom: 1px solid #dadcdd;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: -1px 0;
+    & > li {
+      display: inline-block;
+      margin: 0;
+    }
+  }
+
+  .psm-list__row-sm {
+    height: 48px;
+  }
+
+  .psm-list__row-md {
+    height: 56px;
+  }
+
+  .psm-list__row-lg {
+    height: 72px;
+  }
+  .psm-list__row__lead {
+    padding-left: $psm-spacing-lg;
+    display: inline-block;
+  }
+}

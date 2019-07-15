@@ -1,204 +1,147 @@
-import * as React from 'react';
+import React, { useState, ReactNode } from 'react';
 import './modal.scss';
-import Icons from '../core/svg-icons';
+import FocusLock from 'react-focus-lock';
 
-export type ModalProps = {
-  children: any;
+import Icon from '../icon/Icon';
+import Button from '../button/Button';
+
+export interface ModalProps {
+  actions?: Action[];
+  children: ReactNode;
+  'data-testid'?: string;
+  modalTrigger?: boolean;
+  onClose: (event?: React.MouseEvent<HTMLDivElement>) => void;
+  show: boolean;
   title: string;
-  actions?: Array<{
-    label: string;
-    primary: boolean;
-    onClick(event: any): any;
-    position?: string;
-    shouldCloseModal?: boolean;
-  }>;
-  show?: boolean;
-  dataTestId?: String;
-  onClose?(): any;
-  modalButtonId: string;
-};
+}
 
-type ModalState = {
-  show?: boolean;
-  isFocused: number;
-};
+interface Action {
+  label: string;
+  primary: boolean;
+  onClick?: (event?: React.MouseEvent<HTMLDivElement>) => void;
+  position?: string;
+  shouldCloseModal?: boolean;
+}
 
-export default class Modal extends React.Component<ModalProps, ModalState> {
-  constructor(props: ModalProps) {
-    super(props);
-    this.state = {
-      show: this.props.show,
-      isFocused: 0,
-    };
-  }
+interface ModalState {
+  showState: boolean;
+}
 
-  componentWillReceiveProps(props: ModalProps) {
-    this.setState({ show: props.show });
-  }
+export const Modal = ({
+  actions = [
+    {
+      label: `I don't actually do anything right now`,
+      primary: true,
+      onClick: () => console.log(`You just had to test it anyway, didn't you?`),
+      position: 'up',
+      shouldCloseModal: true,
+    },
+    {
+      label: `I'm for testing`,
+      primary: false,
+      onClick: () => {},
+    },
+  ],
+  children = undefined,
+  'data-testid': testid = '',
+  modalTrigger = false,
+  onClose = () => {},
+  title = 'New Modal',
+  show = false,
+}: ModalProps) => {
+  const [showState, setShowState] = useState<ModalState['showState']>(show);
 
-  handleClick = button => event => {
-    if (button.shouldCloseModal) {
-      this.setState(
-        pState => ({ show: !pState.show }),
-        () => document.getElementById(this.props.modalButtonId).focus(),
-      );
-    }
-    return button.onClick();
-  };
-
-  escFunction(event) {
-    if (event.keyCode === 27) {
-      this.setState({ show: false });
-      document.getElementById(this.props.modalButtonId).focus();
+  function handleModalClick(action: Action) {
+    if (showState) {
+      if (action.shouldCloseModal) setShowState(false);
+      if (action.onClick) action.onClick();
     }
   }
-  componentDidMount() {
-    document.addEventListener('keydown', this.escFunction, false);
-    document.addEventListener('keypress', this.handleEnter, false);
-    document.addEventListener('keydown', this.handleTab, false);
-  }
-  componentWillUnmount() {
-    document.removeEventListener('keydown', this.escFunction, false);
-    document.removeEventListener('keypress', this.handleEnter, false);
-    document.removeEventListener('keydown', this.handleTab, false);
+
+  function handleEscape() {
+    if (showState) setShowState(false);
   }
 
-  handleTab = event => {
-    if (this.state.show) {
-      if (event.keyCode === 9) {
-        event.preventDefault();
-      }
-      if (this.props.actions && event.keyCode === 9 && event.shiftKey) {
-        if (this.state.isFocused === this.props.actions.length - 1) {
-          this.setState({ isFocused: this.props.actions.length + 3 });
-        } else if (this.state.isFocused < this.props.actions.length - 1) {
-          this.setState({ isFocused: this.state.isFocused + 1 });
-        } else if (this.state.isFocused === this.props.actions.length + 1) {
-          this.setState({ isFocused: 0 });
-        } else if (this.state.isFocused > this.props.actions.length) {
-          this.setState({ isFocused: this.state.isFocused - 1 });
-        }
-      }
-      if (this.props.actions && event.keyCode === 9 && !event.shiftKey) {
-        if (this.state.isFocused === 0) {
-          this.setState({ isFocused: this.props.actions.length + 1 });
-        } else if (this.state.isFocused < this.props.actions.length) {
-          this.setState({ isFocused: this.state.isFocused - 1 });
-        } else if (this.state.isFocused === this.props.actions.length + 3) {
-          this.setState({ isFocused: this.props.actions.length - 1 });
-        } else if (this.state.isFocused > this.props.actions.length) {
-          this.setState({ isFocused: this.state.isFocused + 1 });
-        }
-      }
-      document.getElementById(`button-${this.state.isFocused}`).focus();
-    }
-  };
+  function handleKeyboard(event: React.KeyboardEvent) {
+    if (event.key === 'Escape') handleEscape();
+  }
 
-  handleEnter = event => {
-    if (this.props.actions && event.charCode === 13) {
-      if (this.state.isFocused === this.props.actions.length + 1) {
-        this.setState({ show: false });
-      } else if (this.state.isFocused < this.props.actions.length) {
-        this.handleClick(this.props.actions[this.state.isFocused]);
-      }
-    }
-    if (!this.state.show) {
-      document.getElementById(this.props.modalButtonId).focus();
-    }
-  };
-
-  public render() {
-    return (
-      <>
-        {this.state.show && (
+  return (
+    <>
+      {modalTrigger && <Button onClick={() => setShowState(!showState)} />}
+      <FocusLock>
+        {showState && (
           <div
-            aria-expanded={this.props.show}
-            aria-labelledby={this.props.title}
+            aria-expanded={showState}
+            aria-labelledby={title}
             aria-live="assertive"
             aria-modal="true"
-            className={`psm-modal--${this.state.show ? 'show' : 'hide'}`}
+            className={`psm-modal--${showState ? 'show' : 'hide'}`}
+            data-testid={testid}
+            onKeyDown={handleKeyboard}
             role="dialog"
           >
             <div className="psm-modal__content" style={{ width: '80%' }}>
               <span
                 aria-label={'Close'}
                 className="psm-modal__close"
-                data-testid={`${this.props.dataTestId}-close-icon`}
-                id={`button-${
-                  this.props.actions ? this.props.actions.length + 1 : 1
-                }`}
+                data-testid={`${testid}-close-icon`}
+                id={`button-${actions ? actions.length + 1 : 1}`}
                 onClick={() => {
-                  this.setState({ show: false });
-                  this.props.onClose();
+                  setShowState(false);
+                  onClose();
                 }}
-                onFocus={() =>
-                  this.setState({
-                    isFocused: this.props.actions
-                      ? this.props.actions.length + 1
-                      : 1,
-                  })
-                }
                 tabIndex={0}
               >
-                <Icons name="close" height="16px" width="16px" fill="#707070" />
+                <Icon
+                  iconName="close"
+                  height="16px"
+                  width="16px"
+                  fill="#707070"
+                />
               </span>
 
               <h3
                 className="psm-modal__header"
-                id={`button-${
-                  this.props.actions ? this.props.actions.length + 2 : 2
-                }`}
-                onFocus={() =>
-                  this.setState({
-                    isFocused: this.props.actions
-                      ? this.props.actions.length + 2
-                      : 2,
-                  })
-                }
+                id={`button-${actions ? actions.length + 2 : 2}`}
                 style={{ outline: 'none' }}
-                tabIndex={0}
               >
-                {this.props.title}
+                {title}
               </h3>
               <div
                 className="psm-modal__body"
-                id={`button-${
-                  this.props.actions ? this.props.actions.length + 3 : 3
-                }`}
-                onFocus={() =>
-                  this.setState({
-                    isFocused: this.props.actions
-                      ? this.props.actions.length + 3
-                      : 3,
-                  })
-                }
-                style={{ position: 'relative', height: 250, outline: 'none' }}
-                tabIndex={0}
+                id={`button-${actions ? actions.length + 3 : 3}`}
+                style={{
+                  position: 'relative',
+                  height: 250,
+                  outline: 'none',
+                }}
               >
-                {this.props.children}
+                {children}
               </div>
               <div className="psm-modal__footer">
-                {this.props.actions &&
-                  this.props.actions.length !== 0 &&
-                  this.props.actions.map((a, index) => {
+                {actions &&
+                  actions.length !== 0 &&
+                  actions.map((action, index) => {
                     return (
                       <button
-                        className={`psm-button${a.primary ? '--primary' : ''}`}
-                        data-testid={`${this.props.dataTestId}-button-${index}`}
+                        className={`psm-button${
+                          action.primary ? '--primary' : ''
+                        }`}
+                        data-testid={`${testid}-button-${index}`}
                         id={`button-${index}`}
                         key={index}
-                        onClick={this.handleClick(a)}
-                        onFocus={() => this.setState({ isFocused: index })}
+                        onClick={() => handleModalClick(action)}
                         style={{
                           float:
-                            a.position && a.position === 'left'
+                            action.position && action.position === 'left'
                               ? 'left'
                               : 'right',
                           margin: 4,
                         }}
                         tabIndex={0}
                       >
-                        {a.label}
+                        {action.label}
                       </button>
                     );
                   })}
@@ -206,7 +149,9 @@ export default class Modal extends React.Component<ModalProps, ModalState> {
             </div>
           </div>
         )}
-      </>
-    );
-  }
-}
+      </FocusLock>
+    </>
+  );
+};
+
+export default Modal;

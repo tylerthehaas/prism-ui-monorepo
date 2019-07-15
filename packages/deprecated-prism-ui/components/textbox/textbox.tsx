@@ -1,117 +1,104 @@
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 import './textbox.scss';
 
-export type TextBoxProps = {
-  invalid?: boolean;
-  disabled?: boolean;
-  placeholderText?: string;
-  dataTestId?: String;
-  required?: boolean;
-  label?: string;
-  infoText?: string;
-  errorText?: string;
+export type TextboxProps = {
   change?(event: any): any;
+  'data-testid'?: string;
+  disabled?: boolean;
+  errorText?: string;
+  infoText?: string;
+  invalid?: boolean;
+  label?: string;
   maxChars: number;
+  placeholderText?: string;
+  required?: boolean;
 };
 
-export type TextBoxState = {
+export type TextboxState = {
+  invalidState: boolean;
   isClicked: boolean;
-  numChars: number;
-  invalid: boolean;
+  textLength: number;
 };
 
-export default class TextBox extends React.Component<
-  TextBoxProps,
-  TextBoxState
-> {
-  constructor(props: TextBoxProps) {
-    super(props);
-    this.state = {
-      isClicked: false,
-      numChars: 0,
-      invalid: this.props.invalid,
-    };
-    this.handleChange = this.handleChange.bind(this);
+export const Textbox = ({
+  change = () => {},
+  'data-testid': testid = '',
+  disabled = false,
+  errorText = 'Error text',
+  infoText = 'infoText',
+  invalid = false,
+  label = 'Input label',
+  maxChars = 250,
+  placeholderText = 'Placeholder Text',
+  required = false,
+}: TextboxProps) => {
+  const [invalidState, setInvalidState] = useState<
+    TextboxState['invalidState']
+  >(invalid);
+  const [isClicked, setIsClicked] = useState<TextboxState['isClicked']>(false);
+  const [textLength, setMessageLength] = useState<TextboxState['textLength']>(
+    0,
+  );
+
+  useEffect(() => {
+    setInvalidState(invalid);
+  });
+
+  const textTooLong = `Your message is too long. Cut back to ${maxChars} characters.`;
+
+  function handleChange(event: any) {
+    change(event);
+    setMessageLength(event.target.value.length);
   }
 
-  static defaultProps: TextBoxProps = {
-    invalid: false,
-    disabled: false,
-    placeholderText: 'Some text here',
-    dataTestId: '1',
-    required: false,
-    label: 'Input lable',
-    infoText: 'Informational text',
-    errorText: 'Error text',
-    change: () => console.log('Typing...'),
-    maxChars: 250,
-  };
-
-  charError() {
-    let message = [];
-    message.push('Your message is too long. Cut back to ');
-    message.push(this.props.maxChars);
-    message.push(' characters.');
-    return message;
-  }
-
-  handleChange(event) {
-    if (this.props.change) {
-      this.props.change;
-    }
-    this.setState({ numChars: event.target.value.length });
-  }
-
-  public render() {
-    return (
-      <>
-        {this.props.label && (
-          <div className="psm-form__label">
-            {this.props.label}
-            {!this.props.required && (
-              <span className="psm-form__optional">Optional</span>
-            )}
-            {this.props.maxChars && (
-              <span
-                className={`psm-form__max-chars ${this.props.maxChars <
-                  this.state.numChars && 'psm-form__max-chars--error'}`}
-              >
-                {`${this.state.numChars}/${this.props.maxChars} Characters`}
-              </span>
-            )}
-          </div>
-        )}
-        <textarea
-          className={`psm-form__textarea ${
-            this.state.isClicked ? 'psm-form__textarea--clicked' : ''
-          } ${
-            this.props.invalid || this.props.maxChars < this.state.numChars
-              ? 'psm-form__textarea--error'
-              : ''
+  return (
+    <>
+      {label && (
+        <div className="psm-form__label" data-testid={testid}>
+          {label}
+          {!required && <span className="psm-form__optional">Optional</span>}
+          {maxChars && (
+            <span
+              className={`psm-form__max-chars ${maxChars < textLength &&
+                'psm-form__max-chars--error'}`}
+            >
+              {`${textLength}/${maxChars} Characters`}
+            </span>
+          )}
+        </div>
+      )}
+      <textarea
+        className={`psm-form__textarea ${
+          isClicked ? 'psm-form__textarea--clicked' : ''
+        } ${
+          invalidState || maxChars < textLength
+            ? 'psm-form__textarea--error'
+            : ''
+        }`}
+        disabled={disabled}
+        onBlur={() => setIsClicked(false)}
+        onChange={handleChange}
+        onClick={() => setIsClicked(true)}
+        placeholder={placeholderText}
+        required={required}
+      />
+      {(infoText || errorText) && (
+        <div
+          className={`${
+            invalidState || maxChars < textLength
+              ? 'psm-form__error-text'
+              : 'psm-form__info-text'
           }`}
-          disabled={this.props.disabled}
-          onBlur={() => this.setState({ isClicked: false })}
-          onChange={this.handleChange}
-          onClick={() => this.setState({ isClicked: true })}
-          placeholder={this.props.placeholderText}
-          required={this.props.required}
-        />
-        {(this.props.infoText || this.props.errorText) && (
-          <div
-            className={`${
-              this.props.invalid || this.props.maxChars < this.state.numChars
-                ? 'psm-form__error-text'
-                : 'psm-form__info-text'
-            }`}
-          >
-            {this.props.invalid
-              ? this.props.errorText
-              : this.props.maxChars < this.state.numChars
-              ? this.charError()
-              : this.props.infoText}
-          </div>
-        )}
-      </>
-    );
-  }
-}
+        >
+          {invalidState
+            ? errorText
+            : maxChars < textLength
+            ? textTooLong
+            : infoText}
+        </div>
+      )}
+    </>
+  );
+};
+
+export default Textbox;
