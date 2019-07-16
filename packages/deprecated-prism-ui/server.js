@@ -5,8 +5,6 @@ const compression = require('compression');
 const cors = require('cors');
 const helmet = require('helmet');
 
-const legacyLocation = path.join(__dirname, 'legacy');
-
 const whitelist = process.env.OCT_VAULT_SITES_CORS_WHITELIST || [
   `https://vision-${process.env.NODE_ENV}.appreciatehub.com`,
 ];
@@ -81,18 +79,14 @@ app.get('/octhc', (req, res) => {
   res.status(200).send('Ok');
 });
 
+// for some resaon it REALLY wants the next parameter in there and doesn't work otherwise. Don't ask me.
+// eslint-disable-next-line
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send('Internal server error');
 });
 
 app.use('/legacy', express.static(`${__dirname}/legacy`));
-
-app.get('*', (req, res) => {
-  res
-    .status(200)
-    .sendFile(path.resolve(__dirname, 'storybook-static/index.html'));
-});
 
 app.use((req, res) => {
   res.status(404).send('Not found');

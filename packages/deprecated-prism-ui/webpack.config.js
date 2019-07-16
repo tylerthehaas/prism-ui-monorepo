@@ -6,6 +6,7 @@ const Dashboard = require('webpack-dashboard/plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const postcssPresetEnv = require('postcss-preset-env');
 const nodeModules = require('webpack-node-externals');
+const TerserPlugin = require('terser-webpack-plugin');
 
 const NODE_ENV = process.env.NODE_ENV || 'development';
 // Run production build in test env for the CI
@@ -70,11 +71,7 @@ module.exports = {
           {
             loader: 'postcss-loader',
             options: {
-              plugins: [
-                postcssPresetEnv({
-                  browsers: ['last 2 versions', 'ie >= 11'],
-                }),
-              ],
+              plugins: [postcssPresetEnv()],
             },
           },
           {
@@ -146,14 +143,7 @@ module.exports = {
   target: 'node',
   optimization: {
     minimize: isProd,
-    minimizer: [
-      new UglifyJSPlugin({
-        cache: true,
-        parallel: true,
-        sourceMap: true,
-      }),
-      new OptimizeCSSAssetsPlugin({}),
-    ],
+    minimizer: [new TerserPlugin(), new OptimizeCSSAssetsPlugin({})],
     runtimeChunk: false,
     splitChunks: {
       cacheGroups: {
