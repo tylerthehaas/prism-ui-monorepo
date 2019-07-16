@@ -1,7 +1,7 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const postcssPresetEnv = require('postcss-preset-env');
 const nodeModules = require('webpack-node-externals');
 
@@ -47,6 +47,7 @@ module.exports = {
               ],
             },
           },
+          'resolve-url-loader',
           'sass-loader',
         ],
       },
@@ -102,13 +103,7 @@ module.exports = {
   },
   optimization: {
     minimize: true,
-    minimizer: [
-      new UglifyJSPlugin({
-        cache: true,
-        parallel: true,
-      }),
-      new OptimizeCSSAssetsPlugin({}),
-    ],
+    minimizer: [new TerserPlugin(), new OptimizeCSSAssetsPlugin({})],
     moduleIds: 'total-size',
     runtimeChunk: false,
   },

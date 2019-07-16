@@ -5,6 +5,8 @@ const compression = require('compression');
 const cors = require('cors');
 const helmet = require('helmet');
 
+const legacyLocation = path.join(__dirname, 'legacy');
+
 const whitelist = process.env.OCT_VAULT_SITES_CORS_WHITELIST || [
   `https://vision-${process.env.NODE_ENV}.appreciatehub.com`,
 ];
@@ -13,7 +15,7 @@ const app = express();
 const { PORT } = process.env || 3000;
 const CACHE_CONTROL = 'private, max-age=3600';
 
-app.use(express.static(path.join(__dirname, '../storybook-static')));
+app.use(express.static(path.join(__dirname, 'storybook-static')));
 
 app.use(
   cors({
@@ -23,6 +25,8 @@ app.use(
 
 app.use(compression());
 app.use(express.static(path.resolve(`${__dirname}`, 'storybook-static')));
+app.use(express.static(path.resolve(`${__dirname}`, 'legacy')));
+
 app.use((req, res, next) => {
   res.header(
     'Access-Control-Allow-Headers',
@@ -37,6 +41,17 @@ app.use(
   helmet.contentSecurityPolicy({
     directives: {
       defaultSrc: ["'self'"],
+      'style-src': [
+        "'self'",
+        "'unsafe-inline'",
+        'https://fonts.googleapis.com',
+      ],
+      'img-src': ['*', 'data:'],
+      'font-src': [
+        "'self'",
+        'https://fonts.googleapis.com',
+        'https://fonts.gstatic.com',
+      ],
     },
   }),
 );
@@ -69,6 +84,14 @@ app.get('/octhc', (req, res) => {
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send('Internal server error');
+});
+
+app.use('/legacy', express.static(`${__dirname}/legacy`));
+
+app.get('*', (req, res) => {
+  res
+    .status(200)
+    .sendFile(path.resolve(__dirname, 'storybook-static/index.html'));
 });
 
 app.use((req, res) => {

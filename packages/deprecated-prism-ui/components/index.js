@@ -3,7 +3,6 @@ export { default as Avatar } from './avatar/Avatar';
 export { default as Button } from './button/Button';
 export { default as Card } from './card/Card';
 export { default as Chip } from './chip/Chip';
-export { default as Form } from './form/form';
 export { default as Hr } from './hr/Hr';
 export { default as Icon } from './icon/Icon';
 export { default as Input } from './input/Input';
