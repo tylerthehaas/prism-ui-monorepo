@@ -13,72 +13,38 @@
   border-radius: 4px;
   position: relative;
 
-  & .psm-alert__nub {
+  & .psm-alert__close {
+    background-color: transparent;
+    border: none;
+    border-bottom-right-radius: 3px;
+    border-top-right-radius: 3px;
+    cursor: pointer;
     display: inline-block;
+    height: 100%;
+    padding: 20px;
     position: absolute;
     right: 0;
     top: 0;
-    height: 100%;
     width: 56px;
-    border-top-right-radius: 3px;
-    border-bottom-right-radius: 3px;
-    cursor: pointer;
-    outline: none;
   }
-  & .psm-alert__not-nub {
+  & .psm-alert__msg {
     height: calc(100% - 32px);
-    outline: none;
     padding: 16px 0 16px 16px;
     width: calc(100% - 72px);
     border-top-left-radius: 3px;
     border-bottom-left-radius: 3px;
   }
-  & > .psm-alert__msg {
-    vertical-align: middle;
-  }
-  & .psm-alert__close {
-    cursor: pointer;
-    float: right;
-    margin: 20px 20px;
-  }
-  & > .psm-alert__action {
-    color: white;
-    text-decoration: underline;
-    vertical-align: middle;
-    padding: 0 $psm-spacing-md;
-    cursor: pointer;
-    &:active {
-      color: #9c9c9c;
-    }
-  }
 }
 .psm-alert--warning {
-  color: $psm-color-warning;
   background-color: $psm-color-warning-background;
+  color: $psm-color-warning;
   & a {
     color: $psm-color-warning !important;
     font-weight: bold;
   }
-  & .psm-alert__not-nub {
-    & .psm-alert--hover {
-      background-color: alpha-blend($psm-color-warning-background, 0.94, black);
-    }
-    &:hover {
-      background-color: alpha-blend($psm-color-warning-background, 0.94, black);
-    }
-  }
-  & .psm-alert__close:hover {
-    color: alpha-blend($psm-color-warning-background, 0.4, black);
-  }
-  & .psm-alert__nub {
-    background-color: $psm-color-warning-background;
-    &:hover {
-      background-color: alpha-blend($psm-color-warning-background, 0.94, black);
-      & .psm-icon-simple-remove {
-        color: alpha-blend($psm-color-warning, 0.4, black);
-      }
-    }
-    & .psm-alert--hover {
+  & .psm-alert__close {
+    &:hover,
+    &:focus {
       background-color: alpha-blend($psm-color-warning-background, 0.94, black);
     }
   }
@@ -91,26 +57,9 @@
     color: $psm-color-info !important;
     font-weight: bold;
   }
-  & .psm-alert__not-nub {
-    & .psm-alert--hover {
-      background-color: alpha-blend($psm-color-info-background, 0.94, black);
-    }
-    &:hover {
-      background-color: alpha-blend($psm-color-info-background, 0.94, black);
-    }
-  }
-  & .psm-alert__close:hover {
-    color: alpha-blend($psm-color-info-background, 0.4, black);
-  }
-  & .psm-alert__nub {
-    background-color: $psm-color-info-background;
-    &:hover {
-      background-color: alpha-blend($psm-color-info-background, 0.94, black);
-      & .psm-icon-simple-remove {
-        color: alpha-blend($psm-color-info, 0.4, black);
-      }
-    }
-    & .psm-alert--hover {
+  & .psm-alert__close {
+    &:hover,
+    &:focus {
       background-color: alpha-blend($psm-color-info-background, 0.94, black);
     }
   }
@@ -123,26 +72,9 @@
     color: $psm-color-error !important;
     font-weight: bold;
   }
-  & .psm-alert__not-nub {
-    & .psm-alert--hover {
-      background-color: alpha-blend($psm-color-error-background, 0.94, black);
-    }
-    &:hover {
-      background-color: alpha-blend($psm-color-error-background, 0.94, black);
-    }
-  }
-  & .psm-alert__close:hover {
-    color: alpha-blend($psm-color-error-background, 0.4, black);
-  }
-  & .psm-alert__nub {
-    background-color: $psm-color-error-background;
-    &:hover {
-      background-color: alpha-blend($psm-color-error-background, 0.94, black);
-      & .psm-icon-simple-remove {
-        color: alpha-blend($psm-color-error, 0.4, black);
-      }
-    }
-    & .psm-alert--hover {
+  & .psm-alert__close {
+    &:hover,
+    &:focus {
       background-color: alpha-blend($psm-color-error-background, 0.94, black);
     }
   }
@@ -155,25 +87,8 @@
     color: $psm-color-success !important;
     font-weight: bold;
   }
-  & .psm-alert__not-nub {
-    &:focus {
-      background-color: alpha-blend($psm-color-success-background, 0.94, black);
-    }
-    &:hover {
-      background-color: alpha-blend($psm-color-success-background, 0.94, black);
-    }
-  }
-  & .psm-alert__close:hover {
-    color: alpha-blend($psm-color-success-background, 0.4, black);
-  }
-  & .psm-alert__nub {
-    background-color: $psm-color-success-background;
-    &:hover {
-      background-color: alpha-blend($psm-color-success-background, 0.94, black);
-      & .psm-icon-simple-remove {
-        color: alpha-blend($psm-color-success, 0.4, black);
-      }
-    }
+  & .psm-alert__close {
+    &:hover,
     &:focus {
       background-color: alpha-blend($psm-color-success-background, 0.94, black);
     }

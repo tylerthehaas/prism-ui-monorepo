@@ -15,9 +15,7 @@ interface AlertProps {
   children: ReactNode;
   'data-testid'?: string;
   /** Called when an alert is dismissed */
-  onDismiss: (
-    event?: React.MouseEvent<HTMLSpanElement | HTMLDivElement>,
-  ) => void;
+  onDismiss?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 interface AlertState {
@@ -32,10 +30,10 @@ const Alert = ({
 }: AlertProps) => {
   const [dismissed, setDismissed] = useState<AlertState['dismissed']>(false);
 
-  function handleDismiss(
-    event: React.MouseEvent<HTMLSpanElement, MouseEvent> | undefined,
-  ) {
-    onDismiss(event);
+  function handleDismiss(event: React.MouseEvent<HTMLButtonElement>) {
+    if (typeof onDismiss === 'function') {
+      onDismiss(event);
+    }
     setDismissed(true);
   }
 
@@ -58,34 +56,29 @@ const Alert = ({
     <>
       {!dismissed && (
         <div
+          aria-live="assertive"
           className={`psm-alert psm-alert--${alertType}`}
           data-testid={testid}
           role="alert"
         >
-          <div className="psm-alert__not-nub" id="alert-not-nub">
-            <span>{children}</span>
+          <div className="psm-alert__msg" id="alert-msg">
+            {children}
           </div>
-          <div
-            className="psm-alert__nub"
+          <button
+            aria-label="Close alert"
+            className="psm-alert__close"
+            data-testid={`${testid}-icon`}
             id="alert-nub-close"
-            onClick={onDismiss}
+            onClick={handleDismiss}
+            type="button"
           >
-            <div className="psm-alert__close">
-              <span
-                onClick={handleDismiss}
-                aria-label="Close alert"
-                className="psm-icon-simple-remove"
-                data-testid={`${testid}-icon`}
-              >
-                <Icon
-                  iconName="close"
-                  height="16px"
-                  width="16px"
-                  fill={changeSvgColor(alertType)}
-                />
-              </span>
-            </div>
-          </div>
+            <Icon
+              iconName="close"
+              height="16px"
+              width="16px"
+              fill={changeSvgColor(alertType)}
+            />
+          </button>
         </div>
       )}
     </>
