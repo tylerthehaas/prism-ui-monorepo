@@ -36,7 +36,7 @@ export const Button = ({
   }
 
   return (
-    <div className="buttons" aria-labelledby="Button">
+    <div className="buttons">
       {(!linkRef && (
         <button
           className={buttonClassName()}
