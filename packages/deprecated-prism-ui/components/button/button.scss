@@ -5,6 +5,10 @@
 $psm-button-height: 36px;
 $psm-border-width: 1px;
 
+.buttons {
+  display: inline-block;
+}
+
 .psm-button,
 %psm-button {
   display: inline-block;

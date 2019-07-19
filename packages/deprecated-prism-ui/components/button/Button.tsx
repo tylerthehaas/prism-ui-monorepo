@@ -36,20 +36,19 @@ export const Button = ({
   }
 
   return (
-    <div className="buttons">
+    <div className="buttons" aria-labelledby="Button">
       {(!linkRef && (
         <button
-          aria-labelledby={label}
           className={buttonClassName()}
           data-testid={testid}
           disabled={disabled}
           onClick={onClick}
+          type="button"
         >
           {label}
         </button>
       )) || (
         <a
-          aria-labelledby={label}
           className={buttonClassName()}
           data-testid={testid}
           href={linkRef}
