@@ -1,5 +1,6 @@
 import { configure, addDecorator, addParameters } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
+import { withA11y } from '@storybook/addon-a11y';
 
 addDecorator(withInfo);
 addParameters({
@@ -16,3 +17,5 @@ function loadStories() {
 }
 
 configure(loadStories, module);
+
+addDecorator(withA11y);
