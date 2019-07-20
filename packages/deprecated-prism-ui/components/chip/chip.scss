@@ -2,6 +2,14 @@
 @import '../core/spacing/variables';
 @import '../core/icon/variables';
 
+.chip-button {
+  background: transparent;
+  border: none;
+  color: #707070;
+  font-size: 1rem;
+  padding: 0;
+}
+
 .psm-chip,
 %psm-chip {
   display: inline-block;
@@ -24,11 +32,14 @@
 
 .psm-chip__close {
   font-family: '#{$icomoon-font-family}' !important;
+  border: none;
+  background: transparent;
   content: $psm-icon-simple-remove;
   color: $psm-color-gray-300;
   height: 100%;
   margin-left: $psm-spacing-lg;
   display: inline-block;
+  padding: 0;
   vertical-align: middle;
   svg {
     vertical-align: text-bottom;
