@@ -12,19 +12,9 @@
   box-sizing: border-box;
   border: 1px solid $psm-color-gray-300;
   border-radius: 3px;
-  outline-style: none;
   color: $psm-color-gray-900;
   &::placeholder {
     color: $psm-color-gray-500;
-  }
-
-  &.psm-input--clicked {
-    border-color: #42a5f5;
-    box-shadow: 0 0 0 $psm-spacing-xs #e3f2fd;
-    &.psm-input--error,
-    &.psm-input:invalid {
-      box-shadow: 0 0 0 $psm-spacing-xs #fceded;
-    }
   }
 
   &:hover {
@@ -49,6 +39,12 @@
       color: $psm-color-gray-400;
     }
   }
+}
+button[class|=psm-icon-svg] {
+  background: transparent;
+  border: none;
+  bottom: 16px;
+  padding: 0;
 }
 .psm-form__label {
   margin: 16px 0px 0px;

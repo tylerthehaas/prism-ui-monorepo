@@ -10,7 +10,7 @@ const SVG = ({
 }) => (
   <svg
     className={className}
-    focusable="true"
+    focusable="false"
     height={height}
     version="1.1"
     viewBox={viewBox}

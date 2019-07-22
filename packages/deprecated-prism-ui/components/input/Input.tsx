@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import FocusLock from 'react-focus-lock';
+import React from 'react';
 import './input.scss';
 import './input-group.scss';
 import Icon, { IconNames } from '../icon/Icon';
@@ -13,6 +12,7 @@ export interface InputProps {
   infoText?: string;
   invalid?: boolean;
   label?: string;
+  optionalText?: string;
   placeholderText?: string;
   required?: boolean;
 }
@@ -27,10 +27,6 @@ const defaultIcon: iconType = {
   name: 'tail-right',
 };
 
-export interface InputState {
-  isClicked: boolean;
-}
-
 export const Input = ({
   change = () => {},
   disabled = false,
@@ -39,106 +35,72 @@ export const Input = ({
   infoText = '',
   invalid = false,
   label = '',
-  placeholderText = 'Input Text Here',
-  required = true,
+  optionalText = '',
+  placeholderText = '',
+  required = false,
   'data-testid': testid = '',
 }: InputProps) => {
-  const [isClicked, setIsClicked] = useState<InputState['isClicked']>(false);
+
+  function handleClick(icon: iconType) {
+    return (event: React.MouseEvent<HTMLSpanElement>) => {
+      if (icon.onClick) icon.onClick(event);
+    }
+  }
+
   return (
-    <FocusLock>
-      {(icon && (
-        <>
-          {label && (
-            <div className="psm-form__label">
-              {label}
-              {!required && (
-                <span className="psm-form__optional">Optional</span>
-              )}
-            </div>
+    <>
+      {label && (
+        <label className="psm-form__label" htmlFor="psm-input-text">
+          {label}
+          {!required && (
+            <span className="psm-form__optional">{optionalText}</span>
           )}
-          <div className={`psm-input-${icon.position || 'trailing'}-icon`}>
-            <span
-              aria-label={`${icon.name} icon`}
-              className={`psm-icon-svg-${icon.name}`}
-              data-testid={`${testid}--icon`}
-              onClick={e => {
-                if (icon.onClick) icon.onClick(e);
-              }}
-              style={{
-                cursor: icon.onClick ? 'pointer' : 'default',
-              }}
-              tabIndex={0}
-            >
-              {console.log(icon)}
-              <Icon
-                iconName={icon.name}
-                height="16px"
-                width="16px"
-                fill="#707070"
-                className={`svg-icon-${icon.name}`}
-              />
-            </span>
-            <input
-              aria-labelledby="Input field"
-              className={`psm-input ${isClicked ? 'psm-input--clicked' : ''} ${
-                invalid ? 'psm-input--error' : ''
-              }`}
-              data-testid={testid}
-              disabled={disabled}
-              onBlur={() => setIsClicked(false)}
-              onChange={change}
-              onClick={() => setIsClicked(true)}
-              placeholder={placeholderText}
-              required={required}
-              type="text"
-            />
-          </div>
-          {(infoText || errorText) && (
-            <div
-              className={`${
-                invalid ? 'psm-form__error-text' : 'psm-form__info-text'
-              }`}
-            >
-              {invalid ? errorText : infoText}
-            </div>
-          )}
-        </>
-      )) || (
-        <>
-          {label && (
-            <div className="psm-form__label">
-              {label}
-              {!required && (
-                <span className="psm-form__optional">Optional</span>
-              )}
-            </div>
-          )}
-          <input
-            aria-labelledby="Input field"
-            className={`psm-input${invalid ? ' psm-input--active' : ''} ${
-              isClicked ? 'psm-input--clicked' : ''
-            } ${invalid ? 'psm-input--error' : ''}`}
-            data-testid={testid}
-            disabled={disabled}
-            onBlur={() => setIsClicked(false)}
-            onChange={change}
-            onClick={() => setIsClicked(true)}
-            placeholder={placeholderText}
-            required={required}
-            type="text"
-          />
-          {(infoText || errorText) && (
-            <div
-              className={`${
-                invalid ? 'psm-form__error-text' : 'psm-form__info-text'
-              }`}
-            >
-              {invalid ? errorText : infoText}
-            </div>
-          )}
-        </>
+        </label>
       )}
-    </FocusLock>
+      <div className={icon ? `psm-input-${icon.position || 'trailing'}-icon` : ''}>
+      {(icon && (
+        <button
+          aria-label={`${icon.name} icon`}
+          className={`psm-icon-svg-${icon.name}`}
+          data-testid={`${testid}--icon`}
+          onClick={handleClick(icon)}
+          style={{
+            cursor: icon.onClick ? 'pointer' : 'default',
+          }}
+          type="button"
+        >
+          {console.log(icon)}
+          <Icon
+            iconName={icon.name}
+            height="16px"
+            width="16px"
+            fill="#707070"
+            className={`svg-icon-${icon.name}`}
+          />
+        </button>
+      ))}
+        <input
+          aria-describedby='info'
+          aria-label={`${label ? '' : 'input'}`}
+          className={`psm-input ${invalid ? 'psm-input--error' : ''}`}
+          data-testid={testid}
+          disabled={disabled}
+          id="psm-input-text"
+          onChange={change}
+          placeholder={placeholderText}
+          required={required}
+          type="text"
+        />
+      </div>
+      <div
+        className={`${
+          invalid ? 'psm-form__error-text' : 'psm-form__info-text'
+        }`}
+        id='info'
+      >
+        {infoText || errorText ? `${invalid ? 'error-text' : 'info-text'}` : ''}
+      </div>
+    </>
   );
 };
 
