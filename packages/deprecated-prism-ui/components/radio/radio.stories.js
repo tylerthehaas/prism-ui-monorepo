@@ -5,7 +5,6 @@ import Radio from './Radio';
 
 storiesOf('Radio', module)
   .addDecorator(withKnobs)
-  .add('default', () => <Radio />)
   .add('knobs', () => (
     <Radio
       buttons={[
