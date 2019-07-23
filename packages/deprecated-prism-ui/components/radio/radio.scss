@@ -3,6 +3,11 @@
 @import '../core/spacing/variables';
 @import '../core/icon/variables';
 
+.psm-radio__group {
+  border: none;
+  padding: 0;
+}
+
 .psm-radio {
   display: inline-block;
   position: relative;
@@ -29,6 +34,7 @@
 }
 
 .psm-radio__label {
-  position: relative;
   bottom: $psm-spacing-sm;
+  cursor: pointer;
+  position: relative;
 }

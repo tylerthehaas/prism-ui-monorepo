@@ -16,25 +16,13 @@ export interface Button {
 
 interface RadioState {
   selectedOption?: number;
-  isTab: boolean;
 }
-
-const defaultButtons: RadioProps['buttons'] = [
-  {
-    text: 'Option 1',
-    checked: true,
-  },
-  {
-    text: 'Option 2',
-    checked: false,
-  },
-];
 
 export const Radio = ({
   'data-testid': testid = '',
-  buttons = defaultButtons,
+  buttons = [],
   idPrefix = '',
-  name = 'Button',
+  name = '',
 }: RadioProps) => {
   const [selectedOption, setSelectedOption] = useState<
     RadioState['selectedOption']
@@ -46,32 +34,33 @@ export const Radio = ({
   }
 
   return (
-    <>
-      {name}
+    <fieldset
+      className="psm-radio__group"
+    >
+      <legend>{name}</legend>
       {buttons.map((button, index) => {
         return (
-          <div key={index} onClick={() => select} tabIndex={0}>
+          <div key={index}>
             <input
               checked={selectedOption === index}
               className="psm-radio"
               data-testid={`${testid}-${name}-${index}`}
               id={`${idPrefix}-${index}`}
               name={name}
-              onChange={() => select(button, index)}
+              onChange={select.bind({}, button, index)}
               type="radio"
             />
             <label
-              aria-labelledby={button.text}
               className="psm-radio__label"
+              htmlFor={`${idPrefix}-${index}`}
               id={`${idPrefix}-label-${index}`}
-              onClick={() => select(button, index)}
             >
               {button.text}
             </label>
           </div>
         );
       })}
-    </>
+    </fieldset>
   );
 };
 
