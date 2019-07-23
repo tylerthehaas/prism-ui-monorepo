@@ -20,14 +20,14 @@
   "parserOptions": {
     "ecmaVersion": 2018,
     "sourceType": "module",
-    "project": "./tsconfig.json",
+    "project": "./tsconfig.json"
   },
   "plugins": ["@typescript-eslint", "jsx-a11y"],
   "settings": {
     "import/resolver": {
       "typescript": {}
     },
-    "import/ignore": [".js", ".jsx"],
+    "import/ignore": [".js", ".jsx"]
   },
   "rules": {
     "class-methods-use-this": "off",
@@ -56,6 +56,13 @@
     "react/jsx-one-expression-per-line": "off",
     "react/jsx-wrap-multilines": "off",
     "react/destructuring-assignment": "off",
+    "react/no-array-index-key": "off",
+    "jsx-a11y/no-noninteractive-tabindex": [
+      "error",
+      {
+        "roles": ["region"]
+      }
+    ],
     "semi": [2, "always"],
     "space-before-function-paren": 0,
     "strict": 0,

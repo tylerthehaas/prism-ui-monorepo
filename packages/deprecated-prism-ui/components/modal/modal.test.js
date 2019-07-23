@@ -14,23 +14,41 @@ describe('<Modal />', () => {
     expect(getTextSuccess).toHaveTextContent(testText);
   });
 
-  test('The close icon works', () => {
-    const { queryByText } = render(<Modal show>{testText}</Modal>);
-
-    fireEvent.click(document.querySelector('.psm-modal__close'));
-
-    const lookForTestText = queryByText(testText);
-
-    expect(lookForTestText).toBeFalsy();
+  test('calls onClose when background clicked', () => {
+    const onClose = jest.fn();
+    const { container } = render(
+      <Modal show onClose={onClose}>
+        {testText}
+      </Modal>,
+    );
+    fireEvent.click(container.querySelector('dialog'));
+    expect(onClose).toHaveBeenCalled();
   });
 
   test('Clicking the button closes the modal by default', () => {
-    const { queryByText } = render(<Modal show>{testText}</Modal>);
+    const actions = [
+      {
+        label: "I don't actually do anything right now",
+        primary: true,
+        onClick: () =>
+          console.log("You just had to test it anyway, didn't you?"),
+        shouldCloseModal: true,
+      },
+      {
+        label: "I'm for testing",
+        primary: false,
+        onClick: () => {},
+      },
+    ];
+    const onClose = jest.fn();
+    const { queryByText } = render(
+      <Modal show actions={actions} onClose={onClose}>
+        {testText}
+      </Modal>,
+    );
 
     fireEvent.click(queryByText(`I don't actually do anything right now`));
 
-    const lookForTestText = queryByText(testText);
-
-    expect(lookForTestText).toBeFalsy();
+    expect(onClose).toHaveBeenCalledTimes(1);
   });
 });

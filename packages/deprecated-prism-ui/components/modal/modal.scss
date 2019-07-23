@@ -11,19 +11,23 @@
   height: 100%;
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.2s ease-in, z-index 0.2s linear;
+  opacity: 0;
+
   & > .psm-modal__content {
     background-color: #ffffff;
     margin: 0 auto;
     overflow: hidden;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     padding: $psm-spacing-xl;
     box-shadow: 0 $psm-spacing-xs $psm-spacing-sm 0 rgba(0, 0, 0, 0.14),
       0 $psm-spacing-sm 5px 0 rgba(0, 0, 0, 0.12),
       0 1px 10px 0 rgba(0, 0, 0, 0.2);
     border-radius: 3px;
+    transition: transform 0.2s linear;
+    transform: scale3d(0, 0, 0);
 
     & > .psm-modal__header {
       text-align: center;
@@ -33,11 +37,16 @@
     & > .psm-modal__close {
       float: right;
       cursor: pointer;
+      padding: 8px;
+      background: none;
+      border: none;
     }
 
     & > .psm-modal__body {
       padding: $psm-spacing-md;
       overflow-y: auto;
+      padding-bottom: 44px;
+      padding-top: 44px;
     }
 
     & > .psm-modal__footer,
@@ -47,16 +56,26 @@
       padding: $psm-spacing-lg $psm-spacing-xl 0;
       text-align: center;
       background-color: #ffffff;
+      display: flex;
+      justify-content: flex-end;
     }
   }
 }
 
 .psm-modal--show {
   @extend %psm-modal;
-  display: inline-block;
+  opacity: 1;
+  z-index: 100;
+  & .psm-modal__content {
+    transform: scale3d(1, 1, 1);
+  }
 }
 
 .psm-modal--hide {
+  z-index: -1;
   @extend %psm-modal;
-  display: none;
+  .psm-modal__content {
+    transition: transform 0.2s linear;
+    transform: scale3d(0, 0, 0);
+  }
 }

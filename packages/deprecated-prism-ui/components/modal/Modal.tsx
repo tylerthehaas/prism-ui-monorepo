@@ -1,16 +1,14 @@
-import React, { useState, ReactNode } from 'react';
-import './modal.scss';
+import React, { useEffect, useMemo } from 'react';
 import FocusLock from 'react-focus-lock';
+import './modal.scss';
 
 import Icon from '../icon/Icon';
-import Button from '../button/Button';
 
-export interface ModalProps {
+interface ModalProps {
   actions?: Action[];
-  children: ReactNode;
   'data-testid'?: string;
-  modalTrigger?: boolean;
-  onClose: (event?: React.MouseEvent<HTMLDivElement>) => void;
+  children: React.ReactNode;
+  onClose: (event?: React.MouseEvent<HTMLElement>) => void;
   show: boolean;
   title: string;
 }
@@ -18,139 +16,122 @@ export interface ModalProps {
 interface Action {
   label: string;
   primary: boolean;
-  onClick?: (event?: React.MouseEvent<HTMLDivElement>) => void;
-  position?: string;
-  shouldCloseModal?: boolean;
+  onClick: (event?: React.MouseEvent<HTMLElement>) => void;
 }
 
-interface ModalState {
-  showState: boolean;
-}
+let TITLE_ID_INC = 0;
 
 export const Modal = ({
-  actions = [
-    {
-      label: `I don't actually do anything right now`,
-      primary: true,
-      onClick: () => console.log(`You just had to test it anyway, didn't you?`),
-      position: 'up',
-      shouldCloseModal: true,
-    },
-    {
-      label: `I'm for testing`,
-      primary: false,
-      onClick: () => {},
-    },
-  ],
-  children = undefined,
+  actions,
+  children,
   'data-testid': testid = '',
-  modalTrigger = false,
-  onClose = () => {},
-  title = 'New Modal',
-  show = false,
+  onClose,
+  title,
+  show,
 }: ModalProps) => {
-  const [showState, setShowState] = useState<ModalState['showState']>(show);
-
-  function handleModalClick(action: Action) {
-    if (showState) {
-      if (action.shouldCloseModal) setShowState(false);
-      if (action.onClick) action.onClick();
+  function handleEscape() {
+    if (show) {
+      onClose();
     }
   }
 
-  function handleEscape() {
-    if (showState) setShowState(false);
-  }
-
-  function handleKeyboard(event: React.KeyboardEvent) {
+  const handleKeyboard = (event: KeyboardEvent | React.KeyboardEvent) => {
     if (event.key === 'Escape') handleEscape();
+  };
+
+  const handleClick = (e: MouseEvent) => {
+    if (e.target instanceof HTMLDialogElement) {
+      onClose();
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyboard);
+    return () => window.removeEventListener('keydown', handleKeyboard);
+  }, []);
+
+  useEffect(() => {
+    document.addEventListener('click', handleClick);
+    return () => document.removeEventListener('click', handleClick);
+  }, []);
+
+  const titleId = useMemo(() => {
+    TITLE_ID_INC += 1;
+    return `title-${TITLE_ID_INC}`;
+  }, []);
+
+  function handleModalClick(action: Action) {
+    if (show) {
+      action.onClick();
+    }
   }
 
   return (
-    <>
-      {modalTrigger && <Button onClick={() => setShowState(!showState)} />}
-      <FocusLock>
-        {showState && (
-          <div
-            aria-expanded={showState}
-            aria-labelledby={title}
-            aria-live="assertive"
-            aria-modal="true"
-            className={`psm-modal--${showState ? 'show' : 'hide'}`}
-            data-testid={testid}
-            onKeyDown={handleKeyboard}
-            role="dialog"
+    <FocusLock>
+      <dialog
+        aria-labelledby={titleId}
+        aria-expanded={show}
+        aria-live="assertive"
+        aria-modal="true"
+        className={`psm-modal--${show ? 'show' : 'hide'}`}
+        data-testid={testid}
+      >
+        <div className="psm-modal__content" style={{ width: '80%' }}>
+          <button
+            type="button"
+            aria-label="Close"
+            className="psm-modal__close"
+            data-testid={`${testid}-close-icon`}
+            onClick={onClose}
           >
-            <div className="psm-modal__content" style={{ width: '80%' }}>
-              <span
-                aria-label={'Close'}
-                className="psm-modal__close"
-                data-testid={`${testid}-close-icon`}
-                id={`button-${actions ? actions.length + 1 : 1}`}
-                onClick={() => {
-                  setShowState(false);
-                  onClose();
-                }}
-                tabIndex={0}
-              >
-                <Icon
-                  iconName="close"
-                  height="16px"
-                  width="16px"
-                  fill="#707070"
-                />
-              </span>
+            <Icon iconName="close" height="16px" width="16px" fill="#707070" />
+          </button>
 
-              <h3
-                className="psm-modal__header"
-                id={`button-${actions ? actions.length + 2 : 2}`}
-                style={{ outline: 'none' }}
-              >
-                {title}
-              </h3>
-              <div
-                className="psm-modal__body"
-                id={`button-${actions ? actions.length + 3 : 3}`}
-                style={{
-                  position: 'relative',
-                  height: 250,
-                  outline: 'none',
-                }}
-              >
-                {children}
-              </div>
-              <div className="psm-modal__footer">
-                {actions &&
-                  actions.length !== 0 &&
-                  actions.map((action, index) => {
-                    return (
-                      <button
-                        className={`psm-button${
-                          action.primary ? '--primary' : ''
-                        }`}
-                        data-testid={`${testid}-button-${index}`}
-                        id={`button-${index}`}
-                        key={index}
-                        onClick={() => handleModalClick(action)}
-                        style={{
-                          float:
-                            action.position && action.position === 'left'
-                              ? 'left'
-                              : 'right',
-                          margin: 4,
-                        }}
-                        tabIndex={0}
-                      >
-                        {action.label}
-                      </button>
-                    );
-                  })}
-              </div>
-            </div>
+          <h3
+            className="psm-modal__header"
+            id={titleId}
+            style={{ outline: 'none' }}
+          >
+            {title}
+          </h3>
+          <div
+            className="psm-modal__body"
+            style={{
+              position: 'relative',
+              height: 250,
+            }}
+            role="region"
+            tabIndex={0}
+          >
+            <div>{children}</div>
           </div>
-        )}
-      </FocusLock>
-    </>
+          <div className="psm-modal__footer">
+            {actions &&
+              actions.length !== 0 &&
+              actions.map((action, index) => {
+                return (
+                  <button
+                    type="button"
+                    className={`psm-button${action.primary ? '--primary' : ''}`}
+                    data-testid={`${testid}-button-${index}`}
+                    key={index}
+                    onClick={e => {
+                      e.stopPropagation();
+                      handleModalClick(action);
+                      onClose(e);
+                    }}
+                    style={{
+                      margin: 4,
+                    }}
+                  >
+                    {action.label}
+                  </button>
+                );
+              })}
+          </div>
+        </div>
+      </dialog>
+    </FocusLock>
   );
 };
 
