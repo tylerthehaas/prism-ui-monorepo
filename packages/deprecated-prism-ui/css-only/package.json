@@ -1,0 +1,16 @@
+{
+  "name": "prism-ui-css",
+  "version": "3.0.0",
+  "engines": {
+    "node": ">=10.0.0"
+  },
+  "description": "Common UI for OC Tanner – CSS only",
+  "license": "ISC",
+  "publishConfig": {
+    "registry": "https://artifactory.octanner.net/api/npm/npmjs-repo/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/octanner/prism-ui.git"
+  }
+}

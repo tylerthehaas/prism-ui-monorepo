@@ -1,17 +1,17 @@
 {
   "name": "prism-ui",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "engines": {
     "node": ">=10.0.0"
   },
   "description": "Common UI for OC Tanner",
-  "main": "dist/app.bundle.js",
-  "module": "dist/app.bundle.js",
+  "main": "app.bundle.js",
+  "module": "app.bundle.js",
   "scripts": {
-    "build": "rm -rf ./dist/ && NODE_ENV=production webpack -p",
-    "build:library": "rm -rf ./dist/ && NODE_ENV=production webpack --config webpack.config.library.js",
-    "dev:simple": "webpack-dev-server --port 3000",
-    "dev": "webpack-dashboard -- webpack-dev-server --port 3000 --inline --progress",
+    "bundle": "rm -rf ./dist && NODE_ENV=production webpack --config webpack.config.js",
+    "css": "cp ./dist/main.css ./css-only/main.css",
+    "copy": "cp ./package.json dist/package.json",
+    "build": "npm run bundle && npm run css && npm run copy && tar -zcvf prism-ui.tar.gz dist/ && tar -zcvf prism-ui-css.tar.gz css-only",
     "start": "nodemon server.js",
     "lint": "eslint ./components --ext .js,.tsx",
     "prettier": "npm run prettier:js && npm run prettier:css",
@@ -61,8 +61,7 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-focus-lock": "^2.0.1",
-    "react-router-dom": "^4.3.1",
-    "react-window": "^1.8.3"
+    "react-router-dom": "^4.3.1"
   },
   "devDependencies": {
     "@babel/core": "^7.4.5",
@@ -98,7 +97,6 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^24.5.0",
     "jest-environment-enzyme": "^7.0.2",
-    "jooks": "0.0.16",
     "jsdom": "^12.1.0",
     "mini-css-extract-plugin": "^0.4.5",
     "node-sass": "^4.12.0",
@@ -120,7 +118,8 @@
     "typescript": "^3.5.3",
     "url-loader": "^1.1.2",
     "webpack": "^4.35.0",
-    "webpack-cli": "^3.3.4",
+    "webpack-bundle-analyzer": "^3.3.2",
+    "webpack-cli": "^3.3.6",
     "webpack-dashboard": "^2.1.0",
     "webpack-dev-server": "^3.2.1",
     "webpack-node-externals": "^1.7.2",

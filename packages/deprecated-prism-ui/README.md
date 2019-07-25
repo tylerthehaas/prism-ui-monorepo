@@ -19,7 +19,7 @@ npm install
 npm start
 ```
 
-for a static build on port 9000, or 
+for a static build on port 9000, or
 
 ```bash
 npm run storybook
@@ -46,21 +46,30 @@ Promote the site to prod in [Akkeris](https://akkeris.octanner.io/pipelines/13cf
 Build the library with
 
 ```bash
-npm run build:library
+npm run build
 ```
 
 This will create a production build of just the components and the css for redistribution in `dist/`
 
-Publish the library to [Artifactory](https://artifactory.octanner.net) with 
+Publish the full library to [Artifactory](https://artifactory.octanner.net) with
 
 ```bash
-npm publish
+npm publish prism-ui.tar.gz
 ```
 
-#### Usage
+then publish the css only version with
 
-To pull in the css file, use `import 'prismui/dist/main.css'`
-If you want to use React components, import specific components from the package, e.g. `import { Avatar, Button } from 'prismui'`
+```bash
+npm publish prism-ui-css.tar.gz
+```
+
+#### React Usage
+
+First, pull in the css library with `import 'prismui/main.css'`, then import specific components from the package, e.g. `import { Avatar, Button } from 'prismui'`
+
+#### CSS-Only Usage
+
+`import 'prismui/main.css'`
 
 #### Legacy
 

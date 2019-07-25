@@ -1,56 +1,26 @@
 const path = require('path');
-const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const Dashboard = require('webpack-dashboard/plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const postcssPresetEnv = require('postcss-preset-env');
 const nodeModules = require('webpack-node-externals');
-const TerserPlugin = require('terser-webpack-plugin');
-
-const NODE_ENV = process.env.NODE_ENV || 'development';
-// Run production build in test env for the CI
-const isProd = NODE_ENV === 'production' || NODE_ENV === 'test';
 
 module.exports = {
+  mode: 'production',
   context: path.resolve(__dirname),
-  devServer: {
-    contentBase: './docs',
-    historyApiFallback: true,
-    overlay: false,
-    publicPath: 'http://127.0.0.1:3000',
-    stats: { colors: true },
-    watchContentBase: true,
-  },
-  devtool: isProd ? 'hidden-source-map' : 'cheap-module-source-map',
-  entry: isProd
-    ? {
-        docs: './docs/index.js',
-        main: './components/index.js',
-      }
-    : {
-        main: [
-          'webpack-dev-server/client?http://0.0.0.0:3000',
-          './docs/index.js',
-        ],
-      },
-  mode: isProd ? 'production' : 'development',
+  entry: './components/index.js',
   module: {
     rules: [
       {
-        include: [
-          /node_modules\/prismjs/,
-          /node_modules\/@storybook\/addon-info/,
-        ],
+        include: /node_modules\/prismjs/,
         test: /\.css/,
         use: [
-          isProd ? MiniCssExtractPlugin.loader : 'style-loader',
+          MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',
             options: {
               importLoaders: 2,
               localIdentName: '[name]__[local]___[hash:base64:5]',
-              sourceMap: !isProd,
             },
           },
         ],
@@ -59,36 +29,31 @@ module.exports = {
         exclude: /node_modules/,
         test: /\.scss/,
         use: [
-          'style-loader',
+          MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',
             options: {
               importLoaders: 2,
               localIdentName: '[name]__[local]___[hash:base64:5]',
-              sourceMap: !isProd,
             },
           },
           {
             loader: 'postcss-loader',
             options: {
-              plugins: [postcssPresetEnv()],
+              plugins: [
+                postcssPresetEnv({
+                  browsers: ['last 2 versions', 'ie >= 11'],
+                }),
+              ],
             },
           },
-          {
-            loader: 'resolve-url-loader',
-          },
-          {
-            loader: 'sass-loader',
-            options: {
-              sourceMap: true,
-              sourceMapContents: false,
-            },
-          },
+          'resolve-url-loader',
+          'sass-loader',
         ],
       },
       {
         exclude: /node_modules/,
-        test: /\.jsx?$/,
+        test: /\.js/,
         use: [
           {
             loader: 'babel-loader',
@@ -98,8 +63,8 @@ module.exports = {
       },
       {
         exclude: /node_modules/,
-        test: /\.ts(x)?$/,
-        use: ['ts-loader', 'react-docgen-typescript-loader'],
+        test: /\.tsx?$/,
+        loader: 'ts-loader',
       },
       {
         loader: 'url-loader',
@@ -114,13 +79,12 @@ module.exports = {
         options: {
           name: 'fonts/[name].[ext]',
         },
-        test: /\.(svg|eot|ttf|woff|woff2)$/,
+        test: /.(woff(2)?|eot|ttf)(\?[a-z0-9=.]+)?$/,
       },
       {
         loader: 'html-loader?interpolate=require',
         test: /\.(html)$/,
       },
-
       {
         exclude: /node_modules/,
         test: /\.css$/,
@@ -137,45 +101,24 @@ module.exports = {
       },
     ],
   },
-  node: {
-    fs: 'empty',
-  },
-  target: 'node',
   optimization: {
-    minimize: isProd,
+    minimize: true,
     minimizer: [new TerserPlugin(), new OptimizeCSSAssetsPlugin({})],
+    moduleIds: 'total-size',
     runtimeChunk: false,
-    splitChunks: {
-      cacheGroups: {
-        commons: {
-          chunks: 'initial',
-          minSize: 1,
-          name: 'vendor',
-          test: /node_modules/,
-        },
-        default: false,
-      },
-    },
   },
   output: {
-    filename: `[name]${isProd ? '.[chunkhash]' : ''}.js`,
+    filename: 'app.bundle.js',
     path: path.join(__dirname, '/dist'),
-    publicPath: '/',
+    library: 'prismui',
+    libraryTarget: 'umd',
+    umdNamedDefine: true,
+    globalObject: "typeof self !== 'undefined' ? self : this",
   },
-  plugins: [
-    new webpack.DefinePlugin({
-      'process.env': { NODE_ENV: JSON.stringify(NODE_ENV) },
-    }),
-    new HtmlWebpackPlugin({
-      cache: false,
-      minify: isProd,
-      template: './docs/index.html',
-    }),
-    new MiniCssExtractPlugin(),
-  ].concat(isProd ? [] : [new Dashboard()]),
+  plugins: [new MiniCssExtractPlugin()],
   resolve: {
     extensions: ['.js', '.ts', '.tsx'],
-    modules: [path.resolve('./components'), 'node_modules'],
+    modules: [path.resolve('./components'), path.resolve('./node_modules')],
   },
   externals: [nodeModules()],
 };
