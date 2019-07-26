@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './textbox.scss';
 
 export type TextboxProps = {
@@ -8,15 +8,17 @@ export type TextboxProps = {
   errorText?: string;
   infoText?: string;
   invalid?: boolean;
-  label?: string;
+  inputLabel?: string;
   maxChars: number;
   placeholderText?: string;
   required?: boolean;
+  optionalText?: string;
+  characterText?: string;
+  textAreaId?: string;
+  textTooLongMsg?: string;
 };
 
 export type TextboxState = {
-  invalidState: boolean;
-  isClicked: boolean;
   textLength: number;
 };
 
@@ -27,24 +29,18 @@ export const Textbox = ({
   errorText = 'Error text',
   infoText = 'infoText',
   invalid = false,
-  label = 'Input label',
+  inputLabel = 'Input label',
   maxChars = 250,
   placeholderText = 'Placeholder Text',
   required = false,
+  optionalText = 'Optional',
+  characterText = 'Characters',
+  textAreaId = `psm-form__textarea-${Math.floor((Math.random() * 100) + 1)}`,
+  textTooLongMsg = `Your message is too long. Cut back to ${maxChars} characters.`
 }: TextboxProps) => {
-  const [invalidState, setInvalidState] = useState<
-    TextboxState['invalidState']
-  >(invalid);
-  const [isClicked, setIsClicked] = useState<TextboxState['isClicked']>(false);
   const [textLength, setMessageLength] = useState<TextboxState['textLength']>(
     0,
   );
-
-  useEffect(() => {
-    setInvalidState(invalid);
-  });
-
-  const textTooLong = `Your message is too long. Cut back to ${maxChars} characters.`;
 
   function handleChange(event: any) {
     change(event);
@@ -53,47 +49,52 @@ export const Textbox = ({
 
   return (
     <>
-      {label && (
-        <div className="psm-form__label" data-testid={testid}>
-          {label}
-          {!required && <span className="psm-form__optional">Optional</span>}
+      {inputLabel && (
+        <label htmlFor={textAreaId} className="psm-form__label" data-testid={testid}>
+          {inputLabel}
+          {!required && <span className="psm-form__optional">{optionalText}</span>}
           {maxChars && (
             <span
-              className={`psm-form__max-chars ${maxChars < textLength &&
-                'psm-form__max-chars--error'}`}
+              className={`psm-form__max-chars ${textLength <= maxChars ? '' : 'psm-form__max-chars--error'}`}
             >
-              {`${textLength}/${maxChars} Characters`}
+              {`${textLength}/${maxChars} ${characterText}`}
             </span>
           )}
-        </div>
+        </label>
       )}
       <textarea
         className={`psm-form__textarea ${
-          isClicked ? 'psm-form__textarea--clicked' : ''
-        } ${
-          invalidState || maxChars < textLength
+          invalid || maxChars < textLength
             ? 'psm-form__textarea--error'
             : ''
         }`}
+        id={textAreaId}
         disabled={disabled}
-        onBlur={() => setIsClicked(false)}
         onChange={handleChange}
-        onClick={() => setIsClicked(true)}
         placeholder={placeholderText}
         required={required}
+        aria-describedby={`${textAreaId}-${
+          invalid || maxChars < textLength
+            ? 'psm-form__error-text'
+            : 'psm-form__info-text'}`}
       />
       {(infoText || errorText) && (
         <div
           className={`${
-            invalidState || maxChars < textLength
+            invalid || maxChars < textLength
               ? 'psm-form__error-text'
               : 'psm-form__info-text'
           }`}
+          id={`${textAreaId}-${
+            invalid || maxChars < textLength
+              ? 'psm-form__error-text'
+              : 'psm-form__info-text'}`}
+          aria-live='assertive'
         >
-          {invalidState
+          {invalid
             ? errorText
             : maxChars < textLength
-            ? textTooLong
+            ? textTooLongMsg
             : infoText}
         </div>
       )}

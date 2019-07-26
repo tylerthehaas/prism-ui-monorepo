@@ -16,29 +16,10 @@
   border: 1px solid $psm-color-gray-300;
   justify-content: left;
   border-radius: 3px;
-  outline-style: none;
   min-height: 200px;
   color: $psm-color-gray-900;
   &::placeholder {
     color: $psm-color-gray-500;
-  }
-
-  &.psm-form__textarea--clicked {
-    border-color: #42a5f5;
-    box-shadow: 0 0 0 $psm-spacing-xs #e3f2fd;
-    &.psm-form__textarea--error,
-    &.psm-form__textarea:invalid {
-      box-shadow: 0 0 0 $psm-spacing-xs #fceded;
-    }
-  }
-
-  &:hover {
-    border-color: #42a5f5;
-    box-shadow: 0 0 0 $psm-spacing-xs #e3f2fd;
-    &.psm-form__textarea--error,
-    &.psm-form__textarea:invalid {
-      box-shadow: 0 0 0 $psm-spacing-xs #fceded;
-    }
   }
 
   &.psm-form__textarea--error,
