@@ -2,6 +2,15 @@
 
 A collection of UI elements for OC Tanner apps.
 
+## Artifactory
+
+In order to use or contribute to Prism UI, you must be logged into OC Tanner's artifactory. 
+The easiest way to get the credentials you need is to go to artifactory.octanner.net, click 'Log In'
+at the top right, enter your credentials, then click 'npmjs-repo' in the 'Set Me Up' box and follow its instructions.
+
+Alternatively, put the line 'registry=https://artifactory.octanner.net/api/npm/npmjs-repo/' into your .npmrc file,
+then enter 'npm login' in the command line and enter your credentials there.
+
 ## Documentation
 
 Please see our [documentation](https://octanner.design) for usage details.
