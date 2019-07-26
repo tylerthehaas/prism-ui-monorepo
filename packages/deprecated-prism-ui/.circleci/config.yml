@@ -26,8 +26,16 @@ jobs:
       # Test
       - run: npm test
 
+  security-audit:
+    docker:
+      - image: circleci/node:10.11.0-stretch
+    steps:
+      - checkout
+      - run: npm audit
+
 workflows:
   version: 2
-  run-tests:
+  run-tests-and-audit-packages:
     jobs:
       - test
+      - security-audit
