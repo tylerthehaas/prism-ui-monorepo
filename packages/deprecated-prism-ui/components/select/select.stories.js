@@ -6,23 +6,22 @@ import {
   object,
   boolean,
   number,
+  array,
 } from '@storybook/addon-knobs';
 import Select from './Select';
 
 storiesOf('Select', module)
   .addDecorator(withKnobs)
-  .add('default', () => <Select />)
   .add('knobs', () => (
     <Select
-      content={[
+      data-testid={text('DataTestId', '123')}
+      selectLabel={text('SelectLabel', 'Select Label')}
+      content={array('Content', [
         object('content object', {
-          text: text(
-            'content',
-            'would love to hear some longer ditties about Jack and Diane',
-          ),
+          text: text('content', 'Select Option 1'),
           value: number('content value', 1),
         }),
-      ]}
+      ])}
       dropdown={boolean('Dropdown', false)}
       radio={boolean('Radio', true)}
     />
