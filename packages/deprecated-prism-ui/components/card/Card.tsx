@@ -15,7 +15,6 @@ export const Card = ({
   <div
     className={`psm-card psm-card--shadow-${shadowType}`}
     data-testid={testid}
-    tabIndex={0}
   >
     {children}
   </div>
