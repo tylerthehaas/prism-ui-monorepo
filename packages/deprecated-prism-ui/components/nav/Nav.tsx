@@ -15,12 +15,12 @@ interface Tab {
   ) => void;
   numErrors?: number;
   isNew?: boolean;
+  isNewText?: string;
   focused?: boolean;
 }
 
 interface NavState {
   active: number;
-  isTab: boolean;
   tabState: Tab[];
 }
 
@@ -28,7 +28,7 @@ export const Nav = ({
   active = 0,
   'data-testid': testid = '',
   navigate = () => {},
-  tabs = [],
+  tabs = [{tabName: 'Example'}],
 }: NavProps) => {
   const [activeState, setActiveState] = useState<NavState['active']>(active);
   const [tabState, setTabState] = useState<NavState['tabState']>(tabs);
@@ -50,47 +50,51 @@ export const Nav = ({
   }
 
   return (
-    <ul className="psm-nav" id={testid}>
-      {tabs.map((tab, index) => {
-        return (
-          <li
-            aria-labelledby={tab.tabName}
-            className={`psm-nav__tab ${
-              activeState === index ? 'psm-nav__active' : ''
-            } ${
-              activeState !== index && tab.focused ? 'psm-nav__hovered' : ''
-            }`}
-            id={`tab-${index}`}
-            key={index}
-            onBlur={() => updateTabFocus(index, tab, false)}
-            onClick={event => handleClick(index, tab, event)}
-            onFocus={() => updateTabFocus(index, tab, true)}
-            onMouseEnter={() => updateTabFocus(index, tab, true)}
-            onMouseLeave={() => updateTabFocus(index, tab, false)}
-            tabIndex={0}
-          >
-            <span>
-              {tab.tabName}
-              {tab.numErrors && (
-                <span
-                  className={`psm-nav__tab ${
-                    tab.isNew ? 'psm-nav__new' : 'psm-nav__badge'
-                  }`}
-                >
+    <nav>
+      <ul className="psm-nav" id={testid} role="menubar">
+        {tabs.map((tab, index) => {
+          return (
+            <li
+              className={`psm-nav__tab ${
+                activeState === index ? 'psm-nav__active' : ''
+              } ${
+                activeState !== index && tab.focused ? 'psm-nav__hovered' : ''
+              }`}
+              id={`tab-${index}`}
+              key={index}
+              onMouseEnter={() => updateTabFocus(index, tab, true)}
+              onMouseLeave={() => updateTabFocus(index, tab, false)}
+              role="none"
+            >
+              <button
+                onClick={event => handleClick(index, tab, event)}
+                onBlur={() => updateTabFocus(index, tab, false)}
+                onFocus={() => updateTabFocus(index, tab, true)}
+                role="menuitem"
+                type="button"
+              >
+                {tab.tabName}
+                {tab.numErrors && (
                   <span
-                    className={`${
-                      tab.isNew ? 'psm-nav__new-text' : 'psm-nav__badge-text'
+                    className={`psm-nav__tab ${
+                      tab.isNew ? 'psm-nav__new' : 'psm-nav__badge'
                     }`}
                   >
-                    {tab.isNew ? 'new' : tab.numErrors}
+                    <span
+                      className={`${
+                        tab.isNew ? 'psm-nav__new-text' : 'psm-nav__badge-text'
+                      }`}
+                    >
+                      {tab.isNew ? `${tab.isNewText ? tab.isNewText : 'new'}` : tab.numErrors}
+                    </span>
                   </span>
-                </span>
-              )}
-            </span>
-          </li>
-        );
-      })}
-    </ul>
+                )}
+              </button>
+            </li>
+          );
+        })}
+      </ul>
+    </nav>
   );
 };
 
