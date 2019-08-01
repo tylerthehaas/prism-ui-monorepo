@@ -1,49 +1,39 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 
 import Alert from './Alert';
 
+const testText = 'Pick up artists and garbage men should switch names';
+
 describe('<Alert/>', () => {
-  describe('Component Defaults', () => {
-    it('defaults to Type.info', () => {
-      const { container } = render(<Alert />);
-      expect(container.firstChild).toHaveClass('psm-alert--info');
-    });
+  test('alertType defaults to info', () => {
+    const { getByText } = render(<Alert>{testText}</Alert>);
 
-    it('accepts children', () => {
-      const { getByText } = render(
-        <Alert alertType="info">
-          <span>Alert message</span>
-        </Alert>,
-      );
-      expect(getByText('Alert message')).toBeInTheDocument();
-    });
-
-    it('does not define a link', () => {
-      const { container } = render(<Alert />);
-      expect(container.querySelector('a')).not.toBeInTheDocument();
-    });
+    const defaultAlert = getByText(testText);
+    expect(defaultAlert.parentElement).toHaveClass('psm-alert psm-alert--info');
   });
 
-  describe('Type is changed', () => {
-    it('is a success type', () => {
-      const { container } = render(<Alert alertType="success" />);
-      expect(container.firstChild).toHaveClass('psm-alert--success');
-    });
+  test('it can be closed', () => {
+    const { getByText, queryByText } = render(<Alert>{testText}</Alert>);
 
-    it('is an info type', () => {
-      const { container } = render(<Alert alertType="info" />);
-      expect(container.firstChild).toHaveClass('psm-alert--info');
-    });
+    const closableAlert = getByText(testText);
 
-    it('is a warning type', () => {
-      const { container } = render(<Alert alertType="warning" />);
-      expect(container.firstChild).toHaveClass('psm-alert--warning');
-    });
+    expect(closableAlert).toBeTruthy();
+    fireEvent.click(document.getElementById('alert-nub-close'));
+    const closedAlert = queryByText(testText);
 
-    it('is an error type', () => {
-      const { container } = render(<Alert alertType="error" />);
-      expect(container.firstChild).toHaveClass('psm-alert--error');
+    expect(closedAlert).toBeNull();
+  });
+
+  ['info', 'error', 'warning', 'success'].forEach(alertType => {
+    test(`alertType="${alertType}" renders an ${alertType} alert`, () => {
+      const { getByText } = render(
+        <Alert alertType={alertType}>{testText}</Alert>,
+      );
+
+      const alert = getByText(testText);
+
+      expect(alert.parentElement).toHaveClass(`psm-alert--${alertType}`);
     });
   });
 });
