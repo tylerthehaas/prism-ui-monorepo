@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './slider.scss';
 
 export type SliderProps = {
@@ -7,6 +7,7 @@ export type SliderProps = {
   maxValue: number;
   minValue: number;
   stepValue: number;
+  inputId?: string;
 };
 export type SliderState = {
   sliderValue: number;
@@ -22,6 +23,7 @@ export const Slider = ({
   maxValue = 100,
   minValue = 1,
   stepValue = 1,
+  inputId = `psm_slider-${Math.floor((Math.random() * 100) + 1)}`
 }: SliderProps) => {
   const [sliderValue, setSliderValue] = useState<SliderState['sliderValue']>(
     defaultValue,
@@ -35,16 +37,17 @@ export const Slider = ({
     ((defaultValue - minValue) / (maxValue - minValue)) * 100,
   );
 
+  useEffect(() => {
+    moveSlider();
+  }, [sliderValue]);
+
   function handleChange(event: any) {
     setSliderValue(event.target.value);
-    moveSlider();
   }
 
   function calculateSliderPosition() {
     return (
-      0.5 * 0.25 +
-      ((sliderValue - minValue) / (maxValue - minValue)) * 100 -
-      0.2
+      (((sliderValue - minValue) + 1) / ((maxValue - minValue) + 1)) * 100
     );
   }
 
@@ -87,7 +90,8 @@ export const Slider = ({
   return (
     <>
       <div style={{ position: 'relative' }}>
-        <span
+        <label
+          htmlFor={inputId}
           className={'psm-input__slider-range--current'}
           style={{
             position: 'absolute',
@@ -108,7 +112,7 @@ export const Slider = ({
           >
             {sliderValue}
           </span>
-        </span>
+        </label>
         <span
           className={'psm-input__slider-range--low'}
           style={{ opacity: showMin ? 1 : 0 }}
@@ -122,20 +126,23 @@ export const Slider = ({
           {maxValue}
         </span>
         <input
-          id={`${testid}-slider`}
+          id={inputId}
           data-testid={testid}
           max={`${maxValue}`}
+          aria-valuemax={maxValue}
           min={`${minValue}`}
+          aria-valuemin={minValue}
           onChange={handleChange}
           onInput={handleChange}
           step={`${stepValue}`}
           type="range"
           value={`${sliderValue}`}
+          aria-valuenow={sliderValue}
         />
         <div
           className={'psm-input__slider-right-side'}
           style={{
-            width: 100 - sliderPosition + '%',
+            width: (100 - sliderPosition) + '%',
           }}
         />
       </div>

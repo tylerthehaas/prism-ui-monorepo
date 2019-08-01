@@ -2,14 +2,14 @@
   "plugins": [
     "@babel/plugin-transform-object-assign",
     "@babel/plugin-proposal-object-rest-spread",
-    "@babel/plugin-proposal-class-properties",
-    "ramda"
+    "@babel/plugin-proposal-class-properties"
   ],
   "presets": [
     "@babel/preset-react",
     "@babel/preset-typescript",
     [
-      "@babel/preset-env", {
+      "@babel/preset-env",
+      {
         "modules": false,
         "targets": {
           "browsers": ["last 2 versions", "ie >= 11"]

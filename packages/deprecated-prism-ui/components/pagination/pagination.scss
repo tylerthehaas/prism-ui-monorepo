@@ -1,0 +1,41 @@
+@import '../core/color/variables';
+@import '../core/spacing/variables';
+@import '../core/icon/variables';
+@import '../core/type/variables';
+@import '../core/type/type.scss';
+
+.psm-pagination__arrow {
+  vertical-align: middle;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.psm-pagination__content {
+  list-style: none;
+}
+
+.psm-pagination__navigation {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.psm-pagination__active {
+  background-color: #e8eaeb;
+}
+
+.psm-pagination__disabled {
+  color: #dadcdd;
+  cursor: default;
+}
+
+button {
+  border: none;
+  width: 30px;
+  text-decoration: none;
+  font-family: inherit;
+  font-size: 14px;
+  height: 30px;
+  margin: 0 2px;
+}

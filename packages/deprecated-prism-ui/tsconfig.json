@@ -16,13 +16,8 @@
     "resolveJsonModule": true,
     "strict": true,
     "paths": {
-      "*": [
-        "src/*",
-        "test/*"
-      ],
-      "css-variables/*": [
-        "src/css-variables.js"
-      ]
+      "*": ["src/*", "test/*"],
+      "css-variables/*": ["src/css-variables.js"]
     },
     "plugins": [
       {
@@ -31,6 +26,9 @@
     ]
   },
   "include": [
-    "./components/**/*.tsx", "components/global-style/IconStyle.js", "components/global-style/IconStyle.js", "components/global-style/IconNames.js"
+    "./components/**/*.tsx",
+    "components/global-style/IconStyle.js",
+    "components/global-style/IconStyle.js",
+    "components/global-style/IconNames.js"
   ]
 }

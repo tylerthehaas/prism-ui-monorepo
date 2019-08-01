@@ -2,7 +2,7 @@ import React from 'react';
 import './hr.scss';
 
 export type HRProps = {
-  'data-testid': string;
+  'data-testid'?: string;
 };
 
 export const HR = ({ 'data-testid': testid = '' }: HRProps) => {
