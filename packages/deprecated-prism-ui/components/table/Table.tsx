@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from '../button/Button';
 import './table.scss';
 
 interface TableProps {
@@ -33,34 +34,38 @@ export const Table = ({
   'data-testid': testid = '',
   title = 'My New Table',
 }: TableProps) => {
-  const table = (
-    <>
-      {title && (
-        <div className="psm-table-header" id={`${testid}-table-header`}>
-          {title}
-        </div>
-      )}
+  return (
+    <div className={`psm-table__wrapper ${box ? 'psm-table--box' : ''}`}>
       {actions && actions.length !== 0 && (
-        <div className="psm-table__actions">
+        <div className='psm-table__actions'>
           {actions.map((action, index) => {
             return (
-              <a
-                className={`psm-button${action.primary ? '--primary' : ''}`}
+              <Button
                 key={index}
+                label={action.label}
                 onClick={action.onClick}
-              >
-                {action.label}
-              </a>
+                primary={action.primary}
+              />
             );
           })}
         </div>
       )}
       <table className="psm-table">
+        {title && (
+          <caption className="psm-table-caption" id={`${testid}-table-caption`}>
+            {title}
+          </caption>
+        )}
         <thead>
           <tr className="psm-table__tr">
             {columns.map((column, index) => {
               return (
-                <th id={`${testid}-column-${index}-row-${-1}`} key={index}>
+                <th
+                  className='psm-table__th'
+                  id={`${testid}-column-${index}-row-${-1}`}
+                  key={index}
+                  scope="col"
+                >
                   {column.label}
                 </th>
               );
@@ -88,9 +93,8 @@ export const Table = ({
           })}
         </tbody>
       </table>
-    </>
+    </div>
   );
-  return <>{box ? <div className="psm-table--box">{table}</div> : table}</>;
 };
 
 export default Table;

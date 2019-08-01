@@ -2,54 +2,52 @@
 @import '../core/spacing/variables';
 @import '../core/icon/variables';
 
+.psm-table__wrapper {
+  position: relative;
+  color: $psm-color-gray-900;
+}
+
 .psm-table {
-  width: 100%;
   border: none;
   border-collapse: collapse;
+  font-size: 14px;
+  width: 100%;
 
-  .psm-table__tr {
-    border-bottom: 1px solid $psm-color-gray-300;
-  }
   .psm-table__th {
+    font-weight: bold;
+    padding: 19px;
     text-align: left;
-    padding: $psm-spacing-lg;
-    font-size: 12px;
   }
+
   .psm-table__td {
     text-align: left;
-    padding: $psm-spacing-lg;
+    padding: 19px;
     line-height: $psm-spacing-lg;
   }
 }
 
-.psm-table-header {
+.psm-table-caption {
   font-weight: 600;
   font-size: $psm-spacing-xl;
-  color: $psm-color-gray-900;
-  padding-top: $psm-spacing-lg;
-  padding-bottom: $psm-spacing-xl;
-  float: left;
+  padding: 19px;
+  text-align: left;
 }
 
 .psm-table__actions {
-  float: right;
-  padding-top: $psm-spacing-md;
-  padding-bottom: $psm-spacing-xl;
+  position: absolute;
+  right: $psm-spacing-xl;
+  top: $psm-spacing-xl;
+
+  & .psm-button,
+  & .psm-button--primary {
+    margin: 0 $psm-spacing-sm;
+  }
 }
 
 .psm-table--box {
   border-radius: 3px;
-  box-shadow: 0 0 1px 0 rgba(26, 30, 32, 0.2), 0 1px 3px 0 rgba(26, 30, 32, 0.1);
-
-  .psm-table-header,
-  .psm-table__actions {
-    padding-left: $psm-spacing-xl;
-    padding-right: $psm-spacing-xl;
-  }
-
-  .psm-table__th,
-  .psm-table__td {
-    padding-left: $psm-spacing-xl;
-    padding-right: $psm-spacing-xl;
-  }
+  box-shadow: 0 0 $psm-spacing-xs 0 rgba(0, 0, 0, 0.14),
+    0 $psm-spacing-xs $psm-spacing-xs 0 rgba(0, 0, 0, 0.12),
+    0 1px 3px 0 rgba(0, 0, 0, 0.2);
+  padding: $psm-spacing-xl;
 }

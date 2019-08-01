@@ -45,7 +45,10 @@ describe('<Table />', () => {
         title="Current Initiatives"
       />,
     );
-    expect(container.firstChild).toHaveClass('psm-table-header');
+    expect(container.firstChild).toHaveClass('psm-table__wrapper');
+    expect(container.querySelector('table').firstChild).toHaveClass(
+      'psm-table-caption',
+    );
   });
   it('Box works', () => {
     const { container } = render(
