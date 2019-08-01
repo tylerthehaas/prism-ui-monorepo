@@ -2,38 +2,62 @@
 @import '../core/spacing/variables';
 @import '../core/icon/variables';
 
-.psm-toggle {
-  width: 48px;
-  height: 28px;
-  border-radius: 50px;
-  display: inline-block;
+.psm-toggle__wrapper {
   position: relative;
+}
+
+.psm-toggle__label {
+  display: inline-block;
+  line-height: 28px;
+  padding-left: $psm-spacing-md;
+  vertical-align: top;
+}
+
+.psm-toggle {
+  background-color: #dadcdd;
+  border-radius: 50px;
   cursor: pointer;
+  display: inline-block;
+  height: 28px;
+  position: relative;
+  transition: all 0.4s;
+  width: 48px;
+
   & > .psm-toggle__switch {
     background-color: #ffffff;
-    width: $psm-spacing-xl;
-    height: $psm-spacing-xl;
     border-radius: 100%;
     box-shadow: 0 1px 1px 0 gray;
+    height: $psm-spacing-xl;
+    left: $psm-spacing-xs;
+    position: absolute;
+    top: $psm-spacing-xs;
     transition: all 0.4s;
+    width: $psm-spacing-xl;
   }
 
-  &.psm-toggle--inactive {
-    transition: all 0.4s;
-    background-color: #dadcdd;
-    & > .psm-toggle__switch {
-      position: absolute;
-      top: $psm-spacing-xs;
-      left: $psm-spacing-xs;
-    }
-  }
   &.psm-toggle--active {
-    transition: all 0.4s;
     background-color: #008ae5;
     & > .psm-toggle__switch {
-      position: absolute;
-      top: $psm-spacing-xs;
       left: 22px;
     }
+  }
+
+  & .psm-toggle__checkbox {
+    border: 0;
+    clip: rect(0, 0, 0, 0);
+    height: 1px;
+    left: 8px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    top: 8px;
+    white-space: nowrap;
+    width: 1px;
+  }
+
+  &.psm-toggle--focus {
+    outline: #212121 dotted 1px;
+    outline: -webkit-focus-ring-color auto 5px;
   }
 }
