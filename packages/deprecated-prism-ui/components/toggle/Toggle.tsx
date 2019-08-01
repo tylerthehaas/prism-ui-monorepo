@@ -3,7 +3,7 @@ import './toggle.scss';
 import validateHexColor from '../core/color/index';
 
 type ToggleProps = {
-  clientColor?: string;
+  color?: string;
   defaultToggle?: boolean;
   id?: string;
   label: string;
@@ -19,7 +19,7 @@ type ToggleState = {
 };
 
 export const Toggle = ({
-  clientColor = '',
+  color = '',
   'data-testid': testid = '',
   defaultToggle = false,
   id = '',
@@ -53,17 +53,17 @@ export const Toggle = ({
     setFocus(false);
   }
 
-  const validatedClientColor = clientColor ? validateHexColor(clientColor) : '';
+  const validatedColor = color ? validateHexColor(color) : '';
 
   return (
-    <div className='psm-toggle__wrapper'>
-      <label
+    <label className='psm-toggle__wrapper'>
+      <div
         className={`psm-toggle ${
           active ? 'psm-toggle--active' : ''
         } ${focus ? 'psm-toggle--focus' : ''}`}
         data-testid={`psm-toggle-${testid}`}
-        style={active && validatedClientColor
-          ? { backgroundColor: `#${validatedClientColor}` }
+        style={active && validatedColor
+          ? { backgroundColor: `#${validatedColor}` }
           : {}
         }
       >
@@ -77,14 +77,13 @@ export const Toggle = ({
           id={id || generatedId}
         />
         <div className='psm-toggle__switch' />
-      </label>
-      <label
+      </div>
+      <span
         className='psm-toggle__label'
-        htmlFor={id || generatedId}
       >
         {label}
-      </label>
-    </div>
+      </span>
+    </label>
   );
 };
 

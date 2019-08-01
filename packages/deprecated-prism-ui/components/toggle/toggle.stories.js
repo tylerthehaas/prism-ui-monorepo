@@ -10,6 +10,6 @@ storiesOf('Toggle', module)
     <Toggle
       defaultToggle={boolean('Default toggle', true)}
       label={text('Label', 'Label for the toggle')}
-      clientColor={text('Client color', '7942dd')}
+      color={text('Color', '7942dd')}
     />
   ));
