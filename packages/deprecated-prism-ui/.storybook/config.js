@@ -1,8 +1,9 @@
 import { configure, addDecorator, addParameters } from '@storybook/react';
+import requireContext from 'require-context.macro';
 import { withInfo } from '@storybook/addon-info';
 import { withA11y } from '@storybook/addon-a11y';
 
-addDecorator(withInfo);
+if (process.env.NODE_ENV !== 'test') { addDecorator(withInfo) };
 addDecorator(withA11y);
 addParameters({
   info: {
@@ -13,7 +14,7 @@ addParameters({
 });
 
 function loadStories() {
-  const req = require.context('../components', true, /\.stories\.js$/);
+  const req = requireContext('../components', true, /\.stories\.js$/);
   req.keys().forEach(filename => req(filename));
 }
 

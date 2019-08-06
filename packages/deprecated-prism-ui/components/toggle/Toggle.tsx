@@ -68,6 +68,7 @@ export const Toggle = ({
         }
       >
         <input
+          aria-label='toggle'
           type='checkbox'
           className='psm-toggle__checkbox'
           checked={active}

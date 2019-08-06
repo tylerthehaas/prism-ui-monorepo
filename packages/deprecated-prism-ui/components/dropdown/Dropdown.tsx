@@ -43,10 +43,9 @@ const defaultDropdown = [
 ];
 
 export const Dropdown = ({
-  'data-testid': testid = '',
+  'data-testid': testid = 'dropdown-label',
   disabled = false,
   dropdownMenu = defaultDropdown,
-  idPrefix = '',
   label = 'Dropdown Label',
   primary = true,
   showMenu = false,
@@ -77,10 +76,10 @@ export const Dropdown = ({
   }
 
   return (
-    <div onBlur={blurFunction} className="psm-dropdown__container">
+    <div onBlur={blurFunction} className="psm-dropdown__container" id={testid}>
       {
         <button
-          aria-labelledby={label}
+          aria-labelledby={testid}
           className={`psm-dropdown${primary ? '--primary' : ''}`}
           data-testid={testid}
           disabled={disabled}
@@ -98,15 +97,17 @@ export const Dropdown = ({
       }
       {showMenu && (
         <div
+          aria-label="dropdown-menu"
           className="psm-dropdown__menu"
           onKeyDown={handleEscape}
           role="button"
           tabIndex={0}
         >
-          <ul className="psm-dropdown__ul">
+          <ul className="psm-dropdown__ul" role="menu" id="dropdown-menu-options">
             {dropdownMenu.map((action, index) => {
               return (
                 <li
+                  aria-labelledby="dropdown-menu-options"
                   className="psm-dropdown__li"
                   data-testid={`${testid}-option-${index}`}
                   key={index}
