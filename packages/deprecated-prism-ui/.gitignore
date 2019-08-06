@@ -7,3 +7,4 @@ yarn-error.log
 
 # Storybook-build
 storybook-static
+*.tar.gz
