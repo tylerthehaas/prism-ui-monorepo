@@ -2,32 +2,26 @@
 @import '../core/spacing/variables';
 @import '../core/icon/variables';
 
-.chip-button {
-  background: transparent;
-  border: none;
-  color: #707070;
-  font-size: 1rem;
-  padding: 0;
-}
-
 .psm-chip,
 %psm-chip {
-  display: inline-block;
-  padding: $psm-spacing-xs $psm-spacing-md;
+  color: #707070;
   border: 1px solid $psm-color-gray-300;
   border-radius: 3px;
   cursor: pointer;
-
+  display: inline-block;
+  font-size: 1rem;
+  padding: $psm-spacing-xs $psm-spacing-md;
   &:hover {
-    background-color: $psm-color-primary-500;
     color: white;
+    background-color: $psm-color-primary-500;
   }
 }
 
-.psm-chip--selected {
+.psm-chip__selected {
   @extend %psm-chip;
   box-shadow: 0 0 0 $psm-spacing-xs $psm-color-primary-100;
   display: inline-block;
+  outline: none;
 }
 
 .psm-chip__close {

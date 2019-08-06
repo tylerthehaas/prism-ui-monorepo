@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './chip.scss';
 import Icon from '../icon/Icon';
 
@@ -13,30 +13,49 @@ interface ChipProps {
   label: string;
 }
 
+interface ChipState {
+  open: boolean;
+  isSelected: boolean;
+}
+
 export const Chip = ({
   closeAction,
   'data-testid': testid = '',
   isOpen,
   label,
 }: ChipProps) => {
-  const [isSelected, setIsSelected] = React.useState<boolean>(false);
+  const [isSelected, setIsSelected] = useState<ChipState['isSelected']>(false);
+  const [isChipOpen, setIsChipOpen] = useState<ChipState['open']>(isOpen);
+
+  function handleClick(
+    event:
+      | React.MouseEvent<HTMLSpanElement, MouseEvent>
+      | React.KeyboardEvent<HTMLSpanElement>
+      | undefined,
+  ) {
+    setIsChipOpen(false);
+    if (closeAction) closeAction(event);
+  }
+
   return (
-    isOpen && (
-      <div className={`psm-chip${isSelected ? '--selected' : ''}`}>
-        <button
-          className="chip-button"
-          type="button"
-          data-testid={testid}
-          onClick={() => setIsSelected(isSelected => !isSelected)}
-        >
-          {label}
-        </button>
+    isChipOpen && (
+      <div
+        className={`psm-chip${isSelected ? '__selected' : ''}`}
+        role="button"
+        data-testid={testid}
+        onClick={() => setIsSelected(isSelected => !isSelected)}
+        tabIndex={0}
+        onKeyPress={event =>
+          event.key === 'Enter' ? setIsSelected(isSelected => !isSelected) : {}
+        }
+      >
+        {label}
         <button
           aria-label={`Close ${label} chip`}
           type="button"
           className="psm-chip__close"
           data-testid={`${testid}-icon`}
-          onClick={closeAction}
+          onClick={handleClick}
         >
           <Icon iconName="close" height="16px" width="16px" fill="#d4d4d4" />
         </button>

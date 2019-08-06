@@ -3,20 +3,24 @@ import { render, fireEvent } from '@testing-library/react';
 
 import Chip from './Chip';
 
+const chipText =
+  'The worst part about being a giraffe is having a lot of time to think about your mistakes when you’re sinking into quicksand';
+
 describe('<Chip />', () => {
   it('Chip shows label', () => {
-    const { getByText } = render(<Chip isOpen label="Chip Label" />);
-    expect(getByText(/Chip Label/i)).toBeInTheDocument();
+    const { queryByText } = render(<Chip isOpen label={chipText} />);
+    const labelText = queryByText(chipText);
+    expect(labelText).not.toBe(null);
   });
 
   it('Chip button calls appropriate action', () => {
-    const { getByText, container } = render(<Chip isOpen label="Chip Label" />);
-    expect(container.querySelector('.psm-chip')).toBeInTheDocument();
-    expect(
-      container.querySelector('.psm-chip--selected'),
-    ).not.toBeInTheDocument();
-    fireEvent.click(getByText(/Chip Label/i));
-    expect(container.querySelector('.psm-chip')).not.toBeInTheDocument();
-    expect(container.querySelector('.psm-chip--selected')).toBeInTheDocument();
+    const { queryByText } = render(<Chip isOpen label={chipText} />);
+    const initialLabelText = queryByText(chipText);
+
+    fireEvent.click(initialLabelText.childNodes[1]);
+
+    const checkAgain = queryByText(chipText);
+
+    expect(checkAgain).toBe(null);
   });
 });
