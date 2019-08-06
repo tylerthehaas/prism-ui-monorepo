@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo, useRef } from 'react';
 import './modal.scss';
 
 import Icon from '../icon/Icon';
@@ -44,14 +44,15 @@ export const Modal = ({
     }
   };
 
-  useEffect(() => {
-    window.addEventListener('keydown', handleKeyboard);
-    return () => window.removeEventListener('keydown', handleKeyboard);
-  }, []);
+  const dialogElement: any = useRef();
 
   useEffect(() => {
-    document.addEventListener('click', handleClick);
-    return () => document.removeEventListener('click', handleClick);
+      dialogElement.current.addEventListener('keydown', handleKeyboard);
+      dialogElement.current.addEventListener('click', handleClick);
+      return () => {
+        dialogElement.current.removeEventListener('keydown', handleKeyboard);
+        dialogElement.current.removeEventListener('click', handleClick);
+      }
   }, []);
 
   const titleId = useMemo(() => {
@@ -59,9 +60,9 @@ export const Modal = ({
     return `title-${TITLE_ID_INC}`;
   }, []);
 
-  function handleModalClick(action: Action) {
+  function handleModalClick(action: Action, event: React.MouseEvent<HTMLElement>) {
     if (show) {
-      action.onClick();
+      action.onClick(event);
     }
   }
 
@@ -73,6 +74,7 @@ export const Modal = ({
       aria-modal="true"
       className={`psm-modal--${show ? 'show' : 'hide'}`}
       data-testid={testid}
+      ref={dialogElement}
     >
       <div className="psm-modal__content" style={{ width: '80%' }}>
         <button
@@ -113,10 +115,10 @@ export const Modal = ({
                   className={`psm-button${action.primary ? '--primary' : ''}`}
                   data-testid={`${testid}-button-${index}`}
                   key={index}
-                  onClick={e => {
-                    e.stopPropagation();
-                    handleModalClick(action);
-                    onClose(e);
+                  onClick={event => {
+                    event.stopPropagation();
+                    handleModalClick(action, event);
+                    onClose(event);
                   }}
                   style={{
                     margin: 4,

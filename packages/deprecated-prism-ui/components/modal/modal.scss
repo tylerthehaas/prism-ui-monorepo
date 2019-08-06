@@ -28,6 +28,7 @@
     border-radius: 3px;
     transition: transform 0.2s linear;
     transform: scale3d(0, 0, 0);
+    width: 80%;
 
     & > .psm-modal__header {
       text-align: center;
@@ -43,10 +44,12 @@
     }
 
     & > .psm-modal__body {
+      height: 250px;
       padding: $psm-spacing-md;
       overflow-y: auto;
       padding-bottom: 44px;
       padding-top: 44px;
+      position: 'relative';
     }
 
     & > .psm-modal__footer,
