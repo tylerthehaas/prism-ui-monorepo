@@ -8,6 +8,7 @@
   vertical-align: middle;
   cursor: pointer;
   line-height: 1;
+  outline: none;
 }
 
 .psm-pagination__content {
@@ -15,10 +16,11 @@
 }
 
 .psm-pagination__navigation {
+  align-items: center;
   display: flex;
   flex-direction: row;
-  align-items: center;
   justify-content: center;
+  list-style: none;
 }
 
 .psm-pagination__active {
@@ -30,8 +32,9 @@
   cursor: default;
 }
 
-button {
-  border: none;
+.psm-pagination__button {
+  outline: none;
+  border-style: none;
   width: 30px;
   text-decoration: none;
   font-family: inherit;

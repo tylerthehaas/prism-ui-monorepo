@@ -14,6 +14,7 @@ interface PaginationState {
   currentPage: number;
   paginatedItems: string[];
   visiblePages: number[];
+  shouldUpdate: boolean;
 }
 
 const Pagination = ({
@@ -44,7 +45,7 @@ const Pagination = ({
   // page buttons the same, leading to the two conditional statements.
 
   function getVisiblePages() {
-    if (currentPage <= 2) {
+    if (currentPage <= 2 || totalPageCount < 5) {
       return [...Array(totalPageCount).keys()].slice(0, 5);
     }
     if (currentPage >= totalPageCount - 2) {
@@ -53,6 +54,7 @@ const Pagination = ({
         totalPageCount,
       );
     }
+
     return [
       currentPage - 2,
       currentPage - 1,
@@ -60,16 +62,6 @@ const Pagination = ({
       currentPage + 1,
       currentPage + 2,
     ];
-  }
-
-  function checkForValidPageNumber(pageToSet: number) {
-    if (pageToSet < 0) {
-      return 0;
-    }
-    if (pageToSet > totalPageCount) {
-      return totalPageCount - 1;
-    }
-    return pageToSet;
   }
 
   const [visiblePages, setVisiblePages] = useState<
@@ -80,58 +72,80 @@ const Pagination = ({
     event: React.MouseEvent<HTMLButtonElement, MouseEvent> | null,
     pageNumber: number,
   ) {
-    setCurrentPage(checkForValidPageNumber(pageNumber));
+    setCurrentPage(pageNumber);
+    setVisiblePages(getVisiblePages());
     setPaginatedItems(
       children.slice(pageNumber * itemsPerPage, pageNumber * itemsPerPage + 10),
     );
-    setVisiblePages(getVisiblePages());
     if (onClick && event) onClick(event);
   }
 
   function handleLeft(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
-    updateDisplay(event, Math.abs(currentPage - 1));
+    updateDisplay(event, currentPage - 1);
   }
 
   function handleRight(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
-    updateDisplay(event, Math.abs(currentPage + 1));
+    updateDisplay(event, currentPage + 1);
   }
 
   function buttonifyPageNumbers() {
-    const buttonifiedPages = visiblePages.map(pageNumber => (
-      <button
-        type="button"
-        className={pageNumber === currentPage ? 'psm-pagination__active' : ''}
-        onClick={event => updateDisplay(event, pageNumber)}
-      >
-        {pageNumber + 1}
-      </button>
-    ));
-
+    const buttonifiedPages = visiblePages.map(pageNumber => {
+      if (pageNumber === currentPage) {
+        return (
+          <button
+            type="button"
+            aria-label={`Current Page, page ${pageNumber + 1}`}
+            className="psm-pagination__button psm-pagination__active"
+            key={pageNumber + 1}
+            onClick={event => updateDisplay(event, pageNumber)}
+          >
+            {pageNumber + 1}
+          </button>
+        );
+      }
+      return (
+        <button
+          type="button"
+          aria-label={`Page ${pageNumber + 1}`}
+          className="psm-pagination__button"
+          key={pageNumber + 1}
+          onClick={event => updateDisplay(event, pageNumber)}
+        >
+          {pageNumber + 1}
+        </button>
+      );
+    });
+    // adds "1 ... if out of range of the first page"
+    if (currentPage > 2 && totalPageCount > 5) {
+      buttonifiedPages.splice(
+        0,
+        0,
+        <>
+          <button
+            type="button"
+            aria-label="Page 1"
+            className="psm-pagination__button"
+            onClick={event => updateDisplay(event, 0)}
+          >
+            1
+          </button>
+          ...
+        </>,
+      );
+    }
     // adds "... {button to last page}" if in range of the last page
-    if (currentPage + 3 < totalPageCount) {
+    if (currentPage + 3 < totalPageCount && totalPageCount > 5) {
       buttonifiedPages.push(
         <>
           ...
           <button
             type="button"
-            onClick={event => updateDisplay(event, totalPageCount)}
+            aria-label={`Page ${totalPageCount - 1}`}
+            className="psm-pagination__button"
+            onClick={event => updateDisplay(event, totalPageCount - 1)}
           >
             {totalPageCount}
           </button>
-        </>,
-      );
-    }
-
-    // adds "1 ... if out of range of the first page"
-    if (Math.abs(currentPage) >= 3) {
-      buttonifiedPages.splice(
-        0,
-        1,
-        <>
-          <button type="button" onClick={event => updateDisplay(event, 0)}>
-            1
-          </button>
-          ...
         </>,
       );
     }
@@ -140,51 +154,51 @@ const Pagination = ({
 
   useEffect(() => {
     updateDisplay(null, currentPage);
-    setVisiblePages(getVisiblePages());
-    buttonifyPageNumbers();
-  }, [currentPage, children]);
+  }, [children, currentPage]);
 
   return (
-    <>
+    <nav aria-label="Pagination Navigation" role="navigation">
       <ol data-testid={testid} className="psm-pagination__content">
         {paginatedItems.map(item => (
           <li>{item}</li>
         ))}
       </ol>
       <span className="psm-pagination__navigation">
-        <span
-          className="psm-pagination__arrow"
-          aria-label="left arrow"
-          onClick={handleLeft}
+        <button
+          type="button"
+          className="psm-pagination__button psm-pagination__arrow"
+          aria-label="Goto previous page"
+          onClick={currentPage !== 0 ? handleLeft : () => {}}
           onKeyDown={() => handleLeft}
-          role="button"
-          tabIndex={0}
+          role={currentPage !== 0 ? 'button' : undefined}
+          tabIndex={currentPage === 0 ? -1 : 0}
         >
           <Icon
             iconName="small-left"
             height="16px"
             width="16px"
-            fill="#707070"
+            fill={currentPage !== 0 ? '#707070' : '#e0e0e0'}
           />
-        </span>
+        </button>
         {buttonifyPageNumbers()}
-        <span
-          aria-label="right arrow"
-          className="psm-pagination__arrow"
-          onClick={handleRight}
+        <button
+          aria-label="Goto next page"
+          type="button"
+          className="psm-pagination__button psm-pagination__arrow"
+          onClick={currentPage < totalPageCount - 1 ? handleRight : () => {}}
           onKeyDown={() => handleRight}
-          role="button"
-          tabIndex={0}
+          role={currentPage < totalPageCount - 1 ? 'button' : undefined}
+          tabIndex={currentPage < totalPageCount - 1 ? 0 : undefined}
         >
           <Icon
             iconName="small-right"
             height="16px"
             width="16px"
-            fill="#707070"
+            fill={currentPage < totalPageCount - 1 ? '#707070' : '#e0e0e0'}
           />
-        </span>
+        </button>
       </span>
-    </>
+    </nav>
   );
 };
 
