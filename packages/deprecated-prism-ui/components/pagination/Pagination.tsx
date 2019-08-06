@@ -159,8 +159,8 @@ const Pagination = ({
   return (
     <nav aria-label="Pagination Navigation" role="navigation">
       <ol data-testid={testid} className="psm-pagination__content">
-        {paginatedItems.map(item => (
-          <li>{item}</li>
+        {paginatedItems.map((item, index) => (
+          <li key={index}>{item}</li>
         ))}
       </ol>
       <span className="psm-pagination__navigation">
