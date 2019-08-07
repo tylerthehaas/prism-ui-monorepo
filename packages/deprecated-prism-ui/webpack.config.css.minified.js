@@ -1,6 +1,6 @@
 const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
 const postcssPresetEnv = require('postcss-preset-env');
 const nodeModules = require('webpack-node-externals');
 
@@ -14,6 +14,7 @@ module.exports = {
         include: /node_modules\/prismjs/,
         test: /\.css/,
         use: [
+          MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',
             options: {
@@ -27,6 +28,7 @@ module.exports = {
         exclude: /node_modules/,
         test: /\.scss/,
         use: [
+          MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',
             options: {
@@ -100,18 +102,23 @@ module.exports = {
   },
   optimization: {
     minimize: true,
-    minimizer: [new TerserPlugin(), new OptimizeCSSAssetsPlugin({})],
+    minimizer: [new OptimizeCSSAssetsPlugin({})],
     moduleIds: 'total-size',
     runtimeChunk: false,
   },
   output: {
     filename: 'app.bundle.js',
-    path: path.join(__dirname, '/dist'),
+    path: path.join(__dirname, '/css-only'),
     library: 'prismui',
     libraryTarget: 'umd',
     umdNamedDefine: true,
     globalObject: "typeof self !== 'undefined' ? self : this",
   },
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: 'prism.minified.css',
+    }),
+  ],
   resolve: {
     extensions: ['.js', '.ts', '.tsx'],
     modules: [path.resolve('./components'), path.resolve('./node_modules')],

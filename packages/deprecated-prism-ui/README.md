@@ -62,7 +62,7 @@ Build the library with
 npm run build
 ```
 
-This will create a production build of just the components and the css for redistribution in `dist/`
+This will create a production build of the library for redistribution in `dist/`
 
 Publish the full library to Github with
 
@@ -70,9 +70,21 @@ Publish the full library to Github with
 npm publish prism-ui.tar.gz
 ```
 
+#### Release New CSS Version
+
+```bash
+npm run build
+cd css-only
+npm publish prism-ui-css.tar.gz
+```
+
+#### CSS Usage
+
+`import @octanner/prism-ui-css/prism.css` for unminified css or `import @octanner/prism-ui/css/prism.minified.css` for the minified version
+
 #### React Usage
 
-First, pull in the css library with `import 'prismui/main.css'`, then import specific components from the package, e.g. `import { Avatar, Button } from '@octanner/prismui'`
+Import specific components from the package, e.g. `import { Avatar, Button } from '@octanner/prismui'`
 
 #### Legacy
 

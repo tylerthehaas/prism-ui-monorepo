@@ -1,6 +1,6 @@
 {
-  "name": "prism-ui-css",
-  "version": "3.1.0",
+  "name": "@octanner/prism-ui-css",
+  "version": "3.1.1",
   "engines": {
     "node": ">=10.0.0"
   },
@@ -11,6 +11,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/octanner/prism-ui.git"
+    "url": "ssh://git@github.com/octanner/prism-ui.git"
   }
 }
