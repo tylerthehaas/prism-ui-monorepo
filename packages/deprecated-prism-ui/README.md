@@ -2,14 +2,18 @@
 
 A collection of UI elements for OC Tanner apps.
 
-## Artifactory
+## Installing from Github Registry
 
-In order to use or contribute to Prism UI, you must be logged into OC Tanner's artifactory. 
-The easiest way to get the credentials you need is to go to artifactory.octanner.net, click 'Log In'
-at the top right, enter your credentials, then click 'npmjs-repo' in the 'Set Me Up' box and follow its instructions.
+This is going to get worse before it gets better.
 
-Alternatively, put the line 'registry=https://artifactory.octanner.net/api/npm/npmjs-repo/' into your .npmrc file,
-then enter 'npm login' in the command line and enter your credentials there.
+Follow [these instructions](https://help.github.com/en/articles/configuring-npm-for-use-with-github-package-registry#authenticating-to-github-package-registry)
+
+Then,
+
+```bash
+npm login --registry=https://npm.pkg.github.com --scope=@octanner
+npm install @octanner/prism-ui
+```
 
 ## Documentation
 
@@ -60,25 +64,15 @@ npm run build
 
 This will create a production build of just the components and the css for redistribution in `dist/`
 
-Publish the full library to [Artifactory](https://artifactory.octanner.net) with
+Publish the full library to Github with
 
 ```bash
 npm publish prism-ui.tar.gz
 ```
 
-then publish the css only version with
-
-```bash
-npm publish prism-ui-css.tar.gz
-```
-
 #### React Usage
 
-First, pull in the css library with `import 'prismui/main.css'`, then import specific components from the package, e.g. `import { Avatar, Button } from 'prismui'`
-
-#### CSS-Only Usage
-
-`import 'prismui/main.css'`
+First, pull in the css library with `import 'prismui/main.css'`, then import specific components from the package, e.g. `import { Avatar, Button } from '@octanner/prismui'`
 
 #### Legacy
 

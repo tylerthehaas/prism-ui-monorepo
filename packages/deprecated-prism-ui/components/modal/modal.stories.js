@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { storiesOf } from '@storybook/react';
 import {
   withKnobs,
@@ -8,124 +8,22 @@ import {
   object,
 } from '@storybook/addon-knobs';
 import Modal from './Modal';
-import Button from '../button/Button';
 
-function ModalDocs() {
-  const [show, setShow] = useState(false);
-  return (
-    <>
-      <Button onClick={() => setShow(true)}>Click</Button>
-      <Modal show={show} onClose={() => setShow(false)} title="Default Modal">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Laoreet suspendisse
-        interdum consectetur libero id faucibus nisl tincidunt. Nibh ipsum
-        consequat nisl vel pretium lectus quam id. Ullamcorper malesuada proin
-        libero nunc consequat interdum varius sit amet. Euismod elementum nisi
-        quis eleifend quam.
-      </Modal>
-    </>
-  );
-}
+const textForModal = `INTERVIEWER: this resume is just a vhs tape of you doing karate for 27 minutes.
 
-function ModalTitle(props) {
-  const [show, setShow] = useState(false);
-  return (
-    <>
-      <Button onClick={() => setShow(true)}>Click</Button>
-      <Modal
-        show={show}
-        actions={[
-          {
-            label: "I don't actually do anything right now",
-            primary: true,
-            onClick: () =>
-              console.log("You just had to test it anyway, didn't you?"),
-            shouldCloseModal: true,
-          },
-          {
-            label: "I'm for testing",
-            primary: false,
-            onClick: () => {},
-          },
-        ]}
-        onClose={() => setShow(false)}
-        {...props}
-      />
-    </>
-  );
-}
+ME: and?
 
-function ModalActions(props) {
-  const [show, setShow] = useState(false);
-  return (
-    <>
-      <Button onClick={() => setShow(true)}>Click</Button>
-      <Modal
-        show={show}
-        onClose={() => setShow(false)}
-        title="modal"
-        {...props}
-      />
-    </>
-  );
-}
+INTERVIEWER: at minute 13 you don’t even break the board. you just kick it and scream ouch.
 
-function ModalShow() {
-  const [show, setShow] = useState(true);
-  return (
-    <>
-      <Button onClick={() => setShow(true)}>Click</Button>
-      <Modal show={show} onClose={() => setShow(false)} title="modal" />
-    </>
-  );
-}
-
-function ModalClose() {
-  const [show, setShow] = useState(true);
-  return (
-    <>
-      <Button onClick={() => setShow(true)}>Click</Button>
-      <Modal
-        show={show}
-        title="modal"
-        onClose={() => {
-          alert('the modal has been closed');
-          setShow(false);
-        }}
-      />
-    </>
-  );
-}
-
-function ModalKnobs(props) {
-  const [show, setShow] = useState(true);
-  return (
-    <>
-      <Button onClick={() => setShow(true)}>Click</Button>
-      <Modal
-        show={show}
-        onClose={() => {
-          setShow(false);
-        }}
-        {...props}
-      />
-    </>
-  );
-}
-
-ModalDocs.displayName = 'Modal';
-ModalTitle.displayName = 'Modal';
-ModalActions.displayName = 'Modal';
-ModalShow.displayName = 'Modal';
-ModalClose.displayName = 'Modal';
-ModalKnobs.displayName = 'Modal';
+MOM: that’s my fault i held it wrong`;
 
 storiesOf('Modal', module)
   .addDecorator(withKnobs)
-  .add('default', () => <ModalDocs />)
-  .add('title', () => <ModalTitle title="this is a title" />)
+  .add('default', () => <Modal modalTrigger />)
+  .add('title', () => <Modal modalTrigger title="this is a title" />)
   .add('actions', () => (
-    <ModalActions
+    <Modal
+      modalTrigger
       actions={[
         {
           label: 'This is an action',
@@ -137,18 +35,19 @@ storiesOf('Modal', module)
       ]}
     />
   ))
-  .add('show', () => <ModalShow show />)
+  .add('show', () => (
+    <Modal show title="this exists solely to satisfy a test" />
+  ))
   .add('onClose', () => (
-    <ModalClose
+    <Modal
+      modalTrigger
       onClose={() => {
         alert('the modal has been closed');
-        // eslint-disable-next-line no-undef
-        setShow(false);
       }}
     />
   ))
   .add('knobs', () => (
-    <ModalKnobs
+    <Modal
       actions={array('Actions', [
         object('Action object', {
           label: text('Action label', 'I am an action'),
@@ -163,5 +62,7 @@ storiesOf('Modal', module)
       modalButtonId={text('Modal button ID', '42')}
       modalTrigger={boolean('Modal trigger', true)}
       title={text('Title', 'Your highness')}
-    />
+    >
+      {textForModal}
+    </Modal>
   ));

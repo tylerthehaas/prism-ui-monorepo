@@ -1,6 +1,6 @@
 {
   "name": "@octanner/prism-ui",
-  "version": "3.0.1",
+  "version": "3.1.0",
   "engines": {
     "node": ">=10.0.0"
   },
@@ -58,7 +58,8 @@
     "js-beautify": "^1.10.0",
     "prop-types": "^15.6.2",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react-dom": "^16.8.6",
+    "react-focus-lock": "^2.0.5"
   },
   "devDependencies": {
     "@babel/core": "^7.4.5",

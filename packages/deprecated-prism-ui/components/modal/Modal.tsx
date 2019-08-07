@@ -1,5 +1,8 @@
-import React, { useEffect, useMemo, useRef } from 'react';
+import React, { useState, useMemo } from 'react';
+import FocusLock from 'react-focus-lock';
+import Button from '../button/Button';
 import './modal.scss';
+import '../button/button.scss';
 
 import Icon from '../icon/Icon';
 
@@ -7,6 +10,8 @@ interface ModalProps {
   actions?: Action[];
   'data-testid'?: string;
   children: React.ReactNode;
+  modalTrigger: boolean;
+  modalTriggerLabel: string;
   onClose: (event?: React.MouseEvent<HTMLElement>) => void;
   show: boolean;
   title: string;
@@ -18,119 +23,143 @@ interface Action {
   onClick: (event?: React.MouseEvent<HTMLElement>) => void;
 }
 
+interface ModalState {
+  isShowing: boolean;
+  isClosableByClick: boolean;
+}
+
 let TITLE_ID_INC = 0;
 
 export const Modal = ({
   actions,
   children,
   'data-testid': testid = '',
-  onClose,
+  modalTrigger = false,
+  modalTriggerLabel = 'modal trigger',
+  onClose = () => {},
+  show = false,
   title,
-  show,
 }: ModalProps) => {
-  function handleEscape() {
-    if (show) {
-      onClose();
-    }
-  }
-
-  const handleKeyboard = (event: KeyboardEvent | React.KeyboardEvent) => {
-    if (event.key === 'Escape') handleEscape();
-  };
-
-  const handleClick = (e: MouseEvent) => {
-    if (e.target instanceof HTMLDialogElement) {
-      onClose();
-    }
-  };
-
-  const dialogElement: any = useRef();
-
-  useEffect(() => {
-      dialogElement.current.addEventListener('keydown', handleKeyboard);
-      dialogElement.current.addEventListener('click', handleClick);
-      return () => {
-        dialogElement.current.removeEventListener('keydown', handleKeyboard);
-        dialogElement.current.removeEventListener('click', handleClick);
-      }
-  }, []);
+  const [isShowing, setIsShowing] = useState<ModalState['isShowing']>(show);
+  const [isClosableByClick, setIsClosableByClick] = useState<
+    ModalState['isClosableByClick']
+  >(true);
 
   const titleId = useMemo(() => {
     TITLE_ID_INC += 1;
     return `title-${TITLE_ID_INC}`;
   }, []);
 
-  function handleModalClick(action: Action, event: React.MouseEvent<HTMLElement>) {
-    if (show) {
-      action.onClick(event);
+  function handleClick(event: React.MouseEvent<HTMLElement, MouseEvent>) {
+    event.stopPropagation();
+    setIsShowing(false);
+    if (onClose) onClose(event);
+  }
+
+  function handleDialogClick(
+    event: React.MouseEvent<HTMLDivElement, MouseEvent>,
+  ) {
+    if (isClosableByClick) {
+      setIsShowing(false);
+      onClose(event);
     }
   }
 
-  return (
-    <dialog
-      aria-labelledby={titleId}
-      aria-expanded={show}
-      aria-live="assertive"
-      aria-modal="true"
-      className={`psm-modal--${show ? 'show' : 'hide'}`}
-      data-testid={testid}
-      ref={dialogElement}
-    >
-      <div className="psm-modal__content" style={{ width: '80%' }}>
-        <button
-          type="button"
-          aria-label="Close"
-          className="psm-modal__close"
-          data-testid={`${testid}-close-icon`}
-          onClick={onClose}
-        >
-          <Icon iconName="close" height="16px" width="16px" fill="#707070" />
-        </button>
+  function handleModalTrigger() {
+    if (modalTrigger) {
+      return (
+        <Button onClick={() => setIsShowing(true)} label={modalTriggerLabel} />
+      );
+    }
+    return '';
+  }
 
-        <h3
-          className="psm-modal__header"
-          id={titleId}
-          style={{ outline: 'none' }}
-        >
-          {title}
-        </h3>
-        <div
-          className="psm-modal__body"
-          style={{
-            position: 'relative',
-            height: 250,
-          }}
-          role="region"
-          tabIndex={0}
-        >
-          <div>{children}</div>
-        </div>
-        <div className="psm-modal__footer">
-          {actions &&
-            actions.length !== 0 &&
-            actions.map((action, index) => {
-              return (
+  return (
+    <>
+      {handleModalTrigger()}
+      <div
+        onClick={handleDialogClick}
+        onKeyDown={event => (event.key === 'Escape' ? setIsShowing(false) : {})}
+        role="presentation"
+      >
+        {isShowing ? (
+          <FocusLock noFocusGuards>
+            <dialog
+              aria-labelledby={titleId}
+              aria-expanded={isShowing}
+              aria-live="assertive"
+              aria-modal="true"
+              className={`psm-modal--${isShowing ? 'show' : 'hide'}`}
+              data-testid={testid}
+            >
+              <div
+                className="psm-modal__content"
+                onMouseEnter={() => setIsClosableByClick(false)}
+                onMouseLeave={() => setIsClosableByClick(true)}
+              >
                 <button
                   type="button"
-                  className={`psm-button${action.primary ? '--primary' : ''}`}
-                  data-testid={`${testid}-button-${index}`}
-                  key={index}
-                  onClick={event => {
-                    event.stopPropagation();
-                    handleModalClick(action, event);
-                    onClose(event);
-                  }}
-                  style={{
-                    margin: 4,
-                  }}
+                  aria-label="Close"
+                  className="psm-modal__close"
+                  data-testid={`${testid}-close-icon`}
+                  onClick={handleClick}
+                  tabIndex={0}
                 >
-                  {action.label}
+                  <Icon
+                    iconName="close"
+                    height="16px"
+                    width="16px"
+                    fill="#707070"
+                  />
                 </button>
-              );
-            })}
-        </div>
+                <h3
+                  className="psm-modal__header"
+                  id={titleId}
+                  style={{ outline: 'none' }}
+                >
+                  {title}
+                </h3>
+                <div
+                  className="psm-modal__body"
+                  style={{
+                    position: 'relative',
+                    height: 250,
+                  }}
+                  role="region"
+                  tabIndex={0}
+                >
+                  <div>{children}</div>
+                </div>
+                <div className="psm-modal__footer">
+                  {actions &&
+                    actions.length !== 0 &&
+                    actions.map((action, index) => {
+                      return (
+                        <button
+                          type="button"
+                          className={`psm-button${
+                            action.primary ? '--primary' : ''
+                          }`}
+                          data-testid={`${testid}-button-${index}`}
+                          key={index}
+                          onClick={handleClick}
+                          style={{
+                            margin: 4,
+                          }}
+                        >
+                          {action.label}
+                        </button>
+                      );
+                    })}
+                </div>
+              </div>
+            </dialog>
+          </FocusLock>
+        ) : (
+          <></>
+        )}
       </div>
-    </dialog>
+    </>
   );
 };
 

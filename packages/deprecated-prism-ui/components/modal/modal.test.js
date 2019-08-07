@@ -15,14 +15,14 @@ describe('<Modal />', () => {
   });
 
   test('calls onClose when background clicked', () => {
-    const onClose = jest.fn();
+    const onClose = jest.fn(x => x + 1);
     const { container } = render(
       <Modal show onClose={onClose}>
         {testText}
       </Modal>,
     );
     fireEvent.click(container.querySelector('dialog'));
-    expect(onClose).toHaveBeenCalled();
+    expect(onClose.mock.calls.length).toEqual(1);
   });
 
   test('Clicking the button closes the modal by default', () => {
