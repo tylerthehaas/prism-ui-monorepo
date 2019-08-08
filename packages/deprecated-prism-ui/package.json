@@ -1,6 +1,6 @@
 {
   "name": "@octanner/prism-ui",
-  "version": "3.1.3",
+  "version": "3.1.4",
   "engines": {
     "node": ">=10.0.0"
   },
@@ -12,7 +12,7 @@
     "css-minified": "NODE_ENV=production webpack --config webpack.config.css.minified.js && rm -rf ./css-only/app.bundle.js",
     "css-unminified": "NODE_ENV=production webpack --config webpack.config.css.unminified.js && rm -rf ./css-only/app.bundle.js",
     "copy": "cp ./package.json dist/package.json",
-    "build": "npm run bundle && npm run css-minified && npm run css-unminified && npm run copy && cd dist && tar -zcvf prism-ui.tar.gz dist && tar -zcvf prism-ui-css.tar.gz css-only && mv prism-ui-css.tar.gz ./css-only",
+    "build": "npm run bundle && npm run css-minified && npm run css-unminified && npm run copy && tar -zcvf prism-ui.tar.gz dist && tar -zcvf prism-ui-css.tar.gz css-only && mv prism-ui-css.tar.gz ./css-only",
     "start": "nodemon server.js",
     "lint": "eslint ./components --ext .js,.tsx",
     "prettier": "npm run prettier:js && npm run prettier:css",

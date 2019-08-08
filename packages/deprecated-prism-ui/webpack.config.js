@@ -15,6 +15,7 @@ module.exports = {
         include: /node_modules\/prismjs/,
         test: /\.css/,
         use: [
+          MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',
             options: {
@@ -28,6 +29,8 @@ module.exports = {
         exclude: /node_modules/,
         test: /\.scss/,
         use: [
+          MiniCssExtractPlugin.loader,
+
           {
             loader: 'css-loader',
             options: {
