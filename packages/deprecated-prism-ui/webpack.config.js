@@ -1,4 +1,5 @@
 const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const postcssPresetEnv = require('postcss-preset-env');
@@ -112,6 +113,7 @@ module.exports = {
     umdNamedDefine: true,
     globalObject: "typeof self !== 'undefined' ? self : this",
   },
+  plugins: [new MiniCssExtractPlugin()],
   resolve: {
     extensions: ['.js', '.ts', '.tsx'],
     modules: [path.resolve('./components'), path.resolve('./node_modules')],
