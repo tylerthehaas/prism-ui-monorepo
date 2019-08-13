@@ -1,6 +1,6 @@
 {
   "name": "@octanner/prism-ui",
-  "version": "3.1.4",
+  "version": "3.1.6",
   "engines": {
     "node": ">=10.0.0"
   },
@@ -22,12 +22,12 @@
     "build-storybook": "build-storybook --config-dir .storybook",
     "test": "jest",
     "test:coverage": "npm run test --coverage",
-    "test:watch": "npm run test -- --watch"
+    "test:watch": "npm run test -- --watch",
+    "publishArtifactory": "npmrc artifactory && npm publish prism-ui.tar.gz --registry https://artifactory.octanner.net/api/npm/oct-npmjs/",
+    "publishGithub": "npmrc github && npm publish prism-ui.tar.gz --registry=https://npm.pkg.github.com/",
+    "publish": "rm -rf prism-ui.tar.gz && npm run build && npm run publishArtifactory && npm run publishGithub"
   },
   "license": "ISC",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
-  },
   "repository": {
     "type": "git",
     "url": "ssh://git@github.com/octanner/prism-ui.git"
