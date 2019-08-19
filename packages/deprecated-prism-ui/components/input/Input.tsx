@@ -40,11 +40,10 @@ export const Input = ({
   required = false,
   'data-testid': testid = '',
 }: InputProps) => {
-
   function handleClick(icon: iconType) {
     return (event: React.MouseEvent<HTMLSpanElement>) => {
       if (icon.onClick) icon.onClick(event);
-    }
+    };
   }
 
   return (
@@ -57,31 +56,35 @@ export const Input = ({
           )}
         </label>
       )}
-      <div className={icon ? `psm-input-${icon.position || 'trailing'}-icon` : ''}>
-      {(icon && (
-        <button
-          aria-label={`${icon.name} icon`}
-          className={`psm-icon-svg-${icon.name}`}
-          data-testid={`${testid}--icon`}
-          onClick={handleClick(icon)}
-          style={{
-            cursor: icon.onClick ? 'pointer' : 'default',
-          }}
-          type="button"
-        >
-          {console.log(icon)}
-          <Icon
-            iconName={icon.name}
-            height="16px"
-            width="16px"
-            fill="#707070"
-            className={`svg-icon-${icon.name}`}
-          />
-        </button>
-      ))}
+      <div
+        className={icon ? `psm-input-${icon.position || 'trailing'}-icon` : ''}
+      >
+        {icon && (
+          <button
+            aria-label={`${icon.name} icon`}
+            className={`psm-icon-svg-${icon.name}`}
+            data-testid={`${testid}--icon`}
+            onClick={handleClick(icon)}
+            style={{
+              cursor: icon.onClick ? 'pointer' : 'default',
+            }}
+            type="button"
+          >
+            <Icon
+              iconName={icon.name}
+              height="16px"
+              width="16px"
+              fill="#707070"
+              className={`svg-icon-${icon.name}`}
+            />
+          </button>
+        )}
         <input
-          aria-describedby='info'
+          aria-describedby="info"
           aria-label={`${label ? '' : 'input'}`}
+          autoComplete="off"
+          autoCorrect="off"
+          autoCapitalize="off"
           className={`psm-input ${invalid ? 'psm-input--error' : ''}`}
           data-testid={testid}
           disabled={disabled}
@@ -89,6 +92,7 @@ export const Input = ({
           onChange={change}
           placeholder={placeholderText}
           required={required}
+          spellCheck={false}
           type="text"
         />
       </div>
@@ -96,7 +100,7 @@ export const Input = ({
         className={`${
           invalid ? 'psm-form__error-text' : 'psm-form__info-text'
         }`}
-        id='info'
+        id="info"
       >
         {infoText || errorText ? `${invalid ? 'error-text' : 'info-text'}` : ''}
       </div>

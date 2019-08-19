@@ -94,6 +94,7 @@ const Pagination = ({
         return (
           <button
             type="button"
+            aria-current="page"
             aria-label={`Current Page, page ${pageNumber + 1}`}
             className="psm-pagination__button psm-pagination__active"
             key={pageNumber + 1}
@@ -106,7 +107,7 @@ const Pagination = ({
       return (
         <button
           type="button"
-          aria-label={`Page ${pageNumber + 1}`}
+          aria-label={`Go to page ${pageNumber + 1}`}
           className="psm-pagination__button"
           key={pageNumber + 1}
           onClick={event => updateDisplay(event, pageNumber)}
@@ -140,7 +141,7 @@ const Pagination = ({
           ...
           <button
             type="button"
-            aria-label={`Page ${totalPageCount - 1}`}
+            aria-label={`Go to page ${totalPageCount - 1}`}
             className="psm-pagination__button"
             onClick={event => updateDisplay(event, totalPageCount - 1)}
           >
@@ -167,7 +168,7 @@ const Pagination = ({
         <button
           type="button"
           className="psm-pagination__button psm-pagination__arrow"
-          aria-label="Goto previous page"
+          aria-label="Go to previous page"
           onClick={currentPage !== 0 ? handleLeft : () => {}}
           onKeyDown={() => handleLeft}
           role={currentPage !== 0 ? 'button' : undefined}
@@ -182,7 +183,7 @@ const Pagination = ({
         </button>
         {buttonifyPageNumbers()}
         <button
-          aria-label="Goto next page"
+          aria-label="Go to next page"
           type="button"
           className="psm-pagination__button psm-pagination__arrow"
           onClick={currentPage < totalPageCount - 1 ? handleRight : () => {}}

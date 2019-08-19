@@ -12,7 +12,9 @@ interface ModalProps {
   children: React.ReactNode;
   modalTrigger: boolean;
   modalTriggerLabel: string;
-  onClose: (event?: React.MouseEvent<HTMLElement>) => void;
+  onClose: (
+    event?: React.MouseEvent<HTMLElement> | React.KeyboardEvent<HTMLElement>,
+  ) => void;
   show: boolean;
   title: string;
 }
@@ -57,7 +59,9 @@ export const Modal = ({
   }
 
   function handleDialogClick(
-    event: React.MouseEvent<HTMLDivElement, MouseEvent>,
+    event:
+      | React.MouseEvent<HTMLDivElement, MouseEvent>
+      | React.KeyboardEvent<HTMLDivElement>,
   ) {
     if (isClosableByClick) {
       setIsShowing(false);
@@ -79,7 +83,9 @@ export const Modal = ({
       {handleModalTrigger()}
       <div
         onClick={handleDialogClick}
-        onKeyDown={event => (event.key === 'Escape' ? setIsShowing(false) : {})}
+        onKeyDown={event =>
+          event.key === 'Escape' ? handleDialogClick(event) : {}
+        }
         role="presentation"
       >
         {isShowing ? (
@@ -112,22 +118,10 @@ export const Modal = ({
                     fill="#707070"
                   />
                 </button>
-                <h3
-                  className="psm-modal__header"
-                  id={titleId}
-                  style={{ outline: 'none' }}
-                >
+                <h3 className="psm-modal__header" id={titleId}>
                   {title}
                 </h3>
-                <div
-                  className="psm-modal__body"
-                  style={{
-                    position: 'relative',
-                    height: 250,
-                  }}
-                  role="region"
-                  tabIndex={0}
-                >
+                <div className="psm-modal__body" role="region" tabIndex={0}>
                   <div>{children}</div>
                 </div>
                 <div className="psm-modal__footer">

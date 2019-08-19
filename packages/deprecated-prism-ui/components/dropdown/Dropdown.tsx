@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, FocusEvent } from 'react';
 import '../button/button.scss';
 import Icon from '../icon/Icon';
 
@@ -9,7 +9,6 @@ export interface DropdownProps {
   idPrefix?: string;
   label?: string;
   primary?: boolean;
-  showMenu?: boolean;
 }
 
 export interface Dropdown {
@@ -48,53 +47,52 @@ export const Dropdown = ({
   dropdownMenu = defaultDropdown,
   label = 'Dropdown Label',
   primary = true,
-  showMenu = false,
 }: DropdownProps) => {
-  const [showMenuState, setShowMenuState] = useState<DropdownState['showMenu']>(
-    showMenu,
-  );
+  const [showMenu, setShowMenu] = useState<DropdownState['showMenu']>(false);
 
   function menuClick(action: Dropdown) {
     if (action.onClick) action.onClick();
-    setShowMenuState(!showMenuState);
+    setShowMenu(!showMenu);
   }
 
-  function blurFunction(event: { currentTarget: any }) {
+  function blurFunction(event: FocusEvent<HTMLDivElement>) {
     const { currentTarget } = event;
 
     setTimeout(() => {
       if (!currentTarget.contains(document.activeElement)) {
-        setShowMenuState(false);
+        setShowMenu(false);
       }
     }, 0);
   }
 
   function handleEscape(event: React.KeyboardEvent<HTMLDivElement>) {
     if (event.key === 'Escape') {
-      setShowMenuState(false);
+      setShowMenu(false);
     }
+  }
+
+  function handleClick() {
+    setShowMenu(!showMenu);
   }
 
   return (
     <div onBlur={blurFunction} className="psm-dropdown__container" id={testid}>
-      {
-        <button
-          aria-labelledby={testid}
-          className={`psm-dropdown${primary ? '--primary' : ''}`}
-          data-testid={testid}
-          disabled={disabled}
-          onClick={() => setShowMenuState(!showMenu)}
-          type="button"
-        >
-          {label}
-          <Icon
-            iconName="small-triangle-down"
-            height="16px"
-            width="16px"
-            fill="white"
-          />
-        </button>
-      }
+      <button
+        aria-labelledby={testid}
+        className={`psm-dropdown${primary ? '--primary' : ''}`}
+        data-testid={testid}
+        disabled={disabled}
+        onClick={handleClick}
+        type="button"
+      >
+        {label}
+        <Icon
+          iconName="small-triangle-down"
+          height="16px"
+          width="16px"
+          fill="white"
+        />
+      </button>
       {showMenu && (
         <div
           aria-label="dropdown-menu"
@@ -103,7 +101,11 @@ export const Dropdown = ({
           role="button"
           tabIndex={0}
         >
-          <ul className="psm-dropdown__ul" role="menu" id="dropdown-menu-options">
+          <ul
+            className="psm-dropdown__ul"
+            role="menu"
+            id="dropdown-menu-options"
+          >
             {dropdownMenu.map((action, index) => {
               return (
                 <li
