@@ -3,13 +3,20 @@ import requireContext from 'require-context.macro';
 import { withInfo } from '@storybook/addon-info';
 import { withA11y } from '@storybook/addon-a11y';
 
-if (process.env.NODE_ENV !== 'test') { addDecorator(withInfo) };
+import theme from './theme';
+
+if (process.env.NODE_ENV !== 'test') {
+  addDecorator(withInfo);
+}
 addDecorator(withA11y);
 addParameters({
   info: {
     inline: true,
     maxPropArrayLength: 10,
     maxPropObjectKeys: 10,
+  },
+  options: {
+    theme: theme,
   },
 });
 

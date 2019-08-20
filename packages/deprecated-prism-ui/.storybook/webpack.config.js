@@ -10,7 +10,7 @@ module.exports = async ({ config, mode }) => {
       options: {
         name: 'fonts/[name].[ext]',
       },
-      test: /\.(svg|eot|ttf|woff|woff2)$/,
+      test: /\.(eot|ttf|woff|woff2)$/,
     },
     {
       exclude: /node_modules/,
