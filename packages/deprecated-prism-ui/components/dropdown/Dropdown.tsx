@@ -65,18 +65,12 @@ export const Dropdown = ({
     }, 0);
   }
 
-  function handleEscape(event: React.KeyboardEvent<HTMLDivElement>) {
-    if (event.key === 'Escape') {
-      setShowMenu(false);
-    }
-  }
-
   function handleClick() {
     setShowMenu(!showMenu);
   }
 
   return (
-    <div onBlur={blurFunction} className="psm-dropdown__container" id={testid}>
+    <div onBlur={blurFunction} role="button" className="psm-dropdown__container" id={testid} onKeyDown={event => { if (event.key === 'Escape') setShowMenu(false); }} tabIndex={0}>
       <button
         aria-labelledby={testid}
         className={`psm-dropdown${primary ? '--primary' : ''}`}
@@ -97,7 +91,6 @@ export const Dropdown = ({
         <div
           aria-label="dropdown-menu"
           className="psm-dropdown__menu"
-          onKeyDown={handleEscape}
           role="button"
           tabIndex={0}
         >
@@ -106,8 +99,7 @@ export const Dropdown = ({
             role="menu"
             id="dropdown-menu-options"
           >
-            {dropdownMenu.map((action, index) => {
-              return (
+            {dropdownMenu.map((action, index) => (
                 <li
                   aria-labelledby="dropdown-menu-options"
                   className="psm-dropdown__li"
@@ -122,8 +114,7 @@ export const Dropdown = ({
                 >
                   {action.label}
                 </li>
-              );
-            })}
+              ))}
           </ul>
         </div>
       )}

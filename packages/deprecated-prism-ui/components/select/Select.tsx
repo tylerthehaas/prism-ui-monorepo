@@ -13,8 +13,7 @@ export const Select = ({
   content = [],
   onClick = () => console.log('Selected'),
   'data-testid': testid = '',
-}: SelectProps) => {
-  return (
+}: SelectProps) => (
     <div>
       <label htmlFor={testid}>{selectLabel}</label>
       <select
@@ -22,10 +21,9 @@ export const Select = ({
         data-testid={testid}
         id={testid}
         key={`select${testid}`}
-        onChange={onClick}
+        onBlur={onClick}
       >
-        {content.map((contentSection, index) => {
-          return (
+        {content.map((contentSection, index) => (
             <option
               data-testid={`${testid}-option-${index}`}
               key={index}
@@ -33,11 +31,9 @@ export const Select = ({
             >
               {contentSection.text}
             </option>
-          );
-        })}
+          ))}
       </select>
     </div>
   );
-};
 
 export default Select;
