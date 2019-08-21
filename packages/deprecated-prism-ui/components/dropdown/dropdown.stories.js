@@ -43,15 +43,9 @@ storiesOf('Dropdown', module)
     <Dropdown
       disabled={boolean('Disabled', false)}
       dropdownMenu={
-        ('Dropdown menu',
-        [
-          object('Dropdown menu item', {
-            label: text(
-              'Dropdown item',
-              'Some interesting facts I learned at the children\'s museum, lightning bugs are actually beetles and I hate children.',
-            ),
-          }),
-        ])
+          object('Dropdown menu item', [{
+            label: 'Some interesting facts I learned at the children\'s museum, lightning bugs are actually beetles and I hate children.',
+          }])
       }
       label={text(
         'Label text',
