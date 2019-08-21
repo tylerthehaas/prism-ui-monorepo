@@ -15,7 +15,7 @@ module.exports = {
   // cacheDirectory: "/private/var/folders/8g/zf0h5rv91bl0gx5d97y14b4s1zxr20/T/jest_iv6t6o",
 
   // Automatically clear mock calls and instances between every test
-  // clearMocks: true,
+  clearMocks: true,
 
   // Indicates whether the coverage information should be collected while executing the test
   collectCoverage: true,
@@ -27,7 +27,7 @@ module.exports = {
   coverageDirectory: 'coverage',
 
   // An array of regexp pattern strings used to skip coverage collection
-  coveragePathIgnorePatterns: ['/node_modules/', './components/icon/svg/*'],
+  coveragePathIgnorePatterns: ['/node_modules/', './components/core/*', './components/icon/*', './components/spinner/*', 'stories.js', '.storybook/*'],
 
   // A list of reporter names that Jest uses when writing coverage reports
   // coverageReporters: [
@@ -38,12 +38,12 @@ module.exports = {
   // ],
 
   // An object that configures minimum threshold enforcement for coverage results
-  // coverageThreshold: {
-  //   global: {
-  //     branches: 80,
-  //     functions: 80,
-  //   },
-  // },
+  coverageThreshold: {
+    global: {
+      branches: 80,
+      functions: 80,
+    },
+  },
 
   // A path to a custom dependency extractor
   // dependencyExtractor: null,
@@ -96,7 +96,7 @@ module.exports = {
   // reporters: undefined,
 
   // Automatically reset mock state between every test
-  // resetMocks: true,
+  resetMocks: true,
 
   // Reset the module registry before running each individual test
   // resetModules: false,
@@ -128,7 +128,7 @@ module.exports = {
   // snapshotSerializers: [],
 
   // The test environment that will be used for testing
-  // testEnvironment: "jest-environment-jsdom",
+  testEnvironment: 'jest-environment-jsdom',
 
   // Options that will be passed to the testEnvironment
   // testEnvironmentOptions: {},

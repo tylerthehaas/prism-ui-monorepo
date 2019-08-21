@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, ChangeEvent } from 'react';
 import './textbox.scss';
 
 export type TextboxProps = {
-  change?(event: any): any;
+  change?: (event: ChangeEvent<HTMLTextAreaElement>) => void
   'data-testid'?: string;
   disabled?: boolean;
   errorText?: string;
   infoText?: string;
   invalid?: boolean;
   inputLabel?: string;
-  maxChars: number;
+  maxChars?: number;
   placeholderText?: string;
   required?: boolean;
   optionalText?: string;
@@ -36,13 +36,13 @@ export const Textbox = ({
   optionalText = 'Optional',
   characterText = 'Characters',
   textAreaId = `psm-form__textarea-${Math.floor((Math.random() * 100) + 1)}`,
-  textTooLongMsg = `Your message is too long. Cut back to ${maxChars} characters.`
+  textTooLongMsg = `Your message is too long. Cut back to ${maxChars} characters.`,
 }: TextboxProps) => {
   const [textLength, setMessageLength] = useState<TextboxState['textLength']>(
     0,
   );
 
-  function handleChange(event: any) {
+  function handleChange(event: ChangeEvent<HTMLTextAreaElement>) {
     change(event);
     setMessageLength(event.target.value.length);
   }
@@ -89,7 +89,7 @@ export const Textbox = ({
             invalid || maxChars < textLength
               ? 'psm-form__error-text'
               : 'psm-form__info-text'}`}
-          aria-live='assertive'
+          aria-live="assertive"
         >
           {invalid
             ? errorText

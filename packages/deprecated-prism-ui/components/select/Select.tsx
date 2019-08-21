@@ -5,23 +5,26 @@ export type SelectProps = {
   'data-testid'?: string;
   selectLabel?: string;
   content: { text: string; value: number | string }[];
-  onClick?: (event?: React.ChangeEvent<HTMLSelectElement>) => void;
+  onChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void;
 };
 
 export const Select = ({
   selectLabel = '',
-  content = [],
-  onClick = () => console.log('Selected'),
+  content,
+  onChange = () => {},
   'data-testid': testid = '',
 }: SelectProps) => (
-    <div>
+    <>
       <label htmlFor={testid}>{selectLabel}</label>
+      {/* eslint-disable-next-line jsx-a11y/no-onchange */}
       <select
+        aria-label="select"
         className="psm-input psm-select"
         data-testid={testid}
         id={testid}
         key={`select${testid}`}
-        onBlur={onClick}
+        onChange={onChange}
+        tabIndex={0}
       >
         {content.map((contentSection, index) => (
             <option
@@ -33,7 +36,7 @@ export const Select = ({
             </option>
           ))}
       </select>
-    </div>
+    </>
   );
 
 export default Select;

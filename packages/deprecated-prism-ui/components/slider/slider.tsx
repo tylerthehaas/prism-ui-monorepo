@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, ChangeEvent } from 'react';
 import './slider.scss';
 
 export type SliderProps = {
@@ -23,7 +23,7 @@ export const Slider = ({
   maxValue = 100,
   minValue = 1,
   stepValue = 1,
-  inputId = `psm_slider-${Math.floor((Math.random() * 100) + 1)}`
+  inputId = `psm_slider-${Math.floor((Math.random() * 100) + 1)}`,
 }: SliderProps) => {
   const [sliderValue, setSliderValue] = useState<SliderState['sliderValue']>(
     defaultValue,
@@ -37,12 +37,8 @@ export const Slider = ({
     ((defaultValue - minValue) / (maxValue - minValue)) * 100,
   );
 
-  useEffect(() => {
-    moveSlider();
-  }, [sliderValue]);
-
-  function handleChange(event: any) {
-    setSliderValue(event.target.value);
+  function handleChange(event: ChangeEvent<HTMLInputElement>) {
+    setSliderValue(Number(event.target.value));
   }
 
   function calculateSliderPosition() {
@@ -61,10 +57,10 @@ export const Slider = ({
 
     if (
       Math.floor(
-        0.5 * 0.25 +
-          ((sliderValue - minValue) / (maxValue - minValue)) * 100 -
-          0.25 -
-          1,
+        0.5 * 0.25
+          + ((sliderValue - minValue) / (maxValue - minValue)) * 100
+          - 0.25
+          - 1,
       ) <= Math.ceil(minValue / maxValue)
     ) {
       setShowMin(false);
@@ -74,12 +70,12 @@ export const Slider = ({
 
     if (
       Math.floor(
-        0.5 * 0.25 +
-          ((sliderValue - minValue) / (maxValue - minValue)) * 100 -
-          0.25 +
-          1,
-      ) >=
-      100 - maxValue.toString().length
+        0.5 * 0.25
+          + ((sliderValue - minValue) / (maxValue - minValue)) * 100
+          - 0.25
+          + 1,
+      )
+      >= 100 - maxValue.toString().length
     ) {
       setShowMax(false);
     } else {
@@ -87,15 +83,20 @@ export const Slider = ({
     }
   }
 
+  useEffect(() => {
+    moveSlider();
+  }, [sliderValue]);
+
   return (
-    <>
-      <div style={{ position: 'relative' }}>
+      <div
+        className="psm-input__slider"
+      >
         <label
           htmlFor={inputId}
-          className={'psm-input__slider-range--current'}
+          className="psm-input__slider-range--current"
           style={{
             position: 'absolute',
-            left: transform + '%',
+            left: `${transform}%`,
             top: '-20px',
           }}
         >
@@ -103,10 +104,9 @@ export const Slider = ({
             style={{
               position: 'relative',
               top: '4px',
-              right: transform + '%',
+              right: `${transform}%`,
               zIndex: 25,
               height: '20px',
-
               backgroundColor: 'rgba(255, 255, 255, 0.8)',
             }}
           >
@@ -114,13 +114,13 @@ export const Slider = ({
           </span>
         </label>
         <span
-          className={'psm-input__slider-range--low'}
+          className="psm-input__slider-range--low"
           style={{ opacity: showMin ? 1 : 0 }}
         >
           {minValue}
         </span>
         <span
-          className={'psm-input__slider-range--high'}
+          className="psm-input__slider-range--high"
           style={{ opacity: showMax ? 1 : 0 }}
         >
           {maxValue}
@@ -140,13 +140,12 @@ export const Slider = ({
           aria-valuenow={sliderValue}
         />
         <div
-          className={'psm-input__slider-right-side'}
+          className="psm-input__slider-right-side"
           style={{
-            width: (100 - sliderPosition) + '%',
+            width: `${100 - sliderPosition}%`,
           }}
         />
       </div>
-    </>
   );
 };
 

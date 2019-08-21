@@ -36,8 +36,7 @@ function spinnerSize(size: string) {
 export const Spinner = ({
   size = 'md',
   'data-testid': testid = '',
-}: SpinnerProps) => {
-  return (
+}: SpinnerProps) => (
     <div className={`psm-spinner--${spinnerSize(size)}`} data-testid={testid}>
       <div />
       <div />
@@ -45,6 +44,5 @@ export const Spinner = ({
       <div />
     </div>
   );
-};
 
 export default Spinner;

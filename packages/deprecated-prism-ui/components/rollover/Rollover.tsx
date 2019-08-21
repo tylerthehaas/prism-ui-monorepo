@@ -33,11 +33,11 @@ export const Rollover = ({
   >(true);
 
   const expandedContent = content.map((item: React.ReactNode) => (
-    <li>{item}</li>
+    <li key={Math.random().toString()}>{item}</li>
   ));
 
   const initialContent = content
-    .map((item: React.ReactNode) => <li>{item}</li>)
+    .map((item: React.ReactNode) => <li key={Math.random().toString()}>{item}</li>)
     .filter((item: React.ReactNode, index: number) => index < numShown);
 
   const [rolloverContent, setRolloverContent] = useState<

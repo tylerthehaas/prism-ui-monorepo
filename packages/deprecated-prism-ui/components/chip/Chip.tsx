@@ -9,7 +9,7 @@ interface ChipProps {
       | React.MouseEvent<HTMLSpanElement>
       | React.KeyboardEvent<HTMLSpanElement>,
   ) => void;
-  isOpen: boolean;
+  isOpen?: boolean;
   label: string;
 }
 
@@ -21,7 +21,7 @@ interface ChipState {
 export const Chip = ({
   closeAction,
   'data-testid': testid = '',
-  isOpen,
+  isOpen = true,
   label,
 }: ChipProps) => {
   const [isSelected, setIsSelected] = useState<ChipState['isSelected']>(false);
@@ -45,9 +45,11 @@ export const Chip = ({
         data-testid={testid}
         onClick={() => setIsSelected(isSelected => !isSelected)}
         tabIndex={0}
-        onKeyPress={event =>
-          event.key === 'Enter' ? setIsSelected(isSelected => !isSelected) : {}
-        }
+        onKeyDown={event => {
+          if (event.key === 'Enter') {
+            setIsSelected(isSelected => !isSelected);
+          }
+        }}
       >
         {label}
         <button

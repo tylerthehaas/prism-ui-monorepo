@@ -21,7 +21,7 @@
     "sourceType": "module",
     "project": "./tsconfig.json"
   },
-  "plugins": ["@typescript-eslint", "jsx-a11y"],
+  "plugins": ["@typescript-eslint", "jsx-a11y", "prettier"],
   "settings": {
     "import/resolver": {
       "typescript": {}
@@ -43,7 +43,10 @@
     "import/no-cycle": 0,
     "indent": 0,
     "linebreak-style": [2, "unix"],
+    "one-var": 0,
+    "one-var-declaration-per-line": 0,
     "no-alert": 0,
+    "import/no-extraneous-dependencies": "off",
     "no-nested-ternary": "off",
     "no-shadow": 0,
     "no-underscore-dangle": 0,

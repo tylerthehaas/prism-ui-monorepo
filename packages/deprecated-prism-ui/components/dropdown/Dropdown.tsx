@@ -1,4 +1,6 @@
-import React, { useState, FocusEvent } from 'react';
+import React, {
+ useState, KeyboardEvent, MouseEvent,
+} from 'react';
 import '../button/button.scss';
 import Icon from '../icon/Icon';
 
@@ -13,38 +15,17 @@ export interface DropdownProps {
 
 export interface Dropdown {
   label?: string;
-  onClick?: (event?: React.MouseEvent<HTMLLIElement>) => void;
+  onClick?: (event?: MouseEvent<HTMLLIElement>) => void;
 }
 export interface DropdownState {
   isFocused: number;
   showMenu?: boolean;
 }
 
-const defaultDropdown = [
-  {
-    label: 'Menu Item',
-    onClick: () => {
-      console.log('Menu Item Clicked');
-    },
-  },
-  {
-    label: 'Menu Item',
-    onClick: () => {
-      console.log('Menu Item Clicked');
-    },
-  },
-  {
-    label: 'Menu Item',
-    onClick: () => {
-      console.log('Menu Item Clicked');
-    },
-  },
-];
-
 export const Dropdown = ({
   'data-testid': testid = 'dropdown-label',
   disabled = false,
-  dropdownMenu = defaultDropdown,
+  dropdownMenu = [],
   label = 'Dropdown Label',
   primary = true,
 }: DropdownProps) => {
@@ -55,28 +36,28 @@ export const Dropdown = ({
     setShowMenu(!showMenu);
   }
 
-  function blurFunction(event: FocusEvent<HTMLDivElement>) {
-    const { currentTarget } = event;
-
-    setTimeout(() => {
-      if (!currentTarget.contains(document.activeElement)) {
-        setShowMenu(false);
-      }
-    }, 0);
-  }
-
-  function handleClick() {
-    setShowMenu(!showMenu);
+  function handleEscape(event: KeyboardEvent<HTMLDivElement>) {
+    if (event.key === 'Escape') {
+      setShowMenu(false);
+    }
   }
 
   return (
-    <div onBlur={blurFunction} role="button" className="psm-dropdown__container" id={testid} onKeyDown={event => { if (event.key === 'Escape') setShowMenu(false); }} tabIndex={0}>
+    <div
+      aria-expanded={showMenu}
+      aria-haspopup
+      className="psm-dropdown__container"
+      id={testid}
+      aria-label={label}
+      onKeyDown={handleEscape}
+      role="button"
+      tabIndex={0}
+    >
       <button
-        aria-labelledby={testid}
+        onBlur={() => setShowMenu(false)}
         className={`psm-dropdown${primary ? '--primary' : ''}`}
-        data-testid={testid}
         disabled={disabled}
-        onClick={handleClick}
+        onClick={() => setShowMenu(!showMenu)}
         type="button"
       >
         {label}
@@ -93,6 +74,7 @@ export const Dropdown = ({
           className="psm-dropdown__menu"
           role="button"
           tabIndex={0}
+          onKeyDown={handleEscape}
         >
           <ul
             className="psm-dropdown__ul"

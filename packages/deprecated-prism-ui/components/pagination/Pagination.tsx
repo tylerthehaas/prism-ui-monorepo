@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import uuid from 'uuid/v4';
 import Icon from '../icon/Icon';
 import './pagination.scss';
 
@@ -7,7 +8,7 @@ interface PaginationProps {
   'data-testid'?: string;
   defaultPage: number;
   itemsPerPage: number;
-  onClick?: (event: React.MouseEvent) => void;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement> | React.KeyboardEvent<HTMLButtonElement>) => void;
 }
 
 interface PaginationState {
@@ -20,13 +21,13 @@ interface PaginationState {
 const Pagination = ({
   children,
   'data-testid': testid = 'pagination',
-  defaultPage = 0,
+  defaultPage = 1,
   itemsPerPage = 10,
   onClick = () => {},
 }: PaginationProps) => {
   const [currentPage, setCurrentPage] = useState<
     PaginationState['currentPage']
-  >(defaultPage);
+  >(defaultPage - 1);
   const [paginatedItems, setPaginatedItems] = useState<
     PaginationState['paginatedItems']
   >(children.slice(0, itemsPerPage));
@@ -69,7 +70,7 @@ const Pagination = ({
   >(getVisiblePages());
 
   function updateDisplay(
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent> | null,
+    event: React.MouseEvent<HTMLButtonElement> | React.KeyboardEvent<HTMLButtonElement> | null,
     pageNumber: number,
   ) {
     setCurrentPage(pageNumber);
@@ -99,6 +100,7 @@ const Pagination = ({
             className="psm-pagination__button psm-pagination__active"
             key={pageNumber + 1}
             onClick={event => updateDisplay(event, pageNumber)}
+            data-testid={(pageNumber + 1).toString()}
           >
             {pageNumber + 1}
           </button>
@@ -111,6 +113,7 @@ const Pagination = ({
           className="psm-pagination__button"
           key={pageNumber + 1}
           onClick={event => updateDisplay(event, pageNumber)}
+          data-testid={(pageNumber + 1).toString()}
         >
           {pageNumber + 1}
         </button>
@@ -127,6 +130,8 @@ const Pagination = ({
             aria-label="Page 1"
             className="psm-pagination__button"
             onClick={event => updateDisplay(event, 0)}
+            data-testid="1"
+
           >
             1
           </button>
@@ -144,6 +149,7 @@ const Pagination = ({
             aria-label={`Go to page ${totalPageCount - 1}`}
             className="psm-pagination__button"
             onClick={event => updateDisplay(event, totalPageCount - 1)}
+            data-testid={totalPageCount - 1}
           >
             {totalPageCount}
           </button>
@@ -160,8 +166,8 @@ const Pagination = ({
   return (
     <nav aria-label="Pagination Navigation" role="navigation">
       <ol data-testid={testid} className="psm-pagination__content">
-        {paginatedItems.map((item, index) => (
-          <li key={index}>{item}</li>
+        {paginatedItems.map(item => (
+          <li key={uuid()}>{item}</li>
         ))}
       </ol>
       <span className="psm-pagination__navigation">
@@ -170,9 +176,9 @@ const Pagination = ({
           className="psm-pagination__button psm-pagination__arrow"
           aria-label="Go to previous page"
           onClick={currentPage !== 0 ? handleLeft : () => {}}
-          onKeyDown={() => handleLeft}
           role={currentPage !== 0 ? 'button' : undefined}
           tabIndex={currentPage === 0 ? -1 : 0}
+          data-testid="left arrow"
         >
           <Icon
             iconName="small-left"
@@ -187,9 +193,10 @@ const Pagination = ({
           type="button"
           className="psm-pagination__button psm-pagination__arrow"
           onClick={currentPage < totalPageCount - 1 ? handleRight : () => {}}
-          onKeyDown={() => handleRight}
           role={currentPage < totalPageCount - 1 ? 'button' : undefined}
           tabIndex={currentPage < totalPageCount - 1 ? 0 : undefined}
+          data-testid="right arrow"
+
         >
           <Icon
             iconName="small-right"

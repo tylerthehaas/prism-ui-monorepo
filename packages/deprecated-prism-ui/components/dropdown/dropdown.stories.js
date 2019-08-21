@@ -1,19 +1,44 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { withKnobs, text, boolean, object } from '@storybook/addon-knobs';
+import {
+ withKnobs, text, boolean, object,
+} from '@storybook/addon-knobs';
 import Dropdown from './Dropdown';
+
+const defaultDropdown = [
+  {
+    label: 'Menu Item',
+    onClick: () => {
+      // eslint-disable-next-line no-console
+      console.log('Menu Item Clicked');
+    },
+  },
+  {
+    label: 'Menu Item',
+    onClick: () => {
+    // eslint-disable-next-line no-console
+     console.log('Menu Item Clicked');
+    },
+  },
+  {
+    label: 'Menu Item',
+    onClick: () => {
+      // eslint-disable-next-line no-console
+      console.log('Menu Item Clicked');
+    },
+  },
+];
 
 storiesOf('Dropdown', module)
   .addDecorator(withKnobs)
-  .add('default', () => <Dropdown />)
-  .add('primary', () => <Dropdown primary />)
+  .add('default', () => <Dropdown dropdownMenu={defaultDropdown} />)
+  .add('primary', () => <Dropdown primary dropdown={defaultDropdown} />)
   .add('disabled', () => <Dropdown disabled />)
   .add('label', () => (
     <Dropdown
-      label={`waiter, there's a reflection of a sad and lonely man in my soup`}
+      label={'waiter, there\'s a reflection of a sad and lonely man in my soup'}
     />
   ))
-  .add('show menu', () => <Dropdown showMenu />)
   .add('knobs', () => (
     <Dropdown
       disabled={boolean('Disabled', false)}
@@ -23,7 +48,7 @@ storiesOf('Dropdown', module)
           object('Dropdown menu item', {
             label: text(
               'Dropdown item',
-              `Some interesting facts I learned at the children's museum, lightning bugs are actually beetles and I hate children.`,
+              'Some interesting facts I learned at the children\'s museum, lightning bugs are actually beetles and I hate children.',
             ),
           }),
         ])

@@ -6,6 +6,7 @@ import Pagination from './Pagination';
 storiesOf('Pagination', module)
   .addDecorator(withKnobs)
   .add('default', () => <Pagination>{[...Array(33).keys()]}</Pagination>)
+  .add('defaultPage', () => <Pagination defaultPage={2}>{[...Array(33).keys()]}</Pagination>)
   .add('knobs', () => (
     <Pagination
       defaultPage={number('page to start on', 1)}

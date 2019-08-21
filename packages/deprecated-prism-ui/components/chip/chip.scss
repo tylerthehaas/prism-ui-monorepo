@@ -15,6 +15,10 @@
     color: white;
     background-color: $psm-color-primary-500;
   }
+  &:focus {
+    color: white;
+    background-color: $psm-color-primary-500;
+  }
 }
 
 .psm-chip__selected {

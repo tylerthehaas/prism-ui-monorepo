@@ -1,7 +1,9 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 
 import Toggle from './Toggle';
+
+const mockAction = jest.fn(x => x);
 
 describe('<Toggle />', () => {
   it('Defaults to false', () => {
@@ -11,5 +13,20 @@ describe('<Toggle />', () => {
     expect(container.firstChild.firstChild).not.toHaveClass(
       'psm-toggle--active',
     );
+  });
+
+  it('fires an action when the toggle changes', () => {
+    const { container } = render(<Toggle toggleAction={mockAction} />);
+    const toggleSwitch = container.querySelector('.psm-toggle__checkbox');
+    fireEvent.click(toggleSwitch);
+    expect(mockAction).toHaveBeenCalled();
+  });
+
+  it('changes class when focused', async () => {
+    const { container } = render(<Toggle />);
+    const toggleButton = container.querySelector('.psm-toggle__checkbox');
+    const toggleContainer = container.querySelector('.psm-toggle');
+    fireEvent.focus(toggleButton);
+    expect(toggleContainer).toHaveClass('psm-toggle psm-toggle--focus');
   });
 });

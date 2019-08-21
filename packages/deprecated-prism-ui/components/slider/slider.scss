@@ -120,6 +120,10 @@ input[type='range']::-ms-tooltip {
   display: none;
 }
 
+.psm-input__slider {
+  position: relative;
+}
+
 .psm-input__slider-range--current {
   text-align: center;
   color: $psm-color-gray-700;
