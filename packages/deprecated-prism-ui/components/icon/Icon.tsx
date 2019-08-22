@@ -215,9 +215,9 @@ export type IconNames =
 
 export type IconProps = {
   iconName: IconNames;
-  height: string;
-  width: string;
-  fill: string;
+  height?: string;
+  width?: string;
+  fill?: string;
   className?: string;
 };
 

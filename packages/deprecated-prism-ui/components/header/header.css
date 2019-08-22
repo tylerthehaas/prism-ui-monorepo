@@ -1,0 +1,152 @@
+.main-header {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f2f2f2;
+  min-height: 60px;
+  padding: 20px 24px 0;
+}
+.main-header .logo {
+  cursor: pointer;
+  display: block;
+  width: 200px;
+  max-height: 200px;
+  overflow: hidden;
+  position: relative;
+}
+.main-header .logo img {
+  width: 100%;
+  height: auto;
+}
+.main-header .search {
+  width: 400px;
+  border-radius: 5px;
+  overflow: visible;
+}
+.main-header .search .psm-input {
+  margin: 0;
+  border-radius: 5px;
+}
+.main-header .search button {
+  display: inline-block;
+  -webkit-appearance: none;
+  border: none;
+  border-radius: 0px 5px 5px 0px;
+  min-width: 56px;
+  min-height: 40px;
+  padding: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  cursor: pointer;
+}
+.main-header .search svg {
+  position: relative;
+  margin-top: 12px;
+}
+.main-header .account {
+  display: flex;
+  align-items: center;
+}
+.main-header .account button {
+  border: none;
+  background: none;
+  height: 2rem;
+  margin-right: 32px;
+  position: relative;
+}
+.main-header .account button span {
+  left: 82%;
+  top: 8px;
+}
+.main-header .account a {
+  text-decoration: none;
+  color: #000;
+}
+.main-header .account .points {
+  display: inline-block;
+  margin-right: 16px;
+  padding: 0.25rem 0.5rem;
+}
+.main-header svg {
+  height: 16px;
+  width: 16px;
+}
+.main-header .account .cart {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+}
+.main-header .main-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100vw;
+  margin: 16px -24px 0px;
+  padding-right: 24px;
+  background: #fff;
+}
+.main-header .main-nav ul {
+  display: flex;
+  list-style-type: none;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+.main-header .main-nav ul li {
+  padding: 0px;
+  height: auto;
+  font-weight: 100;
+}
+.main-header .main-nav ul li a {
+  color: #000;
+  display: block;
+  line-height: 1;
+  padding: 20px 24px;
+  text-decoration: none;
+}
+.main-header .main-nav .admin-tools {
+  display: inline-block;
+  color: #000;
+  cursor: pointer;
+  text-decoration: none;
+}
+.main-header .main-nav .admin-tools svg {
+  margin-left: 12px;
+}
+.alert {
+  background: #D70E16;
+  border-radius: 0.25rem;
+  display: block;
+  color: #fff;
+  font-size: 0.6875rem;
+  font-weight: bold;
+  padding: 0 0.15rem 0.15rem;
+  position: absolute;
+}
+#nav1 {
+  font-size: 0.875rem;
+  padding-left: 20px;
+}
+#nav1 li {
+  margin-right: 8px;
+}
+#nav1 span {
+  border-bottom: 2px solid transparent;
+  padding: 12px 8px 10px;
+}
+#nav1 span:hover {
+  background: #f1f1f1;
+}
+#nav1 span:active {
+  background: #fff;
+  color: #7049d5;
+}
+#nav1 .currentPage {
+  color: #7049d5;
+  border-bottom: 2px solid #7049d5;
+}
+#account-menu {
+  margin-right: 0;
+  padding: 0;
+}
