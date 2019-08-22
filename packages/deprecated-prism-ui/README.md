@@ -100,9 +100,9 @@ This will create a production build of the project to `static-storybook/`.
 
 ### Release New Library Version
 
-Increment the version number in [package.json](package.json).
+Increment the version number in _both_ `package.json` files, [package.json](package.json) and [css-only/package.json](css-only/package.json). Then run `npm install` to update the version number in [package-lock.json](package-lock.json).
 
-Promote the site to prod in [Akkeris](https://akkeris.octanner.io/pipelines/13cf7599-59de-4149-b554-1afe079df688).
+Merge changes to `master` and promote the site to prod in [Akkeris](https://akkeris.octanner.io/pipelines/13cf7599-59de-4149-b554-1afe079df688).
 
 Make sure you have two npmrc profiles named artifactory and github, each with their respective credentials.
 
@@ -112,9 +112,9 @@ Publish the library with
 npm run publish
 ```
 
-This will create a production build of the library for redistribution in `dist/` and publish it to both Github and Artifactory
+This will create a production build of the library for redistribution in `dist/` and publish it to both Github and Artifactory.
 
-### Release New CSS Version
+Publish the new CSS-only library with
 
 ```bash
 cd css-only
