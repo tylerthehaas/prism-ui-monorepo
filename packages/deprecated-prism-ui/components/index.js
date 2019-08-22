@@ -4,6 +4,7 @@ export { default as Button } from './button/Button';
 export { default as Card } from './card/Card';
 export { default as Chip } from './chip/Chip';
 export { default as Hr } from './hr/Hr';
+export { default as Header } from './header/Header';
 export { default as Icon } from './icon/Icon';
 export { default as Input } from './input/Input';
 export { default as Modal } from './modal/Modal';

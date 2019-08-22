@@ -8,3 +8,6 @@ yarn-error.log
 # Storybook-build
 storybook-static
 *.tar.gz
+
+css-only/prism.css
+css-only/prism.minified.css
