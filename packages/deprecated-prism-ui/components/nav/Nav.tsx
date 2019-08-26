@@ -40,7 +40,6 @@ export const Nav = ({
   return (
     <ul className="psm-nav" id={testid} role="menubar">
       {tabs.map((tab, index) => {
-        console.log(tab, index);
         return (
           <li
             className={`${

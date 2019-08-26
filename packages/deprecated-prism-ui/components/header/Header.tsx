@@ -2,7 +2,7 @@ import React from 'react';
 import Avatar from '../avatar/Avatar';
 import Icon from '../icon/Icon';
 import Nav, { Tab } from '../nav/Nav';
-import './header.css';
+import './header.scss';
 
 interface LayoutProps {
   layout: Layout;
