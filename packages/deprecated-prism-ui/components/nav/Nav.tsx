@@ -1,71 +1,57 @@
-import React, { useState, MouseEvent } from 'react';
+import React, { MouseEvent } from 'react';
+import uuid from 'uuid/v4';
 import './nav.scss';
 
 interface NavProps {
-  active?: number;
+  /** Highlights the active tab */
   'data-testid'?: string;
+  /** Array of destinations in the navbarâ€“ see notes for information on type */
   tabs: Tab[];
 }
 
 export interface Tab {
+  /** If true, this indicates that this is the active tab */
+  active: boolean
+  /** Name of the tab */
   tabName: string;
-  onClick?: (
-    event?: MouseEvent<Element>,
+  /** Event that fires when the user clicks a tab */
+  onClick: (
+    event?: MouseEvent<HTMLButtonElement>,
   ) => void;
+  /** Number of errors in a given tab */
   numErrors?: number;
+  /** If true, flags the tab as having something new in it */
   isNew?: boolean;
+  /** Text that announces that something in a tab is new */
   isNewText?: string;
-  focused?: boolean;
-}
-
-interface NavState {
-  active: number;
-  tabState: Tab[];
 }
 
 export const Nav = ({
-  active = 0,
   'data-testid': testid = '',
-  tabs = [{tabName: 'Example'}],
+  tabs = [{ tabName: 'Example', active: true, onClick: () => {} }],
 }: NavProps) => {
-  const [activeState, setActiveState] = useState<NavState['active']>(active);
-  const [tabState, setTabState] = useState<NavState['tabState']>(tabs);
-
-  function updateTabFocus(index: number, tab: Tab, focusValue: boolean) {
-    tab.focused = focusValue;
-    setTabState(tabState.splice(index, 1, tab));
-  }
-
   function handleClick(
-    index: number,
     tab: Tab,
-    event: MouseEvent,
+    event: MouseEvent<HTMLButtonElement>,
   ) {
-    setActiveState(index);
-    updateTabFocus(index, tab, false);
     if (tab.onClick) tab.onClick(event);
   }
 
   return (
     <ul className="psm-nav" id={testid} role="menubar">
       {tabs.map((tab, index) => {
+        console.log(tab, index);
         return (
           <li
-            className={`psm-nav__tab ${
-              activeState === index ? 'psm-nav__active' : ''
-            } ${
-              activeState !== index && tab.focused ? 'psm-nav__hovered' : ''
+            className={`${
+              tab.active ? 'psm-nav__active' : 'psm-nav__tab'
             }`}
             id={`tab-${index}`}
-            key={index}
-            onMouseEnter={() => updateTabFocus(index, tab, true)}
-            onMouseLeave={() => updateTabFocus(index, tab, false)}
+            key={uuid()}
             role="none"
           >
             <button
-              onClick={event => handleClick(index, tab, event)}
-              onBlur={() => updateTabFocus(index, tab, false)}
-              onFocus={() => updateTabFocus(index, tab, true)}
+              onClick={event => handleClick(tab, event)}
               role="menuitem"
               type="button"
             >
@@ -87,8 +73,8 @@ export const Nav = ({
               )}
             </button>
           </li>
-        );
-      })}
+        )
+;})}
     </ul>
   );
 };

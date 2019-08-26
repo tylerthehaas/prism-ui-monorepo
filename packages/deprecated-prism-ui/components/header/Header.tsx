@@ -89,7 +89,6 @@ const Header = ({
 
       <nav className="main-nav psm-nav">
         <Nav
-          active={0}
           data-testid="nav1"
           tabs={tabs}
         />

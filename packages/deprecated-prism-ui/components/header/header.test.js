@@ -27,7 +27,7 @@ const layout = {
     },
   ],
   tabs: [
-    { tabName: 'Social feed' },
+    { tabName: 'Social feed', active: true },
     { tabName: 'My team' },
     { tabName: 'Events' },
     { tabName: 'Initiatives' },
