@@ -1,4 +1,5 @@
-import React, { useState, FormEvent } from 'react';
+import React, { useState, useEffect, FormEvent } from 'react';
+import uuid from 'uuid/v4';
 import './toggle.scss';
 import validateHexColor from '../core/color/index';
 
@@ -7,10 +8,7 @@ type ToggleProps = {
   defaultToggle?: boolean;
   id?: string;
   label: string;
-  toggleAction: (
-    event: React.FormEvent,
-    active: boolean,
-  ) => void;
+  toggleAction: (event: FormEvent, active: boolean) => void;
   'data-testid': string;
 };
 
@@ -22,7 +20,7 @@ export const Toggle = ({
   color = '',
   'data-testid': testid = '',
   defaultToggle = false,
-  id = '',
+  id = uuid(),
   label = '',
   toggleAction = () => {},
 }: ToggleProps) => {
@@ -36,13 +34,6 @@ export const Toggle = ({
     setActive(!active);
   }
 
-  function getRandomId() {
-    const random = Math.random().toString().slice(2, 7);
-    return `psm-toggle-${random}`;
-  }
-
-  const [generatedId] = useState(getRandomId());
-
   function showFocus() {
     setFocus(true);
   }
@@ -53,35 +44,36 @@ export const Toggle = ({
 
   const validatedColor = color ? validateHexColor(color) : '';
 
+  useEffect(() => {
+    setActive(defaultToggle);
+  }, [defaultToggle]);
+
   return (
-    <label className="psm-toggle__wrapper" htmlFor={id || generatedId}>
+    <label className="psm-toggle__wrapper" htmlFor={id}>
       <div
-        className={`psm-toggle ${
-          active ? 'psm-toggle--active' : ''
-        } ${focus ? 'psm-toggle--focus' : ''}`}
+        className={`psm-toggle ${active ? 'psm-toggle--active' : ''} ${
+          focus ? 'psm-toggle--focus' : ''
+        }`}
         data-testid={`psm-toggle-${testid}`}
-        style={active && validatedColor
-          ? { backgroundColor: `#${validatedColor}` }
-          : {}
+        style={
+          active && validatedColor
+            ? { backgroundColor: `#${validatedColor}` }
+            : {}
         }
       >
         <input
           aria-label="toggle"
           type="checkbox"
           className="psm-toggle__checkbox"
-          checked={active}
+          defaultChecked={active}
           onChange={handleToggle}
           onFocus={showFocus}
           onBlur={unFocus}
-          id={id || generatedId}
+          id={id}
         />
         <div className="psm-toggle__switch" />
       </div>
-      <span
-        className="psm-toggle__label"
-      >
-        {label}
-      </span>
+      <span className="psm-toggle__label">{label}</span>
     </label>
   );
 };

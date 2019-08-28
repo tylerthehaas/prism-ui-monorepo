@@ -12,7 +12,7 @@ describe('<Card />', () => {
     const defaultCard = getByText(
       'Pick up artists and garbage men should switch names',
     );
-    expect(defaultCard).toHaveClass('psm-card psm-card--shadow-sm');
+    expect(defaultCard.classList).toContain('psm-card--shadow-sm');
   });
 
   test('Small shadow', () => {
@@ -20,7 +20,7 @@ describe('<Card />', () => {
     const shadow1 = getByText(
       'Pick up artists and garbage men should switch names',
     );
-    expect(shadow1).toHaveClass('psm-card psm-card--shadow-sm');
+    expect(shadow1.classList).toContain('psm-card--shadow-sm');
   });
 
   test('Medium shadow', () => {
@@ -29,7 +29,7 @@ describe('<Card />', () => {
       'Pick up artists and garbage men should switch names',
     );
 
-    expect(shadow2).toHaveClass('psm-card psm-card--shadow-md');
+    expect(shadow2.classList).toContain('psm-card--shadow-md');
   });
 
   test('Large shadow', () => {
@@ -38,6 +38,6 @@ describe('<Card />', () => {
       'Pick up artists and garbage men should switch names',
     );
 
-    expect(shadow3).toHaveClass('psm-card psm-card--shadow-lg');
+    expect(shadow3.classList).toContain('psm-card--shadow-lg');
   });
 });

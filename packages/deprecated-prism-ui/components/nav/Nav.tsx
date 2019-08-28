@@ -39,8 +39,7 @@ export const Nav = ({
 
   return (
     <ul className="psm-nav" id={testid} role="menubar">
-      {tabs.map((tab, index) => {
-        return (
+      {tabs.map((tab, index) => (
           <li
             className={`${
               tab.active ? 'psm-nav__active' : 'psm-nav__tab'
@@ -72,8 +71,7 @@ export const Nav = ({
               )}
             </button>
           </li>
-        )
-;})}
+        ))}
     </ul>
   );
 };

@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import './card.scss';
 
 interface CardProps {
+  /** Determines the size of the shadow beneath the card */
   shadowType?: 'sm' | 'md' | 'lg';
-  children?: any;
+  /** The content inside the card */
+  children: ReactNode;
   'data-testid'?: string;
 }
 
@@ -12,10 +14,7 @@ export const Card = ({
   children,
   'data-testid': testid = '',
 }: CardProps) => (
-  <div
-    className={`psm-card psm-card--shadow-${shadowType}`}
-    data-testid={testid}
-  >
+  <div className={`psm-card--shadow-${shadowType}`} data-testid={testid}>
     {children}
   </div>
 );

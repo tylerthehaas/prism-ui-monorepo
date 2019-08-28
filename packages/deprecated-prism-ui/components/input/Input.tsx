@@ -1,25 +1,35 @@
-import React from 'react';
+import React, { MouseEvent, ChangeEvent } from 'react';
 import './input.scss';
 import './input-group.scss';
 import Icon, { IconNames } from '../icon/Icon';
 
 export interface InputProps {
-  change?: (event?: React.ChangeEvent<HTMLInputElement>) => void;
+  /** Action that fires when input changes  */
+  onChange?: (event?: ChangeEvent<HTMLInputElement>) => void;
   'data-testid'?: string;
+  /** Disables the input */
   disabled?: boolean;
+  /** Text to display when there's an error in the input */
   errorText?: string;
+  /** Icon at the end of the input */
   icon?: iconType;
-  infoText?: string;
+  /** If true, turns the input red */
   invalid?: boolean;
+  /** Informational text below the input */
+  infoText?: string;
+  /** Input label */
   label?: string;
+  /** Optional text */
   optionalText?: string;
+  /** Input placeholder */
   placeholderText?: string;
+  /** Indicates if the input is required or not */
   required?: boolean;
 }
 
 export interface iconType {
   name: IconNames;
-  onClick?: (event?: React.MouseEvent<HTMLSpanElement>) => void;
+  onClick?: (event?: MouseEvent<HTMLSpanElement>) => void;
   position?: string;
 }
 
@@ -28,7 +38,7 @@ const defaultIcon: iconType = {
 };
 
 export const Input = ({
-  change = () => {},
+  onChange = () => {},
   disabled = false,
   errorText = '',
   icon = defaultIcon,
@@ -41,7 +51,7 @@ export const Input = ({
   'data-testid': testid = '',
 }: InputProps) => {
   function handleClick(icon: iconType) {
-    return (event: React.MouseEvent<HTMLSpanElement>) => {
+    return (event: MouseEvent<HTMLSpanElement>) => {
       if (icon.onClick) icon.onClick(event);
     };
   }
@@ -49,6 +59,7 @@ export const Input = ({
   return (
     <>
       {label && (
+        // eslint-disable-next-line jsx-a11y/label-has-for
         <label className="psm-form__label" htmlFor="psm-input-text">
           {label}
           {!required && (
@@ -85,11 +96,11 @@ export const Input = ({
           autoComplete="off"
           autoCorrect="off"
           autoCapitalize="off"
-          className={`psm-input ${invalid ? 'psm-input--error' : ''}`}
+          className={`psm-input${invalid ? '--error' : ''}`}
           data-testid={testid}
           disabled={disabled}
           id="psm-input-text"
-          onChange={change}
+          onChange={onChange}
           placeholder={placeholderText}
           required={required}
           spellCheck={false}
@@ -102,7 +113,7 @@ export const Input = ({
         }`}
         id="info"
       >
-        {infoText || errorText ? `${invalid ? 'error-text' : 'info-text'}` : ''}
+        {infoText || errorText ? `${invalid ? errorText : infoText}` : ''}
       </div>
     </>
   );

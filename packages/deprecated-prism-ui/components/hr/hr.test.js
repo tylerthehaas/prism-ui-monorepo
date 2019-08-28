@@ -6,6 +6,6 @@ import HR from './Hr';
 describe('<HR />', () => {
   it('Has a  horizontal rule', () => {
     const { container } = render(<HR />);
-    expect(container.firstChild).toHaveClass('psm-hr');
+    expect(container.firstChild.classList).toContain('psm-hr');
   });
 });

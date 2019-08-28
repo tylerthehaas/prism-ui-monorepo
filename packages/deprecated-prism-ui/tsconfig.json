@@ -2,33 +2,21 @@
   "compilerOptions": {
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "outDir": "./dist/",
-    "sourceMap": true,
-    "noUnusedLocals": true,
-    "suppressImplicitAnyIndexErrors": true,
-    "noErrorTruncation": true,
-    "module": "commonjs",
-    "target": "esnext",
-    "jsx": "react",
     "baseUrl": "./",
-    "experimentalDecorators": true,
-    "resolveJsonModule": true,
-    "strict": true,
+    "downlevelIteration": true,
+    "esModuleInterop": true,
+    "jsx": "react",
+    "module": "commonjs",
+    "noErrorTruncation": true,
+    "noUnusedLocals": true,
+    "outDir": "./dist/",
     "paths": {
-      "*": ["src/*", "test/*"],
-      "css-variables/*": ["src/css-variables.js"]
+      "*": ["components/*"]
     },
-    "plugins": [
-      {
-        "name": "typescript-styled-plugin"
-      }
-    ]
+    "sourceMap": true,
+    "strict": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "target": "esnext",
   },
-  "include": [
-    "./components/**/*.tsx",
-    "components/global-style/IconStyle.js",
-    "components/global-style/IconStyle.js",
-    "components/global-style/IconNames.js"
-  ]
+  "include": ["./components/**/*.tsx"]
 }

@@ -5,8 +5,7 @@ import Slider from './slider';
 
 storiesOf('Slider', module)
   .addDecorator(withKnobs)
-  .add('default', () => <Slider />)
-  .add('knobs', () => (
+  .add('component', () => (
     <Slider
       defaultValue={number('Default value', 1)}
       maxValue={number('Max value', 100)}

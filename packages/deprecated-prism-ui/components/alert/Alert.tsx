@@ -1,21 +1,14 @@
-import React, { ReactNode, useState } from 'react';
+import React, { ReactNode, useState, MouseEvent } from 'react';
 import './alert.scss';
 import Icon from '../icon/Icon';
 
-enum AlertType {
-  Error = 'error',
-  Info = 'info',
-  Success = 'success',
-  Warning = 'warning',
-}
-
 interface AlertProps {
   /** Alert type determines alert color */
-  alertType?: AlertType;
+  alertType?: 'error' | 'info' | 'success' | 'warning';
   children: ReactNode;
   'data-testid'?: string;
   /** Called when an alert is dismissed */
-  onDismiss?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  onDismiss?: (event: MouseEvent<HTMLButtonElement>) => void;
 }
 
 interface AlertState {
@@ -23,7 +16,7 @@ interface AlertState {
 }
 
 const Alert = ({
-  alertType = AlertType.Info,
+  alertType = 'info',
   'data-testid': testid = 'alert',
   onDismiss,
   children,
@@ -57,7 +50,7 @@ const Alert = ({
       {!dismissed && (
         <div
           aria-live="assertive"
-          className={`psm-alert psm-alert--${alertType}`}
+          className={`psm-alert--${alertType}`}
           data-testid={testid}
           role="alert"
         >

@@ -3,7 +3,8 @@
 @import '../core/icon/variables';
 @import '../core/color/functions';
 
-.psm-alert {
+.psm-alert,
+%psm-alert {
   width: 100%;
   display: block;
   min-height: 56px;
@@ -36,6 +37,7 @@
   }
 }
 .psm-alert--warning {
+  @extend %psm-alert;
   background-color: $psm-color-warning-background;
   color: $psm-color-warning;
   & a {
@@ -51,6 +53,7 @@
 }
 
 .psm-alert--info {
+  @extend %psm-alert;
   background-color: $psm-color-info-background;
   color: $psm-color-info;
   & a {
@@ -66,6 +69,7 @@
 }
 
 .psm-alert--error {
+  @extend %psm-alert;
   background-color: $psm-color-error-background;
   color: $psm-color-error;
   & a {
@@ -81,6 +85,7 @@
 }
 
 .psm-alert--success {
+  @extend %psm-alert;
   background-color: $psm-color-success-background;
   color: $psm-color-success;
   & a {

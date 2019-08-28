@@ -1,22 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, ReactNode } from 'react';
+import uuid from 'uuid/v4';
 import './rollover.scss';
 
 interface RolloverProps {
+  /** Content to include in the rollover */
   content: string[];
   'data-testid'?: string;
+  /** Text that triggers the rollover when hovered over */
   hoverText: string;
-  hoverTextStyle: RolloverStyle;
+  /** How that hover text is styled */
+  hoverTextStyle: 'dotted' | 'underlined' | 'none';
+  /** The maximum number of separate items that are included in the rollover before a 'Show More' button appears */
   numShown: number;
+  /** Determines if the rollover goes above the text or below it */
   position?: 'up' | 'down';
 }
-
-type RolloverStyle = 'dotted' | 'underlined' | 'none';
 
 interface RolloverState {
   visible: boolean;
   rolloverContent: JSX.Element[] | string[];
   contentState: any;
   showMoreButton: boolean;
+  effectiveNumShown: number;
 }
 
 export const Rollover = ({
@@ -27,27 +32,54 @@ export const Rollover = ({
   numShown = content.length,
   position = 'up',
 }: RolloverProps) => {
+  const [effectiveNumShown, setEffectiveNumShown] = useState<
+    RolloverState['effectiveNumShown']
+  >(numShown);
+
+  function determineIfShowMoreIsNeeded(nextState: boolean) {
+    if (effectiveNumShown < content.length && effectiveNumShown > 0) {
+      return nextState;
+    }
+    return false;
+  }
   const [visible, setVisible] = useState<RolloverState['visible']>(false);
+
   const [showMoreButton, setShowMoreButton] = useState<
     RolloverState['showMoreButton']
-  >(true);
+  >(determineIfShowMoreIsNeeded(true));
 
-  const expandedContent = content.map((item: React.ReactNode) => (
-    <li key={Math.random().toString()}>{item}</li>
+  const expandedContent = content.map((item: ReactNode) => (
+    <li key={uuid()}>{item}</li>
   ));
 
   const initialContent = content
-    .map((item: React.ReactNode) => <li key={Math.random().toString()}>{item}</li>)
-    .filter((item: React.ReactNode, index: number) => index < numShown);
+    .map((item: ReactNode) => <li key={uuid()}>{item}</li>)
+    .filter((item: ReactNode, index: number) => index < effectiveNumShown);
 
   const [rolloverContent, setRolloverContent] = useState<
     RolloverState['rolloverContent']
   >(initialContent);
 
+  function makeSureEverythingPlaysNice() {
+    if (numShown < 1 || !numShown) {
+      return setEffectiveNumShown(1);
+    }
+    if (numShown < content.length) {
+      return setEffectiveNumShown(numShown);
+    }
+    setRolloverContent(expandedContent);
+    setEffectiveNumShown(content.length);
+    return setShowMoreButton(false);
+  }
+
   function updateRollover() {
     setRolloverContent(expandedContent);
-    setShowMoreButton(false);
+    setShowMoreButton(determineIfShowMoreIsNeeded(false));
   }
+
+  useEffect(() => {
+    makeSureEverythingPlaysNice();
+  }, [numShown]);
 
   const expandButton = (
     <button
@@ -61,7 +93,7 @@ export const Rollover = ({
       }}
       tabIndex={0}
     >
-      +{content.length - numShown} More
+      +{content.length - effectiveNumShown} More
     </button>
   );
 
@@ -70,9 +102,9 @@ export const Rollover = ({
       case 'none':
         return '';
       case 'dotted':
-        return 'psm-rollover psm-rollover__text psm-rollover__text-dotted';
+        return 'psm-rollover__text-dotted';
       case 'underlined':
-        return 'psm-rollover psm-rollover__text psm-rollover__text-underline';
+        return 'psm-rollover__text-underlined';
       default:
         return '';
     }
@@ -80,8 +112,31 @@ export const Rollover = ({
 
   function resetDropdown() {
     setVisible(false);
-    setShowMoreButton(true);
+    setShowMoreButton(determineIfShowMoreIsNeeded(true));
     setRolloverContent(initialContent);
+  }
+
+  if (visible && content.length === 1) {
+    return (
+      <div
+        className="psm-rollover"
+        data-testid={testid}
+        id={`${testid}-rollover-div`}
+        onBlur={() => resetDropdown()}
+        onMouseLeave={() => resetDropdown()}
+      >
+        <span className={`${handleOptions()}`}>{hoverText}</span>
+        <div
+          className={`psm-rollover__window--${
+            visible ? 'show' : 'hide'
+          } psm-rollover__window--${position}`}
+        >
+          {content.map(item => (
+            <p>{item}</p>
+          ))}
+        </div>
+      </div>
+    );
   }
 
   if (visible) {
@@ -95,7 +150,7 @@ export const Rollover = ({
       >
         <span className={`${handleOptions()}`}>{hoverText}</span>
         <div
-          className={` psm-rollover__window--${
+          className={`psm-rollover__window--${
             visible ? 'show' : 'hide'
           } psm-rollover__window--${position}`}
         >

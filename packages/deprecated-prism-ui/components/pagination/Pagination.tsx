@@ -1,19 +1,31 @@
-import React, { useState, useEffect } from 'react';
+import React, {
+  useState,
+  useEffect,
+  MouseEvent,
+  KeyboardEvent,
+  ReactNode,
+} from 'react';
 import uuid from 'uuid/v4';
 import Icon from '../icon/Icon';
 import './pagination.scss';
 
 interface PaginationProps {
-  children: string[];
+  /** Array of things to paginate */
+  children: ReactNode[];
   'data-testid'?: string;
+  /** Page to start on */
   defaultPage: number;
+  /** Number of items per page */
   itemsPerPage: number;
-  onClick?: (event: React.MouseEvent<HTMLButtonElement> | React.KeyboardEvent<HTMLButtonElement>) => void;
+  /** Function that fires when a user clicks  */
+  onClick?: (
+    event: MouseEvent<HTMLButtonElement> | KeyboardEvent<HTMLButtonElement>,
+  ) => void;
 }
 
 interface PaginationState {
   currentPage: number;
-  paginatedItems: string[];
+  paginatedItems: ReactNode[];
   visiblePages: number[];
   shouldUpdate: boolean;
 }
@@ -70,22 +82,28 @@ const Pagination = ({
   >(getVisiblePages());
 
   function updateDisplay(
-    event: React.MouseEvent<HTMLButtonElement> | React.KeyboardEvent<HTMLButtonElement> | null,
+    event:
+      | MouseEvent<HTMLButtonElement>
+      | KeyboardEvent<HTMLButtonElement>
+      | null,
     pageNumber: number,
   ) {
     setCurrentPage(pageNumber);
     setVisiblePages(getVisiblePages());
     setPaginatedItems(
-      children.slice(pageNumber * itemsPerPage, pageNumber * itemsPerPage + 10),
+      children.slice(
+        pageNumber * itemsPerPage,
+        pageNumber * itemsPerPage + itemsPerPage,
+      ),
     );
     if (onClick && event) onClick(event);
   }
 
-  function handleLeft(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+  function handleLeft(event: MouseEvent<HTMLButtonElement>) {
     updateDisplay(event, currentPage - 1);
   }
 
-  function handleRight(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+  function handleRight(event: MouseEvent<HTMLButtonElement>) {
     updateDisplay(event, currentPage + 1);
   }
 
@@ -97,7 +115,7 @@ const Pagination = ({
             type="button"
             aria-current="page"
             aria-label={`Current Page, page ${pageNumber + 1}`}
-            className="psm-pagination__button psm-pagination__active"
+            className="psm-pagination__active"
             key={pageNumber + 1}
             onClick={event => updateDisplay(event, pageNumber)}
             data-testid={(pageNumber + 1).toString()}
@@ -131,7 +149,6 @@ const Pagination = ({
             className="psm-pagination__button"
             onClick={event => updateDisplay(event, 0)}
             data-testid="1"
-
           >
             1
           </button>
@@ -163,6 +180,14 @@ const Pagination = ({
     updateDisplay(null, currentPage);
   }, [children, currentPage]);
 
+  useEffect(() => {
+    setPaginatedItems(children.slice(0, itemsPerPage));
+  }, [itemsPerPage]);
+
+  useEffect(() => {
+    setCurrentPage(defaultPage - 1);
+  }, [defaultPage]);
+
   return (
     <nav aria-label="Pagination Navigation" role="navigation">
       <ol data-testid={testid} className="psm-pagination__content">
@@ -173,7 +198,7 @@ const Pagination = ({
       <span className="psm-pagination__navigation">
         <button
           type="button"
-          className="psm-pagination__button psm-pagination__arrow"
+          className="psm-pagination__arrow"
           aria-label="Go to previous page"
           onClick={currentPage !== 0 ? handleLeft : () => {}}
           role={currentPage !== 0 ? 'button' : undefined}
@@ -191,12 +216,11 @@ const Pagination = ({
         <button
           aria-label="Go to next page"
           type="button"
-          className="psm-pagination__button psm-pagination__arrow"
+          className="psm-pagination__arrow"
           onClick={currentPage < totalPageCount - 1 ? handleRight : () => {}}
           role={currentPage < totalPageCount - 1 ? 'button' : undefined}
           tabIndex={currentPage < totalPageCount - 1 ? 0 : undefined}
           data-testid="right arrow"
-
         >
           <Icon
             iconName="small-right"

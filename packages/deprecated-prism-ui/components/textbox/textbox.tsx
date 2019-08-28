@@ -1,20 +1,34 @@
 import React, { useState, ChangeEvent } from 'react';
+import uuid from 'uuid/v4';
 import './textbox.scss';
 
 export type TextboxProps = {
-  change?: (event: ChangeEvent<HTMLTextAreaElement>) => void
+  /** Event that fires when the text inside changes */
+  onChange?: (event: ChangeEvent<HTMLTextAreaElement>) => void;
   'data-testid'?: string;
+  /** Disables the text input */
   disabled?: boolean;
+  /** Text that shows when there's an error */
   errorText?: string;
+  /** Optional informational text  */
   infoText?: string;
+  /** Informs the user that their entry is invalic */
   invalid?: boolean;
+  /** Label for the textbox */
   inputLabel?: string;
+  /** Maximum number of characters in the textbox */
   maxChars?: number;
+  /** Textbox placeholder */
   placeholderText?: string;
+  /** Determines if the textbox is required or not */
   required?: boolean;
+  /** Optional text to display to users */
   optionalText?: string;
+  /** Maximum number of characters in a string–
+   * lets the users know how the character limit if they go over it */
   characterText?: string;
   textAreaId?: string;
+  /** Message that displays if a user inputs too much text */
   textTooLongMsg?: string;
 };
 
@@ -23,7 +37,7 @@ export type TextboxState = {
 };
 
 export const Textbox = ({
-  change = () => {},
+  onChange = () => {},
   'data-testid': testid = '',
   disabled = false,
   errorText = 'Error text',
@@ -35,7 +49,7 @@ export const Textbox = ({
   required = false,
   optionalText = 'Optional',
   characterText = 'Characters',
-  textAreaId = `psm-form__textarea-${Math.floor((Math.random() * 100) + 1)}`,
+  textAreaId = `psm-form__textarea-${uuid}`,
   textTooLongMsg = `Your message is too long. Cut back to ${maxChars} characters.`,
 }: TextboxProps) => {
   const [textLength, setMessageLength] = useState<TextboxState['textLength']>(
@@ -43,19 +57,31 @@ export const Textbox = ({
   );
 
   function handleChange(event: ChangeEvent<HTMLTextAreaElement>) {
-    change(event);
+    onChange(event);
     setMessageLength(event.target.value.length);
   }
 
   return (
     <>
       {inputLabel && (
-        <label htmlFor={textAreaId} className="psm-form__label" data-testid={testid}>
+        // I think this next line triggers jsx-a11y because it wants the entire component to be nested inside the label, which is not what we want, so I disabled it
+        // eslint-disable-next-line jsx-a11y/label-has-for
+        <label
+          htmlFor={textAreaId}
+          className="psm-form__label"
+          data-testid={testid}
+        >
           {inputLabel}
-          {!required && <span className="psm-form__optional">{optionalText}</span>}
+          {!required && (
+            <span className="psm-form__optional">{optionalText}</span>
+          )}
           {maxChars && (
             <span
-              className={`psm-form__max-chars ${textLength <= maxChars ? '' : 'psm-form__max-chars--error'}`}
+              className={`${
+                textLength <= maxChars
+                  ? 'psm-form__max-chars'
+                  : 'psm-form__max-chars--error'
+              }`}
             >
               {`${textLength}/${maxChars} ${characterText}`}
             </span>
@@ -63,10 +89,10 @@ export const Textbox = ({
         </label>
       )}
       <textarea
-        className={`psm-form__textarea ${
+        className={`${
           invalid || maxChars < textLength
             ? 'psm-form__textarea--error'
-            : ''
+            : 'psm-form__textarea'
         }`}
         id={textAreaId}
         disabled={disabled}
@@ -76,7 +102,8 @@ export const Textbox = ({
         aria-describedby={`${textAreaId}-${
           invalid || maxChars < textLength
             ? 'psm-form__error-text'
-            : 'psm-form__info-text'}`}
+            : 'psm-form__info-text'
+        }`}
       />
       {(infoText || errorText) && (
         <div
@@ -88,7 +115,8 @@ export const Textbox = ({
           id={`${textAreaId}-${
             invalid || maxChars < textLength
               ? 'psm-form__error-text'
-              : 'psm-form__info-text'}`}
+              : 'psm-form__info-text'
+          }`}
           aria-live="assertive"
         >
           {invalid

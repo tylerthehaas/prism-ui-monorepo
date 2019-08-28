@@ -1,20 +1,22 @@
-import React, {
- useState, KeyboardEvent, MouseEvent,
-} from 'react';
-import '../button/button.scss';
+import React, { useState, KeyboardEvent, MouseEvent } from 'react';
+import uuid from 'uuid/v4';
+import './dropdown.scss';
 import Icon from '../icon/Icon';
 
 export interface DropdownProps {
   'data-testid'?: string;
+  /** Disables the button and grays it out */
   disabled?: boolean;
+  /** See notes for details on details for the type */
   dropdownMenu: Dropdown[];
-  idPrefix?: string;
+  /** The text inside the dropdown */
   label?: string;
+  /** Makes the button larger and colored $psm-color-primary-500, which defaults to purple */
   primary?: boolean;
 }
 
 export interface Dropdown {
-  label?: string;
+  label: string;
   onClick?: (event?: MouseEvent<HTMLLIElement>) => void;
 }
 export interface DropdownState {
@@ -82,21 +84,21 @@ export const Dropdown = ({
             id="dropdown-menu-options"
           >
             {dropdownMenu.map((action, index) => (
-                <li
-                  aria-labelledby="dropdown-menu-options"
-                  className="psm-dropdown__li"
-                  data-testid={`${testid}-option-${index}`}
-                  key={index}
-                  onClick={() => menuClick(action)}
-                  onKeyDown={event => {
-                    if (event.key === 'Enter') menuClick(action);
-                  }}
-                  role="menuitem"
-                  tabIndex={0}
-                >
-                  {action.label}
-                </li>
-              ))}
+              <li
+                aria-labelledby="dropdown-menu-options"
+                className="psm-dropdown__li"
+                data-testid={`${testid}-option-${index}`}
+                key={uuid()}
+                onClick={() => menuClick(action)}
+                onKeyDown={event => {
+                  if (event.key === 'Enter') menuClick(action);
+                }}
+                role="menuitem"
+                tabIndex={0}
+              >
+                {action.label}
+              </li>
+            ))}
           </ul>
         </div>
       )}

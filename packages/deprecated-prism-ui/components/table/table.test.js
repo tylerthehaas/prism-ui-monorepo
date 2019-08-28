@@ -45,8 +45,8 @@ describe('<Table />', () => {
         title="Current Initiatives"
       />,
     );
-    expect(container.firstChild).toHaveClass('psm-table__wrapper');
-    expect(container.querySelector('table').firstChild).toHaveClass(
+    expect(container.firstChild.classList).toContain('psm-table__wrapper');
+    expect(container.querySelector('table').firstChild.classList).toContain(
       'psm-table-caption',
     );
   });
@@ -92,6 +92,6 @@ describe('<Table />', () => {
         title="Current Initiatives"
       />,
     );
-    expect(container.firstChild).toHaveClass('psm-table--box');
+    expect(container.firstChild.classList).toContain('psm-table--box');
   });
 });

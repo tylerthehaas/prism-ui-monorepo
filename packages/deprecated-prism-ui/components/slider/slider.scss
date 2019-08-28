@@ -188,28 +188,3 @@ input[type='range']::-ms-tooltip {
     display: none;
   }
 }
-
-// calc(.5*#{$thumb-d(thumb-diameter)} + var(--ratio)*(100% - #{$thumb-d}));
-
-// --range: calc(var(--max) - var(--min));
-//     --ratio: calc((var(--val) - var(--min))/var(--range));
-//     --sx: calc(.5*16 + var(--ratio)*(100% - 16));
-
-//     0/ var(--sx) 100% no-repeat $track-c
-
-//     background: linear-gradient($psm-color-gray-200, $psm-color-gray-200)
-//                 0/ var(--sx) 100% no-repeat $psm-color-gray-200
-
-// ~ output {
-//     display: none;
-
-//     .js & {
-//         display: block;
-//         position: absolute;
-//         left: .5*$thumb-d; top: 0;
-//         padding: .25em .5em;
-//         border-radius: 3px;
-//         transform: translate(calc((var(--val) - var(--min))/(var(--max) - var(--min))*#{$dist} - 50%));
-//         background: #95a;
-//         color: #eee;
-//     }

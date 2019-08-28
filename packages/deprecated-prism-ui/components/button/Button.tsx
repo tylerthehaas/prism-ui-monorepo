@@ -1,15 +1,22 @@
-import React from 'react';
+import React, { MouseEvent } from 'react';
 import './button.scss';
 
 export interface ButtonProps {
   'data-testid'?: string;
+  /** Disables the button and grays it out.
+   * Only works if there is no linkRef or associated action */
   disabled?: boolean;
+  /** The text inside the button */
   label?: string;
+  /** If the button is a link, add the url here */
   linkRef?: string;
-  onClick?: (
-    event?: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>,
-  ) => void;
+  /** Function that fires when the button is clicked.
+   * Accepts MouseEvent<HTMLButtonElement | HTMLAnchorElement>  */
+  onClick?: (event?: MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => void;
+  /** Makes the button larger and colored $psm-color-primary-500,
+   *  which defaults to purple. Overrides small. */
   primary?: boolean;
+  /** Makes the button small */
   small?: boolean;
 }
 
@@ -18,28 +25,26 @@ export const Button = ({
   disabled = false,
   label = 'Button',
   linkRef = '',
-  onClick = event => {},
+  onClick = () => {},
   primary = true,
   small = false,
 }: ButtonProps) => {
-  function buttonClassName() {
-    let buttonString = ['psm-button'];
-    {
-      primary
-        ? buttonString.push(' psm-button--primary')
-        : buttonString.push(' ');
+  function buttonClass() {
+    if (primary) {
+      return 'psm-button--primary';
     }
-    {
-      small && buttonString.push(' psm-button--small');
-    }
-    return buttonString.join('');
-  }
 
+    if (small) {
+      return 'psm-button--small';
+    }
+
+    return 'psm-button';
+  }
   return (
-    <div className="buttons">
+    <>
       {(!linkRef && (
         <button
-          className={buttonClassName()}
+          className={buttonClass()}
           data-testid={testid}
           disabled={disabled}
           onClick={onClick}
@@ -49,7 +54,7 @@ export const Button = ({
         </button>
       )) || (
         <a
-          className={buttonClassName()}
+          className={buttonClass()}
           data-testid={testid}
           href={linkRef}
           onClick={onClick}
@@ -57,7 +62,7 @@ export const Button = ({
           {label}
         </a>
       )}
-    </div>
+    </>
   );
 };
 

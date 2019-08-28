@@ -10,7 +10,7 @@ describe('<Alert/>', () => {
     const { getByText } = render(<Alert>{testText}</Alert>);
 
     const defaultAlert = getByText(testText);
-    expect(defaultAlert.parentElement).toHaveClass('psm-alert psm-alert--info');
+    expect(defaultAlert.parentElement.classList).toContain('psm-alert--info');
   });
 
   test('it can be closed', () => {
@@ -33,7 +33,9 @@ describe('<Alert/>', () => {
 
       const alert = getByText(testText);
 
-      expect(alert.parentElement).toHaveClass(`psm-alert--${alertType}`);
+      expect(alert.parentElement.classList).toContain(
+        `psm-alert--${alertType}`,
+      );
     });
   });
 });

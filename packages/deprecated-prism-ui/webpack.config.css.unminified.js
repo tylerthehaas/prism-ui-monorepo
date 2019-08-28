@@ -1,6 +1,5 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const postcssPresetEnv = require('postcss-preset-env');
 const nodeModules = require('webpack-node-externals');
 
 module.exports = {
@@ -10,41 +9,11 @@ module.exports = {
   module: {
     rules: [
       {
-        include: /node_modules\/prismjs/,
-        test: /\.css/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          {
-            loader: 'css-loader',
-            options: {
-              importLoaders: 2,
-              localIdentName: '[name]__[local]___[hash:base64:5]',
-            },
-          },
-        ],
-      },
-      {
         exclude: /node_modules/,
-        test: /\.scss/,
+        test: /\.(sa|sc|c)ss$/,
         use: [
           MiniCssExtractPlugin.loader,
-          {
-            loader: 'css-loader',
-            options: {
-              importLoaders: 2,
-              localIdentName: '[name]__[local]___[hash:base64:5]',
-            },
-          },
-          {
-            loader: 'postcss-loader',
-            options: {
-              plugins: [
-                postcssPresetEnv({
-                  browsers: ['last 2 versions', 'ie >= 11'],
-                }),
-              ],
-            },
-          },
+          'css-loader',
           'resolve-url-loader',
           'sass-loader',
         ],
@@ -66,36 +35,7 @@ module.exports = {
       },
       {
         loader: 'url-loader',
-        options: {
-          limit: 8192,
-          name: 'images/[name].[ext]',
-        },
-        test: /.(ico|png|jpg|svg)(\?[a-z0-9=.]+)?$/,
-      },
-      {
-        loader: 'file-loader',
-        options: {
-          name: 'fonts/[name].[ext]',
-        },
-        test: /.(woff(2)?|eot|ttf)(\?[a-z0-9=.]+)?$/,
-      },
-      {
-        loader: 'html-loader?interpolate=require',
-        test: /\.(html)$/,
-      },
-      {
-        exclude: /node_modules/,
-        test: /\.css$/,
-        loader: 'style-loader',
-      },
-      {
-        exclude: /node_modules/,
-        test: /\.css$/,
-        loader: 'css-loader',
-        query: {
-          modules: true,
-          localIdentName: '[name]__[local]___[hash:base64:5]',
-        },
+        test: /.(woff|eot|ttf|svg)(\?[a-z0-9=.]+)?$/,
       },
     ],
   },

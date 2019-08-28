@@ -17,14 +17,7 @@ module.exports = async ({ config, mode }) => {
       test: /\.scss$/,
       use: [
         MiniCssExtractPlugin.loader,
-        {
-          loader: require.resolve('css-loader'),
-          options: {
-            importLoaders: 2,
-            localIdentName: '[name]__[local]___[hash:base64:5]',
-            sourceMap: true,
-          },
-        },
+        require.resolve('css-loader'),
         {
           loader: require.resolve('postcss-loader'),
           options: {
@@ -46,7 +39,7 @@ module.exports = async ({ config, mode }) => {
           },
         },
       ],
-    },
+    }
   );
 
   config.plugins.push(new MiniCssExtractPlugin());

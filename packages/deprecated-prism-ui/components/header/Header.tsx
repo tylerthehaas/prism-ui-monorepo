@@ -51,27 +51,36 @@ const Header = ({
       name: '',
       logoURL: '',
     },
-    banks: [{
-      id: NaN,
-      isAccessCodeBank: false,
-      isCurrentBank: false,
-      isPointsBank: false,
-      link: '',
-      name: '',
-      points: NaN,
-    }],
-    tabs: []
+    banks: [
+      {
+        id: NaN,
+        isAccessCodeBank: false,
+        isCurrentBank: false,
+        isPointsBank: false,
+        link: '',
+        name: '',
+        points: NaN,
+      },
+    ],
+    tabs: [],
   },
 }: LayoutProps) => {
   const { user, customer, banks, tabs } = layout;
   return (
     <header className="psm-header main-header">
       <a className="logo" href="/" title={customer && customer.name}>
-        <img src={customer && customer.logoURL} alt={`${customer && customer.name} logo`} />
+        <img
+          src={customer && customer.logoURL}
+          alt={`${customer && customer.name} logo`}
+        />
       </a>
 
       <div className="account">
-        <button type="button" className="bell showMenu" aria-label="Notifications">
+        <button
+          type="button"
+          className="bell showMenu"
+          aria-label="Notifications"
+        >
           <Icon iconName="notification" />
           <span className="alert">99+</span>
         </button>
@@ -80,18 +89,22 @@ const Header = ({
           <Icon iconName="shopping-cart" />
         </a>
 
-        <a className="points" href="/">{banks && `${banks.reduce((sum, bank) => sum + bank.points, 0)} points`}</a>
+        <a className="points" href="/">
+          {banks &&
+            `${banks.reduce((sum, bank) => sum + bank.points, 0)} points`}
+        </a>
 
-        <button type="button" className="psm-avatar--sm showMenu" id="account-menu">
+        <button
+          type="button"
+          className="psm-avatar--sm showMenu"
+          id="account-menu"
+        >
           <Avatar size="sm" src={user && user.profileURL} />
         </button>
       </div>
 
       <nav className="main-nav psm-nav">
-        <Nav
-          data-testid="nav1"
-          tabs={tabs}
-        />
+        <Nav data-testid="nav1" tabs={tabs} />
 
         <a className="admin-tools" href="/">
           Open admin tools

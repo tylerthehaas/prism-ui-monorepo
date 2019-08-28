@@ -3,7 +3,8 @@
 @import '../core/type/variables';
 @import '../core/icon/variables';
 
-.psm-input {
+.psm-input,
+%psm-input {
   width: 100%;
   height: 40px;
   margin: 8px 0;
@@ -28,6 +29,7 @@
 
   &.psm-input--error,
   &.psm-input:invalid {
+    @extend %psm-input;
     border-color: #d70e16;
   }
   &:disabled {

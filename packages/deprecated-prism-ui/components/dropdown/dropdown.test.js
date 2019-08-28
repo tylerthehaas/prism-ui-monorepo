@@ -1,13 +1,17 @@
 import React from 'react';
 import {
- render, fireEvent, waitForElement, wait,
+  render,
+  fireEvent,
+  waitForElement,
+  wait,
 } from '@testing-library/react';
 
 import Dropdown from './Dropdown';
 
 const mockOnClick = jest.fn();
 
-const dropdownText = 'The year is 2027, Lil Nas X has just dropped his 56 remix of old town road featuring 112 other artist, the song is 2 hours long. you hate to do it, but you listen too it bc you heard Obama’s verse is gas. It is.';
+const dropdownText =
+  'The year is 2027, Lil Nas X has just dropped his 56 remix of old town road featuring 112 other artist, the song is 2 hours long. you hate to do it, but you listen too it bc you heard Obama’s verse is gas. It is.';
 
 const dropdownMenuItems = [
   {
@@ -17,15 +21,18 @@ const dropdownMenuItems = [
     onClick: () => mockOnClick(x => x),
   },
   {
-    label: 'On your first day at the new job, squash every commit from the repo into a single commit with message "Legacy code" and force-push to master.',
+    label:
+      'On your first day at the new job, squash every commit from the repo into a single commit with message "Legacy code" and force-push to master.',
     onClick: () => mockOnClick(x => x),
   },
   {
-    label: 'welcome to my gender reveal party. my reveal is that gender is a construct. also im not pregnant. i will be keeping your gifts. please leave my home.',
+    label:
+      'welcome to my gender reveal party. my reveal is that gender is a construct. also im not pregnant. i will be keeping your gifts. please leave my home.',
     onClick: () => mockOnClick(x => x),
   },
   {
-    label: 'Your eyes dart around the Chuck E Cheese ball pit in panic. I rise silently behind you, face painted in big red, blue, and yellow circles.',
+    label:
+      'Your eyes dart around the Chuck E Cheese ball pit in panic. I rise silently behind you, face painted in big red, blue, and yellow circles.',
     onClick: () => mockOnClick(x => x),
   },
 ];
@@ -43,9 +50,11 @@ describe('<Dropdown />', () => {
 
     fireEvent.click(labelText);
 
-    const menuItem = await waitForElement(() => getByText(
-      'Your eyes dart around the Chuck E Cheese ball pit in panic. I rise silently behind you, face painted in big red, blue, and yellow circles.',
-    ));
+    const menuItem = await waitForElement(() =>
+      getByText(
+        'Your eyes dart around the Chuck E Cheese ball pit in panic. I rise silently behind you, face painted in big red, blue, and yellow circles.',
+      ),
+    );
     expect(menuItem).not.toBe(null);
   });
 
@@ -65,18 +74,26 @@ describe('<Dropdown />', () => {
   });
 
   it('closes the menu when escape is pressed', async () => {
-    const { getByText, queryByText } = render(<Dropdown dropdownMenu={dropdownMenuItems} />);
+    const { getByText, queryByText } = render(
+      <Dropdown dropdownMenu={dropdownMenuItems} />,
+    );
     const labelText = getByText('Dropdown Label');
 
     fireEvent.click(labelText);
 
-    await waitForElement(() => getByText(
-      'Your eyes dart around the Chuck E Cheese ball pit in panic. I rise silently behind you, face painted in big red, blue, and yellow circles.',
-    ));
+    await waitForElement(() =>
+      getByText(
+        'Your eyes dart around the Chuck E Cheese ball pit in panic. I rise silently behind you, face painted in big red, blue, and yellow circles.',
+      ),
+    );
 
     await wait(() => {
       fireEvent.keyDown(labelText, { key: 'Escape' });
-      expect(queryByText('Your eyes dart around the Chuck E Cheese ball pit in panic. I rise silently behind you, face painted in big red, blue, and yellow circles.',)).toBeNull();
+      expect(
+        queryByText(
+          'Your eyes dart around the Chuck E Cheese ball pit in panic. I rise silently behind you, face painted in big red, blue, and yellow circles.',
+        ),
+      ).toBeNull();
     });
   });
 
@@ -87,9 +104,11 @@ describe('<Dropdown />', () => {
 
     fireEvent.click(labelText);
 
-    const menuItem = await waitForElement(() => getByText(
-      'Your eyes dart around the Chuck E Cheese ball pit in panic. I rise silently behind you, face painted in big red, blue, and yellow circles.',
-    ));
+    const menuItem = await waitForElement(() =>
+      getByText(
+        'Your eyes dart around the Chuck E Cheese ball pit in panic. I rise silently behind you, face painted in big red, blue, and yellow circles.',
+      ),
+    );
 
     fireEvent.click(menuItem);
 
@@ -103,9 +122,11 @@ describe('<Dropdown />', () => {
 
     fireEvent.click(labelText);
 
-    const menuItem = await waitForElement(() => getByText(
-      'Your eyes dart around the Chuck E Cheese ball pit in panic. I rise silently behind you, face painted in big red, blue, and yellow circles.',
-    ));
+    const menuItem = await waitForElement(() =>
+      getByText(
+        'Your eyes dart around the Chuck E Cheese ball pit in panic. I rise silently behind you, face painted in big red, blue, and yellow circles.',
+      ),
+    );
 
     fireEvent.keyDown(menuItem, { key: 'Enter' });
 
@@ -113,17 +134,27 @@ describe('<Dropdown />', () => {
   });
 
   it('closes the menu when focus changes', async () => {
-    const { getByText, queryByText } = render(<Dropdown dropdownMenu={dropdownMenuItems} />);
+    const { getByText, queryByText } = render(
+      <Dropdown dropdownMenu={dropdownMenuItems} />,
+    );
     const labelText = getByText('Dropdown Label');
 
     fireEvent.click(labelText);
 
-    await waitForElement(() => getByText(
-      'Your eyes dart around the Chuck E Cheese ball pit in panic. I rise silently behind you, face painted in big red, blue, and yellow circles.',
-    ));
+    await waitForElement(() =>
+      getByText(
+        'Your eyes dart around the Chuck E Cheese ball pit in panic. I rise silently behind you, face painted in big red, blue, and yellow circles.',
+      ),
+    );
 
     fireEvent.blur(labelText);
 
-    await wait(() => expect(queryByText('Your eyes dart around the Chuck E Cheese ball pit in panic. I rise silently behind you, face painted in big red, blue, and yellow circles.',)).toBeNull());
+    await wait(() =>
+      expect(
+        queryByText(
+          'Your eyes dart around the Chuck E Cheese ball pit in panic. I rise silently behind you, face painted in big red, blue, and yellow circles.',
+        ),
+      ).toBeNull(),
+    );
   });
 });

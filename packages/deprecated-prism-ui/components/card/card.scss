@@ -1,23 +1,27 @@
 @import '../core/spacing/variables';
 
-.psm-card {
+.psm-card,
+%psm-card {
   display: inline-block;
   padding: $psm-spacing-xl;
   border-radius: 3px;
 }
 
 .psm-card--shadow-sm {
+  @extend %psm-card;
   box-shadow: 0 0 $psm-spacing-xs 0 rgba(0, 0, 0, 0.14),
     0 $psm-spacing-xs $psm-spacing-xs 0 rgba(0, 0, 0, 0.12),
     0 1px 3px 0 rgba(0, 0, 0, 0.2);
 }
 
 .psm-card--shadow-md {
+  @extend %psm-card;
   box-shadow: 0 $psm-spacing-xs $psm-spacing-sm 0 rgba(0, 0, 0, 0.14),
     0 $psm-spacing-sm 5px 0 rgba(0, 0, 0, 0.12), 0 1px 10px 0 rgba(0, 0, 0, 0.2);
 }
 
 .psm-card--shadow-lg {
+  @extend %psm-card;
   box-shadow: 0 $psm-spacing-md 10px 1px rgba(0, 0, 0, 0.14),
     0 3px 14px 3px rgba(0, 0, 0, 0.12),
     0 $psm-spacing-sm 15px 0 rgba(0, 0, 0, 0.2);

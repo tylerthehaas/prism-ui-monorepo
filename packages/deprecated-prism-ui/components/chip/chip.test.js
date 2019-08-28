@@ -3,7 +3,8 @@ import { render, fireEvent } from '@testing-library/react';
 
 import Chip from './Chip';
 
-const chipText = 'The worst part about being a giraffe is having a lot of time to think about your mistakes when you’re sinking into quicksand';
+const chipText =
+  'The worst part about being a giraffe is having a lot of time to think about your mistakes when you’re sinking into quicksand';
 
 describe('<Chip />', () => {
   it('Chip shows label', () => {

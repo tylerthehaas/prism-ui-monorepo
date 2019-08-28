@@ -1,80 +1,58 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 
-import Enzyme from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
 import Button from './Button';
 
-const { mount } = Enzyme;
-
-Enzyme.configure({ adapter: new Adapter() });
-
 describe('<Button />', () => {
-  it('Defaults to primary', () => {
-    const { container } = render(<Button dropdown={false} label="Menu" />);
-    expect(container.firstChild.firstChild).toHaveClass(
-      'psm-button psm-button--primary',
-    );
+  it('defaults to primary', () => {
+    const { getByText } = render(<Button dropdown={false} label="Menu" />);
+    const button = getByText('Menu');
+    expect(button.classList).toContain('psm-button--primary');
   });
-  it('Is not primary when primary is false', () => {
+
+  it('is not primary when primary is false', () => {
+    const { getByText } = render(<Button label="Menu" primary={false} />);
+    const button = getByText('Menu');
+    expect(button.classList).toContain('psm-button');
+  });
+
+  it('defaults to Large', () => {
+    const { getByText } = render(<Button label="Menu" primary={false} />);
+
+    const button = getByText('Menu');
+    expect(button).not.toContain('psm-button--small');
+  });
+
+  it('is small when small is true', () => {
+    const { getByText } = render(<Button label="Menu" primary={false} small />);
+
+    const button = getByText('Menu');
+    expect(button.classList).toContain('psm-button--small');
+  });
+
+  it('defaults to a button, not a link', () => {
+    const { container } = render(<Button label="Menu" primary={false} small />);
+    expect(container.querySelector('button')).toBeTruthy();
+  });
+
+  it('is a link when it has an href', () => {
     const { container } = render(
-      <Button dropdown={false} label="Menu" primary={false} />,
+      <Button label="Menu" linkRef="octanner.design" primary={false} small />,
     );
-    expect(container.firstChild.firstChild).toHaveClass('psm-button');
-  });
-  it('Defaults to Large', () => {
-    const { container } = render(
-      <Button dropdown={false} label="Menu" primary={false} />,
-    );
-    expect(container.firstChild.firstChild).not.toHaveClass(
-      'psm-button psm-button--small',
-    );
-  });
-  it('Is small when small is true', () => {
-    const { container } = render(
-      <Button dropdown={false} label="Menu" primary={false} small />,
-    );
-    expect(container.firstChild.firstChild).toHaveClass(
-      'psm-button psm-button--small',
-    );
-  });
-  it('Link defaults to false', () => {
-    const { container } = render(
-      <Button dropdown={false} label="Menu" primary={false} small />,
-    );
-    expect(container.firstChild.firstChild).toHaveClass(
-      'psm-button psm-button--small',
-    );
-  });
-  it('Is a link when link is true', () => {
-    const { container } = render(
-      <Button
-        dropdown={false}
-        label="Menu"
-        linkRef="#"
-        primary={false}
-        small
-      />,
-    );
-    expect(container.firstChild.firstChild.nodeName).toEqual('A');
+    expect(container.querySelector('a')).toBeTruthy();
   });
 
-  it('receives props', () => {
-    const output = mount(<Button label="Menu" onClick={() => {}} primary />);
-
-    expect(output.find('.psm-button--primary')).toHaveLength(1);
-
-    output.setProps({ primary: false });
-
-    expect(output.find('.psm-button--primary')).toHaveLength(0);
+  it('has an empty data-testid by default', () => {
+    const { getByTestId } = render(<Button />);
+    const button = getByTestId('');
+    expect(button).toBeTruthy();
   });
 
-  it('handles click', () => {
-    const func = jest.fn();
-    const output = mount(<Button label="Menu" onClick={func} primary />);
-
-    output.find('.psm-button--primary').simulate('click');
-
-    expect(func.mock.calls).toHaveLength(1);
+  it('fires an onClick when clicked', () => {
+    const mockOnClick = jest.fn();
+    const { getByText } = render(<Button label="Menu" onClick={mockOnClick} />);
+    const button = getByText('Menu');
+    fireEvent.click(button);
+    expect(mockOnClick).toHaveBeenCalled();
   });
 });

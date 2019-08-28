@@ -2,7 +2,8 @@
 @import '../core/spacing/variables';
 @import '../core/icon/variables';
 
-.psm-nav__tab {
+.psm-nav__tab,
+%psm-nav__tab {
   height: 44px;
   padding: 0 $psm-spacing-lg;
   width: fit-content;
@@ -13,10 +14,7 @@
   cursor: pointer;
   line-height: 44px;
   border-bottom: $psm-spacing-sm solid transparent;
-  &.psm-nav__active {
-    border-bottom: $psm-spacing-sm solid $psm-color-active-indicator;
-  }
-  &.psm-nav__hovered {
+  &:hover {
     border-bottom: $psm-spacing-sm solid #d4d4d4;
   }
   &.psm-nav__badge {
@@ -47,6 +45,11 @@
     font-size: 1rem;
     font-weight: bold;
   }
+}
+
+.psm-nav__active {
+  @extend %psm-nav__tab;
+  border-bottom: $psm-spacing-sm solid $psm-color-active-indicator;
 }
 
 .psm-nav {

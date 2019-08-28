@@ -25,11 +25,11 @@ describe('<Avatar/>', () => {
 
   it('defaults to medium size', () => {
     const { container } = render(<Avatar />);
-    expect(container.firstChild).toHaveClass('psm-avatar--md');
+    expect(container.firstChild.classList).toContain('psm-avatar--md');
   });
 
   it('sets size based on props.size', () => {
     const { container } = render(<Avatar size="sm" />);
-    expect(container.firstChild).toHaveClass('psm-avatar--sm');
+    expect(container.firstChild.classList).toContain('psm-avatar--sm');
   });
 });

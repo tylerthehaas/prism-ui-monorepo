@@ -5,17 +5,12 @@ import Button from './Button';
 
 storiesOf('Button', module)
   .addDecorator(withKnobs)
-  .add('default', () => <Button onClick={() => alert('button clicked')} />)
-  .add('primary', () => <Button primary />)
-  .add('small', () => <Button small />)
-  .add('linked', () => <Button linkRef="https://example.com/" />)
-  .add('disabled', () => <Button disabled />)
-  .add('knobs', () => (
+  .add('component', () => (
     <Button
+      primary={boolean('Primary button', true)}
+      small={boolean('Small button', false)}
+      linkRef={text('Link Ref', "I'm a link ref!")}
       disabled={boolean('Disabled', false)}
-      label={text('Button label', 'Check out this cool button')}
-      linkRef={text('Link Ref', `I'm a link ref!`)}
-      primary={boolean('Primary', true)}
-      small={boolean('Make the button smaller?', false)}
+      onClick={() => alert('button clicked')}
     />
   ));

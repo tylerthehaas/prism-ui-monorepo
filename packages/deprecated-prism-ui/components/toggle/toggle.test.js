@@ -8,9 +8,9 @@ const mockAction = jest.fn(x => x);
 describe('<Toggle />', () => {
   it('Defaults to false', () => {
     const { container } = render(<Toggle />);
-    expect(container.firstChild).toHaveClass('psm-toggle__wrapper');
-    expect(container.firstChild.firstChild).toHaveClass('psm-toggle');
-    expect(container.firstChild.firstChild).not.toHaveClass(
+    expect(container.firstChild.classList).toContain('psm-toggle__wrapper');
+    expect(container.firstChild.firstChild.classList).toContain('psm-toggle');
+    expect(container.firstChild.firstChild.classList).not.toContain(
       'psm-toggle--active',
     );
   });
@@ -27,6 +27,8 @@ describe('<Toggle />', () => {
     const toggleButton = container.querySelector('.psm-toggle__checkbox');
     const toggleContainer = container.querySelector('.psm-toggle');
     fireEvent.focus(toggleButton);
-    expect(toggleContainer).toHaveClass('psm-toggle psm-toggle--focus');
+    expect(toggleContainer.classList).toContain(
+      'psm-toggle' && 'psm-toggle--focus',
+    );
   });
 });

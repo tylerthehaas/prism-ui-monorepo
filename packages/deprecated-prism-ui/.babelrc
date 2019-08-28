@@ -1,9 +1,6 @@
 {
   "plugins": [
-    "@babel/plugin-transform-object-assign",
-    "@babel/plugin-proposal-object-rest-spread",
-    "@babel/plugin-proposal-class-properties",
-    "macros",
+    "@babel/plugin-transform-runtime",
   ],
   "presets": [
     "@babel/preset-react",
@@ -11,10 +8,10 @@
     [
       "@babel/preset-env",
       {
-        "modules": false,
         "targets": {
-          "browsers": ["last 2 versions", "ie >= 11"]
+          "esmodules": true,
         },
+        "modules": "commonjs",
         "useBuiltIns": "usage",
         "corejs": 3
       }
@@ -36,10 +33,9 @@
         "@babel/preset-typescript"
       ],
       "plugins": [
-        "@babel/plugin-transform-object-assign",
-        "@babel/plugin-proposal-object-rest-spread",
-        "@babel/plugin-proposal-class-properties",
-        "@babel/plugin-transform-runtime"
+        "@babel/plugin-transform-runtime",
+        "macros",
+        "babel-plugin-transform-md-import-to-string"
       ]
     }
   }

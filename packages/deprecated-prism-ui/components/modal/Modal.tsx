@@ -1,4 +1,6 @@
-import React, { useState, useMemo } from 'react';
+import React, {
+ useState, useMemo, ReactNode, MouseEvent, KeyboardEvent,
+} from 'react';
 import FocusLock from 'react-focus-lock';
 import Button from '../button/Button';
 import './modal.scss';
@@ -7,22 +9,29 @@ import '../button/button.scss';
 import Icon from '../icon/Icon';
 
 interface ModalProps {
+  /** Buttons/options that will be placed in the opened modal's footer */
   actions?: Action[];
   'data-testid'?: string;
-  children: React.ReactNode;
+  children: ReactNode;
+  /** If true, includes a button that shows the modal */
   modalTrigger: boolean;
+  /** Label of the modal trigger */
   modalTriggerLabel: string;
+  /** Event that fires when the modal closes */
   onClose: (
-    event?: React.MouseEvent<HTMLElement> | React.KeyboardEvent<HTMLElement>,
+    event?: MouseEvent<HTMLDivElement | HTMLButtonElement> | KeyboardEvent<HTMLDivElement>,
   ) => void;
+  /** Determines if the modal is visible or not  */
   show: boolean;
+  /** Title of the modal */
   title: string;
 }
 
 interface Action {
   label: string;
   primary: boolean;
-  onClick: (event?: React.MouseEvent<HTMLElement>) => void;
+  onClick: (event?: MouseEvent<HTMLDivElement
+    | HTMLButtonElement>) => void;
 }
 
 interface ModalState {
@@ -52,20 +61,17 @@ export const Modal = ({
     return `title-${TITLE_ID_INC}`;
   }, []);
 
-  function handleClick(event: React.MouseEvent<HTMLElement, MouseEvent>) {
-    event.stopPropagation();
+  function handleClick(event: MouseEvent<HTMLDivElement | HTMLButtonElement>) {
     setIsShowing(false);
     if (onClose) onClose(event);
   }
 
   function handleDialogClick(
-    event:
-      | React.MouseEvent<HTMLDivElement, MouseEvent>
-      | React.KeyboardEvent<HTMLDivElement>,
+    event: MouseEvent<HTMLDivElement>
   ) {
+    event.stopPropagation();
     if (isClosableByClick) {
-      setIsShowing(false);
-      onClose(event);
+      handleClick(event);
     }
   }
 
@@ -83,9 +89,6 @@ export const Modal = ({
       {handleModalTrigger()}
       <div
         onClick={handleDialogClick}
-        onKeyDown={event =>
-          event.key === 'Escape' ? handleDialogClick(event) : {}
-        }
         role="presentation"
       >
         {isShowing ? (
@@ -122,13 +125,12 @@ export const Modal = ({
                   {title}
                 </h3>
                 <div className="psm-modal__body" role="region" tabIndex={0}>
-                  <div>{children}</div>
+                  {children}
                 </div>
                 <div className="psm-modal__footer">
-                  {actions &&
-                    actions.length !== 0 &&
-                    actions.map((action, index) => {
-                      return (
+                  {actions
+                    && actions.length !== 0
+                    && actions.map((action, index) => (
                         <button
                           type="button"
                           className={`psm-button${
@@ -143,8 +145,7 @@ export const Modal = ({
                         >
                           {action.label}
                         </button>
-                      );
-                    })}
+                      ))}
                 </div>
               </div>
             </dialog>

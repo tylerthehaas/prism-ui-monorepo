@@ -3,7 +3,8 @@ import { render, fireEvent } from '@testing-library/react';
 
 import Input from './Input';
 
-const testText = 'No, you\'re confused. Trash Bandit is my daughter. Dolores is my raccoon.';
+const testText =
+  "No, you're confused. Trash Bandit is my daughter. Dolores is my raccoon.";
 
 const mockFunction = jest.fn();
 
@@ -19,10 +20,10 @@ describe('<Input />', () => {
     );
 
     const defaultInput = getByPlaceholderText(
-      'No, you\'re confused. Trash Bandit is my daughter. Dolores is my raccoon.',
+      "No, you're confused. Trash Bandit is my daughter. Dolores is my raccoon.",
     );
 
-    expect(defaultInput).toHaveClass('psm-input');
+    expect(defaultInput.classList).toContain('psm-input');
   });
 
   test('Leading icon defaults to right arrows', () => {
@@ -40,11 +41,24 @@ describe('<Input />', () => {
 
     const leadingIcon = getByLabelText('desktop icon');
 
-    expect(leadingIcon.parentElement).toHaveClass('psm-input-leading-icon');
+    expect(leadingIcon.parentElement.classList).toContain(
+      'psm-input-leading-icon',
+    );
   });
 
-  test('icon\'s onClick function works', () => {
-    const { getByLabelText } = render(<Input placeholderText={testText} icon={testIcon} />);
+  test("icon's onClick function works", () => {
+    const { getByLabelText } = render(
+      <Input placeholderText={testText} icon={testIcon} />,
+    );
+    const icon = getByLabelText('tail-right icon');
+    fireEvent.click(icon);
+    expect(mockFunction).toHaveBeenCalled();
+  });
+
+  test("icon's onClick function works", () => {
+    const { getByLabelText } = render(
+      <Input placeholderText={testText} icon={testIcon} />,
+    );
     const icon = getByLabelText('tail-right icon');
     fireEvent.click(icon);
     expect(mockFunction).toHaveBeenCalled();

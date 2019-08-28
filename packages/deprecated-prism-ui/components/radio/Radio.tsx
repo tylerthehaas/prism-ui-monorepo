@@ -1,21 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, MouseEvent } from 'react';
+import uuid from 'uuid/v4';
 import './radio.scss';
 
-export interface RadioProps {
-  buttons: Button[];
+interface RadioProps {
+  /** Radio choices */
+  buttons: RadioButton[];
   'data-testid'?: string;
+  /** Helps link a form together */
   idPrefix?: string;
+  /** Name of the radio */
   name: string;
 }
 
-export interface Button {
+interface RadioButton {
   text: string;
-  onClick?: (event?: React.MouseEvent<HTMLInputElement>) => void;
-  checked: boolean;
+  onClick?: (event?: MouseEvent<HTMLInputElement>) => void;
 }
 
 interface RadioState {
-  selectedOption?: number;
+  selected: number;
 }
 
 export const Radio = ({
@@ -24,42 +27,42 @@ export const Radio = ({
   idPrefix = '',
   name = '',
 }: RadioProps) => {
-  const [selectedOption, setSelectedOption] = useState<
-    RadioState['selectedOption']
-  >(0);
+  const [selected, setSelected] = useState<RadioState['selected']>(0);
 
-  function select(button: Button, idx: number) {
+  function handleChange(button: RadioButton, index: number) {
     if (button.onClick) button.onClick();
-    setSelectedOption(idx);
+    setSelected(index);
+  }
+
+  function handleChecked(index: number) {
+    if (index === selected) return true;
+    return false;
   }
 
   return (
-    <fieldset
-      className="psm-radio__group"
-    >
+    <fieldset className="psm-radio__group">
       <legend>{name}</legend>
-      {buttons.map((button, index) => {
-        return (
-          <div key={index}>
+      {buttons.map((button, index) => (
+        <div key={uuid()}>
+          <label
+            className="psm-radio__label"
+            htmlFor={`${idPrefix}-${index}`}
+            id={`${idPrefix}-label-${index}`}
+          >
             <input
-              checked={selectedOption === index}
+              checked={handleChecked(index)}
               className="psm-radio"
-              data-testid={`${testid}-${name}-${index}`}
+              data-testid={`${testid} ${index}`}
               id={`${idPrefix}-${index}`}
               name={name}
-              onChange={select.bind({}, button, index)}
+              onChange={() => handleChange(button, index)}
               type="radio"
             />
-            <label
-              className="psm-radio__label"
-              htmlFor={`${idPrefix}-${index}`}
-              id={`${idPrefix}-label-${index}`}
-            >
-              {button.text}
-            </label>
-          </div>
-        );
-      })}
+
+            {button.text}
+          </label>
+        </div>
+      ))}
     </fieldset>
   );
 };

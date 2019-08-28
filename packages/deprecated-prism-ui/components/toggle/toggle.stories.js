@@ -5,8 +5,7 @@ import Toggle from './Toggle';
 
 storiesOf('Toggle', module)
   .addDecorator(withKnobs)
-  .add('default', () => <Toggle />)
-  .add('knobs', () => (
+  .add('component', () => (
     <Toggle
       defaultToggle={boolean('Default toggle', true)}
       label={text('Label', 'Label for the toggle')}

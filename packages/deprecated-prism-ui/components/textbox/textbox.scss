@@ -3,9 +3,8 @@
 @import '../core/type/variables';
 @import '../core/icon/variables';
 
-.psm-form__textarea {
-  //   resize: none;
-  // -webkit-appearance: none;
+.psm-form__textarea,
+%psm-form__textarea {
   width: 100%;
   max-width: 100%;
   min-width: 100%;
@@ -22,10 +21,6 @@
     color: $psm-color-gray-500;
   }
 
-  &.psm-form__textarea--error,
-  &.psm-form__textarea:invalid {
-    border-color: #d70e16;
-  }
   &:disabled {
     background-color: #f8f8f8;
     border: 1px solid $psm-color-gray-300 !important;
@@ -36,6 +31,13 @@
     }
   }
 }
+
+.psm-form__textarea--error,
+.psm-form__textarea:invalid {
+  @extend %psm-form__textarea;
+  border-color: #d70e16;
+}
+
 .psm-form__label {
   margin: 16px 0px 0px;
   color: $psm-color-gray-900;
@@ -44,6 +46,7 @@
   font-weight: 900;
   text-align: left;
 }
+
 .psm-form__optional {
   margin-left: 8px;
   color: $psm-color-gray-700;
@@ -68,15 +71,18 @@
   color: $psm-color-error;
 }
 
-.psm-form__max-chars {
+.psm-form__max-chars,
+%psm-form__max-chars {
   float: right;
   font-weight: normal;
   font-size: $psm-subtext-font-size;
   line-height: $psm-subtext-font-size;
   color: $psm-color-gray-700;
-  &.psm-form__max-chars--error {
+}
+
+.psm-form__max-chars--error {
+  @extend %psm-form__max-chars;
     color: $psm-color-error;
-  }
 }
 
 .psm-form__textarea > ul {
