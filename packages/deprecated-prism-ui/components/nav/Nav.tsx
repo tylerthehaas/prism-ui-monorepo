@@ -11,13 +11,11 @@ interface NavProps {
 
 export interface Tab {
   /** If true, this indicates that this is the active tab */
-  active: boolean
+  active: boolean;
   /** Name of the tab */
   tabName: string;
   /** Event that fires when the user clicks a tab */
-  onClick: (
-    event?: MouseEvent<HTMLButtonElement>,
-  ) => void;
+  onClick: (event?: MouseEvent<HTMLButtonElement>) => void;
   /** Number of errors in a given tab */
   numErrors?: number;
   /** If true, flags the tab as having something new in it */
@@ -26,52 +24,46 @@ export interface Tab {
   isNewText?: string;
 }
 
-export const Nav = ({
-  'data-testid': testid = '',
-  tabs = [{ tabName: 'Example', active: true, onClick: () => {} }],
-}: NavProps) => {
-  function handleClick(
-    tab: Tab,
-    event: MouseEvent<HTMLButtonElement>,
-  ) {
+export const Nav = ({ 'data-testid': testid = '', tabs = [] }: NavProps) => {
+  function handleClick(tab: Tab, event: MouseEvent<HTMLButtonElement>) {
     if (tab.onClick) tab.onClick(event);
   }
 
   return (
     <ul className="psm-nav" id={testid} role="menubar">
       {tabs.map((tab, index) => (
-          <li
-            className={`${
-              tab.active ? 'psm-nav__active' : 'psm-nav__tab'
-            }`}
-            id={`tab-${index}`}
-            key={uuid()}
-            role="none"
+        <li
+          className={`${tab.active ? 'psm-nav__active' : 'psm-nav__tab'}`}
+          id={`tab-${index}`}
+          key={uuid()}
+          role="none"
+        >
+          <button
+            onClick={event => handleClick(tab, event)}
+            role="menuitem"
+            type="button"
           >
-            <button
-              onClick={event => handleClick(tab, event)}
-              role="menuitem"
-              type="button"
-            >
-              {tab.tabName}
-              {tab.numErrors && (
+            {tab.tabName}
+            {(tab.numErrors || tab.isNew) && (
+              <span
+                className={`psm-nav__tab ${
+                  tab.isNew ? 'psm-nav__new' : 'psm-nav__badge'
+                }`}
+              >
                 <span
-                  className={`psm-nav__tab ${
-                    tab.isNew ? 'psm-nav__new' : 'psm-nav__badge'
+                  className={`${
+                    tab.isNew ? 'psm-nav__new-text' : 'psm-nav__badge-text'
                   }`}
                 >
-                  <span
-                    className={`${
-                      tab.isNew ? 'psm-nav__new-text' : 'psm-nav__badge-text'
-                    }`}
-                  >
-                    {tab.isNew ? `${tab.isNewText ? tab.isNewText : 'new'}` : tab.numErrors}
-                  </span>
+                  {tab.isNew
+                    ? `${tab.isNewText ? tab.isNewText : 'new'}`
+                    : tab.numErrors}
                 </span>
-              )}
-            </button>
-          </li>
-        ))}
+              </span>
+            )}
+          </button>
+        </li>
+      ))}
     </ul>
   );
 };

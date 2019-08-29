@@ -1,5 +1,9 @@
 import React, {
- useState, useMemo, ReactNode, MouseEvent, KeyboardEvent,
+  useState,
+  useMemo,
+  ReactNode,
+  MouseEvent,
+  KeyboardEvent,
 } from 'react';
 import FocusLock from 'react-focus-lock';
 import Button from '../button/Button';
@@ -19,7 +23,9 @@ interface ModalProps {
   modalTriggerLabel: string;
   /** Event that fires when the modal closes */
   onClose: (
-    event?: MouseEvent<HTMLDivElement | HTMLButtonElement> | KeyboardEvent<HTMLDivElement>,
+    event?:
+      | MouseEvent<HTMLDivElement | HTMLButtonElement>
+      | KeyboardEvent<HTMLDivElement>,
   ) => void;
   /** Determines if the modal is visible or not  */
   show: boolean;
@@ -30,8 +36,7 @@ interface ModalProps {
 interface Action {
   label: string;
   primary: boolean;
-  onClick: (event?: MouseEvent<HTMLDivElement
-    | HTMLButtonElement>) => void;
+  onClick: (event?: MouseEvent<HTMLDivElement | HTMLButtonElement>) => void;
 }
 
 interface ModalState {
@@ -61,14 +66,16 @@ export const Modal = ({
     return `title-${TITLE_ID_INC}`;
   }, []);
 
-  function handleClick(event: MouseEvent<HTMLDivElement | HTMLButtonElement>) {
+  function handleClick(
+    event:
+      | MouseEvent<HTMLDivElement | HTMLButtonElement>
+      | KeyboardEvent<HTMLDivElement>,
+  ) {
     setIsShowing(false);
     if (onClose) onClose(event);
   }
 
-  function handleDialogClick(
-    event: MouseEvent<HTMLDivElement>
-  ) {
+  function handleDialogClick(event: MouseEvent<HTMLDivElement>) {
     event.stopPropagation();
     if (isClosableByClick) {
       handleClick(event);
@@ -89,6 +96,7 @@ export const Modal = ({
       {handleModalTrigger()}
       <div
         onClick={handleDialogClick}
+        onKeyDown={handleClick}
         role="presentation"
       >
         {isShowing ? (
@@ -128,24 +136,24 @@ export const Modal = ({
                   {children}
                 </div>
                 <div className="psm-modal__footer">
-                  {actions
-                    && actions.length !== 0
-                    && actions.map((action, index) => (
-                        <button
-                          type="button"
-                          className={`psm-button${
-                            action.primary ? '--primary' : ''
-                          }`}
-                          data-testid={`${testid}-button-${index}`}
-                          key={index}
-                          onClick={handleClick}
-                          style={{
-                            margin: 4,
-                          }}
-                        >
-                          {action.label}
-                        </button>
-                      ))}
+                  {actions &&
+                    actions.length !== 0 &&
+                    actions.map((action, index) => (
+                      <button
+                        type="button"
+                        className={`psm-button${
+                          action.primary ? '--primary' : ''
+                        }`}
+                        data-testid={`${testid}-button-${index}`}
+                        key={index}
+                        onClick={handleClick}
+                        style={{
+                          margin: 4,
+                        }}
+                      >
+                        {action.label}
+                      </button>
+                    ))}
                 </div>
               </div>
             </dialog>

@@ -26,7 +26,7 @@ const testSelections = [
 ];
 
 describe('<Select />', () => {
-  it('fires an event when clicked it you give it an onChange prop', () => {
+  it('fires an event when clicked if you give it an onChange prop', () => {
     const { getByTestId } = render(
       <Select
         content={testSelections}
