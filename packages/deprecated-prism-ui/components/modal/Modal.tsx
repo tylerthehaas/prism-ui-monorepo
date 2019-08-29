@@ -96,7 +96,7 @@ export const Modal = ({
       {handleModalTrigger()}
       <div
         onClick={handleDialogClick}
-        onKeyDown={handleClick}
+        onKeyDown={event => (event.key === 'Escape' ? handleClick(event) : {})}
         role="presentation"
       >
         {isShowing ? (

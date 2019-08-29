@@ -87,10 +87,6 @@ export const Rollover = ({
       key="extra"
       type="button"
       onClick={() => updateRollover()}
-      onFocus={() => updateRollover()}
-      onKeyDown={event => {
-        if (event.key === 'Enter') updateRollover();
-      }}
       tabIndex={0}
     >
       +{content.length - effectiveNumShown} More

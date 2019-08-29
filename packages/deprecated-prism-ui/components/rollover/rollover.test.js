@@ -189,4 +189,45 @@ describe('<Rollover />', () => {
     expect(thirdRolloverItem).toBeFalsy();
     expect(fourthRolloverItem).toBeFalsy();
   });
+
+  test("default hoverText is 'Hover over me!'", () => {
+    const { getByText } = render(<Rollover />);
+    expect(getByText('Hover over me!')).toBeTruthy();
+  });
+
+  test('the mouse leaving the expanded dropdown resets it', () => {
+    const { container, getByText, queryByText } = render(
+      <Rollover
+        content={testRolloverContent}
+        hoverText={testTriggerPhrase}
+        numShown={2}
+      />,
+    );
+    const hoverText = getByText(
+      "You can't spend your whole life gently rollerblading away from your problems",
+    );
+    fireEvent.mouseEnter(hoverText);
+    fireEvent.click(container.querySelector('button'));
+    expect(getByText(testRolloverContent[2])).toBeTruthy();
+    fireEvent.mouseLeave(
+      container.querySelector('.psm-rollover__window--show'),
+    );
+    expect(queryByText(testRolloverContent[2])).toBeNull();
+  });
+
+  test('focusing the rollover text expands the rollover', () => {
+    const { getByText } = render(
+      <Rollover
+        content={testRolloverContent}
+        hoverText={testTriggerPhrase}
+        numShown={2}
+      />,
+    );
+    const hoverText = getByText(
+      "You can't spend your whole life gently rollerblading away from your problems",
+    );
+
+    fireEvent.focus(hoverText);
+    expect(getByText(testRolloverContent[0])).toBeTruthy();
+  });
 });

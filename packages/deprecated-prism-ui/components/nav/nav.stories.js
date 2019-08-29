@@ -12,10 +12,20 @@ storiesOf('Nav', module)
       <Nav
         tabs={object('Tab object', [
           {
-            tabName: 'i am a tab',
+            tabName:
+              'THIS IS NOT A DRILL. I REPEAT, THIS IS NOT A DRILL. Aaaand that concludes your training. Welcome to Home Depot',
             numErrors: 11,
-            isNew: true,
             active: true,
+          },
+          {
+            tabName:
+              "ME: It's actually a single Star War composed of several Star Battles. FRIEND: Are you wearing 2 monocles",
+            isNew: true,
+            active: false,
+          },
+          {
+            tabName: 'The ocean is home to many of the earth’s wettest animals',
+            active: false,
           },
         ])}
       />

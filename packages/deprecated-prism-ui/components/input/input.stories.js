@@ -11,7 +11,6 @@ storiesOf('Input', module)
       errorText={text('Error text', 'frist of all how dare u')}
       icon={object('Icon', {
         name: 'eye',
-        onClick: () => {},
         position: 'leading',
       })}
       infoText={text(
@@ -33,7 +32,6 @@ storiesOf('Input', module)
       errorText={text('Error text', 'frist of all how dare u')}
       icon={object('Icon', {
         name: 'eye',
-        onClick: () => {},
         position: 'trailing',
       })}
       infoText={text(

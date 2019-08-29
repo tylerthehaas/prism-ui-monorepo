@@ -271,7 +271,7 @@ export const TypeAheadSearch = ({
         {
           <button
             aria-label="search icon"
-            className="psm-icon-svg-search psm-typeahead--icon"
+            className="search-psm-icon-svg-search psm-typeahead--icon"
             data-testid={`${testid}--icon`}
             onClick={() => onSelect()}
             style={{
