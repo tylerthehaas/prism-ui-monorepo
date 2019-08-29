@@ -27,8 +27,8 @@
     }
   }
 
-  &.psm-input--error,
-  &.psm-input:invalid {
+  &--error,
+  &:invalid {
     @extend %psm-input;
     border-color: #d70e16;
   }

@@ -9,7 +9,8 @@ const testRolloverContent = [
   '"Anime is real," Barack Obama said in his inauguration speech earlier. "Pokémon are real. Geodude is real, and strong, and he\'s my friend."',
   'The basketball shot clock was invented in 1954 after a player hid the ball under his shirt for 48 minutes and told everyone he was pregnant.',
 ];
-const testTriggerPhrase = 'You can\'t spend your whole life gently rollerblading away from your problems';
+const testTriggerPhrase =
+  "You can't spend your whole life gently rollerblading away from your problems";
 
 describe('<Rollover />', () => {
   test('Shows rollover above trigger by default', () => {
@@ -18,7 +19,7 @@ describe('<Rollover />', () => {
     );
 
     const getTriggerPhrase = getByText(
-      'You can\'t spend your whole life gently rollerblading away from your problems',
+      "You can't spend your whole life gently rollerblading away from your problems",
     );
 
     fireEvent.mouseOver(getTriggerPhrase);
@@ -42,7 +43,7 @@ describe('<Rollover />', () => {
     );
 
     const getTriggerPhrase = getByText(
-      'You can\'t spend your whole life gently rollerblading away from your problems',
+      "You can't spend your whole life gently rollerblading away from your problems",
     );
 
     fireEvent.mouseOver(getTriggerPhrase);
@@ -62,10 +63,12 @@ describe('<Rollover />', () => {
     );
 
     const getUnderlinedTriggerPhrase = getByText(
-      'You can\'t spend your whole life gently rollerblading away from your problems',
+      "You can't spend your whole life gently rollerblading away from your problems",
     );
 
-    expect(getUnderlinedTriggerPhrase.classList).toContain('psm-rollover__text-dotted');
+    expect(getUnderlinedTriggerPhrase.classList).toContain(
+      'psm-rollover__text-dotted',
+    );
   });
 
   test('Hover text is underlined when hoverTextStyle = underlined', () => {
@@ -74,7 +77,7 @@ describe('<Rollover />', () => {
     );
 
     const getUnderlinedTriggerPhrase = getByText(
-      'You can\'t spend your whole life gently rollerblading away from your problems',
+      "You can't spend your whole life gently rollerblading away from your problems",
     );
 
     expect(getUnderlinedTriggerPhrase.classList).toContain(
@@ -88,13 +91,18 @@ describe('<Rollover />', () => {
     );
 
     const getUnderlinedTriggerPhrase = getByText(
-      'You can\'t spend your whole life gently rollerblading away from your problems',
+      "You can't spend your whole life gently rollerblading away from your problems",
     );
 
-    expect(getUnderlinedTriggerPhrase.classList).not.toContain();
+    expect(getUnderlinedTriggerPhrase.classList).not.toContain(
+      'psm-rollover__text-underlined',
+    );
+    expect(getUnderlinedTriggerPhrase.classList).not.toContain(
+      'psm-rollover__text-dotted',
+    );
   });
 
-  test('\'Show More\' will appear when there are more items than the numShown prop allows', () => {
+  test("'Show More' will appear when there are more items than the numShown prop allows", () => {
     const { getByText } = render(
       <Rollover
         content={testRolloverContent}
@@ -104,7 +112,7 @@ describe('<Rollover />', () => {
     );
 
     const hoverText = getByText(
-      'You can\'t spend your whole life gently rollerblading away from your problems',
+      "You can't spend your whole life gently rollerblading away from your problems",
     );
 
     fireEvent.mouseEnter(hoverText);
@@ -118,7 +126,7 @@ describe('<Rollover />', () => {
     );
   });
 
-  test('\'Show More\' displays the previously hidden content when clicked', () => {
+  test("'Show More' displays the previously hidden content when clicked", () => {
     const { getByText } = render(
       <Rollover
         content={testRolloverContent}
@@ -128,7 +136,7 @@ describe('<Rollover />', () => {
     );
 
     const hoverText = getByText(
-      'You can\'t spend your whole life gently rollerblading away from your problems',
+      "You can't spend your whole life gently rollerblading away from your problems",
     );
 
     fireEvent.mouseEnter(hoverText);
@@ -159,7 +167,7 @@ describe('<Rollover />', () => {
     );
 
     const hoverText = getByText(
-      'You can\'t spend your whole life gently rollerblading away from your problems',
+      "You can't spend your whole life gently rollerblading away from your problems",
     );
 
     fireEvent.mouseEnter(hoverText);

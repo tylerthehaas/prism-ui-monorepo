@@ -54,13 +54,4 @@ describe('<Input />', () => {
     fireEvent.click(icon);
     expect(mockFunction).toHaveBeenCalled();
   });
-
-  test("icon's onClick function works", () => {
-    const { getByLabelText } = render(
-      <Input placeholderText={testText} icon={testIcon} />,
-    );
-    const icon = getByLabelText('tail-right icon');
-    fireEvent.click(icon);
-    expect(mockFunction).toHaveBeenCalled();
-  });
 });

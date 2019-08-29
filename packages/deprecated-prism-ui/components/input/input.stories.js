@@ -18,6 +18,7 @@ storiesOf('Input', module)
         'info text',
         'according to studies, one of the best ways to save the planet is kissing it. `it likes that` say scientists',
       )}
+      invalid={boolean('invalid', false)}
       label={text('Label', 'check me out, i`m a label')}
       placeholderText={text(
         'Placeholder Text',
@@ -39,6 +40,7 @@ storiesOf('Input', module)
         'info text',
         'according to studies, one of the best ways to save the planet is kissing it. `it likes that` say scientists',
       )}
+      invalid={boolean('invalid', false)}
       label={text('Label', 'check me out, i`m a label')}
       placeholderText={text(
         'Placeholder Text',
