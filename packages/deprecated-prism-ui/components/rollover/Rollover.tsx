@@ -18,8 +18,6 @@ interface RolloverProps {
 
 interface RolloverState {
   visible: boolean;
-  rolloverContent: JSX.Element[] | string[];
-  contentState: any;
   showMoreButton: boolean;
   effectiveNumShown: number;
 }
@@ -56,10 +54,6 @@ export const Rollover = ({
     .map((item: ReactNode) => <li key={uuid()}>{item}</li>)
     .filter((item: ReactNode, index: number) => index < effectiveNumShown);
 
-  const [rolloverContent, setRolloverContent] = useState<
-    RolloverState['rolloverContent']
-  >(initialContent);
-
   function makeSureEverythingPlaysNice() {
     if (numShown < 1 || !numShown) {
       return setEffectiveNumShown(1);
@@ -67,13 +61,11 @@ export const Rollover = ({
     if (numShown < content.length) {
       return setEffectiveNumShown(numShown);
     }
-    setRolloverContent(expandedContent);
     setEffectiveNumShown(content.length);
     return setShowMoreButton(false);
   }
 
   function updateRollover() {
-    setRolloverContent(expandedContent);
     setShowMoreButton(determineIfShowMoreIsNeeded(false));
   }
 
@@ -109,54 +101,6 @@ export const Rollover = ({
   function resetDropdown() {
     setVisible(false);
     setShowMoreButton(determineIfShowMoreIsNeeded(true));
-    setRolloverContent(initialContent);
-  }
-
-  if (visible && content.length === 1) {
-    return (
-      <div
-        className="psm-rollover"
-        data-testid={testid}
-        id={`${testid}-rollover-div`}
-        onBlur={() => resetDropdown()}
-        onMouseLeave={() => resetDropdown()}
-      >
-        <span className={`${handleOptions()}`}>{hoverText}</span>
-        <div
-          className={`psm-rollover__window--${
-            visible ? 'show' : 'hide'
-          } psm-rollover__window--${position}`}
-        >
-          {content.map(item => (
-            <p>{item}</p>
-          ))}
-        </div>
-      </div>
-    );
-  }
-
-  if (visible) {
-    return (
-      <div
-        className="psm-rollover"
-        data-testid={testid}
-        id={`${testid}-rollover-div`}
-        onBlur={() => resetDropdown()}
-        onMouseLeave={() => resetDropdown()}
-      >
-        <span className={`${handleOptions()}`}>{hoverText}</span>
-        <div
-          className={`psm-rollover__window--${
-            visible ? 'show' : 'hide'
-          } psm-rollover__window--${position}`}
-        >
-          <ul>
-            {rolloverContent}
-            {showMoreButton ? expandButton : ''}
-          </ul>
-        </div>
-      </div>
-    );
   }
   return (
     <div
@@ -165,8 +109,35 @@ export const Rollover = ({
       id={`${testid}-rollover-div`}
       onFocus={() => setVisible(true)}
       onMouseEnter={() => setVisible(true)}
+      onBlur={() => resetDropdown()}
+      onMouseLeave={() => resetDropdown()}
     >
       <span className={`${handleOptions()}`}>{hoverText}</span>
+      <div
+        className={`psm-rollover__window--${
+          visible ? 'show' : 'hide'
+        } psm-rollover__window--${position}`}
+      >
+        <div
+          className={
+            showMoreButton ? 'psm-rollover-visible' : 'psm-rollover-hidden'
+          }
+          aria-disabled={showMoreButton ? false : true}
+        >
+          <ul>{initialContent}</ul>
+        </div>
+        <div
+          className={
+            showMoreButton ? 'psm-rollover-hidden' : 'psm-rollover-visible'
+          }
+          aria-disabled={showMoreButton ? true : false}
+        >
+          <ul>{expandedContent}</ul>
+        </div>
+        <span className="psm-rollover--button">
+          {showMoreButton ? expandButton : ''}
+        </span>
+      </div>
     </div>
   );
 };

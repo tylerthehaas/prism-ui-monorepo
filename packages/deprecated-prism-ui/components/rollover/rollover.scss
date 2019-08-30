@@ -9,6 +9,10 @@
   width: fit-content;
 }
 
+.psm-rollover--button {
+  float: right;
+}
+
 .psm-rollover__text-dotted {
     @extend %psm-rollover;
     border-bottom: 1px dotted $psm-color-gray-700;
@@ -91,5 +95,15 @@
 
 .psm-rollover__window--hide {
   @extend %psm-rollover__window;
+  visibility: hidden;
+}
+
+.psm-rollover-visible {
+  display: block;
+  visibility: visible;
+}
+
+.psm-rollover-hidden {
+  display: none;
   visibility: hidden;
 }

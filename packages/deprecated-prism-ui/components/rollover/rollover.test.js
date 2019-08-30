@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, waitForElement } from '@testing-library/react';
 
 import Rollover from './Rollover';
 
@@ -14,7 +14,7 @@ const testTriggerPhrase =
 
 describe('<Rollover />', () => {
   test('Shows rollover above trigger by default', () => {
-    const { getByText } = render(
+    const { getByText, getAllByText } = render(
       <Rollover content={testRolloverContent} hoverText={testTriggerPhrase} />,
     );
 
@@ -24,17 +24,17 @@ describe('<Rollover />', () => {
 
     fireEvent.mouseOver(getTriggerPhrase);
 
-    const getContent = getByText(
+    const getContent = getAllByText(
       'Hello sir, I-*briefcase full of jellybeans falls open*',
     );
 
-    expect(getContent.parentElement.parentElement.classList).toContain(
-      'psm-rollover__window--show' && 'psm-rollover__window--up',
-    );
+    expect(
+      getContent[0].parentElement.parentElement.parentElement.classList,
+    ).toContain('psm-rollover__window--show' && 'psm-rollover__window--up');
   });
 
   test('Rollover is underneath trigger phrase if position is down', () => {
-    const { getByText } = render(
+    const { getByText, getAllByText } = render(
       <Rollover
         content={testRolloverContent}
         hoverText={testTriggerPhrase}
@@ -48,13 +48,13 @@ describe('<Rollover />', () => {
 
     fireEvent.mouseOver(getTriggerPhrase);
 
-    const getContent = getByText(
+    const getContent = getAllByText(
       'Hello sir, I-*briefcase full of jellybeans falls open*',
-    );
+    )[0];
 
-    expect(getContent.parentElement.parentElement.classList).toContain(
-      'psm-rollover__window--show' && 'psm-rollover__window--down',
-    );
+    expect(
+      getContent.parentElement.parentElement.parentElement.classList,
+    ).toContain('psm-rollover__window--show' && 'psm-rollover__window--down');
   });
 
   test('Hover text is dotted when hoverTextStyle = dotted', () => {
@@ -117,13 +117,8 @@ describe('<Rollover />', () => {
 
     fireEvent.mouseEnter(hoverText);
 
-    const secondRolloverItem = getByText(
-      '[burglar gently waking me] you live like this?',
-    );
-
-    expect(secondRolloverItem.nextElementSibling.classList).toContain(
-      'psm-rollover__footer',
-    );
+    const showMoreButton = getByText('+2 More');
+    expect(showMoreButton).toBeTruthy();
   });
 
   test("'Show More' displays the previously hidden content when clicked", () => {
@@ -145,20 +140,20 @@ describe('<Rollover />', () => {
 
     fireEvent.click(getShowMore);
 
-    const thirdRolloverItem = getByText(
-      '"Anime is real," Barack Obama said in his inauguration speech earlier. "Pokémon are real. Geodude is real, and strong, and he\'s my friend."',
-    );
+    const thirdRolloverItem = getByText(testRolloverContent[2]);
 
-    const fourthRolloverItem = getByText(
-      'The basketball shot clock was invented in 1954 after a player hid the ball under his shirt for 48 minutes and told everyone he was pregnant.',
-    );
+    const fourthRolloverItem = getByText(testRolloverContent[3]);
 
-    expect(thirdRolloverItem).toBeTruthy();
-    expect(fourthRolloverItem).toBeTruthy();
+    expect(thirdRolloverItem.parentElement.parentElement.classList).toContain(
+      'psm-rollover-visible',
+    );
+    expect(fourthRolloverItem.parentElement.parentElement.classList).toContain(
+      'psm-rollover-visible',
+    );
   });
 
   test('OnBlur closes rollover', () => {
-    const { getByText, queryByText } = render(
+    const { getByText } = render(
       <Rollover
         content={testRolloverContent}
         hoverText={testTriggerPhrase}
@@ -178,16 +173,16 @@ describe('<Rollover />', () => {
 
     fireEvent.blur(hoverText);
 
-    const thirdRolloverItem = queryByText(
-      '"Anime is real," Barack Obama said in his inauguration speech earlier. "Pokémon are real. Geodude is real, and strong, and he\'s my friend."',
-    );
+    const thirdRolloverItem = getByText(testRolloverContent[2]);
 
-    const fourthRolloverItem = queryByText(
-      'The basketball shot clock was invented in 1954 after a player hid the ball under his shirt for 48 minutes and told everyone he was pregnant.',
-    );
+    const fourthRolloverItem = getByText(testRolloverContent[3]);
 
-    expect(thirdRolloverItem).toBeFalsy();
-    expect(fourthRolloverItem).toBeFalsy();
+    expect(thirdRolloverItem.parentElement.parentElement.classList).toContain(
+      'psm-rollover-hidden',
+    );
+    expect(fourthRolloverItem.parentElement.parentElement.classList).toContain(
+      'psm-rollover-hidden',
+    );
   });
 
   test("default hoverText is 'Hover over me!'", () => {
@@ -195,8 +190,8 @@ describe('<Rollover />', () => {
     expect(getByText('Hover over me!')).toBeTruthy();
   });
 
-  test('the mouse leaving the expanded dropdown resets it', () => {
-    const { container, getByText, queryByText } = render(
+  test('the mouse leaving the expanded dropdown resets it', async () => {
+    const { container, getByText, getAllByText } = render(
       <Rollover
         content={testRolloverContent}
         hoverText={testTriggerPhrase}
@@ -208,15 +203,25 @@ describe('<Rollover />', () => {
     );
     fireEvent.mouseEnter(hoverText);
     fireEvent.click(container.querySelector('button'));
-    expect(getByText(testRolloverContent[2])).toBeTruthy();
+    waitForElement(() =>
+      expect(
+        getAllByText(testRolloverContent[2])[1].parentElement.parentElement
+          .classList,
+      ).toContain('psm-rollover-visible'),
+    );
     fireEvent.mouseLeave(
       container.querySelector('.psm-rollover__window--show'),
     );
-    expect(queryByText(testRolloverContent[2])).toBeNull();
+    waitForElement(() =>
+      expect(
+        getAllByText(testRolloverContent[2])[1].parentElement.parentElement
+          .classList,
+      ).toContain('psm-rollover-hidden'),
+    );
   });
 
-  test('focusing the rollover text expands the rollover', () => {
-    const { getByText } = render(
+  test('focusing the rollover text expands the rollover', async () => {
+    const { getAllByText, getByText } = render(
       <Rollover
         content={testRolloverContent}
         hoverText={testTriggerPhrase}
@@ -228,6 +233,12 @@ describe('<Rollover />', () => {
     );
 
     fireEvent.focus(hoverText);
-    expect(getByText(testRolloverContent[0])).toBeTruthy();
+
+    waitForElement(() =>
+      expect(
+        getAllByText(testRolloverContent[0])[1].parentElement.parentElement
+          .classList,
+      ).toContain('psm-rollover-visible'),
+    );
   });
 });

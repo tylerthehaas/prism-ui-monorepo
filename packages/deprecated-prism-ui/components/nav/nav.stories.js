@@ -24,7 +24,8 @@ storiesOf('Nav', module)
             active: false,
           },
           {
-            tabName: 'The ocean is home to many of the earth’s wettest animals',
+            tabName:
+              'The ocean is home to many of the earth’s wettest animals',
             active: false,
           },
         ])}
