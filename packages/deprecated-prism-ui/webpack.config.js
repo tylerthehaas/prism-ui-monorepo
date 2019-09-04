@@ -1,6 +1,4 @@
 const path = require('path');
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
 const nodeModules = require('webpack-node-externals');
 
 module.exports = {
@@ -46,14 +44,13 @@ module.exports = {
     ],
   },
   output: {
-    filename: '[name].js',
+    filename: 'index.js',
     path: path.join(__dirname, '/dist'),
     library: 'prismui',
     libraryTarget: 'umd',
     umdNamedDefine: true,
     globalObject: "typeof self !== 'undefined' ? self : this",
   },
-  plugins: [new OptimizeCssAssetsPlugin(), new TerserPlugin()],
   resolve: {
     extensions: ['.js', '.ts', '.tsx'],
     modules: [path.resolve('./components'), path.resolve('./node_modules')],

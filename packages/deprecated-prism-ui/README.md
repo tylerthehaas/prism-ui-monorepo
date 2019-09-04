@@ -39,12 +39,6 @@ Import specific components from the package, e.g.:
 import { Avatar, Button } from '@octanner/prism-ui';
 ```
 
-Import the CSS:
-
-```js
-import '@octanner/prism-ui/main.css';
-```
-
 ### CSS-only Usage
 
 Install the package:

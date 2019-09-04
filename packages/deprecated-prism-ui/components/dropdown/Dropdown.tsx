@@ -1,4 +1,4 @@
-import React, { useState, KeyboardEvent, MouseEvent } from 'react';
+import React, { useState, useEffect, KeyboardEvent, MouseEvent } from 'react';
 import uuid from 'uuid/v4';
 import './dropdown.scss';
 import Icon from '../icon/Icon';
@@ -17,11 +17,11 @@ export interface DropdownProps {
 
 export interface Dropdown {
   label: string;
-  onClick?: (event?: MouseEvent<HTMLLIElement>) => void;
+  onClick?: (event?: MouseEvent<HTMLLIElement | HTMLDivElement>) => void;
 }
 export interface DropdownState {
-  isFocused: number;
-  showMenu?: boolean;
+  activeOption: number;
+  showMenu: boolean;
 }
 
 export const Dropdown = ({
@@ -32,35 +32,85 @@ export const Dropdown = ({
   primary = true,
 }: DropdownProps) => {
   const [showMenu, setShowMenu] = useState<DropdownState['showMenu']>(false);
+  const [activeOption, setActiveOption] = useState<
+    DropdownState['activeOption']
+  >(-1);
 
   function menuClick(action: Dropdown) {
-    if (action.onClick) action.onClick();
-    setShowMenu(!showMenu);
+    if (action && action.onClick) {
+      action.onClick();
+    }
+    setShowMenu(false);
   }
 
-  function handleEscape(event: KeyboardEvent<HTMLDivElement>) {
-    if (event.key === 'Escape') {
-      setShowMenu(false);
+  function handleEscape() {
+    setShowMenu(false);
+  }
+
+  function handleArrowDown() {
+    if (dropdownMenu[activeOption + 1]) {
+      return setActiveOption(activeOption + 1);
+    }
+    return setActiveOption(0);
+  }
+
+  function handleArrowUp() {
+    if (dropdownMenu[activeOption - 1]) {
+      return setActiveOption(activeOption - 1);
+    }
+    return setActiveOption(dropdownMenu.length - 1);
+  }
+
+  function handleKeyboard(
+    event: KeyboardEvent<HTMLDivElement | HTMLLIElement>,
+  ) {
+    switch (event.key) {
+      case 'Escape':
+        handleEscape();
+        break;
+      case ' ':
+      case 'Enter':
+        menuClick(dropdownMenu[activeOption]);
+        setShowMenu(!showMenu);
+        break;
+      case 'ArrowDown':
+        event.preventDefault();
+        handleArrowDown();
+        break;
+      case 'ArrowUp':
+        event.preventDefault();
+        handleArrowUp();
+        break;
+      case 'Tab':
+        break;
+      default:
+        event.preventDefault();
+        break;
     }
   }
+
+  useEffect(() => {
+    setActiveOption(-1);
+  }, [showMenu]);
 
   return (
     <div
       aria-expanded={showMenu}
       aria-haspopup
+      aria-label={label}
       className="psm-dropdown__container"
       id={testid}
-      aria-label={label}
-      onKeyDown={handleEscape}
+      onBlur={() => setShowMenu(false)}
+      onKeyDown={handleKeyboard}
       role="button"
       tabIndex={0}
     >
       <button
-        onBlur={() => setShowMenu(false)}
         className={`psm-dropdown${primary ? '--primary' : ''}`}
         disabled={disabled}
         onClick={() => setShowMenu(!showMenu)}
         type="button"
+        tabIndex={-1}
       >
         {label}
         <Icon
@@ -70,38 +120,31 @@ export const Dropdown = ({
           fill="white"
         />
       </button>
-      {showMenu && (
-        <div
-          aria-label="dropdown-menu"
-          className="psm-dropdown__menu"
-          role="button"
-          tabIndex={0}
-          onKeyDown={handleEscape}
-        >
-          <ul
-            className="psm-dropdown__ul"
-            role="menu"
-            id="dropdown-menu-options"
+      <ul
+        className={`psm-dropdown__menu ${
+          showMenu ? 'psm-dropdown-visible' : 'psm-dropdown-hidden'
+        }`}
+        role="menu"
+        id="dropdown-menu-options"
+      >
+        {dropdownMenu.map((dropdown, index) => (
+          <li
+            aria-labelledby="dropdown-menu-options"
+            className={
+              activeOption === index
+                ? 'psm-dropdown-focused '
+                : 'psm-dropdown__li'
+            }
+            data-testid={`${testid}-option-${index}`}
+            key={uuid()}
+            onClick={() => menuClick(dropdown)}
+            onKeyDown={handleKeyboard}
+            role="menuitem"
           >
-            {dropdownMenu.map((action, index) => (
-              <li
-                aria-labelledby="dropdown-menu-options"
-                className="psm-dropdown__li"
-                data-testid={`${testid}-option-${index}`}
-                key={uuid()}
-                onClick={() => menuClick(action)}
-                onKeyDown={event => {
-                  if (event.key === 'Enter') menuClick(action);
-                }}
-                role="menuitem"
-                tabIndex={0}
-              >
-                {action.label}
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+            {dropdown.label}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
