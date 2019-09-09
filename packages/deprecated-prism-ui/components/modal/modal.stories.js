@@ -29,6 +29,7 @@ storiesOf('Modal', module)
             shouldCloseModal: boolean('Should close modal', true),
           },
         ])}
+        onClose={() => console.log('close')}
         modalButtonId={text('Modal button ID', '42')}
         modalTrigger={boolean('Modal trigger', true)}
         title={text('Title', 'Your highness')}

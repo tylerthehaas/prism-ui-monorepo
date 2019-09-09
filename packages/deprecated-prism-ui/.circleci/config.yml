@@ -31,7 +31,7 @@ jobs:
       - image: circleci/node:10.11.0-stretch
     steps:
       - checkout
-      - run: npm audit
+      - run: npm audit --audit-level=moderate
 
 workflows:
   version: 2

@@ -22,21 +22,16 @@
     "sourceType": "module",
     "project": "./tsconfig.json"
   },
-  "plugins": [
-    "@typescript-eslint",
-    "jsx-a11y",
-    "prettier"
-  ],
+  "plugins": ["@typescript-eslint", "jsx-a11y", "prettier", "react-hooks"],
   "settings": {
     "import/resolver": {
       "typescript": {}
     },
-    "import/ignore": [
-      ".js",
-      ".jsx"
-    ]
+    "import/ignore": [".js", ".jsx"]
   },
   "rules": {
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
     "class-methods-use-this": "off",
     "consistent-return": [
       "error",
@@ -57,12 +52,8 @@
     "no-shadow": 0,
     "no-underscore-dangle": 0,
     "no-unneeded-ternary": "off",
-    "prefer-const": [
-      2
-    ],
-    "prettier/prettier": [
-      "error"
-    ],
+    "prefer-const": [2],
+    "prettier/prettier": ["error"],
     "react/jsx-filename-extension": "off",
     "react/prop-types": "off",
     "react/jsx-indent": "off",
@@ -73,9 +64,7 @@
     "jsx-a11y/no-noninteractive-tabindex": [
       "error",
       {
-        "roles": [
-          "region"
-        ]
+        "roles": ["region"]
       }
     ],
     "space-before-function-paren": 0,
