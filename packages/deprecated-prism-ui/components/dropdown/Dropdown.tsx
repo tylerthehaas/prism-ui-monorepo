@@ -77,8 +77,8 @@ export const Dropdown = ({
         break;
       case ' ':
       case 'Enter':
-        menuClick(dropdownMenu[activeOption]);
         setShowMenu(!showMenu);
+        menuClick(dropdownMenu[activeOption]);
         break;
       case 'ArrowDown':
         event.preventDefault();
