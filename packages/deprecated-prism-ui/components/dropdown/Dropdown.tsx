@@ -110,9 +110,10 @@ export const Dropdown = ({
             {label}
           </button>
           {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
-          <span
+          <button
             aria-label="dropdown-menu"
             className={`psm-dual-svg${primary ? '--primary' : ''}`}
+            disabled={disabled}
             role="button"
             onClick={() => setShowMenu(!showMenu)}
             tabIndex={0}
@@ -123,7 +124,7 @@ export const Dropdown = ({
               width="16px"
               iconName="small-triangle-down"
             />
-          </span>
+          </button>
         </span>
       );
     return (
