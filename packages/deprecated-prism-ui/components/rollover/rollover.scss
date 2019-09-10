@@ -9,8 +9,12 @@
   width: fit-content;
 }
 
-.psm-rollover--button {
-  float: right;
+.psm-rollover--container {
+  list-style: none;
+  margin: 0;
+  padding: 12px;
+  text-align: initial;
+  width: fit-content;
 }
 
 .psm-rollover__text-dotted {
@@ -27,36 +31,28 @@
 }
 
 .psm-rollover__footer {
-  @extend %psm-rollover;
-  content: '';
-  bottom: ($psm-spacing-md);
+  background: transparent;
+  border-style: none;
+  box-shadow: inset 0px 2px 0px $psm-color-gray-600;
+  color: white;
   cursor: pointer;
+  font-size: 16px;
+  padding: 6px 12px 3px 12px;
+  width: 100%;
 }
 
 .psm-rollover__window,
 %psm-rollover__window {
   @extend %psm-rollover;
-  visibility: hidden;
-  padding: 12px;
-  width: 124px;
   background-color: $psm-color-gray-700;
   color: white;
   text-align: center;
   border-radius: 3px;
-  & > ul {
-    margin: 0;
-    width: 100%;
-  }
-  & li {
-    margin: 0;
-    width: 100%;
-    text-align: left;
-  }
+  width: fit-content;
 
   position: absolute;
   z-index: 1;
   &.psm-rollover__window--down {
-    width: 124px;
     top: 100%;
     left: 50%;
     margin-left: -60px;
@@ -72,7 +68,6 @@
     }
   }
   &.psm-rollover__window--up {
-    width: 124px;
     bottom: 100%;
     left: 50%;
     margin-left: -60px;
@@ -87,13 +82,42 @@
       border-color: $psm-color-gray-700 transparent transparent transparent;
     }
   }
+  &.psm-rollover__window--left {
+    right: 110%;
+    top: -150%;
+    z-index: 1;
+    &.psm-rollover__window--left::after {
+      content: '';
+      border-width: 5px;
+      border-style: solid;
+      border-color: transparent transparent transparent $psm-color-gray-700;
+      left: 100%;
+      position: absolute;
+      top: 50%;
+    }
+  }
+  &.psm-rollover__window--right {
+    left: 110%;
+    top: -135%;
+    z-index: 1;
+    &.psm-rollover__window--right::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: 100%;
+      margin-top: -5px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: transparent $psm-color-gray-700 transparent transparent;
+    }
+  }
 }
-.psm-rollover__window--show {
+.psm-rollover__window-visible {
   @extend %psm-rollover__window;
   visibility: visible;
 }
 
-.psm-rollover__window--hide {
+.psm-rollover__window-hidden {
   @extend %psm-rollover__window;
   visibility: hidden;
 }

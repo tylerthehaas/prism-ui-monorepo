@@ -42,7 +42,7 @@ interface apiResult {
   systemUserId: string;
 }
 
-export const TypeAheadSearch = ({
+export const TypeaheadSearch = ({
   auth = 'same-origin',
   charactersBeforeSearching = 3,
   'data-testid': testid = '',
@@ -301,4 +301,4 @@ export const TypeAheadSearch = ({
   );
 };
 
-export default TypeAheadSearch;
+export default TypeaheadSearch;

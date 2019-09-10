@@ -1,17 +1,53 @@
 @import '../button/button.scss';
+@import '../core/color/variables';
 
-.psm-dropdown {
+.psm-dropdown,
+%psm-dropdown {
   @extend %psm-button;
   display: flex;
-  flex-direction: column;
-  &::after {
-    font-family: '#{$icomoon-font-family}' !important;
-    content: $psm-icon-small-triangle-down;
-    color: $psm-color-gray-200;
-    padding: 0 0 0 $psm-spacing-md;
+  flex-direction: row;
+  width: fit-content;
+  &:hover {
+    background-color: $psm-color-gray-300;
+  }
+  svg {
+    align-self: center;
+    padding-left: 12px;
+  }
+}
+
+.psm-dropdown-dual {
+  border-left: none;
+  display: inline-flex;
+  height: 40px;
+  button {
+    height: 100%;
+    border-radius: 3px 0px 0px 3px;
+  }
+
+  .psm-dual-svg {
+    background-color: $psm-color-gray-200;
+    border-radius: 0px 3px 3px 0px;
     display: flex;
-    border-left: 1px solid $psm-color-gray-200;
-    margin: (-$psm-spacing-sm) (-$psm-spacing-md) 0 $psm-spacing-md;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    margin-left: 1px;
+    &:hover {
+      background-color: $psm-color-gray-300;
+    }
+    &--primary {
+      background-color: $psm-color-primary-500;
+      border-radius: 0px 3px 3px 0px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      margin-left: 1px;
+      &:hover {
+        background-color: $psm-color-primary-600;
+      }
+    }
   }
 }
 
@@ -25,7 +61,8 @@
   visibility: visible;
 }
 
-.psm-dropdown--primary {
+.psm-dropdown--primary,
+%psm-dropdown--primary {
   @extend %psm-button--primary;
   display: flex;
   width: fit-content;
@@ -35,15 +72,6 @@
     padding: 0px 8px;
     margin-right: -16px;
   }
-  &::after {
-    font-family: '#{$icomoon-font-family}' !important;
-    color: #ffffff;
-    padding: 0 0 0 $psm-spacing-md;
-    display: flex;
-    vertical-align: middle;
-    border-left: 1px solid #ffffff;
-    margin: (-$psm-spacing-sm) (-$psm-spacing-md) 0 $psm-spacing-md;
-  }
   svg {
     align-self: center;
     padding-left: 12px;
@@ -51,14 +79,17 @@
 }
 
 .psm-dropdown__container {
-  width: fit-content;
   display: inline-block;
+  position: relative;
+  width: fit-content;
+  outline: none;
 }
 
 .psm-dropdown--component {
   position: relative;
   display: flex;
-  width: fit-content;
+  flex-wrap: wrap;
+  width: 100%;
 }
 
 .psm-dropdown--btn {
@@ -73,26 +104,24 @@
 .psm-dropdown__menu,
 %psm-dropdown__menu {
   border-radius: 3px;
-  display: block;
   background: #fff;
   box-shadow: 0 0 $psm-spacing-xs 0 rgba(0, 0, 0, 0.14),
     0 $psm-spacing-xs $psm-spacing-xs 0 rgba(0, 0, 0, 0.12),
     0 1px 3px 0 rgba(0, 0, 0, 0.2);
 
-  position: absolute;
-  z-index: 1;
+  display: block;
   margin: 0;
   padding: 0;
+  position: absolute;
+  width: 100%;
+  z-index: 1;
 }
 
 .psm-dropdown__li {
   cursor: pointer;
   padding: 16px;
-  white-space: nowrap;
+  &:focus,
   &:hover {
-    background-color: #e4e4e4;
-  }
-  &:focus {
     background-color: #e4e4e4;
     outline: none;
   }
@@ -103,7 +132,6 @@
   outline: none;
   cursor: pointer;
   padding: 16px;
-  white-space: nowrap;
 }
 
 .psm-dropdown__menu--flip {

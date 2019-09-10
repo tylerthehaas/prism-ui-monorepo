@@ -13,13 +13,14 @@ interface RolloverProps {
   /** The maximum number of separate items that are included in the rollover before a 'Show More' button appears */
   numShown: number;
   /** Determines if the rollover goes above the text or below it */
-  position?: 'up' | 'down';
+  position?: 'up' | 'down' | 'left' | 'right';
 }
 
 interface RolloverState {
-  visible: boolean;
-  showMoreButton: boolean;
   effectiveNumShown: number;
+  showMoreButton: boolean;
+  visible: boolean;
+  visibleContent: JSX.Element[];
 }
 
 export const Rollover = ({
@@ -30,29 +31,36 @@ export const Rollover = ({
   numShown = content.length,
   position = 'up',
 }: RolloverProps) => {
+  /* calculating and using an effectiveNumShown to make sure that we're using a positive integer
+  instead of just trusting the numShown prop mitigates a whole litany of weird behavior if numShown isn't a
+  positive integer. The value is calculated in makeSureEverythingPlaysNice() */
   const [effectiveNumShown, setEffectiveNumShown] = useState<
     RolloverState['effectiveNumShown']
   >(numShown);
 
-  function determineIfShowMoreIsNeeded(nextState: boolean) {
-    if (effectiveNumShown < content.length && effectiveNumShown > 0) {
-      return nextState;
-    }
-    return false;
-  }
   const [visible, setVisible] = useState<RolloverState['visible']>(false);
 
   const [showMoreButton, setShowMoreButton] = useState<
     RolloverState['showMoreButton']
-  >(determineIfShowMoreIsNeeded(true));
-
-  const expandedContent = content.map((item: ReactNode) => (
-    <li key={uuid()}>{item}</li>
-  ));
+  >(true);
 
   const initialContent = content
-    .map((item: ReactNode) => <li key={uuid()}>{item}</li>)
+    .map((item: ReactNode) => (
+      <li className="psm-rollover--item" key={uuid()}>
+        {item}
+      </li>
+    ))
     .filter((item: ReactNode, index: number) => index < effectiveNumShown);
+
+  const expandedContent = content.map((item: ReactNode) => (
+    <li className="psm-rollover--item" key={uuid()}>
+      {item}
+    </li>
+  ));
+
+  const [visibleContent, setVisibleContent] = useState<
+    RolloverState['visibleContent']
+  >(initialContent);
 
   function makeSureEverythingPlaysNice() {
     if (numShown < 1 || !numShown) {
@@ -66,7 +74,9 @@ export const Rollover = ({
   }
 
   function updateRollover() {
-    setShowMoreButton(determineIfShowMoreIsNeeded(false));
+    setVisible(true);
+    setVisibleContent(expandedContent);
+    setShowMoreButton(false);
   }
 
   useEffect(() => {
@@ -100,7 +110,8 @@ export const Rollover = ({
 
   function resetDropdown() {
     setVisible(false);
-    setShowMoreButton(determineIfShowMoreIsNeeded(true));
+    setVisibleContent(initialContent);
+    setShowMoreButton(true);
   }
   return (
     <div
@@ -114,29 +125,12 @@ export const Rollover = ({
     >
       <span className={`${handleOptions()}`}>{hoverText}</span>
       <div
-        className={`psm-rollover__window--${
-          visible ? 'show' : 'hide'
+        className={`psm-rollover__window-${
+          visible ? 'visible' : 'hidden'
         } psm-rollover__window--${position}`}
       >
-        <div
-          className={
-            showMoreButton ? 'psm-rollover-visible' : 'psm-rollover-hidden'
-          }
-          aria-disabled={showMoreButton ? false : true}
-        >
-          <ul>{initialContent}</ul>
-        </div>
-        <div
-          className={
-            showMoreButton ? 'psm-rollover-hidden' : 'psm-rollover-visible'
-          }
-          aria-disabled={showMoreButton ? true : false}
-        >
-          <ul>{expandedContent}</ul>
-        </div>
-        <span className="psm-rollover--button">
-          {showMoreButton ? expandButton : ''}
-        </span>
+        <ul className="psm-rollover--container">{visibleContent}</ul>
+        {showMoreButton ? expandButton : ''}
       </div>
     </div>
   );

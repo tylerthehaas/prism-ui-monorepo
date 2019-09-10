@@ -1,6 +1,6 @@
 {
   "name": "@octanner/prism-ui",
-  "version": "4.0.1",
+  "version": "4.1.0",
   "engines": {
     "node": ">=10.0.0"
   },
@@ -67,7 +67,6 @@
     "@types/react": "^16.9.2",
     "@types/uuid": "^3.4.5",
     "@types/webpack": "^4.39.0",
-    "@types/yargs": "^13.0.2",
     "@typescript-eslint/eslint-plugin": "^1.13.0",
     "@typescript-eslint/parser": "^1.13.0",
     "babel-eslint": "^10.0.2",
@@ -99,17 +98,11 @@
     "html-webpack-plugin": "^3.2.0",
     "jest": "^24.9.0",
     "jest-axe": "^3.2.0",
-    "jest-environment-enzyme": "^7.1.0",
-    "jsdom": "^12.1.0",
     "mini-css-extract-plugin": "^0.4.5",
-    "mutationobserver-shim": "^0.3.3",
     "node-sass": "^4.12.0",
-    "nodemon": "^1.19.1",
+    "nodemon": "^1.19.2",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
-    "postcss-loader": "^3.0.0",
-    "postcss-preset-env": "^6.7.0",
     "prettier": "^1.14.3",
-    "pretty-quick": "^1.7.0",
     "react-a11y": "^1.1.0",
     "react-axe": "^3.2.0",
     "react-docgen-typescript-loader": "^3.1.1",
@@ -126,7 +119,6 @@
     "webpack": "^4.39.2",
     "webpack-cli": "^3.3.7",
     "webpack-dev-server": "^3.8.0",
-    "webpack-node-externals": "^1.7.2",
-    "yarnhook": "^0.3.0"
+    "webpack-node-externals": "^1.7.2"
   }
 }

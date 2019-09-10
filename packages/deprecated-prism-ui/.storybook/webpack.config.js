@@ -1,8 +1,3 @@
-const path = require('path');
-const custom = require('../webpack.config.js');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const postcssPresetEnv = require('postcss-preset-env');
-
 module.exports = async ({ config, mode }) => {
   config.module.rules.push(
     {
@@ -16,21 +11,9 @@ module.exports = async ({ config, mode }) => {
       exclude: /node_modules/,
       test: /\.scss$/,
       use: [
-        MiniCssExtractPlugin.loader,
+        require.resolve('style-loader'),
         require.resolve('css-loader'),
-        {
-          loader: require.resolve('postcss-loader'),
-          options: {
-            plugins: [
-              postcssPresetEnv({
-                browsers: ['last 2 versions', 'ie >= 11'],
-              }),
-            ],
-          },
-        },
-        {
-          loader: require.resolve('resolve-url-loader'),
-        },
+        require.resolve('resolve-url-loader'),
         {
           loader: require.resolve('sass-loader'),
           options: {
@@ -41,8 +24,6 @@ module.exports = async ({ config, mode }) => {
       ],
     }
   );
-
-  config.plugins.push(new MiniCssExtractPlugin());
 
   return config;
 };

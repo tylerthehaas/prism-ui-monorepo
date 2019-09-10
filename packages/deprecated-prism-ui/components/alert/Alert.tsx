@@ -3,6 +3,8 @@ import './alert.scss';
 import Icon from '../icon/Icon';
 
 interface AlertProps {
+  /** Optional short, bolded message that precedes the actual alert */
+  alertPrefix?: string;
   /** Alert type determines alert color */
   alertType?: 'error' | 'info' | 'success' | 'warning';
   children: ReactNode;
@@ -16,6 +18,7 @@ interface AlertState {
 }
 
 const Alert = ({
+  alertPrefix = '',
   alertType = 'info',
   'data-testid': testid = 'alert',
   onDismiss,
@@ -23,7 +26,7 @@ const Alert = ({
 }: AlertProps) => {
   const [dismissed, setDismissed] = useState<AlertState['dismissed']>(false);
 
-  function handleDismiss(event: React.MouseEvent<HTMLButtonElement>) {
+  function handleDismiss(event: MouseEvent<HTMLButtonElement>) {
     if (typeof onDismiss === 'function') {
       onDismiss(event);
     }
@@ -55,7 +58,7 @@ const Alert = ({
           role="alert"
         >
           <div className="psm-alert__msg" id="alert-msg">
-            {children}
+            <span className="psm-alert__prefix">{alertPrefix}</span> {children}
           </div>
           <button
             aria-label="Close alert"

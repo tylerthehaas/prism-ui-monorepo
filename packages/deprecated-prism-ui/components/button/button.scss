@@ -50,9 +50,6 @@ $psm-border-width: 1px;
   &:disabled {
     cursor: default;
     pointer-events: none;
-    border-color: $psm-color-gray-100;
-    background-color: $psm-color-gray-100;
-    color: $psm-color-gray-400;
   }
 }
 

@@ -1,10 +1,113 @@
 @import '../core/spacing/variables';
+@import '../core/color/variables';
+@import '../core/type/variables';
+
+@mixin card-menu {
+  cursor: default;
+  background: #FFFFFF;
+  border: 1px solid $psm-color-gray-300;
+  border-radius: 3px;
+  box-shadow: 0px 1px 9px rgba(0, 0, 0, 0.25);
+  max-width: 25%;
+  padding: 0;
+  position: absolute;
+  right: 2%;
+  top: 21%;
+  z-index: 1;
+}
+
+@mixin psm-card-row {
+  align-items: baseline;
+  border-top: 1px solid $psm-color-gray-200;
+  border-bottom: 1px solid $psm-color-gray-200;
+  display: flex;
+  padding: 13px 15px;
+  justify-content: space-between;
+  list-style: none;
+  line-height: 150%;
+  position: relative;
+  &:hover, &:focus {
+    background: white;
+  }
+}
 
 .psm-card,
 %psm-card {
-  display: inline-block;
-  padding: $psm-spacing-xl;
   border-radius: 3px;
+  color: $psm-color-gray-900;
+  display: inline-block;
+  max-height: 226px;
+  padding: $psm-spacing-xl;
+  position: relative;
+}
+
+.psm-card--children {
+  line-height: 150%;
+  flex-grow: 3;
+}
+
+.psm-card--content {
+  display: flex;
+  font-family: $psm-type-font-family;
+  font-weight: normal;
+  font-style: normal;
+}
+
+.psm-card--date {
+  padding: 5px 8px;
+}
+
+.psm-card--image {
+  height: auto;
+  max-height: 115px;
+  max-width: 33%;
+  width: auto;
+  padding-right: 16px;
+}
+
+.psm-card--info-block {
+  padding-bottom: 16px;
+}
+
+.psm-card--menu {
+  @include card-menu;
+  &-visible {
+    @include card-menu;
+    visibility: visible
+  }
+  &-hidden {
+    @include card-menu;
+    display: none;
+    visibility: hidden
+  }
+}
+
+.psm-card--menu-button {
+  background: transparent;
+  border: none;
+  height: 100%;
+  padding: 14px;
+  &:hover {
+    background-color: $psm-color-gray-200;
+    border-radius: 3px;
+  }
+}
+
+.psm-card--menu-row {
+  @include psm-card-row;
+  cursor: pointer;
+  padding: 16px;
+  right: 0;
+  left: auto;
+  margin: 0;
+  &:hover {
+    background: $psm-color-gray-100;
+  }
+  &:active {
+    outline-width: 2px;
+    outline-style: solid;
+    outline-color: Highlight;
+  }
 }
 
 .psm-card--shadow-sm {
@@ -25,4 +128,23 @@
   box-shadow: 0 $psm-spacing-md 10px 1px rgba(0, 0, 0, 0.14),
     0 3px 14px 3px rgba(0, 0, 0, 0.12),
     0 $psm-spacing-sm 15px 0 rgba(0, 0, 0, 0.2);
+}
+
+.psm-card--status {
+  background: rgba(240, 195, 44, 0.3);
+  border-radius: 3px;
+  color: #9C5B07;
+  font-family: $psm-type-font-header;
+  padding: 4px 8px;
+}
+
+.psm-card--top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.psm-card--title {
+  font-family: $psm-type-card-title;
+  font-size: 24px;
+  font-weight: bold;
 }

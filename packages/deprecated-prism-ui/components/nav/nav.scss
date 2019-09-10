@@ -2,78 +2,96 @@
 @import '../core/spacing/variables';
 @import '../core/icon/variables';
 
-.psm-nav__tab,
-%psm-nav__tab {
-  height: 44px;
-  padding: 0 $psm-spacing-lg;
-  width: fit-content;
-  margin: 0;
-  position: relative;
-  font-weight: bold;
-  color: $psm-color-gray-900;
-  cursor: pointer;
-  line-height: 44px;
-  border-bottom: $psm-spacing-sm solid transparent;
-  &:hover {
-    border-bottom: $psm-spacing-sm solid #d4d4d4;
-  }
-  &.psm-nav__badge {
-    padding: 0;
-    height: 12px;
-    background-color: $psm-color-error;
-    color: white;
-    border-radius: 3px;
-    margin-left: 8px;
-    font-weight: bold;
-    display: inline-block;
-    line-height: 16px;
-  }
-  &.psm-nav__new {
-    padding: 0;
-    height: 12px;
-    background-color: $psm-color-info;
-    color: white;
-    border-radius: 3px;
-    margin-left: 8px;
-    display: inline-block;
-    line-height: 16px;
-  }
-  & button {
-    background: transparent;
-    border: none;
-    color: #212121;
-    font-size: 1rem;
-    font-weight: bold;
-  }
+@mixin psm-nav {
+  font-family: Roboto, sans-serif;
+  display: flex;
+  list-style: none;
 }
 
-.psm-nav__active {
-  @extend %psm-nav__tab;
-  border-bottom: $psm-spacing-sm solid $psm-color-active-indicator;
+@mixin nav-tab {
+  align-items: center;
+  box-sizing: border-box;
+  color: $psm-color-gray-900;
+  cursor: pointer;
+  display: flex;
+  font-size: 14px;
+  padding: 10px 12px;
+  position: relative;
+  width: fit-content;
+}
+
+@mixin active-tab {
+  @include nav-tab;
+  color: $psm-color-active-indicator;
+  font-weight: bold;
 }
 
 .psm-nav {
-  border-bottom: 1px solid #dadcdd;
+  @include psm-nav;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+
+  &__active {
+    @include active-tab;
+    border-left: 4px solid $psm-color-active-indicator;
+  }
+
+  &__badge {
+    text-rendering: optimizeLegibility;
+    background: #D70E16;
+    border-radius: 3px;
+    color: white;
+    font-size: 11px;
+    font-weight: bold;
+    line-height: 13px;
+    margin-left: 10px;
+    padding: 1px 3px;
+  }
+
+  &__new {
+    display: inline-block;
+    position: relative;
+    bottom: 2px;
+    font-weight: normal;
+    color: white;
+    font-size: 11px;
+    margin: 0 3px;
+    line-height: 14px;
+  }
+
+  &__tab {
+    @include nav-tab;
+    border-left: $psm-spacing-sm solid transparent;
+
+    &:hover {
+      background-color: $psm-color-gray-100;
+      box-sizing: border-box;
+      border-left: $psm-spacing-sm solid #d4d4d4;
+    }
+  }
 }
 
-.psm-nav__badge-text {
-  text-rendering: optimizeLegibility;
-  display: inline-block;
-  position: relative;
-  bottom: 1px;
-  font-weight: bold;
-  color: white;
-  font-size: 11px;
-  margin: 0 3px;
-  line-height: 14px;
-}
-.psm-nav__new-text {
-  display: inline-block;
-  position: relative;
-  bottom: 2px;
-  font-weight: normal;
-  color: white;
-  font-size: 11px;
-  margin: 0 3px;
-  line-height: 14px;
+.psm-nav-horizontal {
+  @include psm-nav;
+  display: flex;
+  flex-direction: row;
+
+  .psm-nav__active {
+    @include active-tab;
+    border-bottom: 4px solid $psm-color-active-indicator;
+    border-left: none;
+  }
+
+  .psm-nav__tab {
+    @include nav-tab;
+    border-bottom: $psm-spacing-sm solid transparent;
+    border-left: none;
+
+    &:hover {
+      border-bottom: $psm-spacing-sm solid #d4d4d4;
+      border-left: none;
+      box-sizing: border-box;
+    }
+  }
 }

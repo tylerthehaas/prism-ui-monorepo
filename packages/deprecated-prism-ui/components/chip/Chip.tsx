@@ -49,16 +49,18 @@ export const Chip = ({
           }
         }}
       >
-        {label}
-        <button
-          aria-label={`Close ${label} chip`}
-          type="button"
-          className="psm-chip__close"
-          data-testid={`${testid}-icon`}
-          onClick={handleClick}
-        >
-          <Icon iconName="close" height="16px" width="16px" fill="#d4d4d4" />
-        </button>
+        <div className="psm-chip--interior">
+          {label}
+          <button
+            aria-label={`Close ${label} chip`}
+            type="button"
+            className="psm-chip__close"
+            data-testid={`${testid}-icon`}
+            onClick={handleClick}
+          >
+            <Icon iconName="close" height="16px" width="16px" fill="#d4d4d4" />
+          </button>
+        </div>
       </div>
     )
   );

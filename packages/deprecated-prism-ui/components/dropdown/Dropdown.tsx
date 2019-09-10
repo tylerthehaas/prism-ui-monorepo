@@ -5,6 +5,10 @@ import Icon from '../icon/Icon';
 
 export interface DropdownProps {
   'data-testid'?: string;
+  /** splits the button and the arrow into two different css classes. See Figma -> Prism Library -> Buttons for a representation */
+  dualAction?: boolean;
+  /** If you're using a dual-action button, this function fires when the primary button is clicked */
+  dualOnClick?: () => void;
   /** Disables the button and grays it out */
   disabled?: boolean;
   /** See notes for details on details for the type */
@@ -19,6 +23,7 @@ export interface Dropdown {
   label: string;
   onClick?: (event?: MouseEvent<HTMLLIElement | HTMLDivElement>) => void;
 }
+
 export interface DropdownState {
   activeOption: number;
   showMenu: boolean;
@@ -28,6 +33,8 @@ export const Dropdown = ({
   'data-testid': testid = 'dropdown-label',
   disabled = false,
   dropdownMenu = [],
+  dualAction = false,
+  dualOnClick = () => {},
   label = 'Dropdown Label',
   primary = true,
 }: DropdownProps) => {
@@ -89,6 +96,55 @@ export const Dropdown = ({
     }
   }
 
+  const buttonContainer = () => {
+    if (dualAction)
+      return (
+        <span className="psm-dropdown-dual">
+          <button
+            className={`psm-dropdown${primary ? '--primary' : ''}`}
+            disabled={disabled}
+            onClick={() => (dualOnClick ? dualOnClick() : {})}
+            tabIndex={0}
+            type="button"
+          >
+            {label}
+          </button>
+          {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
+          <span
+            aria-label="dropdown-menu"
+            className={`psm-dual-svg${primary ? '--primary' : ''}`}
+            role="button"
+            onClick={() => setShowMenu(!showMenu)}
+            tabIndex={0}
+          >
+            <Icon
+              fill="white"
+              height="16px"
+              width="16px"
+              iconName="small-triangle-down"
+            />
+          </span>
+        </span>
+      );
+    return (
+      <button
+        className={`psm-dropdown${primary ? '--primary' : ''}`}
+        disabled={disabled}
+        onClick={() => setShowMenu(!showMenu)}
+        type="button"
+        tabIndex={0}
+      >
+        {label}
+        <Icon
+          iconName="small-triangle-down"
+          height="16px"
+          width="16px"
+          fill="white"
+        />
+      </button>
+    );
+  };
+
   useEffect(() => {
     setActiveOption(-1);
   }, [showMenu]);
@@ -105,21 +161,7 @@ export const Dropdown = ({
       role="button"
       tabIndex={0}
     >
-      <button
-        className={`psm-dropdown${primary ? '--primary' : ''}`}
-        disabled={disabled}
-        onClick={() => setShowMenu(!showMenu)}
-        type="button"
-        tabIndex={-1}
-      >
-        {label}
-        <Icon
-          iconName="small-triangle-down"
-          height="16px"
-          width="16px"
-          fill="white"
-        />
-      </button>
+      {buttonContainer()}
       <ul
         className={`psm-dropdown__menu ${
           showMenu ? 'psm-dropdown-visible' : 'psm-dropdown-hidden'

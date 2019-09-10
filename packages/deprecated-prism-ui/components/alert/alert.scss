@@ -33,8 +33,14 @@
     width: calc(100% - 72px);
     border-top-left-radius: 3px;
     border-bottom-left-radius: 3px;
+    line-height:130%;
   }
 }
+
+.psm-alert__prefix {
+  font-weight: bold;
+}
+
 .psm-alert--warning {
   @extend %psm-alert;
   background-color: $psm-color-warning-background;

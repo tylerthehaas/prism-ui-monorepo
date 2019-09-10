@@ -4,28 +4,40 @@
 
 .psm-chip,
 %psm-chip {
-  color: #707070;
+  color: black;
   border: 1px solid $psm-color-gray-300;
   border-radius: 3px;
+  box-sizing: border-box;
   cursor: pointer;
   display: inline-block;
   font-size: 1rem;
-  padding: $psm-spacing-xs $psm-spacing-md;
+  outline: none;
+  padding: $psm-spacing-md;
   &:hover {
-    color: white;
-    background-color: $psm-color-primary-500;
+    border: 1px solid $psm-color-gray-900;
+    box-shadow: 0px 0px 0px 2px $psm-color-gray-300;
   }
-  &:focus {
-    color: white;
-    background-color: $psm-color-primary-500;
+}
+
+.psm-chip--interior {
+  display: flex;
+  align-items: center;
+  svg {
+    margin: 0 8px 0 0;
   }
 }
 
 .psm-chip__selected {
   @extend %psm-chip;
-  box-shadow: 0 0 0 $psm-spacing-xs $psm-color-primary-100;
-  display: inline-block;
+  color: white;
+  background-color: $psm-color-primary-500;
   outline: none;
+  border: none;
+  box-shadow: none;
+  &:hover {
+    border: none;
+    box-shadow: none;
+  }
 }
 
 .psm-chip__close {

@@ -1,0 +1,111 @@
+@import '../core/color/variables';
+@import '../core/spacing/variables';
+@import '../core/icon/variables';
+@import '../core/spacing/variables';
+
+@mixin psm-list {
+  color: $psm-color-gray-900;
+  cursor: pointer;
+  list-style: none;
+  max-width: 100%;
+}
+
+@mixin psm-list-row {
+  align-items: baseline;
+  padding: 13px 15px;
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  line-height: 150%;
+  position: relative;
+  &:hover, &:focus {
+    background: white;
+  }
+}
+
+.psm-list {
+  @include psm-list;
+}
+
+.psm-list-hidden {
+  visibility: hidden;
+  display: none;
+}
+
+.psm-list-visible {
+  visibility: visible;
+  display: inline-block;
+}
+
+.psm-list--row,
+%psm-list--row {
+  @include psm-list-row;
+  border-top: 1px solid $psm-color-gray-200;
+  border-bottom: 1px solid $psm-color-gray-200;
+}
+
+.psm-list--row-hover {
+  @extend %psm-list--row;
+  &:hover {
+    background: white;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.psm-list--info-block {
+  display: flex;
+  color: $psm-color-gray-600;
+}
+
+.psm-list--menu-button {
+  background: transparent;
+  border: none;
+  border-radius: 3px;
+  box-sizing: inherit;
+  font: inherit;
+  height: 18px;
+  margin-left: 12px;
+  outline: none;
+  padding: 4px;
+  width: 18px;
+  &:hover {
+    background-color: $psm-color-gray-200;
+    border-radius: 3px;
+  }
+  &:active {
+    background-color: $psm-color-gray-300;
+    border-radius: 3px;
+  }
+}
+
+.psm-list--menu {
+  cursor: default;
+  background: #FFFFFF;
+  border: 1px solid $psm-color-gray-300;
+  border-radius: 3px;
+  box-shadow: 0px 1px 9px rgba(0, 0, 0, 0.25);
+  margin: 0;
+  min-width: 5%;
+  padding: 0;
+  position: absolute;
+  right: 0;
+  top: 100%;
+  z-index: 1;
+}
+
+.psm-list--menu-row {
+  @include psm-list-row;
+  cursor: pointer;
+  padding: 16px;
+  right: 0;
+  left: auto;
+  margin: 0;
+  &:hover {
+    background: $psm-color-gray-100;
+  }
+  &:active {
+    outline-width: 2px;
+    outline-style: solid;
+    outline-color: Highlight;
+  }
+}

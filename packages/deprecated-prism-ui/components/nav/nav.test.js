@@ -22,8 +22,6 @@ const testTabs = [
   {
     tabName: `FOUNDER OF HOGWARTS: okay, so we all know there are four types of kid. brave, smart, evil and miscellaneous.
     SCHOOL BOARD: yes, continue.`,
-    isNew: true,
-    isNewText: 'new',
   },
 ];
 
@@ -38,11 +36,5 @@ describe('<Nav />', () => {
     const tabOne = getByText(testTabs[0].tabName);
     fireEvent.click(tabOne);
     expect(onClickMock).toHaveBeenCalled();
-  });
-
-  test('new tabs and tabs with errors', () => {
-    const { getByText } = render(<Nav tabs={testTabs} />);
-    expect(getByText('new')).toBeTruthy();
-    expect(getByText('10')).toBeTruthy();
   });
 });

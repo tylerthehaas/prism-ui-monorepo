@@ -103,9 +103,8 @@ const Header = ({
         </button>
       </div>
 
-      <nav className="main-nav psm-nav">
-        <Nav data-testid="nav1" tabs={tabs} />
-
+      <nav className="main-nav">
+        <Nav data-testid="nav1" horizontal tabs={tabs} />
         <a className="admin-tools" href="/">
           Open admin tools
           <Icon iconName="arrow-tail-right" />

@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { withKnobs, object } from '@storybook/addon-knobs';
+import { withKnobs, object, boolean } from '@storybook/addon-knobs';
 import Nav from './Nav';
 import NavNotes from './nav-notes.md';
 
@@ -10,6 +10,7 @@ storiesOf('Nav', module)
     'component',
     () => (
       <Nav
+        horizontal={boolean('Horizontal?', false)}
         tabs={object('Tab object', [
           {
             tabName:
@@ -19,8 +20,7 @@ storiesOf('Nav', module)
           },
           {
             tabName:
-              "ME: It's actually a single Star War composed of several Star Battles. FRIEND: Are you wearing 2 monocles",
-            isNew: true,
+              'ME: It`s actually a single Star War composed of several Star Battles. FRIEND: Are you wearing 2 monocles',
             active: false,
           },
           {

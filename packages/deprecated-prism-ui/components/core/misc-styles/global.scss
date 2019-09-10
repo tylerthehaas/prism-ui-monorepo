@@ -1,0 +1,10 @@
+@import '../type/type.scss';
+
+a {
+  font-family: Roboto;
+  color: #0066ED;
+  &:active {
+    background: #EDF4FE;
+    border-radius: 3px;
+  }
+}

@@ -1,3 +1,6 @@
+@import '../core/type/fonts/Roboto-Regular.ttf';
+@import '../core/color/variables';
+
 .main-header {
   display: flex;
   flex-flow: row wrap;
@@ -78,13 +81,16 @@
   padding: 0.25rem 0.5rem;
 }
 .main-header .main-nav {
+  align-items: baseline;
   display: flex;
+  font-family: Roboto, sans serif;
+  font-size: 14px;
   justify-content: space-between;
-  align-items: center;
   width: 100vw;
   margin: 16px -24px 0px;
   padding-right: 24px;
   background: #fff;
+  border-bottom: 1px solid #dadcdd;
 }
 .main-header .main-nav ul {
   display: flex;
@@ -94,9 +100,11 @@
   padding: 0;
 }
 .main-header .main-nav ul li {
-  padding: 0px;
-  height: auto;
-  font-weight: 100;
+  color: #000;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 130%;
+  margin: 10px16px 12px;
 }
 .main-header .main-nav ul li a {
   color: #000;
@@ -106,9 +114,10 @@
   text-decoration: none;
 }
 .main-header .main-nav .admin-tools {
-  display: inline-block;
+  align-items: center;
   color: #000;
   cursor: pointer;
+  display: inline-flex;
   text-decoration: none;
 }
 .main-header .main-nav .admin-tools svg {

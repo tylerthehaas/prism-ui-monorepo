@@ -29,6 +29,6 @@ describe('<Chip />', () => {
     const labelText = getByText(chipText);
     fireEvent.focus(labelText);
     fireEvent.keyDown(labelText, { key: 'Enter' });
-    expect(labelText.classList).toContain('psm-chip__selected');
+    expect(labelText.parentElement.classList).toContain('psm-chip__selected');
   });
 });
