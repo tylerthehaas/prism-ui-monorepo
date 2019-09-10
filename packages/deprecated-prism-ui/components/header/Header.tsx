@@ -2,10 +2,13 @@ import React from 'react';
 import Avatar from '../avatar/Avatar';
 import Icon from '../icon/Icon';
 import Nav, { Tab } from '../nav/Nav';
+import TypeaheadSearch from '../typeahead-search/typeahead-search';
 import './header.scss';
 
 interface LayoutProps {
   layout: Layout;
+  userSearchUrl: string;
+  userSearchOnSelect: () => void;
 }
 
 interface Layout {
@@ -64,6 +67,8 @@ const Header = ({
     ],
     tabs: [],
   },
+  userSearchUrl = 'https://usersearch-perf-qa.alamoapp.octanner.io/users',
+  userSearchOnSelect = () => {},
 }: LayoutProps) => {
   const { user, customer, banks, tabs } = layout;
   return (
@@ -74,6 +79,12 @@ const Header = ({
           alt={`${customer && customer.name} logo`}
         />
       </a>
+
+      <TypeaheadSearch
+        data-testid="header-user-search"
+        url={userSearchUrl}
+        onSelect={userSearchOnSelect}
+      />
 
       <div className="account">
         <button
