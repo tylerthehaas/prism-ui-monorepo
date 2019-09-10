@@ -159,7 +159,7 @@ export const Dropdown = ({
       onBlur={() => setShowMenu(false)}
       onKeyDown={handleKeyboard}
       role="button"
-      tabIndex={0}
+      tabIndex={-1}
     >
       {buttonContainer()}
       <ul
