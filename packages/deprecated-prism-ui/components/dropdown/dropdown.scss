@@ -49,6 +49,9 @@
       &:hover {
         background-color: $psm-color-primary-600;
       }
+      &:disabled {
+        background-color: $psm-color-primary-300;
+      }
     }
   }
 }
@@ -63,8 +66,7 @@
   visibility: visible;
 }
 
-.psm-dropdown--primary,
-%psm-dropdown--primary {
+.psm-dropdown--primary {
   @extend %psm-button--primary;
   display: flex;
   height: 40px;
