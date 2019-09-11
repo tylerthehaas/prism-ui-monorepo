@@ -1,4 +1,4 @@
-import React, { ReactNode, useState, MouseEvent } from 'react';
+import React, { ReactNode, useState, useEffect, MouseEvent } from 'react';
 import './alert.scss';
 import Icon from '../icon/Icon';
 
@@ -7,10 +7,13 @@ interface AlertProps {
   alertPrefix?: string;
   /** Alert type determines alert color */
   alertType?: 'error' | 'info' | 'success' | 'warning';
+  /** Alert content */
   children: ReactNode;
   'data-testid'?: string;
   /** Called when an alert is dismissed */
   onDismiss?: (event: MouseEvent<HTMLButtonElement>) => void;
+  /** Allows the alert to be called again after being dismissed */
+  recurrent?: boolean;
 }
 
 interface AlertState {
@@ -20,18 +23,21 @@ interface AlertState {
 const Alert = ({
   alertPrefix = '',
   alertType = 'info',
-  'data-testid': testid = 'alert',
-  onDismiss,
   children,
+  'data-testid': testid = 'alert',
+  onDismiss = () => {},
+  recurrent = false,
 }: AlertProps) => {
   const [dismissed, setDismissed] = useState<AlertState['dismissed']>(false);
 
   function handleDismiss(event: MouseEvent<HTMLButtonElement>) {
-    if (typeof onDismiss === 'function') {
-      onDismiss(event);
-    }
+    if (onDismiss) onDismiss(event);
     setDismissed(true);
   }
+
+  useEffect(() => {
+    if (recurrent) setDismissed(false);
+  }, [dismissed, recurrent]);
 
   function changeSvgColor(alertType: 'error' | 'info' | 'success' | 'warning') {
     switch (alertType) {

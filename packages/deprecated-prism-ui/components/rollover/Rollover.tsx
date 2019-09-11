@@ -18,7 +18,8 @@ interface RolloverProps {
 
 interface RolloverState {
   effectiveNumShown: number;
-  showMoreButton: boolean;
+  expanded: boolean;
+  hiddenItems: number;
   visible: boolean;
   visibleContent: JSX.Element[];
 }
@@ -34,15 +35,13 @@ export const Rollover = ({
   /* calculating and using an effectiveNumShown to make sure that we're using a positive integer
   instead of just trusting the numShown prop mitigates a whole litany of weird behavior if numShown isn't a
   positive integer. The value is calculated in makeSureEverythingPlaysNice() */
+
   const [effectiveNumShown, setEffectiveNumShown] = useState<
     RolloverState['effectiveNumShown']
   >(numShown);
 
+  const [expanded, setExpanded] = useState<RolloverState['expanded']>(false);
   const [visible, setVisible] = useState<RolloverState['visible']>(false);
-
-  const [showMoreButton, setShowMoreButton] = useState<
-    RolloverState['showMoreButton']
-  >(true);
 
   const initialContent = content
     .map((item: ReactNode) => (
@@ -62,36 +61,48 @@ export const Rollover = ({
     RolloverState['visibleContent']
   >(initialContent);
 
-  function makeSureEverythingPlaysNice() {
+  function expandRollover() {
+    setExpanded(true);
+    setVisibleContent(expandedContent);
+  }
+
+  const [hiddenItems, setHiddenItems] = useState<RolloverState['hiddenItems']>(
+    content.length - effectiveNumShown,
+  );
+
+  useEffect(() => {
     if (numShown < 1 || !numShown) {
       return setEffectiveNumShown(1);
     }
     if (numShown < content.length) {
       return setEffectiveNumShown(numShown);
     }
-    setEffectiveNumShown(content.length);
-    return setShowMoreButton(false);
-  }
-
-  function updateRollover() {
-    setVisible(true);
-    setVisibleContent(expandedContent);
-    setShowMoreButton(false);
-  }
+    return setEffectiveNumShown(content.length);
+  }, [content.length, numShown]);
 
   useEffect(() => {
-    makeSureEverythingPlaysNice();
-  }, [numShown]);
+    if (content.length - effectiveNumShown > 0) {
+      setHiddenItems(content.length - effectiveNumShown);
+    }
+    if (visibleContent.length >= expandedContent.length) {
+      setExpanded(true);
+    }
+  }, [
+    content.length,
+    effectiveNumShown,
+    expandedContent.length,
+    visibleContent,
+  ]);
 
   const expandButton = (
     <button
       className="psm-rollover__footer"
       key="extra"
       type="button"
-      onClick={() => updateRollover()}
+      onClick={() => expandRollover()}
       tabIndex={0}
     >
-      +{content.length - effectiveNumShown} More
+      +{hiddenItems} More
     </button>
   );
 
@@ -109,17 +120,23 @@ export const Rollover = ({
   }
 
   function resetDropdown() {
+    setExpanded(false);
     setVisible(false);
     setVisibleContent(initialContent);
-    setShowMoreButton(true);
   }
+
+  function handleVisibility() {
+    setVisibleContent(initialContent);
+    setVisible(true);
+  }
+
   return (
     <div
       className="psm-rollover"
       data-testid={testid}
       id={`${testid}-rollover-div`}
       onFocus={() => setVisible(true)}
-      onMouseEnter={() => setVisible(true)}
+      onMouseEnter={handleVisibility}
       onBlur={() => resetDropdown()}
       onMouseLeave={() => resetDropdown()}
     >
@@ -130,7 +147,7 @@ export const Rollover = ({
         } psm-rollover__window--${position}`}
       >
         <ul className="psm-rollover--container">{visibleContent}</ul>
-        {showMoreButton ? expandButton : ''}
+        {hiddenItems > 0 && !expanded ? expandButton : ''}
       </div>
     </div>
   );

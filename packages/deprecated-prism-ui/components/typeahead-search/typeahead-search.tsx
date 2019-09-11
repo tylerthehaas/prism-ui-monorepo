@@ -112,7 +112,11 @@ export const TypeaheadSearch = ({
       const errorResult = results as apiResult;
       setShowResults(true);
       return (
-        <Alert alertType="error">
+        <Alert
+          recurrent
+          alertType="error"
+          onDismiss={() => setShowResults(false)}
+        >
           <div className="psm-alert--error">
             Error: {errorResult.error ? errorResult.error.message : ''}
           </div>
@@ -236,14 +240,19 @@ export const TypeaheadSearch = ({
     if (userInput.length <= charactersBeforeSearching) {
       setShowResults(false);
     }
-  }, [userInput]);
+  }, [autocompleteString, charactersBeforeSearching, showResults, userInput]);
 
   useEffect(() => {
     if (debouncedSearchInput && userInput.length >= charactersBeforeSearching) {
       setIsSearching(true);
       handleApiLogic();
     }
-  }, [debouncedSearchInput]);
+    // eslint-disable-next-line
+  }, [
+    charactersBeforeSearching,
+    debouncedSearchInput,
+    userInput.length,
+  ]);
 
   return (
     <div className="psm-input-trailing-icon" id={testid}>
@@ -274,9 +283,6 @@ export const TypeaheadSearch = ({
             className="search-psm-icon-svg-search psm-typeahead--icon"
             data-testid={`${testid}--icon`}
             onClick={() => onSelect()}
-            style={{
-              cursor: 'pointer',
-            }}
             type="button"
           >
             <Icon

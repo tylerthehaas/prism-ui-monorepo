@@ -27,7 +27,7 @@ $search-button-width: 40px;
   font-size: 14px;
   left: 0;
   margin: 0;
-  padding: 2px $search-button-width 2px 5px;
+  padding: 2px $search-button-width 2px 13px;
   position: absolute;
   top: 0;
   width: 100%;
@@ -45,6 +45,13 @@ $search-button-width: 40px;
   position: absolute;
   right: 0;
   top: 0;
+  &.psm-input {
+    margin: 0;
+  }
+}
+
+.psm-typeahead--icon {
+  cursor: pointer;
 }
 
 button[class|=search-psm-icon-svg] {
@@ -75,6 +82,7 @@ button[class|=search-psm-icon-svg] {
   left: 0;
   width: 100%;
 }
+
 .psm-typeahead--results.showResults {
   display: block;
 }
