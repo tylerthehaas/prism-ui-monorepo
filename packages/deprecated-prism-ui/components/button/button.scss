@@ -35,6 +35,13 @@ $psm-border-width: 1px;
     color: $psm-color-gray-700;
   }
 
+  &--text {
+    @extend %psm-button;
+    background-color: transparent;
+    border: none;
+    color: #0066ED;
+  }
+
   &:hover {
     cursor: pointer;
     border-color: $psm-color-gray-300;

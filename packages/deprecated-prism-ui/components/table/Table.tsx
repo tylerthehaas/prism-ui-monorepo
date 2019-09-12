@@ -58,7 +58,7 @@ export const Table = ({
             key={index}
             label={action.label}
             onClick={action.onClick}
-            primary={action.primary}
+            buttonStyle={action.primary ? 'primary' : undefined}
           />
         ))}
       </div>

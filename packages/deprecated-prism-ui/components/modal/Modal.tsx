@@ -136,9 +136,6 @@ export const Modal = ({
                       data-testid={`${testid}-button-${index}`}
                       key={index}
                       onClick={handleClick}
-                      style={{
-                        margin: 4,
-                      }}
                     >
                       {action.label}
                     </button>

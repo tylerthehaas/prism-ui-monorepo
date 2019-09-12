@@ -13,11 +13,10 @@ export interface ButtonProps {
   /** Function that fires when the button is clicked.
    * Accepts MouseEvent<HTMLButtonElement | HTMLAnchorElement>  */
   onClick?: (event?: MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => void;
-  /** Makes the button larger and colored $psm-color-primary-500,
-   *  which defaults to purple. Overrides small. */
-  primary?: boolean;
-  /** Makes the button small */
-  small?: boolean;
+  /** Primary makes the button larger and colored $psm-color-primary-500, which defaults to purple,
+   * text removes the button and leaves just styled text, and small makes the button small
+   */
+  buttonStyle?: 'primary' | 'text';
 }
 
 export const Button = ({
@@ -26,25 +25,23 @@ export const Button = ({
   label = 'Button',
   linkRef = '',
   onClick = () => {},
-  primary = true,
-  small = false,
+  buttonStyle = 'primary',
 }: ButtonProps) => {
-  function buttonClass() {
-    if (primary) {
-      return 'psm-button--primary';
+  function handleOptions() {
+    switch (buttonStyle) {
+      case 'primary':
+        return '--primary';
+      case 'text':
+        return '--text';
+      default:
+        return '';
     }
-
-    if (small) {
-      return 'psm-button--small';
-    }
-
-    return 'psm-button';
   }
   return (
     <>
       {(!linkRef && (
         <button
-          className={buttonClass()}
+          className={`psm-button${handleOptions()}`}
           data-testid={testid}
           disabled={disabled}
           onClick={onClick}
@@ -54,7 +51,7 @@ export const Button = ({
         </button>
       )) || (
         <a
-          className={buttonClass()}
+          className={`psm-button${handleOptions()}`}
           data-testid={testid}
           href={linkRef}
           onClick={onClick}

@@ -197,11 +197,4 @@ describe('<Dropdown />', () => {
       'psm-dropdown-focused',
     );
   });
-  it('small buttons display properly', () => {
-    const { container } = render(
-      <Dropdown dropdownMenu={dropdownMenuItems} primary={false} />,
-    );
-
-    expect(container.querySelector('.psm-dropdown--primary')).toBeNull();
-  });
 });

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, MouseEvent, ChangeEvent } from 'react';
+import React, { useState, useEffect, ChangeEvent } from 'react';
 import './input.scss';
 import './input-group.scss';
 import Icon, { IconNames } from '../icon/Icon';
@@ -31,7 +31,6 @@ export interface InputProps {
 
 export interface iconType {
   name: IconNames;
-  onClick?: (event?: MouseEvent<HTMLSpanElement>) => void;
   position?: string;
 }
 
@@ -61,12 +60,6 @@ export const Input = ({
     prefilledValue,
   );
 
-  function handleClick(icon: iconType) {
-    return (event: MouseEvent<HTMLSpanElement>) => {
-      if (icon.onClick) icon.onClick(event);
-    };
-  }
-
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
     if (onChange) onChange(event);
     setInputText(event.target.value);
@@ -91,15 +84,10 @@ export const Input = ({
         className={icon ? `psm-input-${icon.position || 'trailing'}-icon` : ''}
       >
         {icon && (
-          <button
+          <span
             aria-label={`${icon.name} icon`}
             className={`psm-icon-svg-${icon.name}`}
             data-testid={`${testid}--icon`}
-            onClick={handleClick(icon)}
-            style={{
-              cursor: icon.onClick ? 'pointer' : 'default',
-            }}
-            type="button"
           >
             <Icon
               iconName={icon.name}
@@ -108,7 +96,7 @@ export const Input = ({
               fill="#707070"
               className={`svg-icon-${icon.name}`}
             />
-          </button>
+          </span>
         )}
         <input
           aria-describedby="info"

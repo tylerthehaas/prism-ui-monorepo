@@ -15,8 +15,10 @@ export interface DropdownProps {
   dropdownMenu: Dropdown[];
   /** The text inside the dropdown */
   label?: string;
-  /** Makes the button larger and colored $psm-color-primary-500, which defaults to purple */
-  primary?: boolean;
+  /** Primary makes the button larger and colored $psm-color-primary-500, which defaults to purple,
+   * text removes the button and leaves just styled text, and normal makes the button normal
+   */
+  style?: 'primary' | 'text';
 }
 
 export interface Dropdown {
@@ -36,7 +38,7 @@ export const Dropdown = ({
   dualAction = false,
   dualOnClick = () => {},
   label = 'Dropdown Label',
-  primary = true,
+  style = 'primary',
 }: DropdownProps) => {
   const [showMenu, setShowMenu] = useState<DropdownState['showMenu']>(false);
   const [activeOption, setActiveOption] = useState<
@@ -96,12 +98,35 @@ export const Dropdown = ({
     }
   }
 
+  function handleOptions() {
+    switch (style) {
+      case 'primary':
+        return '--primary';
+      case 'text':
+        return '--text';
+      default:
+        return '';
+    }
+  }
+
+  function handleArrowFill() {
+    switch (style) {
+      case 'primary':
+        return 'white';
+      case 'text':
+        return '#0066ED';
+      default:
+        return 'black';
+    }
+  }
+
   const buttonContainer = () => {
+    console.log(disabled);
     if (dualAction)
       return (
         <span className="psm-dropdown-dual">
           <button
-            className={`psm-dropdown${primary ? '--primary' : ''}`}
+            className={`psm-dropdown${handleOptions()}`}
             disabled={disabled}
             onClick={() => (dualOnClick ? dualOnClick() : {})}
             tabIndex={0}
@@ -112,24 +137,24 @@ export const Dropdown = ({
           {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
           <button
             aria-label="dropdown-menu"
-            className={`psm-dual-svg${primary ? '--primary' : ''}`}
+            className={`psm-dual-svg${handleOptions()}`}
             disabled={disabled}
-            role="button"
+            type="button"
             onClick={() => setShowMenu(!showMenu)}
             tabIndex={0}
           >
             <Icon
-              fill="white"
               height="16px"
               width="16px"
               iconName="small-triangle-down"
+              fill={handleArrowFill()}
             />
           </button>
         </span>
       );
     return (
       <button
-        className={`psm-dropdown${primary ? '--primary' : ''}`}
+        className={`psm-dropdown${handleOptions()}`}
         disabled={disabled}
         onClick={() => setShowMenu(!showMenu)}
         type="button"
@@ -140,7 +165,7 @@ export const Dropdown = ({
           iconName="small-triangle-down"
           height="16px"
           width="16px"
-          fill="white"
+          fill={handleArrowFill()}
         />
       </button>
     );

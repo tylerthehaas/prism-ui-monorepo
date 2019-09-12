@@ -1,6 +1,12 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { withKnobs, text, boolean, object } from '@storybook/addon-knobs';
+import {
+  withKnobs,
+  text,
+  boolean,
+  object,
+  select,
+} from '@storybook/addon-knobs';
 import Dropdown from './Dropdown';
 import DropdownNotes from './dropdown-notes.md';
 
@@ -33,7 +39,11 @@ storiesOf('Dropdown', module)
           'Label text',
           '[Down with the Sickness plays as I continue to push a pull door]',
         )}
-        primary={boolean('primary', true)}
+        style={select(
+          'Dropdown style',
+          ['primary', 'text', 'normal'],
+          'primary',
+        )}
       />
     ),
     {

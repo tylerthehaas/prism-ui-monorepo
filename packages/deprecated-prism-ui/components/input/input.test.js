@@ -1,17 +1,10 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { render } from '@testing-library/react';
 
 import Input from './Input';
 
 const testText =
   "No, you're confused. Trash Bandit is my daughter. Dolores is my raccoon.";
-
-const mockFunction = jest.fn();
-
-const testIcon = {
-  name: 'tail-right',
-  onClick: mockFunction,
-};
 
 describe('<Input />', () => {
   test('Required defaults to false', () => {
@@ -44,14 +37,5 @@ describe('<Input />', () => {
     expect(leadingIcon.parentElement.classList).toContain(
       'psm-input-leading-icon',
     );
-  });
-
-  test("icon's onClick function works", () => {
-    const { getByLabelText } = render(
-      <Input placeholderText={testText} icon={testIcon} />,
-    );
-    const icon = getByLabelText('tail-right icon');
-    fireEvent.click(icon);
-    expect(mockFunction).toHaveBeenCalled();
   });
 });

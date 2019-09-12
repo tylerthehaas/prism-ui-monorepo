@@ -10,12 +10,6 @@ describe('<Button />', () => {
     expect(button.classList).toContain('psm-button--primary');
   });
 
-  it('is not primary when primary is false', () => {
-    const { getByText } = render(<Button label="Menu" primary={false} />);
-    const button = getByText('Menu');
-    expect(button.classList).toContain('psm-button');
-  });
-
   it('defaults to Large', () => {
     const { getByText } = render(<Button label="Menu" primary={false} />);
 
@@ -23,21 +17,32 @@ describe('<Button />', () => {
     expect(button).not.toContain('psm-button--small');
   });
 
-  it('is small when small is true', () => {
-    const { getByText } = render(<Button label="Menu" primary={false} small />);
+  it('is text-styled when style is text', () => {
+    const { getByText } = render(<Button label="Menu" buttonStyle="text" />);
 
     const button = getByText('Menu');
-    expect(button.classList).toContain('psm-button--small');
+    expect(button.classList).toContain('psm-button--text');
   });
 
   it('defaults to a button, not a link', () => {
-    const { container } = render(<Button label="Menu" primary={false} small />);
+    const { container } = render(<Button label="Menu" />);
     expect(container.querySelector('button')).toBeTruthy();
+  });
+
+  it('defaults to normal when style is invalid', () => {
+    const { getByText } = render(
+      <Button label="Menu" buttonStyle="gibberish" />,
+    );
+
+    const button = getByText('Menu');
+    expect(button.classList).not.toContain(
+      'psm-button--primary' || 'psm-button--text',
+    );
   });
 
   it('is a link when it has an href', () => {
     const { container } = render(
-      <Button label="Menu" linkRef="octanner.design" primary={false} small />,
+      <Button label="Menu" linkRef="octanner.design" />,
     );
     expect(container.querySelector('a')).toBeTruthy();
   });
