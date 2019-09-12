@@ -7,8 +7,8 @@ export interface InputProps {
   /** Action that fires when input changes  */
   onChange?: (event?: ChangeEvent<HTMLInputElement>) => void;
   'data-testid'?: string;
-  /** Default input value */
-  defaultValue: string;
+  /** Pre-filled input value */
+  prefilledValue?: string;
   /** Disables the input */
   disabled?: boolean;
   /** Text to display when there's an error in the input */
@@ -41,7 +41,7 @@ const defaultIcon: iconType = {
 
 export const Input = ({
   onChange = () => {},
-  defaultValue = '',
+  prefilledValue = '',
   disabled = false,
   errorText = '',
   icon = defaultIcon,
@@ -108,7 +108,7 @@ export const Input = ({
           required={required}
           spellCheck={false}
           type="text"
-          value={defaultValue}
+          value={prefilledValue}
         />
       </div>
       <div

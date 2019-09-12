@@ -17,6 +17,7 @@ interface SearchProps {
 }
 
 interface SearchState {
+  alertShowing: boolean;
   apiResults: apiResult[];
   autocompleteResult: string;
   displayedResult: string;
@@ -69,6 +70,10 @@ export const TypeaheadSearch = ({
     false,
   );
 
+  const [alertShowing, setAlertShowing] = useState<SearchState['alertShowing']>(
+    false,
+  );
+
   const [showResults, setShowResults] = useState<SearchState['showResults']>(
     false,
   );
@@ -111,6 +116,7 @@ export const TypeaheadSearch = ({
     if (!Array.isArray(results)) {
       const errorResult = results as apiResult;
       setShowResults(true);
+      setAlertShowing(true);
       return (
         <Alert
           recurrent
@@ -254,6 +260,10 @@ export const TypeaheadSearch = ({
     userInput.length,
   ]);
 
+  useEffect(() => {
+    if (showResults) setAlertShowing(true);
+  }, [showResults]);
+
   return (
     <div className="psm-input-trailing-icon" id={testid}>
       <div className="psm-typeahead" id="search">
@@ -296,7 +306,9 @@ export const TypeaheadSearch = ({
         }
       </div>
       <div
-        className={`psm-typeahead--results ${showResults ? 'showResults' : ''}`}
+        className={`psm-typeahead--results ${
+          showResults && alertShowing ? 'showResults' : ''
+        }`}
       >
         {isSearching && (
           <div className="psm-typeahead--result">Searching ...</div>
