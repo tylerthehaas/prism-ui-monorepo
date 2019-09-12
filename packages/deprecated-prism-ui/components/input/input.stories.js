@@ -7,7 +7,7 @@ storiesOf('Input', module)
   .addDecorator(withKnobs)
   .add('leading', () => (
     <Input
-      prefilledValue={text('Default value', '')}
+      prefilledValue={text('Prefilled value', '')}
       disabled={boolean('Disabled', false)}
       errorText={text('Error text', 'frist of all how dare u')}
       icon={object('Icon', {
@@ -29,7 +29,7 @@ storiesOf('Input', module)
   ))
   .add('trailing', () => (
     <Input
-      prefilledValue={text('Default value', '')}
+      prefilledValue={text('Prefilled value', '')}
       disabled={boolean('Disabled', false)}
       errorText={text('Error text', 'frist of all how dare u')}
       icon={object('Icon', {

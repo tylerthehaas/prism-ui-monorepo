@@ -1,4 +1,4 @@
-import React, { MouseEvent, ChangeEvent } from 'react';
+import React, { useState, useEffect, MouseEvent, ChangeEvent } from 'react';
 import './input.scss';
 import './input-group.scss';
 import Icon, { IconNames } from '../icon/Icon';
@@ -35,6 +35,10 @@ export interface iconType {
   position?: string;
 }
 
+interface InputState {
+  inputText: string;
+}
+
 const defaultIcon: iconType = {
   name: 'tail-right',
 };
@@ -53,11 +57,24 @@ export const Input = ({
   required = false,
   'data-testid': testid = '',
 }: InputProps) => {
+  const [inputText, setInputText] = useState<InputState['inputText']>(
+    prefilledValue,
+  );
+
   function handleClick(icon: iconType) {
     return (event: MouseEvent<HTMLSpanElement>) => {
       if (icon.onClick) icon.onClick(event);
     };
   }
+
+  function handleChange(event: ChangeEvent<HTMLInputElement>) {
+    if (onChange) onChange(event);
+    setInputText(event.target.value);
+  }
+
+  useEffect(() => {
+    setInputText(prefilledValue);
+  }, [prefilledValue]);
 
   return (
     <>
@@ -103,12 +120,12 @@ export const Input = ({
           data-testid={testid}
           disabled={disabled}
           id="psm-input-text"
-          onChange={onChange}
+          onChange={handleChange}
           placeholder={placeholderText}
           required={required}
           spellCheck={false}
           type="text"
-          value={prefilledValue}
+          value={inputText}
         />
       </div>
       <div
