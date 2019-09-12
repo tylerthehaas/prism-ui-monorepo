@@ -5,7 +5,7 @@
   fill="none"
   xmlns="http://www.w3.org/2000/svg"
 >
-  <rect width="340" height="162" fill="white" />
+  <rect width="340" height="162" />
   <g clip-path="url(#clip0)">
     <path
       fill-rule="evenodd"
