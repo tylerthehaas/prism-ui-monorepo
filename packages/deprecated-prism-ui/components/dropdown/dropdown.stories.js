@@ -24,7 +24,7 @@ storiesOf('Dropdown', module)
             {
               label:
                 'Some interesting facts I learned at the children‘s museum, lightning bugs are actually beetles and I hate children.',
-              onClick: console.log('this was clicked'),
+              onClick: () => console.log('this was clicked'),
             },
             {
               label:

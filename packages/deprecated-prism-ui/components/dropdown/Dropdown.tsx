@@ -1,4 +1,5 @@
 import React, { useState, useEffect, KeyboardEvent, MouseEvent } from 'react';
+// import ReactDOM from 'react-dom';
 import uuid from 'uuid/v4';
 import './dropdown.scss';
 import Icon from '../icon/Icon';
@@ -7,8 +8,6 @@ export interface DropdownProps {
   'data-testid'?: string;
   /** splits the button and the arrow into two different css classes. See Figma -> Prism Library -> Buttons for a representation */
   dualAction?: boolean;
-  /** If you're using a dual-action button, this function fires when the primary button is clicked */
-  dualOnClick?: () => void;
   /** Disables the button and grays it out */
   disabled?: boolean;
   /** See notes for details on details for the type */
@@ -23,11 +22,12 @@ export interface DropdownProps {
 
 export interface Dropdown {
   label: string;
-  onClick?: (event?: MouseEvent<HTMLLIElement | HTMLDivElement>) => void;
+  onClick: (event?: MouseEvent<HTMLLIElement | HTMLDivElement>) => void;
 }
 
 export interface DropdownState {
   activeOption: number;
+  dualActionChoice: Dropdown;
   showMenu: boolean;
 }
 
@@ -36,7 +36,6 @@ export const Dropdown = ({
   disabled = false,
   dropdownMenu = [],
   dualAction = false,
-  dualOnClick = () => {},
   label = 'Dropdown Label',
   style = 'primary',
 }: DropdownProps) => {
@@ -44,12 +43,16 @@ export const Dropdown = ({
   const [activeOption, setActiveOption] = useState<
     DropdownState['activeOption']
   >(-1);
+  const [dualActionChoice, setDualActionChoice] = useState<
+    DropdownState['dualActionChoice']
+  >(dropdownMenu[0]);
 
-  function menuClick(action: Dropdown) {
-    if (action && action.onClick) {
-      action.onClick();
+  function menuClick(dropdown: Dropdown) {
+    if (!dualAction && dropdown && dropdown.onClick) {
+      dropdown.onClick();
     }
-    setShowMenu(false);
+
+    setDualActionChoice(dropdown);
   }
 
   function handleEscape() {
@@ -70,6 +73,10 @@ export const Dropdown = ({
     return setActiveOption(dropdownMenu.length - 1);
   }
 
+  function handleEnter() {
+    menuClick(dropdownMenu[activeOption]);
+  }
+
   function handleKeyboard(
     event: KeyboardEvent<HTMLDivElement | HTMLLIElement>,
   ) {
@@ -79,8 +86,7 @@ export const Dropdown = ({
         break;
       case ' ':
       case 'Enter':
-        setShowMenu(!showMenu);
-        menuClick(dropdownMenu[activeOption]);
+        handleEnter();
         break;
       case 'ArrowDown':
         event.preventDefault();
@@ -121,27 +127,30 @@ export const Dropdown = ({
   }
 
   const buttonContainer = () => {
-    console.log(disabled);
-    if (dualAction)
+    if (dualAction) {
       return (
         <span className="psm-dropdown-dual">
           <button
             className={`psm-dropdown${handleOptions()}`}
             disabled={disabled}
-            onClick={() => (dualOnClick ? dualOnClick() : {})}
+            onClick={() => {
+              if (dualActionChoice.onClick) {
+                dualActionChoice.onClick();
+              }
+            }}
             tabIndex={0}
             type="button"
           >
-            {label}
+            {dualActionChoice.label}
           </button>
           {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
           <button
             aria-label="dropdown-menu"
-            className={`psm-dual-svg${handleOptions()}`}
+            className={`psm-dropdown-dual-svg${handleOptions()}`}
             disabled={disabled}
-            type="button"
             onClick={() => setShowMenu(!showMenu)}
             tabIndex={0}
+            type="button"
           >
             <Icon
               height="16px"
@@ -152,6 +161,7 @@ export const Dropdown = ({
           </button>
         </span>
       );
+    }
     return (
       <button
         className={`psm-dropdown${handleOptions()}`}
@@ -172,8 +182,18 @@ export const Dropdown = ({
   };
 
   useEffect(() => {
-    setActiveOption(-1);
-  }, [showMenu]);
+    function checkForFocus(event: any) {
+      if (!event.target.className.toString().includes('psm-dropdown'))
+        setShowMenu(false);
+    }
+    document.addEventListener('mousedown', checkForFocus, false);
+    return () =>
+      document.removeEventListener('mousedown', checkForFocus, false);
+  });
+
+  useEffect(() => {
+    if (!dualAction) setActiveOption(-1);
+  }, [dualAction]);
 
   return (
     <div
@@ -182,7 +202,6 @@ export const Dropdown = ({
       aria-label={label}
       className="psm-dropdown__container"
       id={testid}
-      onBlur={() => setShowMenu(false)}
       onKeyDown={handleKeyboard}
       role="button"
       tabIndex={-1}
@@ -192,10 +211,12 @@ export const Dropdown = ({
         className={`psm-dropdown__menu ${
           showMenu ? 'psm-dropdown-visible' : 'psm-dropdown-hidden'
         }`}
+        onBlur={() => setShowMenu(false)}
         role="menu"
         id="dropdown-menu-options"
       >
         {dropdownMenu.map((dropdown, index) => (
+          // eslint-disable-next-line jsx-a11y/click-events-have-key-events
           <li
             aria-labelledby="dropdown-menu-options"
             className={
@@ -205,8 +226,10 @@ export const Dropdown = ({
             }
             data-testid={`${testid}-option-${index}`}
             key={uuid()}
-            onClick={() => menuClick(dropdown)}
-            onKeyDown={handleKeyboard}
+            onClick={() => {
+              menuClick(dropdown);
+              setShowMenu(false);
+            }}
             role="menuitem"
           >
             {dropdown.label}
