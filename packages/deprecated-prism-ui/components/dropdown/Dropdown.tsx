@@ -73,10 +73,6 @@ export const Dropdown = ({
     return setActiveOption(dropdownMenu.length - 1);
   }
 
-  function handleEnter() {
-    menuClick(dropdownMenu[activeOption]);
-  }
-
   function handleKeyboard(
     event: KeyboardEvent<HTMLDivElement | HTMLLIElement>,
   ) {
@@ -86,7 +82,7 @@ export const Dropdown = ({
         break;
       case ' ':
       case 'Enter':
-        handleEnter();
+        menuClick(dropdownMenu[activeOption]);
         break;
       case 'ArrowDown':
         event.preventDefault();
