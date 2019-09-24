@@ -4,6 +4,7 @@ import { withKnobs, text, select } from '@storybook/addon-knobs';
 import Avatar from './Avatar';
 
 storiesOf('Avatar', module)
+  .addParameters({ component: Avatar })
   .addDecorator(withKnobs)
   .add('component', () => (
     <Avatar

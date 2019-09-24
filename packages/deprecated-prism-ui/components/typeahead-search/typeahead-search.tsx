@@ -9,11 +9,13 @@ interface SearchProps {
   auth?: string;
   /** Default characters before the search starts is 3 */
   charactersBeforeSearching?: number;
+  /** Custom class name for component */
+  className?: string;
   'data-testid': string;
-  /** The endpoint the API is calling. Default is https://usersearch-perf-qa.alamoapp.octanner.io/users */
-  url: string;
   /** Function that fires when a user is selected. You MUST pass something in for this component to do anything besides display users */
   onSelect: () => void | {};
+  /** The endpoint the API is calling. Default is https://usersearch-perf-qa.alamoapp.octanner.io/users */
+  url: string;
 }
 
 interface SearchState {
@@ -46,6 +48,7 @@ interface apiResult {
 export const TypeaheadSearch = ({
   auth = 'same-origin',
   charactersBeforeSearching = 3,
+  className = '',
   'data-testid': testid = '',
   url = 'https://usersearch-perf-qa.alamoapp.octanner.io/users',
   onSelect,
@@ -265,7 +268,7 @@ export const TypeaheadSearch = ({
   }, [showResults]);
 
   return (
-    <div className="psm-input-trailing-icon" id={testid}>
+    <div className={`psm-input-trailing-icon ${className}`} id={testid}>
       <div className="psm-typeahead" id="search">
         <input
           aria-hidden

@@ -12,6 +12,8 @@ import './pagination.scss';
 interface PaginationProps {
   /** Array of things to paginate */
   children: ReactNode[];
+  /** Custom class name for component */
+  className?: string;
   'data-testid'?: string;
   /** Page to start on */
   defaultPage: number;
@@ -32,6 +34,7 @@ interface PaginationState {
 
 const Pagination = ({
   children,
+  className = '',
   'data-testid': testid = 'pagination',
   defaultPage = 1,
   itemsPerPage = 10,
@@ -178,18 +181,23 @@ const Pagination = ({
 
   useEffect(() => {
     updateDisplay(null, currentPage);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [children, currentPage]);
 
   useEffect(() => {
     setPaginatedItems(children.slice(0, itemsPerPage));
-  }, [itemsPerPage]);
+  }, [children, itemsPerPage]);
 
   useEffect(() => {
     setCurrentPage(defaultPage - 1);
   }, [defaultPage]);
 
   return (
-    <nav aria-label="Pagination Navigation" role="navigation">
+    <nav
+      className={`${className}`}
+      aria-label="Pagination Navigation"
+      role="navigation"
+    >
       <ol data-testid={testid} className="psm-pagination__content">
         {paginatedItems.map(item => (
           <li key={uuid()}>{item}</li>

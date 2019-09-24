@@ -4,6 +4,7 @@ import { withKnobs, number, text } from '@storybook/addon-knobs';
 import Slider from './slider';
 
 storiesOf('Slider', module)
+  .addParameters({ component: Slider })
   .addDecorator(withKnobs)
   .add('component', () => (
     <Slider

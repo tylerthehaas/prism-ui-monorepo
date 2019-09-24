@@ -6,6 +6,8 @@ import TypeaheadSearch from '../typeahead-search/typeahead-search';
 import './header.scss';
 
 interface LayoutProps {
+  /** Custom class name for component */
+  className?: string;
   layout: Layout;
   userSearchUrl: string;
   userSearchOnSelect: () => void;
@@ -42,6 +44,7 @@ interface Bank {
 }
 
 const Header = ({
+  className = '',
   layout = {
     user: {
       id: NaN,
@@ -72,7 +75,7 @@ const Header = ({
 }: LayoutProps) => {
   const { user, customer, banks, tabs } = layout;
   return (
-    <header className="psm-header main-header">
+    <header className={`psm-header main-header ${className}`}>
       <a className="logo" href="/" title={customer && customer.name}>
         <img
           src={customer && customer.logoURL}

@@ -7,7 +7,7 @@
   "scripts": {
     "publishArtifactory": "npmrc artifactory && npm publish prism-ui-css.tar.gz --registry https://artifactory.octanner.net/api/npm/oct-npmjs/",
     "publishGithub": "npmrc github && npm publish prism-ui-css.tar.gz --registry=https://npm.pkg.github.com/",
-    "publish": "npm run publishArtifactory && npm run publishGithub"
+    "publish": "rm -rf prism-ui-css.tar.gz && npm run publishArtifactory && npm run publishGithub"
   },
   "description": "Common UI for OC Tanner – CSS only",
   "license": "ISC",

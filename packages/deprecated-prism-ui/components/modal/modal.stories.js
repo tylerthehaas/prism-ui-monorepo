@@ -13,6 +13,7 @@ INTERVIEWER: at minute 13 you don't even break the board. you just kick it and s
 MOM: that's my fault i held it wrong`;
 
 storiesOf('Modal', module)
+  .addParameters({ component: Modal })
   .addDecorator(withKnobs)
   .add(
     'component',

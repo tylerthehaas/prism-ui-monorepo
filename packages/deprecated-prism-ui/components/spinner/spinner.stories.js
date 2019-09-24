@@ -4,6 +4,7 @@ import { withKnobs, select, text } from '@storybook/addon-knobs';
 import Spinner from './Spinner';
 
 storiesOf('Spinner', module)
+  .addParameters({ component: Spinner })
   .addDecorator(withKnobs)
   .add('component', () => (
     <Spinner

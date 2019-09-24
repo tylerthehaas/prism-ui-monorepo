@@ -5,6 +5,7 @@ import Table from './Table';
 import TableNotes from './table-notes.md';
 
 storiesOf('Table', module)
+  .addParameters({ component: Table })
   .addDecorator(withKnobs)
   .add(
     'component',

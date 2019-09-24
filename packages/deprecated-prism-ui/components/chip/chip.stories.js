@@ -4,6 +4,7 @@ import { withKnobs, text } from '@storybook/addon-knobs';
 import Chip from './Chip';
 
 storiesOf('Chip', module)
+  .addParameters({ component: Chip })
   .addDecorator(withKnobs)
   .add('component', () => (
     <Chip

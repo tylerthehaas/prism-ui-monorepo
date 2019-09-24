@@ -3,6 +3,8 @@ import uuid from 'uuid/v4';
 import './slider.scss';
 
 export type SliderProps = {
+  /** Custom class name for component */
+  className?: string;
   'data-testid'?: string;
   defaultValue: number;
   maxValue: number;
@@ -10,6 +12,7 @@ export type SliderProps = {
   stepValue: number;
   inputId?: string;
 };
+
 export type SliderState = {
   sliderValue: number;
   sliderPosition: number;
@@ -19,6 +22,7 @@ export type SliderState = {
 };
 
 export const Slider = ({
+  className = '',
   'data-testid': testid = '',
   defaultValue = 1,
   maxValue = 100,
@@ -39,11 +43,11 @@ export const Slider = ({
     setSliderValue(Number(event.target.value));
   }
 
-  function calculateTransform() {
-    return ((sliderValue - minValue) / (maxValue - minValue)) * 100;
-  }
+  useEffect(() => {
+    function calculateTransform() {
+      return ((sliderValue - minValue) / (maxValue - minValue)) * 100;
+    }
 
-  function moveSlider() {
     setTransform(calculateTransform());
 
     if (
@@ -72,18 +76,14 @@ export const Slider = ({
     } else {
       setShowMax(true);
     }
-  }
-
-  useEffect(() => {
-    moveSlider();
-  }, [sliderValue]);
+  }, [maxValue, minValue, sliderValue]);
 
   useEffect(() => {
     setSliderValue(defaultValue);
   }, [defaultValue]);
 
   return (
-    <div className="psm-input__slider">
+    <div className={`psm-input__slider ${className}`}>
       {/* eslint-disable-next-line jsx-a11y/label-has-for */}
       <label
         htmlFor={inputId}

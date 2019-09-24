@@ -4,6 +4,7 @@ import { withKnobs, boolean, text } from '@storybook/addon-knobs';
 import Toggle from './Toggle';
 
 storiesOf('Toggle', module)
+  .addParameters({ component: Toggle })
   .addDecorator(withKnobs)
   .add('component', () => (
     <Toggle

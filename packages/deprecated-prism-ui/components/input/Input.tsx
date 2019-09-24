@@ -4,11 +4,9 @@ import './input-group.scss';
 import Icon, { IconNames } from '../icon/Icon';
 
 export interface InputProps {
-  /** Action that fires when input changes  */
-  onChange?: (event?: ChangeEvent<HTMLInputElement>) => void;
+  /** Custom class name for component */
+  className?: string;
   'data-testid'?: string;
-  /** Pre-filled input value */
-  prefilledValue?: string;
   /** Disables the input */
   disabled?: boolean;
   /** Text to display when there's an error in the input */
@@ -21,11 +19,15 @@ export interface InputProps {
   infoText?: string;
   /** Input label */
   label?: string;
+  /** Action that fires when input changes  */
+  onChange?: (event?: ChangeEvent<HTMLInputElement>) => void;
   /** Optional text */
   optionalText?: string;
   /** Input placeholder */
   placeholderText?: string;
   /** Indicates if the input is required or not */
+  /** Pre-filled input value */
+  prefilledValue?: string;
   required?: boolean;
 }
 
@@ -43,16 +45,17 @@ const defaultIcon: iconType = {
 };
 
 export const Input = ({
-  onChange = () => {},
-  prefilledValue = '',
+  className = '',
   disabled = false,
   errorText = '',
   icon = defaultIcon,
   infoText = '',
   invalid = false,
   label = '',
+  onChange = () => {},
   optionalText = '',
   placeholderText = '',
+  prefilledValue = '',
   required = false,
   'data-testid': testid = '',
 }: InputProps) => {
@@ -73,7 +76,10 @@ export const Input = ({
     <>
       {label && (
         // eslint-disable-next-line jsx-a11y/label-has-for
-        <label className="psm-form__label" htmlFor="psm-input-text">
+        <label
+          className={`psm-form__label ${className}`}
+          htmlFor="psm-input-text"
+        >
           {label}
           {!required && (
             <span className="psm-form__optional">{optionalText}</span>

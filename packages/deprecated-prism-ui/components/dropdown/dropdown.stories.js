@@ -11,6 +11,7 @@ import Dropdown from './Dropdown';
 import DropdownNotes from './dropdown-notes.md';
 
 storiesOf('Dropdown', module)
+  .addParameters({ component: Dropdown })
   .addDecorator(withKnobs)
   .add(
     'component',

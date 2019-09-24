@@ -2,6 +2,8 @@ import React from 'react';
 import './avatar.scss';
 
 export type AvatarProps = {
+  /** Custom class name for component */
+  className?: string;
   'data-testid'?: string;
   /** Initials are used when there's no source */
   initials?: string;
@@ -29,12 +31,13 @@ function getAvatarContent(initials?: string, src?: string) {
 }
 
 export const Avatar = ({
-  size = 'md',
-  initials = '',
+  className = '',
   'data-testid': testid = '',
+  initials = '',
+  size = 'md',
   src = '',
 }: AvatarProps) => (
-  <div className={`psm-avatar--${size}`} data-testid={testid}>
+  <div className={`psm-avatar--${size} ${className}`} data-testid={testid}>
     {getAvatarContent(initials, src)}
   </div>
 );

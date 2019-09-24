@@ -4,6 +4,7 @@ import { withKnobs, text, boolean, select } from '@storybook/addon-knobs';
 import Button from './Button';
 
 storiesOf('Button', module)
+  .addParameters({ component: Button })
   .addDecorator(withKnobs)
   .add('component', () => (
     <Button

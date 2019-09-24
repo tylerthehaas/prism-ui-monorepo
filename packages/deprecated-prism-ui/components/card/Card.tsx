@@ -9,6 +9,8 @@ interface CardProps {
   cardTitle?: string;
   /** The content inside the card */
   children: ReactNode;
+  /** Custom class name for component */
+  className?: string;
   'data-testid'?: string;
   date: string | number;
   image?: string;
@@ -27,6 +29,7 @@ export const Card = ({
   cardMenu = false,
   cardTitle = '',
   children,
+  className = '',
   'data-testid': testid = '',
   date = '',
   image = '',
@@ -46,7 +49,10 @@ export const Card = ({
   }
 
   return (
-    <div className={`psm-card--shadow-${shadowType}`} data-testid={testid}>
+    <div
+      className={`psm-card--shadow-${shadowType} ${className}`}
+      data-testid={testid}
+    >
       <div className="psm-card--top">
         <div className="psm-card--info-block">
           <div className="psm-card--title">{cardTitle}</div>

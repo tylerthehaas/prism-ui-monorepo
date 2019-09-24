@@ -3,11 +3,13 @@ import './chip.scss';
 import Icon from '../icon/Icon';
 
 interface ChipProps {
-  'data-testid'?: string;
+  /** Custom class name for component */
+  className?: string;
   /** Action that fires when the chip is closed */
   closeAction: (
     event?: MouseEvent<HTMLSpanElement> | KeyboardEvent<HTMLSpanElement>,
   ) => void;
+  'data-testid'?: string;
   /** Text inside the chip */
   label: string;
 }
@@ -18,6 +20,7 @@ interface ChipState {
 }
 
 export const Chip = ({
+  className = '',
   closeAction,
   'data-testid': testid = '',
   label,
@@ -39,7 +42,7 @@ export const Chip = ({
     isOpen && (
       <div
         onClick={() => setIsSelected(isSelected => !isSelected)}
-        className={`psm-chip${isSelected ? '__selected' : ''}`}
+        className={`psm-chip${isSelected ? '__selected' : ''} ${className}`}
         role="button"
         data-testid={testid}
         tabIndex={0}

@@ -5,6 +5,7 @@ import List from './List';
 import ListNotes from './list-notes.md';
 
 storiesOf('List', module)
+  .addParameters({ component: List })
   .addDecorator(withKnobs)
   .add(
     'component',

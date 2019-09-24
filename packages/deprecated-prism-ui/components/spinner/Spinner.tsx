@@ -2,15 +2,18 @@ import * as React from 'react';
 import './spinner.scss';
 
 export interface SpinnerProps {
-  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+  /** Custom class name for component */
+  className?: string;
   'data-testid'?: String;
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 }
 
 export const Spinner = ({
-  size = 'md',
+  className = '',
   'data-testid': testid = 'spinner',
+  size = 'md',
 }: SpinnerProps) => (
-  <div className={`psm-spinner--${size}`} data-testid={testid}>
+  <div className={`psm-spinner--${size} ${className}`} data-testid={testid}>
     <div />
     <div />
     <div />

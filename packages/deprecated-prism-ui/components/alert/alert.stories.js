@@ -4,6 +4,7 @@ import React from 'react';
 import Alert from './Alert';
 
 storiesOf('Alert', module)
+  .addParameters({ component: Alert })
   .addDecorator(withKnobs)
   .add('component', () => (
     <Alert

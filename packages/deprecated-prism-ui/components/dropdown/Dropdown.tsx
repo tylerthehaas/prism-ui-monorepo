@@ -1,10 +1,11 @@
 import React, { useState, useEffect, KeyboardEvent, MouseEvent } from 'react';
-// import ReactDOM from 'react-dom';
 import uuid from 'uuid/v4';
 import './dropdown.scss';
 import Icon from '../icon/Icon';
 
 export interface DropdownProps {
+  /** Custom class name for component */
+  className?: string;
   'data-testid'?: string;
   /** splits the button and the arrow into two different css classes. See Figma -> Prism Library -> Buttons for a representation */
   dualAction?: boolean;
@@ -32,6 +33,7 @@ export interface DropdownState {
 }
 
 export const Dropdown = ({
+  className = '',
   'data-testid': testid = 'dropdown-label',
   disabled = false,
   dropdownMenu = [],
@@ -127,7 +129,7 @@ export const Dropdown = ({
       return (
         <span className="psm-dropdown-dual">
           <button
-            className={`psm-dropdown${handleOptions()}`}
+            className={`psm-dropdown${handleOptions()} ${className}`}
             disabled={disabled}
             onClick={() => {
               if (dualActionChoice.onClick) {

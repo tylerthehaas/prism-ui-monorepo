@@ -5,6 +5,7 @@ import Select from './Select';
 import SelectNotes from './select-notes.md';
 
 storiesOf('Select', module)
+  .addParameters({ component: Select })
   .addDecorator(withKnobs)
   .add(
     'component',

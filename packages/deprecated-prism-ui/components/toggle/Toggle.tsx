@@ -5,11 +5,13 @@ import validateHexColor from '../core/color/index';
 
 type ToggleProps = {
   color?: string;
+  /** Custom class name for component */
+  className?: string;
+  'data-testid': string;
   defaultToggle?: boolean;
   id?: string;
   label: string;
   toggleAction: (event: FormEvent, active: boolean) => void;
-  'data-testid': string;
 };
 
 type ToggleState = {
@@ -17,6 +19,7 @@ type ToggleState = {
 };
 
 export const Toggle = ({
+  className = '',
   color = '',
   'data-testid': testid = '',
   defaultToggle = false,
@@ -49,7 +52,7 @@ export const Toggle = ({
   }, [defaultToggle]);
 
   return (
-    <label className="psm-toggle__wrapper" htmlFor={id}>
+    <label className={`psm-toggle__wrapper ${className}`} htmlFor={id}>
       <div
         className={`psm-toggle ${active ? 'psm-toggle--active' : ''} ${
           focus ? 'psm-toggle--focus' : ''

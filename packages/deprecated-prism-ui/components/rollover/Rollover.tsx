@@ -3,6 +3,8 @@ import uuid from 'uuid/v4';
 import './rollover.scss';
 
 interface RolloverProps {
+  /** Custom class name for component */
+  className?: string;
   /** Content to include in the rollover */
   content: string[];
   'data-testid'?: string;
@@ -25,6 +27,7 @@ interface RolloverState {
 }
 
 export const Rollover = ({
+  className = '',
   content = [],
   'data-testid': testid = '',
   hoverText = 'Hover over me!',
@@ -132,7 +135,7 @@ export const Rollover = ({
 
   return (
     <div
-      className="psm-rollover"
+      className={`psm-rollover ${className}`}
       data-testid={testid}
       id={`${testid}-rollover-div`}
       onFocus={() => setVisible(true)}

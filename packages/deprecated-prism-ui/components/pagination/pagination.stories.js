@@ -4,6 +4,7 @@ import { withKnobs, number, array } from '@storybook/addon-knobs';
 import Pagination from './Pagination';
 
 storiesOf('Pagination', module)
+  .addParameters({ component: Pagination })
   .addDecorator(withKnobs)
   .add('component', () => (
     <Pagination

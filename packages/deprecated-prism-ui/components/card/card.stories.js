@@ -5,6 +5,7 @@ import { withKnobs, text, select, object } from '@storybook/addon-knobs';
 import Card from './Card';
 
 storiesOf('Card', module)
+  .addParameters({ component: Card })
   .addDecorator(withKnobs)
   .add('component', () => (
     <Card

@@ -3,8 +3,11 @@ import uuid from 'uuid/v4';
 import './textbox.scss';
 
 export type TextboxProps = {
-  /** Event that fires when the text inside changes */
-  onChange?: (event: ChangeEvent<HTMLTextAreaElement>) => void;
+  /** Maximum number of characters in a string–
+   * lets the users know how the character limit if they go over it */
+  characterText?: string;
+  /** Custom class name for component */
+  className?: string;
   'data-testid'?: string;
   /** Disables the text input */
   disabled?: boolean;
@@ -22,11 +25,10 @@ export type TextboxProps = {
   placeholderText?: string;
   /** Determines if the textbox is required or not */
   required?: boolean;
+  /** Event that fires when the text inside changes */
+  onChange?: (event: ChangeEvent<HTMLTextAreaElement>) => void;
   /** Optional text to display to users */
   optionalText?: string;
-  /** Maximum number of characters in a string–
-   * lets the users know how the character limit if they go over it */
-  characterText?: string;
   textAreaId?: string;
   /** Message that displays if a user inputs too much text */
   textTooLongMsg?: string;
@@ -37,7 +39,8 @@ export type TextboxState = {
 };
 
 export const Textbox = ({
-  onChange = () => {},
+  characterText = 'Characters',
+  className = '',
   'data-testid': testid = '',
   disabled = false,
   errorText = 'Error text',
@@ -45,10 +48,10 @@ export const Textbox = ({
   invalid = false,
   inputLabel = 'Input label',
   maxChars = 250,
+  onChange = () => {},
   placeholderText = 'Placeholder Text',
   required = false,
   optionalText = 'Optional',
-  characterText = 'Characters',
   textAreaId = `psm-form__textarea-${uuid}`,
   textTooLongMsg = `Your message is too long. Cut back to ${maxChars} characters.`,
 }: TextboxProps) => {
@@ -68,7 +71,7 @@ export const Textbox = ({
         // eslint-disable-next-line jsx-a11y/label-has-for
         <label
           htmlFor={textAreaId}
-          className="psm-form__label"
+          className={`psm-form__label ${className}`}
           data-testid={testid}
         >
           {inputLabel}

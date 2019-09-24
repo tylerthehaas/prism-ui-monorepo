@@ -4,6 +4,7 @@ import { withKnobs, text, boolean, object } from '@storybook/addon-knobs';
 import Input from './Input';
 
 storiesOf('Input', module)
+  .addParameters({ component: Input })
   .addDecorator(withKnobs)
   .add('leading', () => (
     <Input

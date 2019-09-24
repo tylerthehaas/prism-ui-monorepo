@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { withKnobs, object, boolean } from '@storybook/addon-knobs';
+import { withKnobs, object, boolean, text } from '@storybook/addon-knobs';
 import Nav from './Nav';
 import NavNotes from './nav-notes.md';
 
@@ -10,6 +10,7 @@ storiesOf('Nav', module)
     'component',
     () => (
       <Nav
+        className={text('Class name', 'class name')}
         horizontal={boolean('Horizontal?', false)}
         tabs={object('Tab object', [
           {

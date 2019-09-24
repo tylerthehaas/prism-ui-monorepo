@@ -11,6 +11,8 @@ interface ModalProps {
   actions?: Action[];
   'data-testid'?: string;
   children: ReactNode;
+  /** Custom class name for component */
+  className?: string;
   /** If true, includes a button that shows the modal */
   modalTrigger: boolean;
   /** Label of the modal trigger */
@@ -43,6 +45,7 @@ let TITLE_ID_INC = 0;
 export const Modal = ({
   actions,
   children,
+  className = '',
   'data-testid': testid = 'prism-modal',
   modalTrigger = false,
   modalTriggerLabel,
@@ -99,7 +102,7 @@ export const Modal = ({
             aria-expanded={isShowing}
             aria-live="assertive"
             aria-modal="true"
-            className={`psm-modal--${isShowing ? 'show' : 'hide'}`}
+            className={`psm-modal--${isShowing ? 'show' : 'hide'} ${className}`}
             data-testid={testid}
           >
             <div className="psm-modal__content">

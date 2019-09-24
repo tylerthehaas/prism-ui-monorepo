@@ -2,6 +2,8 @@ import React, { MouseEvent } from 'react';
 import './button.scss';
 
 export interface ButtonProps {
+  /** Custom class name for component */
+  className?: string;
   'data-testid'?: string;
   /** Disables the button and grays it out.
    * Only works if there is no linkRef or associated action */
@@ -20,6 +22,7 @@ export interface ButtonProps {
 }
 
 export const Button = ({
+  className = '',
   'data-testid': testid = '',
   disabled = false,
   label = 'Button',
@@ -41,7 +44,7 @@ export const Button = ({
     <>
       {(!linkRef && (
         <button
-          className={`psm-button${handleOptions()}`}
+          className={`psm-button${handleOptions()} ${className}`}
           data-testid={testid}
           disabled={disabled}
           onClick={onClick}

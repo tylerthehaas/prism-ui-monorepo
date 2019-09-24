@@ -6,6 +6,8 @@ interface TableProps {
   /** All actions */
   actions?: TableAction[];
   box?: boolean;
+  /** Custom class name for component */
+  className?: string;
   columns: Column[];
   data: TableData[];
   'data-testid'?: string;
@@ -36,6 +38,7 @@ export const Table = ({
     },
   ],
   box = false,
+  className = '',
   columns = [
     {
       label: 'Column label',
@@ -50,7 +53,9 @@ export const Table = ({
   'data-testid': testid = '',
   title = 'My New Table',
 }: TableProps) => (
-  <div className={`psm-table__wrapper ${box ? 'psm-table--box' : ''}`}>
+  <div
+    className={`psm-table__wrapper ${box ? 'psm-table--box' : ''} ${className}`}
+  >
     {actions && actions.length !== 0 && (
       <div className="psm-table__actions">
         {actions.map((action, index) => (

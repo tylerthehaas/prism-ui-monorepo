@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
-    "allowJs": true,
     "allowSyntheticDefaultImports": true,
     "baseUrl": "./",
+    "declaration": true,
     "downlevelIteration": true,
     "esModuleInterop": true,
     "jsx": "react",
@@ -16,7 +16,7 @@
     "sourceMap": true,
     "strict": true,
     "suppressImplicitAnyIndexErrors": true,
-    "target": "esnext",
+    "target": "esnext"
   },
   "include": ["./components/**/*.tsx"]
 }

@@ -5,6 +5,8 @@ import Icon from '../icon/Icon';
 import { Dropdown } from '../dropdown/Dropdown';
 
 interface ListProps {
+  /** Custom class name for component */
+  className?: string;
   listItems: ListItem[];
   /** A dropdown menu on the side of the list item. If empty, nothing will appear */
   menu?: Dropdown[];
@@ -23,7 +25,11 @@ interface ListState {
   hoverState: boolean;
 }
 
-export const List = ({ listItems = [], menu = [] }: ListProps) => {
+export const List = ({
+  className = '',
+  listItems = [],
+  menu = [],
+}: ListProps) => {
   const [menuOpen, setMenuOpen] = useState<ListState['menuOpen']>(false);
   const [hoverState, setHoverState] = useState<ListState['hoverState']>(true);
   const [activeItem, setActiveItem] = useState<ListState['activeItem']>(0);
@@ -42,7 +48,7 @@ export const List = ({ listItems = [], menu = [] }: ListProps) => {
   const listLength = listItems.length;
 
   return (
-    <ul className="psm-list">
+    <ul className={`psm-list ${className}`}>
       {listItems.map((item, index) => (
         <li
           key={uuid()}

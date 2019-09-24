@@ -8,6 +8,7 @@ const CenterComponent = ({ children }) => (
 );
 
 storiesOf('Rollover', module)
+  .addParameters({ component: Rollover })
   .addDecorator(withKnobs)
   .add('component', () => (
     <CenterComponent>

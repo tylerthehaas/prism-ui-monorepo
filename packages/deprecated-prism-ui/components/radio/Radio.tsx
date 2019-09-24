@@ -5,6 +5,8 @@ import './radio.scss';
 interface RadioProps {
   /** Radio choices */
   buttons: RadioButton[];
+  /** Custom class name for component */
+  className?: string;
   'data-testid'?: string;
   /** Helps link a form together */
   idPrefix?: string;
@@ -22,8 +24,9 @@ interface RadioState {
 }
 
 export const Radio = ({
-  'data-testid': testid = '',
   buttons = [],
+  className = '',
+  'data-testid': testid = '',
   idPrefix = '',
   name = '',
 }: RadioProps) => {
@@ -40,7 +43,7 @@ export const Radio = ({
   }
 
   return (
-    <fieldset className="psm-radio__group">
+    <fieldset className={`psm-radio__group ${className}`}>
       <legend>{name}</legend>
       {buttons.map((button, index) => (
         <div key={uuid()}>

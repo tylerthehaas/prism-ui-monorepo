@@ -3,6 +3,8 @@ import uuid from 'uuid/v4';
 import './nav.scss';
 
 interface NavProps {
+  /** Custom class name for component */
+  className?: string;
   /** Highlights the active tab */
   'data-testid'?: string;
   /** Determines the component's orientation */
@@ -23,6 +25,7 @@ export interface Tab {
 }
 
 export const Nav = ({
+  className = '',
   'data-testid': testid = '',
   horizontal = false,
   tabs = [],
@@ -33,7 +36,7 @@ export const Nav = ({
 
   return (
     <ul
-      className={`psm-nav${horizontal ? '-horizontal' : ''}`}
+      className={`psm-nav${horizontal ? '-horizontal' : ''} ${className}`}
       id={testid}
       role="menubar"
     >

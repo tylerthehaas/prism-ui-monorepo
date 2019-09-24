@@ -4,6 +4,7 @@ import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
 import Textbox from './textbox';
 
 storiesOf('Textbox', module)
+  .addParameters({ component: Textbox })
   .addDecorator(withKnobs)
   .add('component', () => (
     <Textbox

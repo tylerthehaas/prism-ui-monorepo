@@ -9,6 +9,8 @@ interface AlertProps {
   alertType?: 'error' | 'info' | 'success' | 'warning';
   /** Alert content */
   children: ReactNode;
+  /** Custom class name for component */
+  className?: string;
   'data-testid'?: string;
   /** Called when an alert is dismissed */
   onDismiss?: (event: MouseEvent<HTMLButtonElement>) => void;
@@ -24,6 +26,7 @@ const Alert = ({
   alertPrefix = '',
   alertType = 'info',
   children,
+  className = '',
   'data-testid': testid = 'alert',
   onDismiss = () => {},
   recurrent = false,
@@ -59,7 +62,7 @@ const Alert = ({
       {!dismissed && (
         <div
           aria-live="assertive"
-          className={`psm-alert--${alertType}`}
+          className={`psm-alert--${alertType} ${className}`}
           data-testid={testid}
           role="alert"
         >

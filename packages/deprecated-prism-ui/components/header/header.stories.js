@@ -1,19 +1,20 @@
 import { storiesOf } from '@storybook/react';
 import React from 'react';
-import Header from './Header';
 import { withKnobs, object } from '@storybook/addon-knobs';
+import Header from './Header';
 
 const layout = {
   user: {
     id: 123456,
     firstName: 'John',
     lastName: 'Doe',
-    profileURL: 'https://randomuser.me/api/portraits/men/32.jpg'
+    profileURL: 'https://randomuser.me/api/portraits/men/32.jpg',
   },
   customer: {
     id: 6971300,
     name: 'O.C. Tanner',
-    logoURL: 'https://www.octanner.com/content/dam/oc-tanner/images/OCTannerLogos/2017-OCTLogo-lowres.png'
+    logoURL:
+      'https://www.octanner.com/content/dam/oc-tanner/images/OCTannerLogos/2017-OCTLogo-lowres.png',
   },
   banks: [
     {
@@ -21,7 +22,8 @@ const layout = {
       isAccessCodeBank: false,
       isCurrentBank: true,
       isPointsBank: true,
-      link: 'https://qa.appreciatehub.com/ng/catalog.jsf?programId=4509251#/cart',
+      link:
+        'https://qa.appreciatehub.com/ng/catalog.jsf?programId=4509251#/cart',
       name: 'OCT Points',
       points: 3165,
     },
@@ -37,5 +39,6 @@ const layout = {
 };
 
 storiesOf('Header', module)
+  .addParameters({ component: Header })
   .addDecorator(withKnobs)
   .add('default', () => <Header layout={object('layout', layout)} />);

@@ -5,6 +5,7 @@ import Radio from './Radio';
 import RadioNotes from './radio-notes.md';
 
 storiesOf('Radio', module)
+  .addParameters({ component: Radio })
   .addDecorator(withKnobs)
   .add(
     'knobs',
