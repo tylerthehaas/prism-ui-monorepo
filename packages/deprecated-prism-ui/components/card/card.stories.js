@@ -9,10 +9,6 @@ storiesOf('Card', module)
   .addDecorator(withKnobs)
   .add('component', () => (
     <Card
-      cardTitle={text(
-        'Card title',
-        'Pick up artists and garbage men should switch names',
-      )}
       cardMenu={object('Card Menu', [
         {
           label: `The Little Rascals implies the existence of larger more terrifying rascals.`,
@@ -24,6 +20,11 @@ storiesOf('Card', module)
           onClick: console.log('i have been clicked'),
         },
       ])}
+      cardTitle={text(
+        'Card title',
+        'Pick up artists and garbage men should switch names',
+      )}
+      className={text('class name', 'class name')}
       date={text('Date', 'today')}
       image="https://i.imgur.com/gTbQZhW.jpg"
       imageAlt="chainsaw dog"

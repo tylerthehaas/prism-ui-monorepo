@@ -18,9 +18,10 @@ describe('<Avatar/>', () => {
     expect(getByText('TF')).toBeInTheDocument();
   });
 
-  it('falls back to the default silhouette', () => {
-    const { getByTestId } = render(<Avatar size="md" />);
-    expect(getByTestId('avatar-silhouette')).toBeInTheDocument();
+  it('defaults to initials', () => {
+    const { container } = render(<Avatar size="md" initials={"JV"} />);
+
+    expect(container.querySelector('.psm-avatar__text')[0]).not.toBeNull
   });
 
   it('defaults to medium size', () => {

@@ -8,7 +8,8 @@ storiesOf('Spinner', module)
   .addDecorator(withKnobs)
   .add('component', () => (
     <Spinner
-      size={select('Size', ['xs', 'sm', 'md', 'lg', 'xl'], 'lg')}
+      className={text('class name', 'class name')}
       data-testid={text('test id', 'test id')}
+      size={select('Size', ['xs', 'sm', 'md', 'lg', 'xl'], 'lg')}
     />
   ));

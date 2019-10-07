@@ -13,6 +13,7 @@ storiesOf('Rollover', module)
   .add('component', () => (
     <CenterComponent>
       <Rollover
+        className={text('class name', 'class name')}
         content={array('Rollover content', [
           'John Smith',
           'Jane Smith',

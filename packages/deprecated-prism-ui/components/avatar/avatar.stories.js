@@ -8,8 +8,9 @@ storiesOf('Avatar', module)
   .addDecorator(withKnobs)
   .add('component', () => (
     <Avatar
-      size={select('size', ['xs', 'sm', 'md', 'lg', 'xl'], 'lg')}
+      className={text('class name', 'class name')}
       initials={text('Initials', 'BL')}
+      size={select('size', ['xs', 'sm', 'md', 'lg', 'xl'], 'lg')}
       src={text('Image source', 'https://i.imgur.com/qBZCY4W.png')}
     />
   ));

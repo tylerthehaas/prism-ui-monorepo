@@ -1,6 +1,6 @@
 import { storiesOf } from '@storybook/react';
 import React from 'react';
-import { withKnobs, object } from '@storybook/addon-knobs';
+import { withKnobs, object, text } from '@storybook/addon-knobs';
 import Header from './Header';
 
 const layout = {
@@ -41,4 +41,9 @@ const layout = {
 storiesOf('Header', module)
   .addParameters({ component: Header })
   .addDecorator(withKnobs)
-  .add('default', () => <Header layout={object('layout', layout)} />);
+  .add('default', () => (
+    <Header
+      className={text('class name', 'class name')}
+      layout={object('layout', layout)}
+    />
+  ));

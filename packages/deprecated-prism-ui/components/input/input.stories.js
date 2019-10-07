@@ -8,7 +8,7 @@ storiesOf('Input', module)
   .addDecorator(withKnobs)
   .add('leading', () => (
     <Input
-      prefilledValue={text('Prefilled value', '')}
+      className={text('class name', 'class name')}
       disabled={boolean('Disabled', false)}
       errorText={text('Error text', 'frist of all how dare u')}
       icon={object('Icon', {
@@ -25,6 +25,7 @@ storiesOf('Input', module)
         'Placeholder Text',
         'Did you ever hear the tragedy of Darth Plagueis The Wise? I thought not.',
       )}
+      prefilledValue={text('Prefilled value', '')}
       required={boolean('Required', false)}
     />
   ))

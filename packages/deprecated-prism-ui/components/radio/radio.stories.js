@@ -20,6 +20,7 @@ storiesOf('Radio', module)
             onClick: () => console.log('I have been clicked'),
           },
         ])}
+        className={text('class name', 'class name')}
         name={text('name', 'Radio name')}
       />
     ),

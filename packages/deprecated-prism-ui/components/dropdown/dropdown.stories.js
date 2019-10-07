@@ -17,6 +17,7 @@ storiesOf('Dropdown', module)
     'component',
     () => (
       <Dropdown
+        className={text('class name', 'class name')}
         disabled={boolean('Disabled', false)}
         dualAction={boolean('Dual action', false)}
         dropdownMenu={

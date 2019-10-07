@@ -8,9 +8,10 @@ storiesOf('Button', module)
   .addDecorator(withKnobs)
   .add('component', () => (
     <Button
-      style={select('button style', ['primary', 'small', 'text'])}
-      linkRef={text('Link Ref', "I'm a link ref!")}
+      className={text('class name', 'class name')}
       disabled={boolean('Disabled', false)}
+      linkRef={text('Link Ref', "I'm a link ref!")}
       onClick={() => alert('button clicked')}
+      buttonStyle={select('button style', ['primary', 'small', 'text'])}
     />
   ));

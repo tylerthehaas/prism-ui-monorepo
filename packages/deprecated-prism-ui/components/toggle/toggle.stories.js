@@ -8,6 +8,7 @@ storiesOf('Toggle', module)
   .addDecorator(withKnobs)
   .add('component', () => (
     <Toggle
+      className={text('class name', 'class name')}
       defaultToggle={boolean('Default toggle', true)}
       label={text('Label', 'Label for the toggle')}
       color={text('Color', '7942dd')}

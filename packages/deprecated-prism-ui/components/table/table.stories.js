@@ -38,6 +38,7 @@ storiesOf('Table', module)
             key: 'col3',
           },
         ])}
+        className={text('class name', 'class name')}
         data={object('Data', [
           {
             col1: 'Some data',

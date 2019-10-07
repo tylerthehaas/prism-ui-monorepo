@@ -11,23 +11,12 @@ export type AvatarProps = {
   src?: string;
 };
 
-function getAvatarContent(initials?: string, src?: string) {
+function getAvatarContent(initials: string, src?: string) {
   if (src) {
     return <img alt="User Avatar" className="psm-avatar__img" src={src} />;
   }
 
-  if (initials) {
-    return <span className="psm-avatar__text">{initials}</span>;
-  }
-
-  return (
-    <div
-      aria-label="user avatar no image provided"
-      className="psm-avatar__silhouette"
-      data-testid="avatar-silhouette"
-      role="img"
-    />
-  );
+  return <span className="psm-avatar__text">{initials}</span>;
 }
 
 export const Avatar = ({

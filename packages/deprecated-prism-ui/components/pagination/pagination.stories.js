@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { withKnobs, number, array } from '@storybook/addon-knobs';
+import { withKnobs, number, array, text } from '@storybook/addon-knobs';
 import Pagination from './Pagination';
 
 storiesOf('Pagination', module)
@@ -8,6 +8,7 @@ storiesOf('Pagination', module)
   .addDecorator(withKnobs)
   .add('component', () => (
     <Pagination
+      className={text('class name', 'class name')}
       defaultPage={number('page to start on', 1)}
       itemsPerPage={number('items per page', 10)}
     >

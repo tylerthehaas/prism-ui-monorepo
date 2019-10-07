@@ -10,8 +10,9 @@ storiesOf('Alert', module)
     <Alert
       alertPrefix={text('Alert prefix', 'a message!')}
       alertType={select('Alert types', ['info', 'success', 'error', 'warning'])}
-      onDismiss={() => alert('')}
+      className={text('class name', 'class name')}
       dataTestId={text('Data test id', 'any id you fancy')}
+      onDismiss={() => alert('')}
     >
       {text(
         'Alert message',

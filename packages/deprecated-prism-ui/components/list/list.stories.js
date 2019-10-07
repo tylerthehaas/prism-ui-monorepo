@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { withKnobs, object } from '@storybook/addon-knobs';
+import { withKnobs, object, text } from '@storybook/addon-knobs';
 import List from './List';
 import ListNotes from './list-notes.md';
 
@@ -11,12 +11,7 @@ storiesOf('List', module)
     'component',
     () => (
       <List
-        menu={object('show menu', [
-          { label: 'Print', onClick: console.log('print') },
-          { label: 'Resend', onClick: console.log('resend') },
-          { label: 'Duplicate', onClick: console.log('duplicate') },
-          { label: 'Remove', onClick: console.log('remove') },
-        ])}
+        className={text('class name', 'class name')}
         listItems={object('List items', [
           {
             content: `Roommate: My thesaurus is missing. I think someone stole it.
@@ -28,6 +23,12 @@ storiesOf('List', module)
             content: 'Did you know: L.L.Bean is Spanish for “the the bean.“',
             age: 'the distant future',
           },
+        ])}
+        menu={object('show menu', [
+          { label: 'Print', onClick: console.log('print') },
+          { label: 'Resend', onClick: console.log('resend') },
+          { label: 'Duplicate', onClick: console.log('duplicate') },
+          { label: 'Remove', onClick: console.log('remove') },
         ])}
       />
     ),

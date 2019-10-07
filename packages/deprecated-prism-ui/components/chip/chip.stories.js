@@ -8,6 +8,7 @@ storiesOf('Chip', module)
   .addDecorator(withKnobs)
   .add('component', () => (
     <Chip
+      className={text('class name', 'class name')}
       closeAction={() => {}}
       label={text(
         'Label',

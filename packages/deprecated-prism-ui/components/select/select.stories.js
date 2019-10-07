@@ -11,8 +11,7 @@ storiesOf('Select', module)
     'component',
     () => (
       <Select
-        data-testid={text('DataTestId', '123')}
-        selectLabel={text('SelectLabel', 'Select Label')}
+        className={text('class name', 'class name')}
         content={object('content object', [
           {
             text:
@@ -35,6 +34,8 @@ storiesOf('Select', module)
             value: 4,
           },
         ])}
+        data-testid={text('DataTestId', '123')}
+        selectLabel={text('SelectLabel', 'Select Label')}
       />
     ),
     {
