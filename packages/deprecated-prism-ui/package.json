@@ -1,6 +1,6 @@
 {
   "name": "@octanner/prism-ui",
-  "version": "5.1.0",
+  "version": "5.1.1",
   "engines": {
     "node": ">=10.0.0"
   },
@@ -98,7 +98,7 @@
     "express": "^4.17.1",
     "express-static-gzip": "^1.1.3",
     "file-loader": "^2.0.0",
-    "helmet": "^3.20.0",
+    "helmet": "^3.21.1",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
     "jest": "^24.9.0",

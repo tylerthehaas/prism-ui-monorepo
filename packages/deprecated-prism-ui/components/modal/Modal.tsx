@@ -96,7 +96,7 @@ export const Modal = ({
         <Button onClick={() => setIsShowing(true)} label={modalTriggerLabel} />
       ) : null}
       <div onClick={handleDialogClick} role="presentation">
-        <FocusLock noFocusGuards>
+        <FocusLock noFocusGuards disabled={!isShowing}>
           <dialog
             aria-labelledby={titleId}
             aria-expanded={isShowing}
