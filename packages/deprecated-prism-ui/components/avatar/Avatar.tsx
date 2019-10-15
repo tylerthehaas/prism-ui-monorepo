@@ -16,7 +16,18 @@ function getAvatarContent(initials: string, src?: string) {
     return <img alt="User Avatar" className="psm-avatar__img" src={src} />;
   }
 
-  return <span className="psm-avatar__text">{initials}</span>;
+  if (!src && initials) {
+    return <span className="psm-avatar__text">{initials}</span>;
+  }
+
+  return (
+    <div
+      aria-label="user avatar no image provided"
+      className="psm-avatar__silhouette"
+      data-testid="avatar-silhouette"
+      role="img"
+    />
+  );
 }
 
 export const Avatar = ({
@@ -25,10 +36,12 @@ export const Avatar = ({
   initials = '',
   size = 'md',
   src = '',
-}: AvatarProps) => (
-  <div className={`psm-avatar--${size} ${className}`} data-testid={testid}>
-    {getAvatarContent(initials, src)}
-  </div>
-);
+}: AvatarProps) => {
+  return (
+    <div className={`psm-avatar--${size} ${className}`} data-testid={testid}>
+      {getAvatarContent(initials, src)}
+    </div>
+  );
+};
 
 export default Avatar;
