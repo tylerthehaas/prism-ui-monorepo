@@ -1,12 +1,20 @@
 @import '../core/color/variables';
 @import '../core/spacing/variables';
 @import '../core/icon/variables';
+@import '../core/type/variables';
+
+@mixin buttonText {
+  @extend %psm-button;
+    background-color: transparent;
+    border: none;
+}
 
 $psm-button-height: 36px;
 $psm-border-width: 1px;
 
 .psm-button,
 %psm-button {
+  font-family: $psm-type-font-family;
   display: inline-block;
   position: relative;
   box-sizing: border-box;
@@ -39,7 +47,16 @@ $psm-border-width: 1px;
     @extend %psm-button;
     background-color: transparent;
     border: none;
+    @include buttonText;
     color: #0066ED;
+  }
+
+  &--menu {
+    @include buttonText;
+    color: black;
+    &:hover {
+      background: transparent;
+    }
   }
 
   &:hover {

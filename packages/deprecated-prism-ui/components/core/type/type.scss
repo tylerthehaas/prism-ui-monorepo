@@ -1,27 +1,12 @@
 @import '../color/variables';
 @import 'variables';
 
-@font-face {
-  font-family: 'ProximaNova-Reg';
-  src: url('./fonts/ProximaNova-Reg.woff') format('woff');
-}
-
-@font-face {
-  font-family: 'Domine';
-  src: url('./fonts/Domine-Regular.ttf') format('ttf');
-}
-
-@font-face {
-  font-family: 'Roboto';
-  src: url('./fonts/Roboto-Regular.ttf') format('ttf');
-}
-
 html,
 body {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   font-family: $psm-type-font-family;
-  color: $psm-color-gray-600;
+  color: $psm-color-gray-900;
   line-height: 2;
 }
 

@@ -1,11 +1,10 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto');
-@import url('https://fonts.googleapis.com/css?family=Domine:400,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans&display=swap');
 
 $psm-mount-location: '' !default;
 $psm-type-font-safe: 'Helvetica', 'Arial', sans-serif !default;
-$psm-type-font-header: 'ProximaNova-Reg', $psm-type-font-safe;
-$psm-type-font-family: 'Roboto', sans-serif;
-$psm-type-card-title: 'Domine', serif;
+$psm-type-font-header: 'Noto Sans', $psm-type-font-safe;
+$psm-type-font-family: 'Noto Sans', sans-serif;
+$psm-type-card-title: 'Noto Sans', serif;
 
 $psm-paragraph-font-size: 14px;
 $psm-subtext-font-size: 12px;

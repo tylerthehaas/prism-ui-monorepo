@@ -18,7 +18,7 @@ export interface ButtonProps {
   /** Primary makes the button larger and colored $psm-color-primary-500, which defaults to purple,
    * text removes the button and leaves just styled text, and small makes the button small
    */
-  buttonStyle?: 'primary' | 'text';
+  buttonStyle?: 'primary' | 'text' | 'menu';
 }
 
 export const Button = ({
@@ -36,6 +36,8 @@ export const Button = ({
         return '--primary';
       case 'text':
         return '--text';
+      case 'menu':
+        return '--menu';
       default:
         return '';
     }
