@@ -2,7 +2,6 @@ import React from 'react';
 import Avatar from '../avatar/Avatar';
 import Icon from '../icon/Icon';
 import Nav, { Tab } from '../nav/Nav';
-import TypeaheadSearch from '../typeahead-search/typeahead-search';
 import './header.scss';
 
 interface LayoutProps {
@@ -14,23 +13,24 @@ interface LayoutProps {
 }
 
 interface Layout {
-  user: User;
-  customer: Customer;
   banks: Bank[];
-  tabs: Tab[];
+  customer: Customer;
+  tabs: { primary: Tab[], secondary: Tab[] };
+  user: User;
 }
 
 interface User {
-  id: number;
   firstName: string;
+  id: number;
   lastName: string;
+  notifications?: number;
   profileURL: string;
 }
 
 interface Customer {
   id: number;
-  name: string;
   logoURL: string;
+  name: string;
 }
 
 interface Bank {
@@ -43,7 +43,7 @@ interface Bank {
   points: number;
 }
 
-const Header = ({
+export const Header = ({
   className = '',
   layout = {
     user: {
@@ -68,12 +68,14 @@ const Header = ({
         points: NaN,
       },
     ],
-    tabs: [],
+    tabs: {
+      primary: [],
+      secondary: []
+    },
   },
-  userSearchUrl = 'https://usersearch-perf-qa.alamoapp.octanner.io/users',
-  userSearchOnSelect = () => {},
 }: LayoutProps) => {
   const { user, customer, banks, tabs } = layout;
+
   return (
     <header className={`psm-header main-header ${className}`}>
       <a className="logo" href="/" title={customer && customer.name}>
@@ -83,46 +85,39 @@ const Header = ({
         />
       </a>
 
-      <TypeaheadSearch
-        data-testid="header-user-search"
-        url={userSearchUrl}
-        onSelect={userSearchOnSelect}
-      />
-
       <div className="account">
-        <button
-          type="button"
-          className="bell showMenu"
-          aria-label="Notifications"
-        >
-          <Icon iconName="notification" />
-          <span className="alert">99+</span>
-        </button>
+        <span className="notifications">
+          <button
+            type="button"
+            className="bell showMenu"
+            aria-label="Notifications"
+          >
+            <Icon iconName="notification" />
+            <span className={user && user.notifications ? 'alert' : 'alert'}>
+              {99}
+            </span>
+          </button>
+        </span>
 
-        <a className="cart" href="/index.html" aria-label="Go to cart">
-          <Icon iconName="shopping-cart" />
-        </a>
+        <div className="user-info">
+          <span className="user-name">
+            {user.firstName} {user.lastName}
+          </span>
 
-        <a className="points" href="/">
-          {banks &&
-            `${banks.reduce((sum, bank) => sum + bank.points, 0)} points`}
-        </a>
+          <a className="points" href="/">
+            {banks &&
+              `${banks.reduce((sum, bank) => sum + bank.points, 0)} pts`}
+          </a>
+        </div>
 
-        <button
-          type="button"
-          className="psm-avatar--sm showMenu"
-          id="account-menu"
-        >
+        <button className="profile-menu" id="account-menu" type="button">
           <Avatar size="sm" src={user && user.profileURL} />
         </button>
       </div>
 
       <nav className="main-nav">
-        <Nav data-testid="nav1" horizontal tabs={tabs} />
-        <a className="admin-tools" href="/">
-          Open admin tools
-          <Icon iconName="arrow-tail-right" />
-        </a>
+        <Nav className="primary-nav" horizontal tabs={tabs.primary} />
+        <Nav className="secondary-nav" horizontal tabs={tabs.secondary} />
       </nav>
     </header>
   );

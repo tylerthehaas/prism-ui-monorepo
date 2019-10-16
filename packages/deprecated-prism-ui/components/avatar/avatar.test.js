@@ -6,7 +6,7 @@ import Avatar from './Avatar';
 import tobias from '../../test-config/__mocks__/tobias.jpg';
 
 describe('<Avatar/>', () => {
-  it('prioritizes props.src', () => {
+  it('renders an image when given a source', () => {
     const { getByAltText } = render(
       <Avatar initials="TF" size="md" src={tobias} />,
     );
@@ -22,6 +22,12 @@ describe('<Avatar/>', () => {
     const { container } = render(<Avatar size="md" initials={"JV"} />);
 
     expect(container.querySelector('.psm-avatar__text')[0]).not.toBeNull
+  });
+
+  it('renders initials', () => {
+    const { container } = render(<Avatar size="md" initials={'JV'} />);
+
+    expect(container.querySelector('.psm-avatar__text')[0]).not.toBeNull;
   });
 
   it('defaults to medium size', () => {

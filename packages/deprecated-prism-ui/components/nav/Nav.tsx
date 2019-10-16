@@ -10,25 +10,28 @@ interface NavProps {
   /** Determines the component's orientation */
   horizontal?: boolean;
   /** Array of destinations in the navbarâ€“ see notes for information on type */
-  tabs: Tab[];
+  tabs?: Tab[];
 }
 
 export interface Tab {
   /** If true, this indicates that this is the active tab */
   active: boolean;
-  /** Name of the tab */
-  tabName: string;
-  /** Event that fires when the user clicks a tab */
-  onClick: (event?: MouseEvent<HTMLLIElement>) => void;
+  dropdowns?: [];
+  /** Where the tab navigates to. Defaults to /tabName */
+  href?: string;
   /** Number of errors in a given tab */
   numErrors?: number;
+  /** Event that fires when the user clicks a tab */
+  onClick: (event?: MouseEvent<HTMLLIElement>) => void;
+  /** Name of the tab */
+  tabName: string;
 }
 
 export const Nav = ({
   className = '',
   'data-testid': testid = '',
   horizontal = false,
-  tabs = [],
+  tabs,
 }: NavProps) => {
   function handleClick(tab: Tab, event: MouseEvent<HTMLLIElement>) {
     if (tab.onClick) tab.onClick(event);
@@ -38,23 +41,33 @@ export const Nav = ({
     <ul
       className={`psm-nav${horizontal ? '-horizontal' : ''} ${className}`}
       id={testid}
-      role="menubar"
+      role='menubar'
     >
-      {tabs.map((tab, index) => (
+      {tabs && tabs.map((tab, index) => (
         // eslint-disable-next-line jsx-a11y/click-events-have-key-events
         <li
           className={`${tab.active ? 'psm-nav__active' : 'psm-nav__tab'}`}
-          id={`tab-${index}`}
+          id={`tab-${index}-${uuid()}`}
           key={uuid()}
           onClick={event => handleClick(tab, event)}
-          role="menuitem"
+          role={'menuitem'}
         >
+          {tab.href ? (<a href={tab.href}>
           {tab.tabName}
           {tab.numErrors && (
             <span className={`${tab.numErrors ? 'psm-nav__badge' : ''}`}>
               {tab.numErrors}
             </span>
           )}
+          </a>) : (
+            <>
+            {tab.tabName}
+          {tab.numErrors && (
+            <span className={`${tab.numErrors ? 'psm-nav__badge' : ''}`}>
+              {tab.numErrors}
+            </span>
+          )}
+          </>)}
         </li>
       ))}
     </ul>

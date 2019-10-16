@@ -1,5 +1,4 @@
 import './components/index';
-
 import './components/core/index.scss';
 export { default as Alert } from './components/alert/Alert';
 export { default as Avatar } from './components/avatar/Avatar';

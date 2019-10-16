@@ -43,7 +43,7 @@ storiesOf('Dropdown', module)
         )}
         style={select(
           'Dropdown style',
-          ['primary', 'text', 'normal'],
+          ['primary', 'text', 'menu', 'normal'],
           'primary',
         )}
       />

@@ -1,6 +1,24 @@
 @import '../button/button.scss';
 @import '../core/color/variables';
 
+@mixin buttonText {
+  @extend %psm-button;
+  background-color: transparent;
+  border: none;
+  display: flex;
+  height: 40px;
+  width: fit-content;
+
+  svg {
+    align-self: center;
+    padding-left: 12px;
+  }
+
+  &:disabled {
+    opacity: 0.3;
+  }
+}
+
 .psm-dropdown,
 %psm-dropdown {
   @extend %psm-button;
@@ -18,25 +36,21 @@
     padding-left: 12px;
   }
   &--text {
-    @extend %psm-button;
-    background-color: transparent;
-    border: none;
+    @include buttonText;
     color: #0066ED;
-    display: flex;
-    height: 40px;
-    width: fit-content;
-
-    svg {
-      align-self: center;
-      padding-left: 12px;
-    }
 
     &:hover {
       color: #0066ED;
       background-color: #EDF4FE;
     }
-    &:disabled {
-      opacity: 0.3;
+  }
+  &--menu {
+    @include buttonText;
+    color: black;
+
+    &:hover {
+      color: black;
+      background-color: transparent;
     }
   }
 }

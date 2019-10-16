@@ -28,14 +28,15 @@ const layout = {
       points: 3165,
     },
   ],
-  tabs: [
-    { tabName: 'Social feed', active: true },
-    { tabName: 'My team' },
-    { tabName: 'Events' },
-    { tabName: 'Initiatives' },
-    { tabName: 'Conversations' },
-    { tabName: 'Programs' },
-  ],
+  tabs: {
+    primary: [
+      { tabName: 'Home', active: true },
+      { tabName: 'My team' },
+      { tabName: 'Shopping Cart' },
+      { tabName: 'Give Widget' },
+    ],
+    secondary: [{ tabName: 'Admin Tools' }],
+  },
 };
 
 storiesOf('Header', module)

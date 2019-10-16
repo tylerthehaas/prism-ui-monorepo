@@ -18,7 +18,7 @@ export interface DropdownProps {
   /** Primary makes the button larger and colored $psm-color-primary-500, which defaults to purple,
    * text removes the button and leaves just styled text, and normal makes the button normal
    */
-  style?: 'primary' | 'text';
+  buttonStyle?: 'primary' | 'text' | 'menu';
 }
 
 export interface Dropdown {
@@ -39,7 +39,7 @@ export const Dropdown = ({
   dropdownMenu = [],
   dualAction = false,
   label = 'Dropdown Label',
-  style = 'primary',
+  buttonStyle = 'primary',
 }: DropdownProps) => {
   const [showMenu, setShowMenu] = useState<DropdownState['showMenu']>(false);
   const [activeOption, setActiveOption] = useState<
@@ -103,18 +103,20 @@ export const Dropdown = ({
   }
 
   function handleOptions() {
-    switch (style) {
+    switch (buttonStyle) {
       case 'primary':
         return '--primary';
       case 'text':
         return '--text';
+      case 'menu':
+        return '--menu';
       default:
         return '';
     }
   }
 
   function handleArrowFill() {
-    switch (style) {
+    switch (buttonStyle) {
       case 'primary':
         return 'white';
       case 'text':
