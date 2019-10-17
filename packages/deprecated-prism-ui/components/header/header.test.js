@@ -18,14 +18,11 @@ const layout = {
   },
   banks: [
     {
-      id: 3216701,
-      isAccessCodeBank: false,
-      isCurrentBank: true,
-      isPointsBank: true,
-      link:
-        'https://qa.appreciatehub.com/ng/catalog.jsf?programId=4509251#/cart',
-      name: 'OCT Points',
-      points: 3165,
+      bankId: 3216701,
+      bankName: 'Bank',
+      pointsBalance: 7838,
+      accessCodesBalance: 0,
+      bankType: 'POINTS',
     },
   ],
   tabs: {

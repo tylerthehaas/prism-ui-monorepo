@@ -41,13 +41,11 @@ interface Customer {
 }
 
 interface Bank {
-  id: number;
-  isAccessCodeBank: boolean;
-  isCurrentBank: boolean;
-  isPointsBank: boolean;
-  link: string;
-  name: string;
-  points: number;
+  bankId: number;
+  bankName: string;
+  pointsBalance: number;
+  accessCodesBalance: number;
+  bankType: string;
 }
 
 export const Header = ({
@@ -66,13 +64,11 @@ export const Header = ({
     },
     banks: [
       {
-        id: NaN,
-        isAccessCodeBank: false,
-        isCurrentBank: false,
-        isPointsBank: false,
-        link: '',
-        name: '',
-        points: NaN,
+        bankId: NaN,
+        bankName: '',
+        pointsBalance: NaN,
+        accessCodesBalance: NaN,
+        bankType: '',
       },
     ],
     tabs: {
@@ -118,8 +114,7 @@ export const Header = ({
           </span>
 
           <a className="points" href="/">
-            {banks &&
-              `${banks.reduce((sum, bank) => sum + bank.points, 0)} pts`}
+            {banks && `${banks[0].pointsBalance} pts`}
           </a>
         </div>
 
