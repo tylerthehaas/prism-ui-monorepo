@@ -152,6 +152,14 @@
   line-height: 130%;
 }
 
+.profile-menu > div > button:focus {
+  outline: 0;
+}
+
+.profile-menu > div > ul  {
+  right: 60px;
+}
+
 .primary-nav {
   float: left;
 }

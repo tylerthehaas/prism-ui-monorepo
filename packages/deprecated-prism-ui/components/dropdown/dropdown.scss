@@ -1,5 +1,6 @@
 @import '../button/button.scss';
 @import '../core/color/variables';
+@import '../core/misc-styles/button-reset.scss';
 
 @mixin buttonText {
   @extend %psm-button;
@@ -53,6 +54,14 @@
       background-color: transparent;
     }
   }
+}
+
+.psm-dropdown-child {
+  @include button-reset;
+}
+
+.psm-dropdown__container--children {
+  display: inline-block;
 }
 
 .psm-dropdown-dual {
@@ -165,6 +174,7 @@
 .psm-dropdown__container {
   display: inline-block;
   position: relative;
+  min-width: 210px;
   width: fit-content;
   outline: none;
 }
@@ -199,10 +209,16 @@
   position: absolute;
   width: 100%;
   z-index: 1;
+
+  &--children {
+    width: 210px;
+    @extend .psm-dropdown__menu;
+  }
 }
 
 .psm-dropdown__li {
   cursor: pointer;
+  list-style: none;
   padding: 16px;
   &:focus,
   &:hover {

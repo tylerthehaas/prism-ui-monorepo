@@ -1,0 +1,9 @@
+@mixin button-reset {
+  background: none;
+  border: none;
+  display: inline-block;
+  text-decoration: none;
+
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}

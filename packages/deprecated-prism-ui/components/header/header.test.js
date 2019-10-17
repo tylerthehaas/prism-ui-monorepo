@@ -43,6 +43,12 @@ const layout = {
       },
     ],
   },
+  userMenu: [
+    {
+      linkName: 'a thing',
+      url: '/url'
+    }
+  ]
 };
 
 describe('<Header/>', () => {

@@ -37,6 +37,32 @@ const layout = {
     ],
     secondary: [{ tabName: 'Admin Tools' }],
   },
+  userMenu: [
+      {
+        linkName: 'Profile',
+        url: '/profile'
+      },
+      {
+        linkName: 'Settings',
+        url: '/settings'
+      },
+      {
+        linkName: 'Claim a reward code',
+        url: '/claim'
+      },
+      {
+        linkName: 'Shipping addresses',
+        url: '/addresses'
+      },
+      {
+        linkName: 'Order history',
+        url: '/history'
+      },
+      {
+        linkName: 'Logout',
+        url: '/logout'
+      }
+    ]
 };
 
 storiesOf('Header', module)

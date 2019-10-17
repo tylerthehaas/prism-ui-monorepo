@@ -2,7 +2,7 @@ import React, { useState, ReactNode } from 'react';
 import uuid from 'uuid/v4';
 import Icon from '../icon/Icon';
 import './card.scss';
-import { Dropdown } from '../dropdown/Dropdown';
+import { DropdownItem } from '../dropdown/Dropdown';
 
 interface CardProps {
   /** Title for the card */
@@ -15,7 +15,7 @@ interface CardProps {
   date: string | number;
   image?: string;
   imageAlt?: string;
-  cardMenu?: Dropdown[] | false;
+  cardMenu?: DropdownItem[] | false;
   status?: string;
   /** Determines the size of the shadow beneath the card */
   shadowType?: 'sm' | 'md' | 'lg';
@@ -39,7 +39,7 @@ export const Card = ({
 }: CardProps) => {
   const [menuOpen, setMenuOpen] = useState<CardState['menuOpen']>(false);
 
-  function handleMenuItemClick(option: Dropdown) {
+  function handleMenuItemClick(option: DropdownItem) {
     if (option.onClick) option.onClick();
     setMenuOpen(false);
   }

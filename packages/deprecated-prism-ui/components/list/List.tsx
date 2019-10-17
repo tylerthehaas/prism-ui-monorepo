@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import './list.scss';
 import uuid from 'uuid/v4';
 import Icon from '../icon/Icon';
-import { Dropdown } from '../dropdown/Dropdown';
+import { DropdownItem } from '../dropdown/Dropdown';
 
 interface ListProps {
   /** Custom class name for component */
   className?: string;
   listItems: ListItem[];
   /** A dropdown menu on the side of the list item. If empty, nothing will appear */
-  menu?: Dropdown[];
+  menu?: DropdownItem[];
 }
 
 interface ListItem {
@@ -34,7 +34,7 @@ export const List = ({
   const [hoverState, setHoverState] = useState<ListState['hoverState']>(true);
   const [activeItem, setActiveItem] = useState<ListState['activeItem']>(0);
 
-  function handleMenuItemClick(option: Dropdown) {
+  function handleMenuItemClick(option: DropdownItem) {
     if (option.onClick) option.onClick();
     setMenuOpen(false);
   }

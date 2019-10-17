@@ -1,4 +1,5 @@
 import React from 'react';
+import Avatar from '../avatar/Avatar';
 import {
   render,
   fireEvent,
@@ -143,7 +144,7 @@ describe('<Dropdown />', () => {
     await wait(() => expect(newMockJustForThisTest).toHaveBeenCalledTimes(1));
   });
 
-  it('closes the menu when focus changes', async () => {
+  it('closes the menu when focus changes for buttons without children', async () => {
     const { container, getByText } = render(
       <Dropdown dropdownMenu={dropdownMenuItems} />,
     );
@@ -160,6 +161,58 @@ describe('<Dropdown />', () => {
     );
 
     fireEvent.blur(container.querySelector('.psm-dropdown__menu'));
+
+    const reselectMenuOption = getByText(
+      'Your eyes dart around the Chuck E Cheese ball pit in panic. I rise silently behind you, face painted in big red, blue, and yellow circles.',
+    );
+
+    await wait(() => {
+      expect(reselectMenuOption.parentElement.classList).toContain(
+        'psm-dropdown-hidden',
+      );
+    });
+  });
+
+  it('closes the menu when focus changes for buttons with children', async () => {
+    const { getByText, getByTestId } = render(
+      <Dropdown dropdownMenu={dropdownMenuItems}>
+        <Avatar data-testid="an-avatar" />
+      </Dropdown>,
+    );
+
+    const userAvatar = getByTestId('an-avatar');
+
+    fireEvent.click(userAvatar);
+
+    expect(getByText(dropdownMenuItems[3].label)).toBeTruthy();
+
+    fireEvent.blur(userAvatar);
+
+    const reselectMenuOption = getByText(
+      'Your eyes dart around the Chuck E Cheese ball pit in panic. I rise silently behind you, face painted in big red, blue, and yellow circles.',
+    );
+
+    await wait(() => {
+      expect(reselectMenuOption.parentElement.classList).toContain(
+        'psm-dropdown-hidden',
+      );
+    });
+  });
+
+  it('closes the menu when the child of a dropdown is clicked', async () => {
+    const { getByText, getByTestId } = render(
+      <Dropdown dropdownMenu={dropdownMenuItems}>
+        <Avatar data-testid="an-avatar" />
+      </Dropdown>,
+    );
+
+    const userAvatar = getByTestId('an-avatar');
+
+    fireEvent.click(userAvatar);
+
+    expect(getByText(dropdownMenuItems[3].label)).toBeTruthy();
+
+    fireEvent.click(userAvatar);
 
     const reselectMenuOption = getByText(
       'Your eyes dart around the Chuck E Cheese ball pit in panic. I rise silently behind you, face painted in big red, blue, and yellow circles.',

@@ -1,5 +1,6 @@
 import React from 'react';
 import Avatar from '../avatar/Avatar';
+import Dropdown from '../dropdown/Dropdown';
 import Icon from '../icon/Icon';
 import Nav, { Tab } from '../nav/Nav';
 import './header.scss';
@@ -12,11 +13,17 @@ interface LayoutProps {
   userSearchOnSelect: () => void;
 }
 
+interface UserMenu {
+  linkName: string;
+  url: string;
+}
+
 interface Layout {
   banks: Bank[];
   customer: Customer;
-  tabs: { primary: Tab[], secondary: Tab[] };
+  tabs: { primary: Tab[]; secondary: Tab[] };
   user: User;
+  userMenu: UserMenu[];
 }
 
 interface User {
@@ -70,11 +77,17 @@ export const Header = ({
     ],
     tabs: {
       primary: [],
-      secondary: []
+      secondary: [],
     },
+    userMenu: [
+      {
+        linkName: '',
+        url: ''
+      }
+    ]
   },
 }: LayoutProps) => {
-  const { user, customer, banks, tabs } = layout;
+  const { user, customer, banks, tabs, userMenu } = layout;
 
   return (
     <header className={`psm-header main-header ${className}`}>
@@ -110,9 +123,14 @@ export const Header = ({
           </a>
         </div>
 
-        <button className="profile-menu" id="account-menu" type="button">
-          <Avatar size="sm" src={user && user.profileURL} />
-        </button>
+        <span className="profile-menu" id="account-menu" role="button">
+          <Dropdown dropdownMenu={userMenu.map((menuItem) => ({
+            label: menuItem.linkName,
+            onClick: () => window.location.href = menuItem.url
+          }))}>
+            <Avatar size="sm" src={user && user.profileURL} />
+          </Dropdown>
+        </span>
       </div>
 
       <nav className="main-nav">

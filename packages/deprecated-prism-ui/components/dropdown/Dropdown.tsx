@@ -1,9 +1,17 @@
-import React, { useState, useEffect, KeyboardEvent, MouseEvent } from 'react';
+import React, {
+  useState,
+  useEffect,
+  KeyboardEvent,
+  MouseEvent,
+  ReactNode,
+} from 'react';
 import uuid from 'uuid/v4';
 import './dropdown.scss';
 import Icon from '../icon/Icon';
 
 export interface DropdownProps {
+  /** Use this if you want something besides a button tag to have a dropdown */
+  children?: ReactNode;
   /** Custom class name for component */
   className?: string;
   'data-testid'?: string;
@@ -12,7 +20,7 @@ export interface DropdownProps {
   /** Disables the button and grays it out */
   disabled?: boolean;
   /** See notes for details on details for the type */
-  dropdownMenu: Dropdown[];
+  dropdownMenu: DropdownItem[];
   /** The text inside the dropdown */
   label?: string;
   /** Primary makes the button larger and colored $psm-color-primary-500, which defaults to purple,
@@ -21,18 +29,19 @@ export interface DropdownProps {
   buttonStyle?: 'primary' | 'text' | 'menu';
 }
 
-export interface Dropdown {
+export interface DropdownItem {
   label: string;
   onClick: (event?: MouseEvent<HTMLLIElement | HTMLDivElement>) => void;
 }
 
 export interface DropdownState {
   activeOption: number;
-  dualActionChoice: Dropdown;
+  dualActionChoice: DropdownItem;
   showMenu: boolean;
 }
 
 export const Dropdown = ({
+  children = false,
   className = '',
   'data-testid': testid = 'dropdown-label',
   disabled = false,
@@ -49,7 +58,7 @@ export const Dropdown = ({
     DropdownState['dualActionChoice']
   >(dropdownMenu[0]);
 
-  function menuClick(dropdown: Dropdown) {
+  function menuClick(dropdown: DropdownItem) {
     if (!dualAction && dropdown && dropdown.onClick) {
       dropdown.onClick();
     }
@@ -127,6 +136,20 @@ export const Dropdown = ({
   }
 
   const buttonContainer = () => {
+    if (children) {
+      return (
+        <button
+          className="psm-dropdown-child"
+          onBlur={() => setShowMenu(false)}
+          onClick={() => setShowMenu(!showMenu)}
+          role="button"
+          tabIndex={0}
+        >
+          {children}
+        </button>
+      );
+    }
+
     if (dualAction) {
       return (
         <span className="psm-dropdown-dual">
@@ -182,13 +205,15 @@ export const Dropdown = ({
   };
 
   useEffect(() => {
-    function checkForFocus(event: any) {
-      if (!event.target.className.toString().includes('psm-dropdown'))
-        setShowMenu(false);
+    if (!children) {
+      function checkForFocus(event: any) {
+        if (!event.target.className.toString().includes('psm-dropdown'))
+          setShowMenu(false);
+      }
+      document.addEventListener('mousedown', checkForFocus, false);
+      return () =>
+        document.removeEventListener('mousedown', checkForFocus, false);
     }
-    document.addEventListener('mousedown', checkForFocus, false);
-    return () =>
-      document.removeEventListener('mousedown', checkForFocus, false);
   });
 
   useEffect(() => {
@@ -199,8 +224,12 @@ export const Dropdown = ({
     <div
       aria-expanded={showMenu}
       aria-haspopup
-      aria-label={label}
-      className="psm-dropdown__container"
+      aria-label={children ? '' : label}
+      className={`${
+        children
+          ? 'psm-dropdown__container--children'
+          : 'psm-dropdown__container'
+      }`}
       id={testid}
       onKeyDown={handleKeyboard}
       role="button"
@@ -208,9 +237,9 @@ export const Dropdown = ({
     >
       {buttonContainer()}
       <ul
-        className={`psm-dropdown__menu ${
-          showMenu ? 'psm-dropdown-visible' : 'psm-dropdown-hidden'
-        }`}
+        className={`${
+          children ? 'psm-dropdown__menu--children' : 'psm-dropdown__menu'
+        } ${showMenu ? 'psm-dropdown-visible' : 'psm-dropdown-hidden'}`}
         onBlur={() => setShowMenu(false)}
         role="menu"
         id="dropdown-menu-options"
