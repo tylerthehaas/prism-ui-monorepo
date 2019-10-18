@@ -1,5 +1,5 @@
 import React, { useState, ChangeEvent } from 'react';
-import uuid from 'uuid/v4';
+import shortid from 'shortid';
 import './textbox.scss';
 
 export type TextboxProps = {
@@ -52,7 +52,7 @@ export const Textbox = ({
   placeholderText = 'Placeholder Text',
   required = false,
   optionalText = 'Optional',
-  textAreaId = `psm-form__textarea-${uuid}`,
+  textAreaId = `psm-form__textarea-${shortid.generate()}`,
   textTooLongMsg = `Your message is too long. Cut back to ${maxChars} characters.`,
 }: TextboxProps) => {
   const [textLength, setMessageLength] = useState<TextboxState['textLength']>(

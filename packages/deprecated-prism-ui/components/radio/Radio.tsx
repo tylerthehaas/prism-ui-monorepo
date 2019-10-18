@@ -1,5 +1,5 @@
 import React, { useState, MouseEvent } from 'react';
-import uuid from 'uuid/v4';
+import shortid from 'shortid';
 import './radio.scss';
 
 interface RadioProps {
@@ -46,7 +46,7 @@ export const Radio = ({
     <fieldset className={`psm-radio__group ${className}`}>
       <legend>{name}</legend>
       {buttons.map((button, index) => (
-        <div key={uuid()}>
+        <div key={shortid.generate()}>
           <label
             className="psm-radio__label"
             htmlFor={`${idPrefix}-${index}`}

@@ -1,5 +1,5 @@
 import React, { MouseEvent } from 'react';
-import uuid from 'uuid/v4';
+import shortid from 'shortid';
 import './nav.scss';
 
 interface NavProps {
@@ -41,35 +41,39 @@ export const Nav = ({
     <ul
       className={`psm-nav${horizontal ? '-horizontal' : ''} ${className}`}
       id={testid}
-      role='menubar'
+      role="menubar"
     >
-      {tabs && tabs.map((tab, index) => (
-        // eslint-disable-next-line jsx-a11y/click-events-have-key-events
-        <li
-          className={`${tab.active ? 'psm-nav__active' : 'psm-nav__tab'}`}
-          id={`tab-${index}-${uuid()}`}
-          key={uuid()}
-          onClick={event => handleClick(tab, event)}
-          role={'menuitem'}
-        >
-          {tab.href ? (<a href={tab.href}>
-          {tab.tabName}
-          {tab.numErrors && (
-            <span className={`${tab.numErrors ? 'psm-nav__badge' : ''}`}>
-              {tab.numErrors}
-            </span>
-          )}
-          </a>) : (
-            <>
-            {tab.tabName}
-          {tab.numErrors && (
-            <span className={`${tab.numErrors ? 'psm-nav__badge' : ''}`}>
-              {tab.numErrors}
-            </span>
-          )}
-          </>)}
-        </li>
-      ))}
+      {tabs &&
+        tabs.map((tab, index) => (
+          // eslint-disable-next-line jsx-a11y/click-events-have-key-events
+          <li
+            className={`${tab.active ? 'psm-nav__active' : 'psm-nav__tab'}`}
+            id={`tab-${index}-${shortid.generate()}`}
+            key={shortid.generate()}
+            onClick={event => handleClick(tab, event)}
+            role={'menuitem'}
+          >
+            {tab.href ? (
+              <a href={tab.href}>
+                {tab.tabName}
+                {tab.numErrors && (
+                  <span className={`${tab.numErrors ? 'psm-nav__badge' : ''}`}>
+                    {tab.numErrors}
+                  </span>
+                )}
+              </a>
+            ) : (
+              <>
+                {tab.tabName}
+                {tab.numErrors && (
+                  <span className={`${tab.numErrors ? 'psm-nav__badge' : ''}`}>
+                    {tab.numErrors}
+                  </span>
+                )}
+              </>
+            )}
+          </li>
+        ))}
     </ul>
   );
 };

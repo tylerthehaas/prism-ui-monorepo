@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './list.scss';
-import uuid from 'uuid/v4';
+import shortid from 'shortid';
 import Icon from '../icon/Icon';
 import { DropdownItem } from '../dropdown/Dropdown';
 
@@ -51,7 +51,7 @@ export const List = ({
     <ul className={`psm-list ${className}`}>
       {listItems.map((item, index) => (
         <li
-          key={uuid()}
+          key={shortid()}
           className={hoverState ? 'psm-list--row-hover' : 'psm-list--row'}
         >
           {item.content}
@@ -88,7 +88,7 @@ export const List = ({
                     // eslint-disable-next-line jsx-a11y/click-events-have-key-events
                     <li
                       className="psm-list--menu-row"
-                      key={uuid()}
+                      key={shortid.generate()}
                       onClick={() => handleMenuItemClick(option)}
                       role="menuitem"
                       tabIndex={0}

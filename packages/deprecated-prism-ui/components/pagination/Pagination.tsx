@@ -5,7 +5,7 @@ import React, {
   KeyboardEvent,
   ReactNode,
 } from 'react';
-import uuid from 'uuid/v4';
+import shortid from 'shortid';
 import Icon from '../icon/Icon';
 import './pagination.scss';
 
@@ -200,7 +200,7 @@ const Pagination = ({
     >
       <ol data-testid={testid} className="psm-pagination__content">
         {paginatedItems.map(item => (
-          <li key={uuid()}>{item}</li>
+          <li key={shortid.generate()}>{item}</li>
         ))}
       </ol>
       <span className="psm-pagination__navigation">

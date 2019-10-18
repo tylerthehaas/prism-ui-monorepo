@@ -40,7 +40,9 @@ const dropdownMenuItems = [
 
 describe('<Dropdown />', () => {
   it("renders the label it's given", async () => {
-    const { getByText } = render(<Dropdown label={dropdownText} />);
+    const { getByText } = render(
+      <Dropdown label={dropdownText} dropdownMenu={dropdownMenuItems} />,
+    );
     const labelText = getByText(dropdownText);
     expect(labelText).not.toBe(null);
   });

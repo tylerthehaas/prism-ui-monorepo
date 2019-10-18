@@ -5,7 +5,7 @@ import React, {
   MouseEvent,
   ReactNode,
 } from 'react';
-import uuid from 'uuid/v4';
+import shortid from 'shortid';
 import './dropdown.scss';
 import Icon from '../icon/Icon';
 
@@ -135,73 +135,74 @@ export const Dropdown = ({
     }
   }
 
-  const buttonContainer = () => {
-    if (children) {
-      return (
-        <button
-          className="psm-dropdown-child"
-          onBlur={() => setShowMenu(false)}
-          onClick={() => setShowMenu(!showMenu)}
-          role="button"
-          tabIndex={0}
-        >
-          {children}
-        </button>
-      );
-    }
+  const childDropdown = (
+    <button
+      className="psm-dropdown-child"
+      onBlur={() => setShowMenu(false)}
+      onClick={() => setShowMenu(!showMenu)}
+      role="button"
+      tabIndex={0}
+    >
+      {children}
+    </button>
+  );
 
-    if (dualAction) {
-      return (
-        <span className="psm-dropdown-dual">
-          <button
-            className={`psm-dropdown${handleOptions()} ${className}`}
-            disabled={disabled}
-            onClick={() => {
-              if (dualActionChoice.onClick) {
-                dualActionChoice.onClick();
-              }
-            }}
-            tabIndex={0}
-            type="button"
-          >
-            {dualActionChoice.label}
-          </button>
-          {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
-          <button
-            aria-label="dropdown-menu"
-            className={`psm-dropdown-dual-svg${handleOptions()}`}
-            disabled={disabled}
-            onClick={() => setShowMenu(!showMenu)}
-            tabIndex={0}
-            type="button"
-          >
-            <Icon
-              height="16px"
-              width="16px"
-              iconName="small-triangle-down"
-              fill={handleArrowFill()}
-            />
-          </button>
-        </span>
-      );
-    }
-    return (
+  const defaultDropdown = (
+    <button
+      className={`psm-dropdown${handleOptions()}`}
+      disabled={disabled}
+      onClick={() => setShowMenu(!showMenu)}
+      type="button"
+      tabIndex={0}
+    >
+      {label}
+      <Icon
+        iconName="small-triangle-down"
+        height="16px"
+        width="16px"
+        fill={handleArrowFill()}
+      />
+    </button>
+  );
+
+  const dualActionDropdown = (
+    <span className="psm-dropdown-dual">
       <button
-        className={`psm-dropdown${handleOptions()}`}
+        className={`psm-dropdown${handleOptions()} ${className}`}
+        disabled={disabled}
+        onClick={() => {
+          if (dualActionChoice.onClick) {
+            dualActionChoice.onClick();
+          }
+        }}
+        tabIndex={0}
+        type="button"
+      >
+        {dualActionChoice ? dualActionChoice.label : ''}
+      </button>
+      {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
+      <button
+        aria-label="dropdown-menu"
+        className={`psm-dropdown-dual-svg${handleOptions()}`}
         disabled={disabled}
         onClick={() => setShowMenu(!showMenu)}
-        type="button"
         tabIndex={0}
+        type="button"
       >
-        {label}
         <Icon
-          iconName="small-triangle-down"
           height="16px"
           width="16px"
+          iconName="small-triangle-down"
           fill={handleArrowFill()}
         />
       </button>
-    );
+    </span>
+  );
+
+  const selectedButton = () => {
+    if (children) return childDropdown;
+    else if (dualAction) return dualActionDropdown;
+    else return defaultDropdown;
   };
 
   useEffect(() => {
@@ -235,7 +236,7 @@ export const Dropdown = ({
       role="button"
       tabIndex={-1}
     >
-      {buttonContainer()}
+      {selectedButton()}
       <ul
         className={`${
           children ? 'psm-dropdown__menu--children' : 'psm-dropdown__menu'
@@ -254,7 +255,7 @@ export const Dropdown = ({
                 : 'psm-dropdown__li'
             }
             data-testid={`${testid}-option-${index}`}
-            key={uuid()}
+            key={shortid.generate()}
             onClick={() => {
               menuClick(dropdown);
               setShowMenu(false);

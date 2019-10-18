@@ -1,5 +1,5 @@
 import React, { useState, ReactNode } from 'react';
-import uuid from 'uuid/v4';
+import shortid from 'shortid';
 import Icon from '../icon/Icon';
 import './card.scss';
 import { DropdownItem } from '../dropdown/Dropdown';
@@ -81,7 +81,7 @@ export const Card = ({
                 /* eslint-disable-next-line jsx-a11y/click-events-have-key-events */
                 <li
                   className="psm-card--menu-row"
-                  key={uuid()}
+                  key={shortid.generate()}
                   onClick={() => handleMenuItemClick(option)}
                   role="menuitem"
                   tabIndex={0}

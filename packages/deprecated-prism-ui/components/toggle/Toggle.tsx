@@ -1,5 +1,5 @@
 import React, { useState, useEffect, FormEvent } from 'react';
-import uuid from 'uuid/v4';
+import shortid from 'shortid';
 import './toggle.scss';
 import validateHexColor from '../core/color/index';
 
@@ -23,7 +23,7 @@ export const Toggle = ({
   color = '',
   'data-testid': testid = '',
   defaultToggle = false,
-  id = uuid(),
+  id = shortid.generate(),
   label = '',
   toggleAction = () => {},
 }: ToggleProps) => {

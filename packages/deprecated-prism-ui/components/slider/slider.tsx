@@ -1,5 +1,5 @@
 import React, { useState, useEffect, ChangeEvent } from 'react';
-import uuid from 'uuid/v4';
+import shortid from 'shortid';
 import './slider.scss';
 
 export type SliderProps = {
@@ -28,7 +28,7 @@ export const Slider = ({
   maxValue = 100,
   minValue = 1,
   stepValue = 1,
-  inputId = `psm_slider-${uuid()}`,
+  inputId = `psm_slider-${shortid.generate()}`,
 }: SliderProps) => {
   const [sliderValue, setSliderValue] = useState<SliderState['sliderValue']>(
     defaultValue,

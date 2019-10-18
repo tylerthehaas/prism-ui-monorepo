@@ -1,5 +1,5 @@
 import React, { useState, useEffect, ReactNode } from 'react';
-import uuid from 'uuid/v4';
+import shortid from 'shortid';
 import './rollover.scss';
 
 interface RolloverProps {
@@ -48,14 +48,14 @@ export const Rollover = ({
 
   const initialContent = content
     .map((item: ReactNode) => (
-      <li className="psm-rollover--item" key={uuid()}>
+      <li className="psm-rollover--item" key={shortid.generate()}>
         {item}
       </li>
     ))
     .filter((item: ReactNode, index: number) => index < effectiveNumShown);
 
   const expandedContent = content.map((item: ReactNode) => (
-    <li className="psm-rollover--item" key={uuid()}>
+    <li className="psm-rollover--item" key={shortid.generate()}>
       {item}
     </li>
   ));
