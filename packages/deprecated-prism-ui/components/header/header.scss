@@ -1,7 +1,7 @@
 @import '../core/color/variables';
 
 .alert {
-  background: #D70E16;
+  background: #d70e16;
   border-radius: 0.25rem;
   display: block;
   color: #fff;
@@ -156,7 +156,7 @@
   outline: 0;
 }
 
-.profile-menu > div > ul  {
+.profile-menu > div > ul {
   right: 60px;
 }
 
@@ -165,7 +165,7 @@
 }
 
 .secondary-nav {
-  float: right;
+  justify-content: flex-end;
 }
 
 .user-info {

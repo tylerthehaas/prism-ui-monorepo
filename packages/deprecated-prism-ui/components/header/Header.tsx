@@ -21,6 +21,7 @@ interface UserMenu {
 interface Layout {
   banks: Bank[];
   customer: Customer;
+  notificationCount: number;
   tabs: { primary: Tab[]; secondary: Tab[] };
   user: User;
   userMenu: UserMenu[];
@@ -71,6 +72,7 @@ export const Header = ({
         bankType: '',
       },
     ],
+    notificationCount: 0,
     tabs: {
       primary: [],
       secondary: [],
@@ -83,7 +85,7 @@ export const Header = ({
     ],
   },
 }: LayoutProps) => {
-  const { user, customer, banks, tabs, userMenu } = layout;
+  const { customer, banks, notificationCount, tabs, user, userMenu } = layout;
 
   return (
     <header className={`psm-header main-header ${className}`}>
@@ -102,8 +104,8 @@ export const Header = ({
             aria-label="Notifications"
           >
             <Icon iconName="notification" />
-            <span className={user && user.notifications ? 'alert' : 'alert'}>
-              {99}
+            <span className={notificationCount ? 'alert' : ''}>
+              {notificationCount}
             </span>
           </button>
         </span>
