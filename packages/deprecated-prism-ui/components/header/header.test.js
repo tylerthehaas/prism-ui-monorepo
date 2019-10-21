@@ -43,9 +43,9 @@ const layout = {
   userMenu: [
     {
       linkName: 'a thing',
-      url: '/url'
-    }
-  ]
+      url: '/url',
+    },
+  ],
 };
 
 describe('<Header/>', () => {

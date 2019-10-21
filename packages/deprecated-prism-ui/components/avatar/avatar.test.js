@@ -19,13 +19,13 @@ describe('<Avatar/>', () => {
   });
 
   it('defaults to initials', () => {
-    const { container } = render(<Avatar size="md" initials={"JV"} />);
+    const { container } = render(<Avatar size="md" initials="JV" />);
 
-    expect(container.querySelector('.psm-avatar__text')[0]).not.toBeNull
+    expect(container.querySelector('.psm-avatar__text')[0]).not.toBeNull;
   });
 
   it('renders initials', () => {
-    const { container } = render(<Avatar size="md" initials={'JV'} />);
+    const { container } = render(<Avatar size="md" initials="JV" />);
 
     expect(container.querySelector('.psm-avatar__text')[0]).not.toBeNull;
   });

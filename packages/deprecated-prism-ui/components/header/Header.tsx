@@ -78,9 +78,9 @@ export const Header = ({
     userMenu: [
       {
         linkName: '',
-        url: ''
-      }
-    ]
+        url: '',
+      },
+    ],
   },
 }: LayoutProps) => {
   const { user, customer, banks, tabs, userMenu } = layout;
@@ -114,15 +114,17 @@ export const Header = ({
           </span>
 
           <a className="points" href="/">
-            {banks && `${banks[0].pointsBalance} pts`}
+            {banks && banks[0] && `${banks[0].pointsBalance} pts`}
           </a>
         </div>
 
         <span className="profile-menu" id="account-menu" role="button">
-          <Dropdown dropdownMenu={userMenu.map((menuItem) => ({
-            label: menuItem.linkName,
-            onClick: () => window.location.href = menuItem.url
-          }))}>
+          <Dropdown
+            dropdownMenu={userMenu.map(menuItem => ({
+              label: menuItem.linkName,
+              onClick: () => (window.location.href = menuItem.url),
+            }))}
+          >
             <Avatar size="sm" src={user && user.profileURL} />
           </Dropdown>
         </span>

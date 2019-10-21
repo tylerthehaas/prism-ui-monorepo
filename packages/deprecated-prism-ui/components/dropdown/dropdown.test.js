@@ -1,11 +1,11 @@
 import React from 'react';
-import Avatar from '../avatar/Avatar';
 import {
   render,
   fireEvent,
   waitForElement,
   wait,
 } from '@testing-library/react';
+import Avatar from '../avatar/Avatar';
 
 import Dropdown from './Dropdown';
 

@@ -24,8 +24,7 @@ storiesOf('Select', module)
             value: 2,
           },
           {
-            text:
-              'Every theater is a drive in theater if you‘re badass enough',
+            text: 'Every theater is a drive in theater if you‘re badass enough',
             value: 3,
           },
           {
