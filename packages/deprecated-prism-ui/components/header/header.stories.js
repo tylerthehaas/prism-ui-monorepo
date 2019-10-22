@@ -8,7 +8,7 @@ const layout = {
     id: 123456,
     firstName: 'John',
     lastName: 'Doe',
-    // profileURL: 'https://randomuser.me/api/portraits/men/32.jpg',
+    profileURL: 'https://randomuser.me/api/portraits/men/32.jpg',
   },
   customer: {
     id: 6971300,
