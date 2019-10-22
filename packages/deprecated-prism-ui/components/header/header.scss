@@ -7,8 +7,10 @@
   color: #fff;
   font-size: 0.6875rem;
   font-weight: bold;
+  left: 82%;
   padding: 0 0.15rem 0.15rem;
   position: absolute;
+  top: 8px;
 }
 
 .header-button {
@@ -31,175 +33,211 @@
   background-color: $psm-color-gray-100;
   min-height: 60px;
   padding: 20px 24px 0;
-}
-.main-header .logo {
-  cursor: pointer;
-  display: block;
-  width: 200px;
-  max-height: 200px;
-  overflow: hidden;
-  position: relative;
-}
-.main-header .logo img {
-  width: 100%;
-  height: auto;
-}
-.main-header .search {
-  width: 400px;
-  border-radius: 5px;
-  overflow: visible;
-}
-.main-header .search .psm-input {
-  margin: 0;
-  border-radius: 5px;
-}
-.main-header .search button {
-  display: inline-block;
-  -webkit-appearance: none;
-  border: none;
-  border-radius: 0px 5px 5px 0px;
-  min-width: 56px;
-  min-height: 40px;
-  padding: 0;
-  position: absolute;
-  right: 0;
-  top: 0;
-  cursor: pointer;
-}
-.main-header .search svg {
-  position: relative;
-  margin-top: 12px;
-}
-.main-header .account {
-  display: flex;
-  align-items: center;
-}
-.main-header .account button {
-  border: none;
-  background: none;
-  height: 2.4rem;
-  position: relative;
-}
-.main-header .account button span {
-  left: 82%;
-  top: 8px;
-}
-.main-header .account a {
-  text-decoration: none;
-  color: #000;
-}
-.main-header .account .user-info {
-  margin-left: 24px;
-}
-.main-header svg {
-  height: 16px;
-  margin-right: 8px;
-  width: 16px;
-}
-.main-header .account .cart {
-  display: inline-block;
-  padding: 0.25rem 0.5rem;
-}
-.main-header .main-nav {
-  align-items: baseline;
-  display: flex;
-  font-size: 14px;
-  justify-content: space-between;
-  width: 100vw;
-  margin: 16px -24px 0px;
-  padding: 0 24px;
-  background: #fff;
-  border-bottom: 1px solid #dadcdd;
-}
-.main-header .main-nav ul {
-  display: flex;
-  list-style-type: none;
-  align-items: center;
-  margin: 0;
-  padding: 0;
-}
-.main-header .main-nav ul li {
-  color: #000;
-  font-size: 14px;
-  font-weight: normal;
-  line-height: 130%;
-  margin: 10px16px 12px;
-}
-.main-header .main-nav ul li a {
-  color: #000;
-  display: block;
-  line-height: 1;
-  padding: 20px 24px;
-  text-decoration: none;
-}
-.main-header .main-nav .admin-tools {
-  align-items: center;
-  color: #000;
-  cursor: pointer;
-  display: inline-flex;
-  text-decoration: none;
-}
-.main-header .main-nav .admin-tools svg {
-  margin-left: 12px;
+
+  .logo {
+    cursor: pointer;
+    display: block;
+    width: 200px;
+    max-height: 200px;
+    overflow: hidden;
+    position: relative;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  .main-nav {
+    align-items: baseline;
+    display: flex;
+    font-size: 14px;
+    justify-content: space-between;
+    width: 100vw;
+    margin: 16px -24px 0px;
+    padding: 0 24px;
+    background: #fff;
+    border-bottom: 1px solid #dadcdd;
+
+    .primary-nav {
+      float: left;
+    }
+
+    .secondary-nav {
+      justify-content: flex-end;
+    }
+
+    #nav1 {
+      font-size: 0.875rem;
+      padding-left: 20px;
+    }
+    #nav1 li {
+      margin-right: 8px;
+    }
+    #nav1 {
+      span {
+        border-bottom: 2px solid transparent;
+        padding: 12px 8px 10px;
+
+        &:hover {
+          background: #f1f1f1;
+        }
+      }
+
+      &:active {
+        background: #fff;
+        color: #7049d5;
+      }
+
+      .currentPage {
+        color: #7049d5;
+        border-bottom: 2px solid #7049d5;
+      }
+    }
+
+    ul {
+      display: flex;
+      list-style-type: none;
+      align-items: center;
+      margin: 0;
+      padding: 0;
+
+      li {
+        color: #000;
+        font-size: 14px;
+        font-weight: normal;
+        line-height: 130%;
+        margin: 10px16px 12px;
+
+        a {
+          color: #000;
+          display: block;
+          line-height: 1;
+          padding: 20px 24px;
+          text-decoration: none;
+        }
+      }
+    }
+    .admin-tools {
+      align-items: center;
+      color: #000;
+      cursor: pointer;
+      display: inline-flex;
+      text-decoration: none;
+
+      svg {
+        margin-left: 12px;
+      }
+    }
+  }
+
+  .search {
+    width: 400px;
+    border-radius: 5px;
+    overflow: visible;
+
+    .psm-input {
+      margin: 0;
+      border-radius: 5px;
+    }
+
+    button {
+      display: inline-block;
+      -webkit-appearance: none;
+      border: none;
+      border-radius: 0px 5px 5px 0px;
+      min-width: 56px;
+      min-height: 40px;
+      padding: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+      cursor: pointer;
+    }
+
+    svg {
+      position: relative;
+      margin-top: 12px;
+    }
+  }
+  .account {
+    display: flex;
+    align-items: center;
+
+    .notifications {
+      margin-right: 12px;
+
+      a {
+        text-decoration: none;
+        color: #000;
+      }
+
+      button {
+        border: none;
+        background: none;
+        height: 2.4rem;
+        position: relative;
+      }
+
+      .cart {
+        display: inline-block;
+        padding: 0.25rem 0.5rem;
+      }
+
+      svg {
+        height: 16px;
+        margin-right: 8px;
+        width: 16px;
+      }
+    }
+
+    .user-info {
+      display: flex;
+      flex-direction: column;
+      text-align: right;
+      margin-left: 24px;
+      margin-top: -8px;
+
+      .points {
+        color: black;
+        font-size: 12px;
+        line-height: 100%;
+        text-decoration: none;
+      }
+
+      .user-name {
+        font-size: 14px;
+        line-height: 100%;
+      }
+    }
+
+    .profile-menu {
+      div {
+        ul {
+          right: 60px;
+        }
+        button {
+          &:focus {
+            outline: 0;
+          }
+        }
+      }
+      [class^='psm-dropdown__'] {
+        [class^='psm-dropdown'] {
+          [class^='psm-avatar'] {
+            align-items: flex-end;
+            display: flex;
+            [class^='psm-avatar'] {
+              position: relative;
+              top: -5px;
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
-.notifications {
-  margin-right: 12px;
-}
-
-.points {
-  font-size: 12px;
-  line-height: 130%;
-}
-
-.profile-menu > div > button:focus {
-  outline: 0;
-}
-
-.profile-menu > div > ul {
-  right: 60px;
-}
-
-.primary-nav {
-  float: left;
-}
-
-.secondary-nav {
-  justify-content: flex-end;
-}
-
-.user-info {
-  display: flex;
-  flex-direction: column;
-  text-align: right;
-}
-
-.user-name {
-  font-size: 14px;
-}
-
-#nav1 {
-  font-size: 0.875rem;
-  padding-left: 20px;
-}
-#nav1 li {
-  margin-right: 8px;
-}
-#nav1 span {
-  border-bottom: 2px solid transparent;
-  padding: 12px 8px 10px;
-}
-#nav1 span:hover {
-  background: #f1f1f1;
-}
-#nav1 span:active {
-  background: #fff;
-  color: #7049d5;
-}
-#nav1 .currentPage {
-  color: #7049d5;
-  border-bottom: 2px solid #7049d5;
-}
 #account-menu {
   margin-right: 0;
   padding: 0 20px 0 16px;

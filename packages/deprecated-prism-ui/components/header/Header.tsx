@@ -127,7 +127,14 @@ export const Header = ({
               onClick: () => (window.location.href = menuItem.url),
             }))}
           >
-            <Avatar size="sm" src={user && user.profileURL} />
+            <Avatar
+              size="md"
+              src={user && user.profileURL}
+              initials={
+                user &&
+                `${user.firstName[0].toUpperCase()}${user.lastName[0].toUpperCase()}`
+              }
+            />
           </Dropdown>
         </span>
       </div>
