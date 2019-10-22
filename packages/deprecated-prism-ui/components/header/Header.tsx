@@ -128,8 +128,9 @@ export const Header = ({
               size="md"
               src={user && user.profileURL}
               initials={
-                user &&
-                `${user.firstName[0].toUpperCase()}${user.lastName[0].toUpperCase()}`
+                user && user.firstName[0] && user.lastName[0]
+                  ? `${user.firstName[0].toUpperCase()}${user.lastName[0].toUpperCase()}`
+                  : ''
               }
             />
           </Dropdown>
