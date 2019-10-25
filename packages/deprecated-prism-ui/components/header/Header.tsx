@@ -89,8 +89,8 @@ export const Header = ({
 
   return (
     <header className={`psm-header main-header ${className}`}>
-      <a className="logo" href="/" title={customer && customer.name}>
-        <img src={customer && customer.logoURL} alt="Corporate Logo" />
+      <a className="logo" href="/" title="Home">
+        <img src={customer && customer.logoURL} alt="{(customer && customer.name) ? customer.name : 'Corporate'} Logo" />
       </a>
 
       <div className="account">
