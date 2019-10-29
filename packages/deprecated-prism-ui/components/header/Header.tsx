@@ -9,6 +9,8 @@ interface LayoutProps {
   /** Custom class name for component */
   className?: string;
   layout: Layout;
+  /** Passes a hex string into the Nav component */
+  userColor?: string;
   userSearchUrl: string;
   userSearchOnSelect: () => void;
 }
@@ -84,13 +86,17 @@ export const Header = ({
       },
     ],
   },
+  userColor = '',
 }: LayoutProps) => {
   const { customer, banks, notificationCount, tabs, user, userMenu } = layout;
 
   return (
     <header className={`psm-header main-header ${className}`}>
       <a className="logo" href="/" title="Home">
-        <img src={customer && customer.logoURL} alt="{(customer && customer.name) ? customer.name : 'Corporate'} Logo" />
+        <img
+          src={customer && customer.logoURL}
+          alt="{(customer && customer.name) ? customer.name : 'Corporate'} Logo"
+        />
       </a>
 
       <div className="account">
@@ -101,12 +107,15 @@ export const Header = ({
             aria-label="Notifications"
           >
             <Icon iconName="notification" />
-            <span className={notificationCount ? 'alert' : ''}>
-              {notificationCount}
-            </span>
+            {notificationCount !== 0 ? (
+              <span className={notificationCount ? 'alert' : ''}>
+                {notificationCount}
+              </span>
+            ) : (
+              ''
+            )}
           </button>
         </span>
-
         <div className="user-info">
           <span className="user-name">
             {user.firstName} {user.lastName}
@@ -121,6 +130,7 @@ export const Header = ({
           <Dropdown
             dropdownMenu={userMenu.map(menuItem => ({
               label: menuItem.linkName,
+              // eslint-disable-next-line no-return-assign
               onClick: () => (window.location.href = menuItem.url),
             }))}
           >
@@ -138,7 +148,12 @@ export const Header = ({
       </div>
 
       <nav className="main-nav">
-        <Nav className="primary-nav" horizontal tabs={tabs.primary} />
+        <Nav
+          className="primary-nav"
+          horizontal
+          tabs={tabs.primary}
+          userColor={userColor}
+        />
         <Nav className="secondary-nav" horizontal tabs={tabs.secondary} />
       </nav>
     </header>

@@ -70,5 +70,6 @@ storiesOf('Header', module)
     <Header
       className={text('class name', 'class name')}
       layout={object('layout', layout)}
+      userColor={text('user color', '#fcba03')}
     />
   ));

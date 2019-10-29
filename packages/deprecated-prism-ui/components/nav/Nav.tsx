@@ -10,7 +10,9 @@ interface NavProps {
   /** Determines the component's orientation */
   horizontal?: boolean;
   /** Array of destinations in the navbarâ€“ see notes for information on type */
-  tabs?: Tab[];
+  tabs: Tab[];
+  /** Replaces the active color with a user's color. Defaults to purple if given an invalid hex string */
+  userColor?: string;
 }
 
 export interface Tab {
@@ -32,9 +34,17 @@ export const Nav = ({
   'data-testid': testid = '',
   horizontal = false,
   tabs,
+  userColor = '',
 }: NavProps) => {
   function handleClick(tab: Tab, event: MouseEvent<HTMLLIElement>) {
     if (tab.onClick) tab.onClick(event);
+  }
+
+  function userColorTab(tab: Tab) {
+    if (tab.active && userColor) {
+      return { borderBottom: `4px solid ${userColor}` };
+    }
+    return {};
   }
 
   return (
@@ -51,7 +61,8 @@ export const Nav = ({
             id={`tab-${index}-${shortid.generate()}`}
             key={shortid.generate()}
             onClick={event => handleClick(tab, event)}
-            role={'menuitem'}
+            role="menuitem"
+            style={userColorTab(tab)}
           >
             {tab.href ? (
               <a href={tab.href}>

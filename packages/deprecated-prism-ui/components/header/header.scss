@@ -30,7 +30,6 @@
   flex-flow: row wrap;
   justify-content: space-between;
   align-items: center;
-  background-color: $psm-color-gray-100;
   min-height: 60px;
   padding: 20px 24px 0;
 
@@ -50,13 +49,13 @@
 
   .main-nav {
     align-items: baseline;
+    background: #f8f8f8;
     display: flex;
     font-size: 14px;
     justify-content: space-between;
     width: 100vw;
     margin: 16px -24px 0px;
     padding: 0 24px;
-    background: #fff;
     border-bottom: 1px solid #dadcdd;
 
     .primary-nav {
@@ -225,11 +224,13 @@
       [class^='psm-dropdown__'] {
         [class^='psm-dropdown'] {
           [class^='psm-avatar'] {
-            align-items: flex-end;
-            display: flex;
-            [class^='psm-avatar'] {
-              position: relative;
-              top: -5px;
+            .psm-avatar__text {
+              align-items: flex-end;
+              display: flex;
+              [class^='psm-avatar'] {
+                position: relative;
+                top: -5px;
+              }
             }
           }
         }

@@ -38,7 +38,7 @@
 
   &__badge {
     text-rendering: optimizeLegibility;
-    background: #D70E16;
+    background: #d70e16;
     border-radius: 3px;
     color: white;
     font-size: 11px;
@@ -64,9 +64,9 @@
     border-left: $psm-spacing-sm solid transparent;
 
     &:hover {
-      background-color: $psm-color-gray-100;
       box-sizing: border-box;
       border-left: $psm-spacing-sm solid #d4d4d4;
+      border-bottom: $psm-spacing-sm solid #c4c4c4;
     }
   }
 }
@@ -88,7 +88,7 @@
     border-left: none;
 
     &:hover {
-      border-bottom: $psm-spacing-sm solid #d4d4d4;
+      border-bottom: $psm-spacing-sm solid #c4c4c4;
       border-left: none;
       box-sizing: border-box;
     }
