@@ -21,7 +21,7 @@
 
 @mixin active-tab {
   @include nav-tab;
-  // color: $psm-color-active-indicator;
+  color: $psm-color-active-indicator;
   font-weight: bold;
 }
 
@@ -71,6 +71,10 @@
     &:active {
       border-left: $psm-spacing-sm solid #8e8e8e;
     }
+
+    &:focus {
+      border-left: $psm-spacing-sm solid #c4c4c4;
+    }
   }
 }
 
@@ -95,8 +99,13 @@
       border-bottom: $psm-spacing-sm solid #c4c4c4;
       box-sizing: border-box;
     }
+
     &:active {
       border-bottom: $psm-spacing-sm solid #8e8e8e;
+    }
+
+    &:focus {
+      border-bottom: $psm-spacing-sm solid #c4c4c4;
     }
   }
 }

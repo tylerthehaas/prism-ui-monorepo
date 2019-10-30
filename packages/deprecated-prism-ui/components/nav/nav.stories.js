@@ -1,6 +1,12 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { withKnobs, object, boolean, text } from '@storybook/addon-knobs';
+import {
+  withKnobs,
+  object,
+  boolean,
+  text,
+  color,
+} from '@storybook/addon-knobs';
 import Nav from './Nav';
 import NavNotes from './nav-notes.md';
 
@@ -30,7 +36,7 @@ storiesOf('Nav', module)
             active: false,
           },
         ])}
-        userColor={text('user color', '#32a852')}
+        userColor={color('user color', '#7942dd')}
       />
     ),
     {

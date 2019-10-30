@@ -10,7 +10,6 @@ interface LayoutProps {
   className?: string;
   layout: Layout;
   /** Passes a hex string into the Nav component */
-  userColor?: string;
   userSearchUrl: string;
   userSearchOnSelect: () => void;
 }
@@ -26,6 +25,7 @@ interface Layout {
   notificationCount: number;
   tabs: { primary: Tab[]; secondary: Tab[] };
   user: User;
+  userColor: string;
   userMenu: UserMenu[];
 }
 
@@ -79,6 +79,7 @@ export const Header = ({
       primary: [],
       secondary: [],
     },
+    userColor: '',
     userMenu: [
       {
         linkName: '',
@@ -86,9 +87,16 @@ export const Header = ({
       },
     ],
   },
-  userColor = '',
 }: LayoutProps) => {
-  const { customer, banks, notificationCount, tabs, user, userMenu } = layout;
+  const {
+    customer,
+    banks,
+    notificationCount,
+    tabs,
+    user,
+    userColor,
+    userMenu,
+  } = layout;
 
   return (
     <header className={`psm-header main-header ${className}`}>

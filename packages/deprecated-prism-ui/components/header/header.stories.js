@@ -1,6 +1,6 @@
 import { storiesOf } from '@storybook/react';
 import React from 'react';
-import { withKnobs, object, text } from '@storybook/addon-knobs';
+import { withKnobs, object, text, color } from '@storybook/addon-knobs';
 import Header from './Header';
 
 const layout = {
@@ -70,6 +70,6 @@ storiesOf('Header', module)
     <Header
       className={text('class name', 'class name')}
       layout={object('layout', layout)}
-      userColor={text('user color', '#fcba03')}
+      userColor={color('user color', '#7942dd')}
     />
   ));
