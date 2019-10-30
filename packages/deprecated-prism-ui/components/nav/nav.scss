@@ -21,7 +21,7 @@
 
 @mixin active-tab {
   @include nav-tab;
-  color: $psm-color-active-indicator;
+  // color: $psm-color-active-indicator;
   font-weight: bold;
 }
 
@@ -65,8 +65,11 @@
 
     &:hover {
       box-sizing: border-box;
-      border-left: $psm-spacing-sm solid #d4d4d4;
-      border-bottom: $psm-spacing-sm solid #c4c4c4;
+      border-left: $psm-spacing-sm solid #c4c4c4;
+    }
+
+    &:active {
+      border-left: $psm-spacing-sm solid #8e8e8e;
     }
   }
 }
@@ -78,19 +81,22 @@
 
   .psm-nav__active {
     @include active-tab;
-    border-bottom: 4px solid $psm-color-active-indicator;
+    border-bottom: $psm-spacing-sm solid $psm-color-active-indicator;
     border-left: none;
   }
 
   .psm-nav__tab {
     @include nav-tab;
+
     border-bottom: $psm-spacing-sm solid transparent;
     border-left: none;
 
     &:hover {
       border-bottom: $psm-spacing-sm solid #c4c4c4;
-      border-left: none;
       box-sizing: border-box;
+    }
+    &:active {
+      border-bottom: $psm-spacing-sm solid #8e8e8e;
     }
   }
 }

@@ -41,8 +41,14 @@ export const Nav = ({
   }
 
   function userColorTab(tab: Tab) {
+    const direction = horizontal
+      ? ['borderBottom', 'inherit']
+      : ['borderLeft', userColor];
     if (tab.active && userColor) {
-      return { borderBottom: `4px solid ${userColor}` };
+      return {
+        [direction[0]]: `4px solid ${userColor}`,
+        color: direction[1],
+      };
     }
     return {};
   }
