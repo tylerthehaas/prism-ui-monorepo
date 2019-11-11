@@ -1,6 +1,8 @@
 import * as React from 'react';
 
 // Delete me
-export const Thing = () => {
-  return <div>the snozzberries taste like snozzberries</div>;
+const Thing = () => {
+  return <span>the snozzberries taste like snozzberries</span>;
 };
+
+export default Thing;

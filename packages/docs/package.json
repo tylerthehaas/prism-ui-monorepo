@@ -1,0 +1,22 @@
+{
+  "name": "prism-ui-docs",
+  "private": true,
+  "version": "0.0.1",
+  "license": "OC Tanner Private",
+  "files": [
+    "components/",
+    "doczrc.js",
+    "package.json"
+  ],
+  "scripts": {
+    "dev": "docz dev",
+    "build": "docz build",
+    "serve": "docz serve"
+  },
+  "dependencies": {
+    "docz": "^2.0.0-rc.72",
+    "docz-theme-default": "^1.2.0",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0"
+  }
+}
