@@ -1,6 +1,7 @@
 ---
 name: Thing
 menu: Components
+route: /components/thing
 ---
 
 import { Playground, Props } from 'docz';
@@ -8,8 +9,12 @@ import Thing from '../../prism-ui/src/index.tsx';
 
 # Thing
 
+## Thing Props
+
+<Props of={Thing} />
+
 ## Basic Usage
 
 <Playground>
-  <Thing />
+  <Thing keyword="snozzberries" />
 </Playground>

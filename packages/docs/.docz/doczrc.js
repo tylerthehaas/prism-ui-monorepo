@@ -1,7 +1,10 @@
+import AnnotationResolver from 'react-docgen-annotation-resolver';
+
 export default {
   typescript: true,
   docgenConfig: {
     searchPath: '../',
+    resolver: AnnotationResolver,
   },
   filterComponents: files => {
     return files.filter(

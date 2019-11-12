@@ -65,24 +65,14 @@ const config = {
           root: '/Users/tyler.haas/Projects/octanner/prism-ui/packages/docs',
           templates:
             '/Users/tyler.haas/Projects/octanner/prism-ui/packages/docs/node_modules/docz-core/dist/templates',
-          packageJson:
-            '/Users/tyler.haas/Projects/octanner/prism-ui/packages/docs/package.json',
           docz:
             '/Users/tyler.haas/Projects/octanner/prism-ui/packages/docs/.docz',
           cache:
             '/Users/tyler.haas/Projects/octanner/prism-ui/packages/docs/.docz/.cache',
           app:
             '/Users/tyler.haas/Projects/octanner/prism-ui/packages/docs/.docz/app',
-          appPublic:
-            '/Users/tyler.haas/Projects/octanner/prism-ui/packages/docs/.docz/public',
-          appNodeModules:
-            '/Users/tyler.haas/Projects/octanner/prism-ui/packages/docs/node_modules',
           appPackageJson:
             '/Users/tyler.haas/Projects/octanner/prism-ui/packages/docs/package.json',
-          appYarnLock:
-            '/Users/tyler.haas/Projects/octanner/prism-ui/packages/docs/node_modules/docz-core/yarn.lock',
-          ownNodeModules:
-            '/Users/tyler.haas/Projects/octanner/prism-ui/packages/docs/node_modules/docz-core/node_modules',
           gatsbyConfig:
             '/Users/tyler.haas/Projects/octanner/prism-ui/packages/docs/gatsby-config.js',
           gatsbyBrowser:
