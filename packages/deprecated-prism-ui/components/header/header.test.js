@@ -1,5 +1,10 @@
-import React from 'react';
-import { render } from '@testing-library/react';
+import * as React from 'react';
+import {
+  render,
+  within,
+  fireEvent,
+  getByAltText,
+} from '@testing-library/react';
 
 import Header from './Header';
 
@@ -25,6 +30,7 @@ const layout = {
       bankType: 'POINTS',
     },
   ],
+  notificationCount: 2,
   tabs: {
     primary: [
       { tabName: 'Social feed', active: true },
@@ -49,9 +55,24 @@ const layout = {
 };
 
 describe('<Header/>', () => {
-  test('Header can render', () => {
-    const { getByText } = render(<Header layout={layout} />);
-    const socialFeed = getByText('Social feed');
-    expect(socialFeed).toBeTruthy();
+  it('displays logo correctly', () => {
+    const { getByAltText } = render(<Header layout={layout} />);
+    const logo = getByAltText(/o\.c\. tanner logo/i);
+    expect(logo).toBeInTheDocument();
+    expect(logo.src).toBe(
+      'https://www.octanner.com/content/dam/oc-tanner/images/OCTannerLogos/2017-OCTLogo-lowres.png',
+    );
+  });
+  it('displays notification icon with notification count', () => {
+    const { getByTitle, getByLabelText } = render(<Header layout={layout} />);
+    expect(getByTitle('notification icon')).toBeInTheDocument();
+    expect(
+      within(getByLabelText('Notifications')).getByText(/2/i),
+    ).toBeInTheDocument();
+  });
+  it('calls onClick in menu', () => {
+    const { getByAltText, getByText } = render(<Header layout={layout} />);
+    fireEvent.click(getByAltText('User Avatar'));
+    fireEvent.click(getByText('a thing'));
   });
 });

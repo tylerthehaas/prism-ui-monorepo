@@ -20,6 +20,7 @@ const SVG = ({
     xmlnsXlink="http://www.w3.org/1999/xlink"
     y="0px"
   >
+    <title>notification icon</title>
     <g className="nc-icon-wrapper" fill={fill}>
       <path
         d="M10,14H6c0,1.1,0.9,2,2,2S10,15.1,10,14z"

@@ -19,8 +19,10 @@ export interface Tab {
   /** If true, this indicates that this is the active tab */
   active: boolean;
   dropdowns?: [];
-  /** Where the tab navigates to. Defaults to /tabName */
+  /** Where to link to */
   href?: string;
+  /** Where the tab navigates to. Defaults to /tabName */
+  url: string;
   /** Number of errors in a given tab */
   numErrors?: number;
   /** Event that fires when the user clicks a tab */
@@ -36,10 +38,6 @@ export const Nav = ({
   tabs,
   userColor = '',
 }: NavProps) => {
-  function handleClick(tab: Tab, event: MouseEvent<HTMLLIElement>) {
-    if (tab.onClick) tab.onClick(event);
-  }
-
   function userColorTab(tab: Tab) {
     const direction = horizontal
       ? ['borderBottom', 'inherit']
@@ -66,29 +64,17 @@ export const Nav = ({
             className={`${tab.active ? 'psm-nav__active' : 'psm-nav__tab'}`}
             id={`tab-${index}-${shortid.generate()}`}
             key={shortid.generate()}
-            onClick={event => handleClick(tab, event)}
             role="menuitem"
             style={userColorTab(tab)}
           >
-            {tab.href ? (
-              <a href={tab.href}>
-                {tab.tabName}
-                {tab.numErrors && (
-                  <span className={`${tab.numErrors ? 'psm-nav__badge' : ''}`}>
-                    {tab.numErrors}
-                  </span>
-                )}
-              </a>
-            ) : (
-              <>
-                {tab.tabName}
-                {tab.numErrors && (
-                  <span className={`${tab.numErrors ? 'psm-nav__badge' : ''}`}>
-                    {tab.numErrors}
-                  </span>
-                )}
-              </>
-            )}
+            <a href={tab.url}>
+              {tab.tabName}
+              {tab.numErrors && (
+                <span className={`${tab.numErrors ? 'psm-nav__badge' : ''}`}>
+                  {tab.numErrors}
+                </span>
+              )}
+            </a>
           </li>
         ))}
     </ul>

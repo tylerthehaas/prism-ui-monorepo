@@ -30,11 +30,4 @@ describe('<Nav />', () => {
     const { container } = render(<Nav />);
     expect(container.querySelector('.psm-nav__tab')).toBeNull();
   });
-
-  test('clicking a tab with an onClick works', () => {
-    const { getByText } = render(<Nav tabs={testTabs} />);
-    const tabOne = getByText(testTabs[0].tabName);
-    fireEvent.click(tabOne);
-    expect(onClickMock).toHaveBeenCalled();
-  });
 });

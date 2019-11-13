@@ -98,12 +98,16 @@ export const Header = ({
     userMenu,
   } = layout;
 
+  const homeTab = tabs.primary.find(tab => tab.tabName === 'Home');
+
   return (
     <header className={`psm-header main-header ${className}`}>
-      <a className="logo" href="/" title="Home">
+      <a className="logo" href={homeTab && homeTab.url} title="Home">
         <img
           src={customer && customer.logoURL}
-          alt="{(customer && customer.name) ? customer.name : 'Corporate'} Logo"
+          alt={`${
+            customer && customer.name ? customer.name : 'Corporate'
+          } Logo`}
         />
       </a>
 
@@ -138,8 +142,9 @@ export const Header = ({
           <Dropdown
             dropdownMenu={userMenu.map(menuItem => ({
               label: menuItem.linkName,
-              // eslint-disable-next-line no-return-assign
-              onClick: () => (window.location.href = menuItem.url),
+              onClick: () => {
+                window.location.href = menuItem.url;
+              },
             }))}
           >
             <Avatar

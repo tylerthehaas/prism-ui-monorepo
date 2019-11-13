@@ -158,7 +158,7 @@ describe('<Dropdown />', () => {
       'Your eyes dart around the Chuck E Cheese ball pit in panic. I rise silently behind you, face painted in big red, blue, and yellow circles.',
     );
 
-    expect(menuOption.parentElement.classList).toContain(
+    expect(Object.values(menuOption.parentElement.classList)).toContain(
       'psm-dropdown-visible',
     );
 
@@ -188,16 +188,16 @@ describe('<Dropdown />', () => {
 
     expect(getByText(dropdownMenuItems[3].label)).toBeTruthy();
 
-    fireEvent.blur(userAvatar);
+    fireEvent.click(userAvatar);
 
     const reselectMenuOption = getByText(
       'Your eyes dart around the Chuck E Cheese ball pit in panic. I rise silently behind you, face painted in big red, blue, and yellow circles.',
     );
 
     await wait(() => {
-      expect(reselectMenuOption.parentElement.classList).toContain(
-        'psm-dropdown-hidden',
-      );
+      expect(
+        Object.values(reselectMenuOption.parentElement.classList),
+      ).toContain('psm-dropdown-hidden');
     });
   });
 

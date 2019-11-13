@@ -138,9 +138,8 @@ export const Dropdown = ({
   const childDropdown = (
     <button
       className="psm-dropdown-child"
-      onBlur={() => setShowMenu(false)}
       onClick={() => setShowMenu(!showMenu)}
-      role="button"
+      type="button"
       tabIndex={0}
     >
       {children}
@@ -201,21 +200,20 @@ export const Dropdown = ({
 
   const selectedButton = () => {
     if (children) return childDropdown;
-    else if (dualAction) return dualActionDropdown;
-    else return defaultDropdown;
+    if (dualAction) return dualActionDropdown;
+    return defaultDropdown;
   };
 
   useEffect(() => {
-    if (!children) {
-      function checkForFocus(event: any) {
-        if (!event.target.className.toString().includes('psm-dropdown'))
-          setShowMenu(false);
-      }
-      document.addEventListener('mousedown', checkForFocus, false);
-      return () =>
-        document.removeEventListener('mousedown', checkForFocus, false);
+    function checkForFocus(event: any) {
+      if (!event.target.className.includes('psm-dropdown')) setShowMenu(false);
     }
-  });
+    if (!children) {
+      document.addEventListener('mousedown', checkForFocus, false);
+    }
+    return () =>
+      document.removeEventListener('mousedown', checkForFocus, false);
+  }, [children]);
 
   useEffect(() => {
     if (!dualAction) setActiveOption(-1);

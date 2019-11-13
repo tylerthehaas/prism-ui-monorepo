@@ -14,24 +14,26 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
 
       # Install deps and cache
-      - run: npm config set registry "http://registry.npmjs.org"
-      - run: npm cache clean --force
+      - run: sudo npm i -g yarn@1.19.1
+      - run: yarn config set registry "http://registry.npmjs.org"
+      - run: yarn cache clean --force
 
-      - run: npm install
+      - run: yarn
       - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - ./node_modules
 
       # Test
-      - run: npm test -- --verbose --silent
+      - run: yarn test -- --verbose --silent
 
   security-audit:
     docker:
       - image: circleci/node:10.11.0-stretch
     steps:
       - checkout
-      - run: npm audit --audit-level=moderate
+      - run: sudo npm i -g yarn@1.19.1
+      - run: /bin/bash -c 'yarn audit; [[$? -ge 2 ]] && exit 1 || exit 0'
 
 workflows:
   version: 2
