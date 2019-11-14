@@ -19,7 +19,7 @@
     "prettier:js": "prettier --write \"./**/*.js\"",
     "prettier:css": "prettier --parser scss --write \"./**/*.scss\"",
     "storybook": "start-storybook -s public",
-    "build-storybook": "build-storybook -s public --config-dir .storybook",
+    "build:storybook": "build-storybook -s public --config-dir .storybook",
     "test": "jest",
     "test:coverage": "npm run test --coverage",
     "test:watch": "npm run test -- --watch",
