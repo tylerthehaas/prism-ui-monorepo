@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { render } from '@testing-library/react';
-import { Thing } from '.';
+import Thing from '.';
 
 describe('it', () => {
   it('renders without crashing', () => {
-    const { getByText } = render(<Thing />);
+    const { getByText } = render(<Thing keyword="snozzberries" />);
     expect(
       getByText(/the snozzberries taste like snozzberries/i)
     ).toBeInTheDocument();
