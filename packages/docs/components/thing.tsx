@@ -1,17 +1,16 @@
 import * as React from 'react';
+import t from 'prop-types';
 
 interface ThingProps {
-  /** keyword to use in span */
-  keyword: string;
+  keyword: String;
 }
 
-function Thing({ keyword }: ThingProps) {
+const Thing: React.FC<ThingProps> = ({ keyword }) => {
   return (
     <span>
       the {keyword} taste like {keyword}
     </span>
   );
-}
+};
 
-// @component
 export default Thing;

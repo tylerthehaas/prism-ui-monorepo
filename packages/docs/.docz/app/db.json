@@ -9,9 +9,7 @@
     "themeConfig": {},
     "separator": "-",
     "typescript": true,
-    "docgenConfig": {
-      "searchPath": "../"
-    }
+    "docgenConfig": {}
   },
   "entries": [
     {

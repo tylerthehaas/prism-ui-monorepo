@@ -27,7 +27,7 @@ const config = {
       options: {
         themeConfig: {},
         themesDir: 'src',
-        docgenConfig: { searchPath: '../' },
+        docgenConfig: {},
         menu: [],
         mdPlugins: [],
         hastPlugins: [],
