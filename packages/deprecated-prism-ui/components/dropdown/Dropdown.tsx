@@ -71,6 +71,7 @@ export const Dropdown = ({
     }
 
     setDualActionChoice(dropdown);
+    setShowMenu(false);
   }
 
   function handleEscape() {

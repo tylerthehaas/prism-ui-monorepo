@@ -201,8 +201,8 @@ describe('<Dropdown />', () => {
     });
   });
 
-  it('closes the menu when the child of a dropdown is clicked', async () => {
-    const { getByText, getByTestId } = render(
+  fit('closes the menu when the child of a dropdown is clicked', () => {
+    const { debug, getByText, getByTestId } = render(
       <Dropdown dropdownMenu={dropdownMenuItems}>
         <Avatar data-testid="an-avatar" />
       </Dropdown>,
@@ -214,17 +214,32 @@ describe('<Dropdown />', () => {
 
     expect(getByText(dropdownMenuItems[3].label)).toBeTruthy();
 
-    fireEvent.click(userAvatar);
+    fireEvent.keyDown(userAvatar, { key: 'Enter' });
 
     const reselectMenuOption = getByText(
       'Your eyes dart around the Chuck E Cheese ball pit in panic. I rise silently behind you, face painted in big red, blue, and yellow circles.',
     );
 
-    await wait(() => {
-      expect(reselectMenuOption.parentElement.classList).toContain(
-        'psm-dropdown-hidden',
-      );
-    });
+    expect(reselectMenuOption.parentElement.classList).toContain(
+      'psm-dropdown-hidden',
+    );
+  });
+
+  it('closes menu on blur', () => {
+    const { getByRole } = render(
+      <Dropdown dropdownMenu={dropdownMenuItems}>
+        <Avatar data-testid="an-avatar" />
+      </Dropdown>,
+    );
+
+    expect(getByRole('menu')).toHaveClass('psm-dropdown-hidden');
+    expect(getByRole('menu')).not.toHaveClass('psm-dropdown-visible');
+    fireEvent.click(getByRole('img'));
+    expect(getByRole('menu')).not.toHaveClass('psm-dropdown-hidden');
+    expect(getByRole('menu')).toHaveClass('psm-dropdown-visible');
+    fireEvent.blur(getByRole('menu'));
+    expect(getByRole('menu')).toHaveClass('psm-dropdown-hidden');
+    expect(getByRole('menu')).not.toHaveClass('psm-dropdown-visible');
   });
 
   it('closes menu on blur', () => {
