@@ -1,4 +1,4 @@
-FROM quay.octanner.io/base/oct-node:10
+FROM quay.octanner.io/base/oct-node:12
 
 WORKDIR /usr/src
 COPY . /usr/src

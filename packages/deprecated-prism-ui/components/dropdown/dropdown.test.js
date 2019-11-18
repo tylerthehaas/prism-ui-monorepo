@@ -227,6 +227,23 @@ describe('<Dropdown />', () => {
     });
   });
 
+  it('closes menu on blur', () => {
+    const { getByRole } = render(
+      <Dropdown dropdownMenu={dropdownMenuItems}>
+        <Avatar data-testid="an-avatar" />
+      </Dropdown>,
+    );
+
+    expect(getByRole('menu')).toHaveClass('psm-dropdown-hidden');
+    expect(getByRole('menu')).not.toHaveClass('psm-dropdown-visible');
+    fireEvent.click(getByRole('img'));
+    expect(getByRole('menu')).not.toHaveClass('psm-dropdown-hidden');
+    expect(getByRole('menu')).toHaveClass('psm-dropdown-visible');
+    fireEvent.blur(getByRole('menu'));
+    expect(getByRole('menu')).toHaveClass('psm-dropdown-hidden');
+    expect(getByRole('menu')).not.toHaveClass('psm-dropdown-visible');
+  });
+
   it('handles arrow down correctly', () => {
     const { container, getByText } = render(
       <Dropdown dropdownMenu={dropdownMenuItems} />,

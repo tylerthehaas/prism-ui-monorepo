@@ -6,8 +6,8 @@
     "es6": true
   },
   "extends": [
-    "airbnb",
     "airbnb-typescript",
+    "airbnb/hooks",
     "prettier",
     "prettier/@typescript-eslint",
     "prettier/react"
@@ -30,8 +30,6 @@
     "import/ignore": [".js", ".jsx"]
   },
   "rules": {
-    "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn",
     "class-methods-use-this": "off",
     "consistent-return": [
       "error",

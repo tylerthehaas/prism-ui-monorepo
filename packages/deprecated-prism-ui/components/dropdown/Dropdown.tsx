@@ -50,6 +50,7 @@ export const Dropdown = ({
   label = 'Dropdown Label',
   buttonStyle = 'primary',
 }: DropdownProps) => {
+  const listRef = React.useRef<HTMLUListElement>(null);
   const [showMenu, setShowMenu] = useState<DropdownState['showMenu']>(false);
   const [activeOption, setActiveOption] = useState<
     DropdownState['activeOption']
@@ -57,6 +58,12 @@ export const Dropdown = ({
   const [dualActionChoice, setDualActionChoice] = useState<
     DropdownState['dualActionChoice']
   >(dropdownMenu[0]);
+
+  React.useEffect(() => {
+    if (showMenu && listRef.current) {
+      listRef.current.focus();
+    }
+  }, [showMenu, listRef]);
 
   function menuClick(dropdown: DropdownItem) {
     if (!dualAction && dropdown && dropdown.onClick) {
@@ -236,12 +243,14 @@ export const Dropdown = ({
     >
       {selectedButton()}
       <ul
+        ref={listRef}
         className={`${
           children ? 'psm-dropdown__menu--children' : 'psm-dropdown__menu'
         } ${showMenu ? 'psm-dropdown-visible' : 'psm-dropdown-hidden'}`}
         onBlur={() => setShowMenu(false)}
         role="menu"
         id="dropdown-menu-options"
+        tabIndex={-1}
       >
         {dropdownMenu.map((dropdown, index) => (
           // eslint-disable-next-line jsx-a11y/click-events-have-key-events
