@@ -1296,7 +1296,14 @@
     "@types/history" "*"
     "@types/react" "*"
 
-"@types/react@*", "@types/react@^16.8.12", "@types/react@^16.8.6":
+"@types/react-dom@^16.8.4":
+  version "16.9.4"
+  resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-16.9.4.tgz#0b58df09a60961dcb77f62d4f1832427513420df"
+  integrity sha512-fya9xteU/n90tda0s+FtN5Ym4tbgxpq/hb/Af24dvs6uYnYn+fspaxw5USlw0R8apDNwxsqumdRoCoKitckQqw==
+  dependencies:
+    "@types/react" "*"
+
+"@types/react@*", "@types/react@^16.8.12", "@types/react@^16.8.23", "@types/react@^16.8.6":
   version "16.9.11"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-16.9.11.tgz#70e0b7ad79058a7842f25ccf2999807076ada120"
   integrity sha512-UBT4GZ3PokTXSWmdgC/GeCGEJXE5ofWyibCcecRLUVN2ZBpXQGVgQGtG2foS7CrTKFKlQVVswLvf7Js6XA/CVQ==
@@ -4105,7 +4112,7 @@ docz-utils@2.0.0-rc.69:
     unist-util-is "^3.0.0"
     unist-util-visit "^1.4.1"
 
-docz@2.0.0-rc.75, docz@^2.0.0-rc.72:
+docz@2.0.0-rc.75, docz@next:
   version "2.0.0-rc.75"
   resolved "https://registry.yarnpkg.com/docz/-/docz-2.0.0-rc.75.tgz#a451e0acd7e791ec16bb1e47539917d146b7a156"
   integrity sha512-dBMrPXGAymNTLLfl6EBclzl4hfD6m8IRl/cflzDxLjLB0gnO7yanW8BJbW0orZ2S0kDNxubVergsD1KK1Vu5DQ==
@@ -9887,7 +9894,7 @@ postcss@^7.0.0, postcss@^7.0.1, postcss@^7.0.21, postcss@^7.0.5:
     source-map "^0.6.1"
     supports-color "^6.1.0"
 
-prebuild-install@^5.3.2:
+prebuild-install@^5.3.3:
   version "5.3.3"
   resolved "https://registry.yarnpkg.com/prebuild-install/-/prebuild-install-5.3.3.tgz#ef4052baac60d465f5ba6bf003c9c1de79b9da8e"
   integrity sha512-GV+nsUXuPW2p8Zy7SarF/2W/oiK8bFQgJcncoJ0d7kRpekEA0ftChjfEaF9/Y+QJEc/wFR7RAEa8lYByuUIe2g==
@@ -10239,11 +10246,6 @@ react-docgen-actual-name-handler@2.0.0-rc.69:
     react-docgen "^4.1.1"
     recast "^0.18.1"
 
-react-docgen-annotation-resolver@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/react-docgen-annotation-resolver/-/react-docgen-annotation-resolver-2.0.0.tgz#c2c9ac2d6dd5c43396ebadad3b22323820dda78e"
-  integrity sha512-0rNR0SZAjd4eHTYP3Iq/pi0zTznHtXSLAKOXbK6tGjwd9bTaXUaKQK7hihRvGvqxNjUy0WGTcFgX+lT64vIXBg==
-
 react-docgen-external-proptypes-handler@^1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/react-docgen-external-proptypes-handler/-/react-docgen-external-proptypes-handler-1.0.3.tgz#53ce11d4ec86c67596558da0464f0ec15b6e0d64"
@@ -10267,7 +10269,7 @@ react-docgen@^4.1.1:
     node-dir "^0.1.10"
     recast "^0.17.3"
 
-react-dom@^16.11.0:
+react-dom@^16.8.6:
   version "16.12.0"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.12.0.tgz#0da4b714b8d13c2038c9396b54a92baea633fe11"
   integrity sha512-LMxFfAGrcS3kETtQaCkTKjMiifahaMySFDn71fZUNpPHZQEzmk/GiAeIT8JSOrHB23fnuCOMruL2a8NYlw+8Gw==
@@ -10358,7 +10360,7 @@ react-simple-code-editor@^0.10.0:
   resolved "https://registry.yarnpkg.com/react-simple-code-editor/-/react-simple-code-editor-0.10.0.tgz#73e7ac550a928069715482aeb33ccba36efe2373"
   integrity sha512-bL5W5mAxSW6+cLwqqVWY47Silqgy2DKDTR4hDBrLrUqC5BXc29YVx17l2IZk5v36VcDEq1Bszu2oHm1qBwKqBA==
 
-react@^16.11.0:
+react@^16.11.0, react@^16.8.6:
   version "16.12.0"
   resolved "https://registry.yarnpkg.com/react/-/react-16.12.0.tgz#0c0a9c6a142429e3614834d5a778e18aa78a0b83"
   integrity sha512-fglqy3k5E+81pA8s+7K0/T3DBCF0ZDOher1elBFzF7O6arXJgzyu/FW+COxFvAWXJoJN9KIZbT2LXlukwphYTA==
@@ -11318,15 +11320,15 @@ shallowequal@^1.1.0:
   integrity sha512-y0m1JoUZSlPAjXVtPPW70aZWfIL/dSP7AFkRnniLCrK/8MDKog3TySTBmckD+RObVxH0v4Tox67+F14PdED2oQ==
 
 sharp@^0.23.2:
-  version "0.23.2"
-  resolved "https://registry.yarnpkg.com/sharp/-/sharp-0.23.2.tgz#5f8b77513aa1f7e4d0dd969a3904ced75486c1d7"
-  integrity sha512-BSo0tq6Jtzwa6GDKvVMNNPCP/HLczrFLGVcorYv7OtxlKx4UPHy7x9DdfT8F+PK7FCFDemVRwtsjWpvaJI9v6w==
+  version "0.23.3"
+  resolved "https://registry.yarnpkg.com/sharp/-/sharp-0.23.3.tgz#549770a4c671b9bd221f00639452a3eb803a0ed1"
+  integrity sha512-pjT4zyviQteXMC1Z8USIiSwQFQbZTlU5J59/UoygE25hh+sSb7PSYI/MZ2MCB1COtxWQuoUAaG3TYIOLon26Mg==
   dependencies:
     color "^3.1.2"
     detect-libc "^1.0.3"
     nan "^2.14.0"
     npmlog "^4.1.2"
-    prebuild-install "^5.3.2"
+    prebuild-install "^5.3.3"
     semver "^6.3.0"
     simple-get "^3.1.0"
     tar "^5.0.5"
@@ -12481,9 +12483,9 @@ underscore.string@^3.3.5:
     util-deprecate "^1.0.2"
 
 unescape-js@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/unescape-js/-/unescape-js-1.1.1.tgz#a4345e654b857c29fa66469e311ccaf2e93063bd"
-  integrity sha512-2/6CdybfFt9fzYJhCD6SHfBnqCGNfjhMwPK9Pf+sJRloa/WmyAmxdBVOslOIYkvSIRKX+9xGePF5t1tugtZ63g==
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/unescape-js/-/unescape-js-1.1.4.tgz#4bc6389c499cb055a98364a0b3094e1c3d5da395"
+  integrity sha512-42SD8NOQEhdYntEiUQdYq/1V/YHwr1HLwlHuTJB5InVVdOSbgI6xu8jK5q65yIzuFCfczzyDF/7hbGzVbyCw0g==
   dependencies:
     string.fromcodepoint "^0.2.1"
 

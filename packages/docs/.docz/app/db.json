@@ -1,67 +1,140 @@
 {
   "config": {
-    "title": "Prism Ui Docs",
+    "title": "Prism UI",
     "description": "My awesome app using docz",
-    "menu": [],
-    "version": "0.0.1",
+    "menu": [
+      "Getting Started",
+      "Components"
+    ],
+    "version": "2.0.0-rc.41",
     "repository": null,
     "native": false,
     "themeConfig": {},
     "separator": "-",
-    "typescript": true,
-    "docgenConfig": {}
+    "typescript": true
   },
   "entries": [
     {
-      "key": "index.mdx",
+      "key": "README.md",
       "value": {
-        "name": "Getting Started",
-        "route": "/",
-        "id": "91149a4106ab27ef746308b41227aca8",
-        "filepath": "index.mdx",
-        "fullpath": "/Users/tyler.haas/Projects/octanner/prism-ui/packages/docs/index.mdx",
+        "id": "04c6e90faac2675aa89e2176d2eec7d8",
+        "filepath": "README.md",
+        "fullpath": "/Users/tyler.haas/Projects/octanner/prism-ui/packages/docs/README.md",
         "link": "",
-        "slug": "index",
+        "slug": "readme",
+        "route": "/readme",
+        "name": "Readme",
         "menu": "",
         "headings": [
           {
-            "slug": "getting-started",
+            "slug": "typescript-docz-example",
+            "depth": 1,
+            "value": "Typescript Docz example"
+          },
+          {
+            "slug": "using-create-docz-app",
             "depth": 2,
-            "value": "Getting Started"
+            "value": "Using  create-docz-app"
+          },
+          {
+            "slug": "download-manually",
+            "depth": 2,
+            "value": "Download manually"
+          },
+          {
+            "slug": "setup",
+            "depth": 2,
+            "value": "Setup"
+          },
+          {
+            "slug": "run",
+            "depth": 2,
+            "value": "Run"
           }
         ]
       }
     },
     {
-      "key": "components/thing.mdx",
+      "key": "src/index.mdx",
+      "value": {
+        "name": "Getting Started",
+        "route": "/",
+        "id": "6576455a124f9aaefd860597f03a8fe4",
+        "filepath": "src/index.mdx",
+        "fullpath": "/Users/tyler.haas/Projects/octanner/prism-ui/packages/docs/src/index.mdx",
+        "link": "",
+        "slug": "src-index",
+        "menu": "",
+        "headings": [
+          {
+            "slug": "getting-started",
+            "depth": 1,
+            "value": "Getting Started"
+          },
+          {
+            "slug": "consistency",
+            "depth": 2,
+            "value": "Consistency"
+          }
+        ]
+      }
+    },
+    {
+      "key": "src/components/Thing.mdx",
       "value": {
         "name": "Thing",
         "menu": "Components",
-        "route": "/components/thing",
-        "id": "638398abe7831b77c217b4820adf785e",
-        "filepath": "components/thing.mdx",
-        "fullpath": "/Users/tyler.haas/Projects/octanner/prism-ui/packages/docs/components/thing.mdx",
+        "id": "6653d25cd95d950054617317953a5a50",
+        "filepath": "src/components/Thing.mdx",
+        "fullpath": "/Users/tyler.haas/Projects/octanner/prism-ui/packages/docs/src/components/Thing.mdx",
         "link": "",
-        "slug": "components-thing",
+        "slug": "src-components-thing",
+        "route": "/src-components-thing",
         "headings": [
           {
-            "slug": "thing",
+            "slug": "alert",
             "depth": 1,
-            "value": "Thing"
+            "value": "Alert"
           },
           {
-            "slug": "thing-props",
+            "slug": "properties",
             "depth": 2,
-            "value": "Thing Props"
+            "value": "Properties"
           },
           {
             "slug": "basic-usage",
             "depth": 2,
-            "value": "Basic Usage"
+            "value": "Basic usage"
           }
         ]
       }
     }
   ],
-  "props": []
+  "props": [
+    {
+      "key": "src/components/Thing.tsx",
+      "value": [
+        {
+          "description": "",
+          "displayName": "Thing",
+          "methods": [],
+          "props": {
+            "keyword": {
+              "defaultValue": null,
+              "description": "word to interpolate",
+              "name": "keyword",
+              "parent": {
+                "fileName": "src/components/Thing.tsx",
+                "name": "ThingProps"
+              },
+              "required": true,
+              "type": {
+                "name": "string"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
 }

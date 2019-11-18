@@ -11,7 +11,7 @@ const config = {
   pathPrefix: '/',
 
   siteMetadata: {
-    title: 'Prism Ui Docs',
+    title: 'Prism UI',
     description: 'My awesome app using docz',
   },
   plugins: [
@@ -28,7 +28,7 @@ const config = {
         themeConfig: {},
         themesDir: 'src',
         docgenConfig: {},
-        menu: [],
+        menu: ['Getting Started', 'Components'],
         mdPlugins: [],
         hastPlugins: [],
         ignore: [],
@@ -55,7 +55,7 @@ const config = {
         eb: 'master',
         'edit-branch': 'master',
         config: '',
-        title: 'Prism Ui Docs',
+        title: 'Prism UI',
         description: 'My awesome app using docz',
         host: 'localhost',
         port: 3000,

@@ -1,7 +1,5 @@
-import AnnotationResolver from 'react-docgen-annotation-resolver';
 export default {
   typescript: true,
-  docgenConfig: {
-    resolver: AnnotationResolver,
-  },
+  title: 'Prism UI',
+  menu: ['Getting Started', 'Components'],
 };
