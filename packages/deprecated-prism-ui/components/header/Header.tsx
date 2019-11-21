@@ -142,9 +142,7 @@ export const Header = ({
           <Dropdown
             dropdownMenu={userMenu.map(menuItem => ({
               label: menuItem.linkName,
-              onClick: () => {
-                window.location.href = menuItem.url;
-              },
+              href: menuItem.url,
             }))}
           >
             <Avatar

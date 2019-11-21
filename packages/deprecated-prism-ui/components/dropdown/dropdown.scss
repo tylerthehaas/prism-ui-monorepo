@@ -26,7 +26,8 @@
   display: flex;
   flex-direction: row;
   width: fit-content;
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     background-color: $psm-color-gray-300;
   }
   &:disabled {
@@ -38,11 +39,11 @@
   }
   &--text {
     @include buttonText;
-    color: #0066ED;
+    color: #0066ed;
 
     &:hover {
-      color: #0066ED;
-      background-color: #EDF4FE;
+      color: #0066ed;
+      background-color: #edf4fe;
     }
   }
   &--menu {
@@ -133,8 +134,8 @@
       }
 
       &:hover {
-        color: #0066ED;
-        background-color: #EDF4FE;
+        color: #0066ed;
+        background-color: #edf4fe;
       }
       &:disabled {
         opacity: 0.3;
@@ -225,13 +226,21 @@
     background-color: #e4e4e4;
     outline: none;
   }
+  a {
+    text-decoration: none;
+  }
 }
 
 .psm-dropdown-focused {
+  padding: 16px;
+}
+
+.psm-dropdown-focused,
+.psm-dropdown-focused a {
   background-color: #e4e4e4;
   outline: none;
   cursor: pointer;
-  padding: 16px;
+  text-decoration: none;
 }
 
 .psm-dropdown__menu--flip {

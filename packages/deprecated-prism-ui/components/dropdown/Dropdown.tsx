@@ -31,7 +31,8 @@ export interface DropdownProps {
 
 export interface DropdownItem {
   label: string;
-  onClick: (event?: MouseEvent<HTMLLIElement | HTMLDivElement>) => void;
+  href?: string;
+  onClick?: (event?: MouseEvent<HTMLLIElement | HTMLDivElement>) => void;
 }
 
 export interface DropdownState {
@@ -262,15 +263,19 @@ export const Dropdown = ({
                 ? 'psm-dropdown-focused '
                 : 'psm-dropdown__li'
             }
-            data-testid={`${testid}-option-${index}`}
             key={shortid.generate()}
+            data-testid={`${testid}-option-${index}`}
             onClick={() => {
               menuClick(dropdown);
               setShowMenu(false);
             }}
             role="menuitem"
           >
-            {dropdown.label}
+            {dropdown.href ? (
+              <a href={dropdown.href}>{dropdown.label}</a>
+            ) : (
+              dropdown.label
+            )}
           </li>
         ))}
       </ul>

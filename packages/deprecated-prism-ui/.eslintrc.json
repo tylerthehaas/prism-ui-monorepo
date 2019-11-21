@@ -69,7 +69,7 @@
     "space-before-function-paren": 0,
     "strict": 0,
     "trailing-comma": [
-      true,
+      "error",
       {
         "multiline": {
           "objects": "always",

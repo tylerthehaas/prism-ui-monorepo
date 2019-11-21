@@ -1,6 +1,6 @@
 {
   "name": "@octanner/prism-ui",
-  "version": "5.2.11",
+  "version": "5.2.15",
   "engines": {
     "node": ">=12.8.1"
   },
