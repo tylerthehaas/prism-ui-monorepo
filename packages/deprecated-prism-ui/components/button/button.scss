@@ -60,9 +60,7 @@ $psm-border-width: 1px;
 
   &:hover {
     cursor: pointer;
-    border-color: $psm-color-gray-300;
-    background-color: $psm-color-gray-300;
-    color: $psm-color-gray-800;
+    color: $psm-color-link-900;
   }
 
   &::-moz-focus-inner {

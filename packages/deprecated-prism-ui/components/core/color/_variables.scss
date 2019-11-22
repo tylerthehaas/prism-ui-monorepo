@@ -3,7 +3,7 @@
 // took out orange primary color and put in dummy brand color (#ff6008)
 $psm-color-primary-base: #7942dd !default;
 $psm-color-gray-base: #868c8f;
-$psm-color-link: #0078d3;
+$psm-color-link-base: #008AE5;
 
 //this uses primary link instead of primary base, needs to be changed?
 $psm-color-primary-50: alpha-blend($psm-color-primary-base, 0.15, white);
@@ -16,6 +16,17 @@ $psm-color-primary-600: alpha-blend($psm-color-primary-base, 0.85, black);
 $psm-color-primary-700: alpha-blend($psm-color-primary-base, 0.7, black);
 $psm-color-primary-800: alpha-blend($psm-color-primary-base, 0.55, black);
 $psm-color-primary-900: alpha-blend($psm-color-primary-base, 0.4, black);
+
+$psm-color-link-50: alpha-blend($psm-color-link-base, 0.15, white);
+$psm-color-link-100: alpha-blend($psm-color-link-base, 0.3, white);
+$psm-color-link-200: alpha-blend($psm-color-link-base, 0.45, white);
+$psm-color-link-300: alpha-blend($psm-color-link-base, 0.6, white);
+$psm-color-link-400: alpha-blend($psm-color-link-base, 0.85, white);
+$psm-color-link-500: $psm-color-link-base;
+$psm-color-link-600: alpha-blend($psm-color-link-base, 0.85, black);
+$psm-color-link-700: alpha-blend($psm-color-link-base, 0.7, black);
+$psm-color-link-800: alpha-blend($psm-color-link-base, 0.55, black);
+$psm-color-link-900: alpha-blend($psm-color-link-base, 0.4, black);
 
 $psm-color-gray-50: #f8f8f8;
 $psm-color-gray-100: #f1f1f1;
