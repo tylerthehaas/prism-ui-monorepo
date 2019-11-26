@@ -5,8 +5,8 @@
 
 @mixin buttonText {
   @extend %psm-button;
-    background-color: transparent;
-    border: none;
+  background-color: transparent;
+  border: none;
 }
 
 $psm-button-height: 36px;
@@ -47,20 +47,26 @@ $psm-border-width: 1px;
     background-color: transparent;
     border: none;
     @include buttonText;
-    color: #0066ED;
+    color: #0066ed;
   }
 
   &--menu {
     @include buttonText;
     color: black;
+    &:focus,
     &:hover {
-      background: transparent;
+      cursor: pointer;
+      background-color: transparent;
+      color: $psm-color-link-700;
     }
   }
 
+  &:active,
+  &:focus,
   &:hover {
     cursor: pointer;
-    color: $psm-color-link-900;
+    background-color: transparent;
+    color: $psm-color-link-700
   }
 
   &::-moz-focus-inner {
@@ -79,6 +85,7 @@ $psm-border-width: 1px;
   @extend %psm-button;
   background-color: $psm-color-primary-500;
   border-color: $psm-color-primary-500;
+  font-weight: 900;
   color: white;
 
   &:active {
@@ -86,6 +93,7 @@ $psm-border-width: 1px;
     background-color: $psm-color-primary-500;
   }
 
+  &:focus,
   &:hover {
     border-color: $psm-color-primary-700;
     background-color: $psm-color-primary-700;
