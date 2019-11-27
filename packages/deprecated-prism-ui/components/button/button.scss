@@ -57,7 +57,9 @@ $psm-border-width: 1px;
     &:hover {
       cursor: pointer;
       background-color: transparent;
-      color: $psm-color-link-700;
+
+      color: $psm-link-hover-color
+
     }
   }
 
@@ -66,7 +68,9 @@ $psm-border-width: 1px;
   &:hover {
     cursor: pointer;
     background-color: transparent;
-    color: $psm-color-link-700
+
+    color: $psm-link-hover-color
+
   }
 
   &::-moz-focus-inner {

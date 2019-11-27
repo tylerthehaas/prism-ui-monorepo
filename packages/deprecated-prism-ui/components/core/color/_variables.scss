@@ -4,6 +4,8 @@
 $psm-color-primary-base: #7942dd !default;
 $psm-color-gray-base: #868c8f;
 $psm-color-link-base: #008AE5;
+$psm-link-hover-color: #005393;
+
 
 //this uses primary link instead of primary base, needs to be changed?
 $psm-color-primary-50: alpha-blend($psm-color-primary-base, 0.15, white);
@@ -27,6 +29,10 @@ $psm-color-link-600: alpha-blend($psm-color-link-base, 0.85, black);
 $psm-color-link-700: alpha-blend($psm-color-link-base, 0.7, black);
 $psm-color-link-800: alpha-blend($psm-color-link-base, 0.55, black);
 $psm-color-link-900: alpha-blend($psm-color-link-base, 0.4, black);
+
+//this sets colors for text link, which does not change across customers.
+$psm-link-focus-color: $psm-link-hover-color;
+$psm-link-active-color: $psm-link-hover-color;
 
 $psm-color-gray-50: #f8f8f8;
 $psm-color-gray-100: #f1f1f1;
