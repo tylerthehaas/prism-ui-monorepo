@@ -26,6 +26,6 @@ addParameters({
 });
 
 configure(
-  require.context('../components', true, /\.stories\.(js|mdx)$/),
+  require.context('../components', true, /\.stories\.(jsx|mdx)$/),
   module,
 );

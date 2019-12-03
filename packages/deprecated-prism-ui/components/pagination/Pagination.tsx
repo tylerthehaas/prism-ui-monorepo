@@ -85,6 +85,8 @@ const Pagination = ({
     PaginationState['visiblePages']
   >(getVisiblePages());
 
+  const memoizedOnClick = useCallback(onClick, []);
+
   const updateDisplay = useCallback(
     (
       event:
@@ -101,9 +103,9 @@ const Pagination = ({
           pageNumber * itemsPerPage + itemsPerPage,
         ),
       );
-      if (onClick && event) onClick(event);
+      if (memoizedOnClick && event) memoizedOnClick(event);
     },
-    [children, getVisiblePages, itemsPerPage, onClick],
+    [children, getVisiblePages, itemsPerPage, memoizedOnClick],
   );
 
   function handleLeft(event: MouseEvent<HTMLButtonElement>) {
@@ -184,8 +186,9 @@ const Pagination = ({
   }
 
   useEffect(() => {
+    console.log('useEffect run');
     updateDisplay(null, currentPage);
-  }, [currentPage, updateDisplay]);
+  }, [updateDisplay, currentPage]);
 
   useEffect(() => {
     setPaginatedItems(children.slice(0, itemsPerPage));
