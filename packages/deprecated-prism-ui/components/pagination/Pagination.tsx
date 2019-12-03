@@ -186,7 +186,6 @@ const Pagination = ({
   }
 
   useEffect(() => {
-    console.log('useEffect run');
     updateDisplay(null, currentPage);
   }, [updateDisplay, currentPage]);
 
