@@ -124,13 +124,14 @@ export const Modal = ({
               <h3 className="psm-modal__header" id={titleId}>
                 {title}
               </h3>
-              <div className="psm-modal__body" role="region" tabIndex={0}>
+              <div className="psm-modal__body" role="region">
                 {children}
               </div>
               <div className="psm-modal__footer">
                 {actions &&
                   actions.length !== 0 &&
                   actions.map((action, index) => (
+                    /* eslint-disable react/no-array-index-key */
                     <button
                       type="button"
                       className={`psm-button${
@@ -142,6 +143,7 @@ export const Modal = ({
                     >
                       {action.label}
                     </button>
+                    /* eslint-enable react/no-array-index-key */
                   ))}
               </div>
             </div>
