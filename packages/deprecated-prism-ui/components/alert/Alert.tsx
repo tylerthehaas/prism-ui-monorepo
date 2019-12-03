@@ -42,8 +42,8 @@ const Alert = ({
     if (recurrent) setDismissed(false);
   }, [dismissed, recurrent]);
 
-  function changeSvgColor(alertType: 'error' | 'info' | 'success' | 'warning') {
-    switch (alertType) {
+  function changeSvgColor(type: 'error' | 'info' | 'success' | 'warning') {
+    switch (type) {
       case 'warning':
         return '#bd5316';
       case 'error':
@@ -67,9 +67,7 @@ const Alert = ({
           role="alert"
         >
           <div className="psm-alert__msg" id="alert-msg">
-            <span className="psm-alert__prefix">{alertPrefix}</span> 
-            {' '}
-            {children}
+            <span className="psm-alert__prefix">{alertPrefix}</span> {children}
           </div>
           <button
             aria-label="Close alert"

@@ -41,14 +41,14 @@ export default ({
   return (
     isOpen && (
       <div
-        onClick={() => setIsSelected(isSelected => !isSelected)}
+        onClick={() => setIsSelected(selectedState => !selectedState)}
         className={`psm-chip${isSelected ? '__selected' : ''} ${className}`}
         role="button"
         data-testid={testid}
         tabIndex={0}
         onKeyDown={event => {
           if (event.key === 'Enter') {
-            setIsSelected(isSelected => !isSelected);
+            setIsSelected(selectedState => !selectedState);
           }
         }}
       >
