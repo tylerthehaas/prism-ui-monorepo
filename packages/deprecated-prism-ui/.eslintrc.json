@@ -1,6 +1,11 @@
 {
   "env": { "jest/globals": true },
-  "extends": ["airbnb-typescript", "prettier", "prettier/@typescript-eslint"],
+  "extends": [
+    "airbnb-typescript",
+    "airbnb/hooks",
+    "prettier",
+    "prettier/@typescript-eslint"
+  ],
   "parser": "@typescript-eslint/parser",
   "plugins": ["prettier", "jest"]
 }
