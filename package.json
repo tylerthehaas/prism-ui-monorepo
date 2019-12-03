@@ -15,6 +15,10 @@
     "test": "tsdx test --env=jsdom",
     "lint": "tsdx lint"
   },
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@github.com/octanner/prism-ui.git"
+  },
   "peerDependencies": {
     "react": ">=16"
   },
