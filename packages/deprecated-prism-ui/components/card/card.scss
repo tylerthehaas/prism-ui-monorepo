@@ -4,7 +4,7 @@
 
 @mixin card-menu {
   cursor: default;
-  background: #FFFFFF;
+  background: #ffffff;
   border: 1px solid $psm-color-gray-300;
   border-radius: 3px;
   box-shadow: 0px 1px 9px rgba(0, 0, 0, 0.25);
@@ -26,7 +26,8 @@
   list-style: none;
   line-height: 150%;
   position: relative;
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     background: white;
   }
 }
@@ -73,12 +74,12 @@
   @include card-menu;
   &-visible {
     @include card-menu;
-    visibility: visible
+    visibility: visible;
   }
   &-hidden {
     @include card-menu;
     display: none;
-    visibility: hidden
+    visibility: hidden;
   }
 }
 
@@ -133,7 +134,7 @@
 .psm-card--status {
   background: rgba(240, 195, 44, 0.3);
   border-radius: 3px;
-  color: #9C5B07;
+  color: #9c5b07;
   font-family: $psm-type-font-header;
   padding: 4px 8px;
 }

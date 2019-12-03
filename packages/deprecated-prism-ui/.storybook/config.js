@@ -1,6 +1,6 @@
 import { configure, addDecorator, addParameters } from '@storybook/react';
 import { DocsPage, DocsContainer } from '@storybook/addon-docs';
-import { withInfo } from '@storybook/addon-info'
+import { withInfo } from '@storybook/addon-info';
 import { withA11y } from '@storybook/addon-a11y';
 
 import theme from './theme';
@@ -13,7 +13,7 @@ addDecorator(withA11y);
 addParameters({
   docs: {
     container: DocsContainer,
-    page: DocsPage
+    page: DocsPage,
   },
   options: {
     theme: theme,
@@ -21,8 +21,11 @@ addParameters({
   info: {
     inline: true,
     maxPropArrayLength: 10,
-    maxPropObjectKeys: 10
-  }
+    maxPropObjectKeys: 10,
+  },
 });
 
-configure(require.context('../components', true, /\.stories\.(js|mdx)$/), module);
+configure(
+  require.context('../components', true, /\.stories\.(js|mdx)$/),
+  module,
+);

@@ -3,9 +3,8 @@
 // took out orange primary color and put in dummy brand color (#ff6008)
 $psm-color-primary-base: #7942dd !default;
 $psm-color-gray-base: #868c8f;
-$psm-color-link-base: #008AE5;
+$psm-color-link-base: #008ae5;
 $psm-link-hover-color: #005393;
-
 
 //this uses primary link instead of primary base, needs to be changed?
 $psm-color-primary-50: alpha-blend($psm-color-primary-base, 0.15, white);

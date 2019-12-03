@@ -82,7 +82,7 @@
 
 .psm-form__max-chars--error {
   @extend %psm-form__max-chars;
-    color: $psm-color-error;
+  color: $psm-color-error;
 }
 
 .psm-form__textarea > ul {

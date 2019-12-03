@@ -58,8 +58,7 @@ $psm-border-width: 1px;
       cursor: pointer;
       background-color: transparent;
 
-      color: $psm-link-hover-color
-
+      color: $psm-link-hover-color;
     }
   }
 
@@ -69,8 +68,7 @@ $psm-border-width: 1px;
     cursor: pointer;
     background-color: transparent;
 
-    color: $psm-link-hover-color
-
+    color: $psm-link-hover-color;
   }
 
   &::-moz-focus-inner {

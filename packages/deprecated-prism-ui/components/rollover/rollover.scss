@@ -18,11 +18,11 @@
 }
 
 .psm-rollover__text-dotted {
-    @extend %psm-rollover;
-    border-bottom: 1px dotted $psm-color-gray-700;
-    line-height: 0.85;
-    cursor: pointer;
-  }
+  @extend %psm-rollover;
+  border-bottom: 1px dotted $psm-color-gray-700;
+  line-height: 0.85;
+  cursor: pointer;
+}
 
 .psm-rollover__text-underlined {
   @extend %psm-rollover;
