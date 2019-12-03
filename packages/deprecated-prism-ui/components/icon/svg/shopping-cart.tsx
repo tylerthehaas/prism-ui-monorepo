@@ -31,5 +31,4 @@ const SVG = ({
   </svg>
 );
 
-
 export default SVG;

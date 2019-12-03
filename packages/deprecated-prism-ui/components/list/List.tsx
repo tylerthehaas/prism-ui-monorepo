@@ -67,7 +67,9 @@ export const List = ({
                 <button
                   aria-label="list menu"
                   className="psm-list--menu-button"
-                  onBlur={() => setMenuOpen(false)}
+                  onBlur={event => {
+                    if (event.relatedTarget === null) setMenuOpen(false);
+                  }}
                   onClick={() => handleMenuClick(index)}
                   tabIndex={0}
                   type="button"

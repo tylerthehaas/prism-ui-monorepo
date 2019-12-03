@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 const SVG = ({
   fill = '#000',
   height = '100%',

@@ -5,8 +5,6 @@ import Pagination from './Pagination';
 
 const arrayToTestWith = [...Array(90).keys()];
 
-const mockFunction = jest.fn();
-
 describe('<Pagination />', () => {
   it('Defaults to opening on page one', async () => {
     const { getByTestId } = render(<Pagination>{arrayToTestWith}</Pagination>);

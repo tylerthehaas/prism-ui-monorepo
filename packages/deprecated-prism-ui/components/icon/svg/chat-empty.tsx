@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 const SVG = ({
   fill = '#000',
   height = '100%',
@@ -34,6 +33,5 @@ const SVG = ({
     </g>
   </svg>
 );
-
 
 export default SVG;

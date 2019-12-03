@@ -38,7 +38,7 @@ const layout = {
   userMenu: [
     {
       linkName: 'Profile',
-      url: '/profile',
+      url: 'https://www.google.com',
     },
     {
       linkName: 'Settings',

@@ -4,6 +4,7 @@ const express = require('express');
 const compression = require('compression');
 const cors = require('cors');
 const helmet = require('helmet');
+const fetch = require('node-fetch');
 
 const whitelist = process.env.OCT_VAULT_SITES_CORS_WHITELIST || [
   `https://vision-${process.env.NODE_ENV}.appreciatehub.com`,
