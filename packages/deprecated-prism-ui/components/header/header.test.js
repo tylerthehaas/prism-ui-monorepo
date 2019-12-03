@@ -1,10 +1,5 @@
 import * as React from 'react';
-import {
-  render,
-  within,
-  fireEvent,
-  getByAltText,
-} from '@testing-library/react';
+import { render, within, fireEvent } from '@testing-library/react';
 
 import Header from './Header';
 
@@ -64,15 +59,30 @@ describe('<Header/>', () => {
     );
   });
   it('displays notification icon with notification count', () => {
-    const { getByTitle, getByLabelText } = render(<Header layout={layout} />);
+    const { queryByLabelText, getByTitle, getByLabelText, rerender } = render(
+      <Header layout={layout} />,
+    );
     expect(getByTitle('notification icon')).toBeInTheDocument();
     expect(
       within(getByLabelText('Notifications')).getByText(/2/i),
     ).toBeInTheDocument();
+    rerender(<Header layout={{ ...layout, notificationCount: 0 }} />);
+    expect(
+      within(queryByLabelText('Notifications')).queryByText(/2/i),
+    ).not.toBeInTheDocument();
   });
   it('calls onClick in menu', () => {
     const { getByAltText, getByText } = render(<Header layout={layout} />);
     fireEvent.click(getByAltText('User Avatar'));
     fireEvent.click(getByText('a thing'));
+  });
+  it('displays empty message when no bank', () => {
+    const noBank = { ...layout, banks: [] };
+    const { getByText, rerender } = render(<Header layout={noBank} />);
+    expect(
+      getByText(/no points balance info at this time/i),
+    ).toBeInTheDocument();
+    rerender(<Header layout={layout} />);
+    expect(getByText(/\d+ pts/i)).toBeInTheDocument();
   });
 });
