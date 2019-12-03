@@ -64,11 +64,19 @@ export const Textbox = ({
     setMessageLength(event.target.value.length);
   }
 
+  let text;
+
+  if (invalid) {
+    text = errorText;
+  } else if (maxChars < textLength) {
+    text = textTooLongMsg;
+  } else {
+    text = infoText;
+  }
+
   return (
     <>
       {inputLabel && (
-        // I think this next line triggers jsx-a11y because it wants the entire component to be nested inside the label, which is not what we want, so I disabled it
-        // eslint-disable-next-line jsx-a11y/label-has-for
         <label
           htmlFor={textAreaId}
           className={`psm-form__label ${className}`}
@@ -122,11 +130,7 @@ export const Textbox = ({
           }`}
           aria-live="assertive"
         >
-          {invalid
-            ? errorText
-            : maxChars < textLength
-            ? textTooLongMsg
-            : infoText}
+          {text}
         </div>
       )}
     </>
