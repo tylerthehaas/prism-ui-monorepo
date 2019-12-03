@@ -61,7 +61,8 @@ export const List = ({
             onMouseLeave={() => setHoverState(true)}
             tabIndex={-1}
           >
-            {item.age}{' '}
+            {item.age}
+            {' '}
             {menu && (
               <>
                 <button

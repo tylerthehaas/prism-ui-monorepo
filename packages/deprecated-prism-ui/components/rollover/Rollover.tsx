@@ -105,7 +105,10 @@ export const Rollover = ({
       onClick={() => expandRollover()}
       tabIndex={0}
     >
-      +{hiddenItems} More
+      +
+      {hiddenItems}
+      {' '}
+More
     </button>
   );
 

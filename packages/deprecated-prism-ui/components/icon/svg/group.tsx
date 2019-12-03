@@ -23,7 +23,8 @@ const SVG = ({
     <g className="nc-icon-wrapper" fill={fill}>
       <path d="M8,6L8,6C6.3,6,5,4.7,5,3v0c0-1.7,1.3-3,3-3h0c1.7,0,3,1.3,3,3v0C11,4.7,9.7,6,8,6z">
         {' '}
-        fill={fill}
+        fill=
+        {fill}
       </path>
       <polygon
         fill={fill}

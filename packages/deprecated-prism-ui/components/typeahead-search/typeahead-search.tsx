@@ -26,7 +26,7 @@ interface SearchState {
   searchResults: JSX.Element[];
 }
 
-export const TypeaheadSearch = ({
+export default ({
   auth = '',
   threshold = 3,
   className = '',
@@ -195,5 +195,3 @@ export const TypeaheadSearch = ({
     </div>
   );
 };
-
-export default TypeaheadSearch;

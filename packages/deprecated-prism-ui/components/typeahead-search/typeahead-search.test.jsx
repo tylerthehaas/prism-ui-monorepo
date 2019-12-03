@@ -22,9 +22,7 @@ describe('<TypeaheadSearch /> unmocked fetch', () => {
     );
     const searchInput = getByTestId('testing-input');
     fireEvent.change(searchInput, { target: { value: 'no auth' } });
-    const errorMessage = await waitForElement(() =>
-      getByText('Not found!'),
-    );
+    const errorMessage = await waitForElement(() => getByText('Not found!'));
     expect(errorMessage).toBeTruthy();
   });
 });
@@ -32,7 +30,7 @@ describe('<TypeaheadSearch /> unmocked fetch', () => {
 describe('<TypeaheadSearch /> mocked fetch', () => {
   beforeEach(() => {
     global.fetch = jest.fn().mockImplementation(() => {
-      const p = new Promise((resolve) => {
+      const p = new Promise(resolve => {
         resolve({
           ok: true,
           json() {
@@ -50,7 +48,9 @@ describe('<TypeaheadSearch /> mocked fetch', () => {
     );
     const searchInput = getByTestId('testing-input');
     fireEvent.change(searchInput, { target: { value: 'young' } });
-    const youngThug = await waitForElement(() => getByText('Adams Arthur | octmigration@octanner.mailinator.com'));
+    const youngThug = await waitForElement(() =>
+      getByText('Adams Arthur | octmigration@octanner.mailinator.com'),
+    );
     expect(youngThug).toBeTruthy();
   });
 });

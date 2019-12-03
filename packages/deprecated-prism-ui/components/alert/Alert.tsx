@@ -67,7 +67,9 @@ const Alert = ({
           role="alert"
         >
           <div className="psm-alert__msg" id="alert-msg">
-            <span className="psm-alert__prefix">{alertPrefix}</span> {children}
+            <span className="psm-alert__prefix">{alertPrefix}</span> 
+            {' '}
+            {children}
           </div>
           <button
             aria-label="Close alert"

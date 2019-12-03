@@ -130,12 +130,16 @@ export const Header = ({
         </span>
         <div className="user-info">
           <span className="user-name">
-            {user.firstName} {user.lastName}
+            {user.firstName} 
+            {' '}
+            {user.lastName}
           </span>
 
           {banks && banks.length > 0 ? (
             <a className="points" href="/">
-              {banks[0].pointsBalance} pts
+              {banks[0].pointsBalance}
+              {' '}
+pts
             </a>
           ) : (
             <span>No points balance info at this time.</span>
