@@ -730,7 +730,8 @@
                 -1 === e.indexOf('Mobile Safari') ||
                 -1 !== e.indexOf('Chrome') ||
                 -1 !== e.indexOf('Windows Phone')) &&
-              window.history && 'pushState' in window.history
+              window.history &&
+              'pushState' in window.history
             );
           })(),
           t = !(-1 === window.navigator.userAgent.indexOf('Trident')),
@@ -3471,8 +3472,8 @@ object-assign
           ? 0 !== o.type
           : r ||
             !(2 < t.length) ||
-              ('o' !== t[0] && 'O' !== t[0]) ||
-              ('n' !== t[1] && 'N' !== t[1])) &&
+            ('o' !== t[0] && 'O' !== t[0]) ||
+            ('n' !== t[1] && 'N' !== t[1])) &&
           ((function(e, t, n, r) {
             if (
               null == t ||
@@ -5235,7 +5236,8 @@ object-assign
           ? e.shouldComponentUpdate(r, i, a)
           : !t.prototype ||
               !t.prototype.isPureReactComponent ||
-              !en(n, r) || !en(o, i);
+              !en(n, r) ||
+              !en(o, i);
       }
       function uo(e, t, n) {
         var r = !1,
@@ -6286,7 +6288,8 @@ object-assign
               'function' == typeof a.getSnapshotBeforeUpdate) ||
               ('function' != typeof a.UNSAFE_componentWillReceiveProps &&
                 'function' != typeof a.componentWillReceiveProps) ||
-              (l === r && u === c) || co(t, a, r, c),
+              (l === r && u === c) ||
+              co(t, a, r, c),
             (Qi = !1),
             (u = t.memoizedState),
             (p = a.state = u),
@@ -6386,7 +6389,7 @@ object-assign
                   0 == (1 & t.mode) &&
                     (a = null !== t.memoizedState ? t.child.child : t.child) !==
                       r.child &&
-                      (o.child = a),
+                    (o.child = a),
                   (r = o.sibling = Qr(l, n, l.expirationTime)),
                   ((n = o).childExpirationTime = 0),
                   (n.return = r.return = t))
@@ -7513,7 +7516,7 @@ object-assign
             var t = Fa.alternate;
             null !== t &&
               null !== (t = t.ref) &&
-                ('function' == typeof t ? t(null) : (t.current = null));
+              ('function' == typeof t ? t(null) : (t.current = null));
           }
           switch (14 & e) {
             case 2:
@@ -7637,8 +7640,8 @@ object-assign
           }
           128 & n &&
             null !== (o = Fa.ref) &&
-              ((i = Fa.stateNode),
-              'function' == typeof o ? o(i) : (o.current = i)),
+            ((i = Fa.stateNode),
+            'function' == typeof o ? o(i) : (o.current = i)),
             512 & n && (Ma = e),
             (Fa = Fa.nextEffect);
         }
@@ -8089,11 +8092,11 @@ object-assign
                       !a &&
                       i &&
                       null !== (o = o.child.sibling) &&
-                        (null !== (l = t.firstEffect)
-                          ? ((t.firstEffect = o).nextEffect = l)
-                          : ((t.firstEffect = t.lastEffect = o),
-                            (o.nextEffect = null)),
-                        (o.effectTag = 8)),
+                      (null !== (l = t.firstEffect)
+                        ? ((t.firstEffect = o).nextEffect = l)
+                        : ((t.firstEffect = t.lastEffect = o),
+                          (o.nextEffect = null)),
+                      (o.effectTag = 8)),
                     (a || i) && (t.effectTag |= 4);
                   break;
                 case 7:
