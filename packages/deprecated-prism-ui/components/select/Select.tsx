@@ -38,6 +38,7 @@ export const Select = ({
       tabIndex={0}
     >
       {content.map((contentSection, index) => (
+        /* eslint-disable react/no-array-index-key */
         <option
           data-testid={`${testid}-option-${index}`}
           key={index}
@@ -45,6 +46,7 @@ export const Select = ({
         >
           {contentSection.text}
         </option>
+        /* eslint-enable react/no-array-index-key */
       ))}
     </select>
   </label>

@@ -4,6 +4,7 @@ import React, {
   MouseEvent,
   KeyboardEvent,
   ReactNode,
+  useCallback,
 } from 'react';
 import shortid from 'shortid';
 import Icon from '../icon/Icon';
@@ -60,7 +61,7 @@ const Pagination = ({
   // beginning or end of the total pages, we want currentPage to change position to keep the total number of
   // page buttons the same, leading to the two conditional statements.
 
-  function getVisiblePages() {
+  const getVisiblePages = useCallback(() => {
     if (currentPage <= 2 || totalPageCount < 5) {
       return [...Array(totalPageCount).keys()].slice(0, 5);
     }
@@ -78,29 +79,32 @@ const Pagination = ({
       currentPage + 1,
       currentPage + 2,
     ];
-  }
+  }, [currentPage, totalPageCount]);
 
   const [visiblePages, setVisiblePages] = useState<
     PaginationState['visiblePages']
   >(getVisiblePages());
 
-  function updateDisplay(
-    event:
-      | MouseEvent<HTMLButtonElement>
-      | KeyboardEvent<HTMLButtonElement>
-      | null,
-    pageNumber: number,
-  ) {
-    setCurrentPage(pageNumber);
-    setVisiblePages(getVisiblePages());
-    setPaginatedItems(
-      children.slice(
-        pageNumber * itemsPerPage,
-        pageNumber * itemsPerPage + itemsPerPage,
-      ),
-    );
-    if (onClick && event) onClick(event);
-  }
+  const updateDisplay = useCallback(
+    (
+      event:
+        | MouseEvent<HTMLButtonElement>
+        | KeyboardEvent<HTMLButtonElement>
+        | null,
+      pageNumber: number,
+    ) => {
+      setCurrentPage(pageNumber);
+      setVisiblePages(getVisiblePages());
+      setPaginatedItems(
+        children.slice(
+          pageNumber * itemsPerPage,
+          pageNumber * itemsPerPage + itemsPerPage,
+        ),
+      );
+      if (onClick && event) onClick(event);
+    },
+    [children, getVisiblePages, itemsPerPage, onClick],
+  );
 
   function handleLeft(event: MouseEvent<HTMLButtonElement>) {
     updateDisplay(event, currentPage - 1);
@@ -181,8 +185,7 @@ const Pagination = ({
 
   useEffect(() => {
     updateDisplay(null, currentPage);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [children, currentPage]);
+  }, [currentPage, updateDisplay]);
 
   useEffect(() => {
     setPaginatedItems(children.slice(0, itemsPerPage));

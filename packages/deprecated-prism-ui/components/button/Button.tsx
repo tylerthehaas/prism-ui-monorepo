@@ -21,7 +21,7 @@ export interface ButtonProps {
   buttonStyle?: 'primary' | 'text' | 'menu';
 }
 
-export const Button = ({
+export default ({
   className = '',
   'data-testid': testid = '',
   disabled = false,
@@ -67,7 +67,3 @@ export const Button = ({
     </>
   );
 };
-
-// react-docgen-typescript-loader needs a named export to work,
-// but default exports are convenient so we're using both
-export default Button;

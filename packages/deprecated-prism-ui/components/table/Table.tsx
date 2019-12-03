@@ -29,14 +29,8 @@ interface TableData {
   [key: string]: string;
 }
 
-export const Table = ({
-  actions = [
-    {
-      label: 'action label',
-      onClick: () => alert('Table Action'),
-      primary: true,
-    },
-  ],
+export default ({
+  actions,
   box = false,
   className = '',
   columns = [
@@ -56,6 +50,7 @@ export const Table = ({
   <div
     className={`psm-table__wrapper ${box ? 'psm-table--box' : ''} ${className}`}
   >
+    {/* eslint-disable react/no-array-index-key */}
     {actions && actions.length !== 0 && (
       <div className="psm-table__actions">
         {actions.map((action, index) => (
@@ -103,10 +98,8 @@ export const Table = ({
             ))}
           </tr>
         ))}
+        {/* eslint-enable react/no-array-index-key */}
       </tbody>
     </table>
   </div>
 );
-
-// docgen relies on the component having a named export, so we use both named and default
-export default Table;
