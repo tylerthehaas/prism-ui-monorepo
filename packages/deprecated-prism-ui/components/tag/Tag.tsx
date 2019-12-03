@@ -14,7 +14,7 @@ interface TagState {
   open: boolean;
 }
 
-export const Tag = ({
+export default ({
   className = '',
   content = '',
   'data-testid': testid = '',
@@ -44,5 +44,3 @@ export const Tag = ({
     )
   );
 };
-
-export default Tag;

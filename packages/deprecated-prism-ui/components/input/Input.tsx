@@ -44,7 +44,7 @@ const defaultIcon: iconType = {
   name: 'tail-right',
 };
 
-export const Input = ({
+export default ({
   className = '',
   disabled = false,
   errorText = '',
@@ -133,5 +133,3 @@ export const Input = ({
     </>
   );
 };
-
-export default Input;

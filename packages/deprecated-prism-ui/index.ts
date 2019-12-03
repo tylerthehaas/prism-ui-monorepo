@@ -1,24 +1,50 @@
 import './components/index';
 import './components/core/index.scss';
-export { default as Alert } from './components/alert/Alert';
-export { default as Avatar } from './components/avatar/Avatar';
-export { default as Button } from './components/button/Button';
-export { default as Dropdown } from './components/dropdown/Dropdown';
-export { default as Card } from './components/card/Card';
-export { default as Chip } from './components/chip/Chip';
-export { default as Hr } from './components/hr/Hr';
-export { default as Header } from './components/header/Header';
-export { default as Icon } from './components/icon/Icon';
-export { default as Input } from './components/input/Input';
-export { default as List } from './components/list/List';
-export { default as Modal } from './components/modal/Modal';
-export { default as Nav } from './components/nav/Nav';
-export { default as Radio } from './components/radio/Radio';
-export { default as Rollover } from './components/rollover/Rollover';
-export { default as Select } from './components/select/Select';
-export { default as Slider } from './components/slider/slider';
-export { default as Spinner } from './components/spinner/Spinner';
-export { default as Table } from './components/table/Table';
-export { default as Tag } from './components/tag/Tag';
-export { default as Textbox } from './components/textbox/textbox';
-export { default as Toggle } from './components/toggle/Toggle';
+
+import Alert from './components/alert/Alert';
+import Avatar from './components/avatar/Avatar';
+import Button from './components/button/Button';
+import Dropdown from './components/dropdown/Dropdown';
+import Card from './components/card/Card';
+import Chip from './components/chip/Chip';
+import Hr from './components/hr/Hr';
+import Header from './components/header/Header';
+import Icon from './components/icon/Icon';
+import Input from './components/input/Input';
+import List from './components/list/List';
+import Modal from './components/modal/Modal';
+import Nav from './components/nav/Nav';
+import Radio from './components/radio/Radio';
+import Rollover from './components/rollover/Rollover';
+import Select from './components/select/Select';
+import Slider from './components/slider/slider';
+import Spinner from './components/spinner/Spinner';
+import Table from './components/table/Table';
+import Tag from './components/tag/Tag';
+import Textbox from './components/textbox/textbox';
+import Toggle from './components/toggle/Toggle';
+
+export {
+  Alert,
+  Avatar,
+  Button,
+  Dropdown,
+  Card,
+  Chip,
+  Hr,
+  Header,
+  Icon,
+  Input,
+  List,
+  Modal,
+  Nav,
+  Radio,
+  Rollover,
+  Select,
+  Slider,
+  Spinner,
+  Table,
+  Tag,
+  Textbox,
+  Toggle,
+};

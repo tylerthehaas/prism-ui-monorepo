@@ -25,11 +25,7 @@ interface ListState {
   hoverState: boolean;
 }
 
-export const List = ({
-  className = '',
-  listItems = [],
-  menu = [],
-}: ListProps) => {
+export default ({ className = '', listItems = [], menu = [] }: ListProps) => {
   const [menuOpen, setMenuOpen] = useState<ListState['menuOpen']>(false);
   const [hoverState, setHoverState] = useState<ListState['hoverState']>(true);
   const [activeItem, setActiveItem] = useState<ListState['activeItem']>(0);
@@ -61,8 +57,7 @@ export const List = ({
             onMouseLeave={() => setHoverState(true)}
             tabIndex={-1}
           >
-            {item.age}
-            {' '}
+            {item.age}{' '}
             {menu && (
               <>
                 <button
@@ -109,5 +104,3 @@ export const List = ({
     </ul>
   );
 };
-
-export default List;

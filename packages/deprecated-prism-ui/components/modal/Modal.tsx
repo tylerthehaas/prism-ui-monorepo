@@ -42,7 +42,7 @@ interface ModalState {
 
 let TITLE_ID_INC = 0;
 
-export const Modal = ({
+export default ({
   actions,
   children,
   className = '',
@@ -153,5 +153,3 @@ export const Modal = ({
     </>
   );
 };
-
-export default Modal;

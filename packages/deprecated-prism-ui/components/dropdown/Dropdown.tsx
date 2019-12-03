@@ -41,7 +41,7 @@ export interface DropdownState {
   showMenu: boolean;
 }
 
-export const Dropdown = ({
+export default ({
   children = false,
   className = '',
   'data-testid': testid = 'dropdown-label',
@@ -282,5 +282,3 @@ export const Dropdown = ({
     </div>
   );
 };
-
-export default Dropdown;

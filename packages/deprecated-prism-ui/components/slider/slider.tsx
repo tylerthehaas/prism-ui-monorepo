@@ -21,7 +21,7 @@ export type SliderState = {
   showMax: boolean;
 };
 
-export const Slider = ({
+export default ({
   className = '',
   'data-testid': testid = '',
   defaultValue = 1,
@@ -142,5 +142,3 @@ export const Slider = ({
     </div>
   );
 };
-
-export default Slider;

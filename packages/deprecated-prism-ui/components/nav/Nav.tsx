@@ -31,7 +31,7 @@ export interface Tab {
   tabName: string;
 }
 
-export const Nav = ({
+export default ({
   className = '',
   'data-testid': testid = '',
   horizontal = false,
@@ -80,5 +80,3 @@ export const Nav = ({
     </ul>
   );
 };
-
-export default Nav;

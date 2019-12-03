@@ -30,7 +30,7 @@ function getAvatarContent(initials: string, src?: string) {
   );
 }
 
-export const Avatar = ({
+export default ({
   className = '',
   'data-testid': testid = '',
   initials = '',
@@ -43,5 +43,3 @@ export const Avatar = ({
     </div>
   );
 };
-
-export default Avatar;

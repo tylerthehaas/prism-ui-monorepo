@@ -8,7 +8,7 @@ export interface SpinnerProps {
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 }
 
-export const Spinner = ({
+export default ({
   className = '',
   'data-testid': testid = 'spinner',
   size = 'md',
@@ -20,5 +20,3 @@ export const Spinner = ({
     <div />
   </div>
 );
-
-export default Spinner;

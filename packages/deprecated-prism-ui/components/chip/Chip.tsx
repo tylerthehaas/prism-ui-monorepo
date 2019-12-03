@@ -19,7 +19,7 @@ interface ChipState {
   isSelected: boolean;
 }
 
-export const Chip = ({
+export default ({
   className = '',
   closeAction,
   'data-testid': testid = '',
@@ -68,7 +68,3 @@ export const Chip = ({
     )
   );
 };
-
-// react-docgen-typescript-loader needs a named export to work,
-// but default exports are convenient so we're using both
-export default Chip;

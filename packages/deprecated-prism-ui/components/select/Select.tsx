@@ -18,7 +18,7 @@ interface Content {
   value?: number | string;
 }
 
-export const Select = ({
+export default ({
   className = '',
   content,
   'data-testid': testid = 'select',
@@ -51,5 +51,3 @@ export const Select = ({
     </select>
   </label>
 );
-
-export default Select;

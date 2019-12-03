@@ -26,7 +26,7 @@ interface RolloverState {
   visibleContent: JSX.Element[];
 }
 
-export const Rollover = ({
+export default ({
   className = '',
   content = [],
   'data-testid': testid = '',
@@ -105,10 +105,7 @@ export const Rollover = ({
       onClick={() => expandRollover()}
       tabIndex={0}
     >
-      +
-      {hiddenItems}
-      {' '}
-More
+      +{hiddenItems} More
     </button>
   );
 
@@ -158,5 +155,3 @@ More
     </div>
   );
 };
-
-export default Rollover;

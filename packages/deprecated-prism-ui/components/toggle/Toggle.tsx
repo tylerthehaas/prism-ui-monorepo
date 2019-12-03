@@ -18,7 +18,7 @@ type ToggleState = {
   active: boolean;
 };
 
-export const Toggle = ({
+export default ({
   className = '',
   color = '',
   'data-testid': testid = '',
@@ -80,5 +80,3 @@ export const Toggle = ({
     </label>
   );
 };
-
-export default Toggle;

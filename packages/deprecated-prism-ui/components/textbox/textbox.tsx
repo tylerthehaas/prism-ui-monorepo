@@ -38,7 +38,7 @@ export type TextboxState = {
   textLength: number;
 };
 
-export const Textbox = ({
+export default ({
   characterText = 'Characters',
   className = '',
   'data-testid': testid = '',
@@ -136,5 +136,3 @@ export const Textbox = ({
     </>
   );
 };
-
-export default Textbox;

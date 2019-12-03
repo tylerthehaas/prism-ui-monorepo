@@ -23,7 +23,7 @@ interface RadioState {
   selected: number;
 }
 
-export const Radio = ({
+export default ({
   buttons = [],
   className = '',
   'data-testid': testid = '',
@@ -69,5 +69,3 @@ export const Radio = ({
     </fieldset>
   );
 };
-
-export default Radio;

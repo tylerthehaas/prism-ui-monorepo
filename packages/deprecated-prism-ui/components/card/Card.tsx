@@ -25,7 +25,7 @@ interface CardState {
   menuOpen: boolean;
 }
 
-export const Card = ({
+export default ({
   cardMenu = false,
   cardTitle = '',
   children,
@@ -100,6 +100,3 @@ export const Card = ({
     </div>
   );
 };
-// react-docgen-typescript-loader needs a named export to work,
-// but default exports are convenient so we're using both
-export default Card;
