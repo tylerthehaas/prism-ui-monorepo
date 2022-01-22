@@ -58,7 +58,7 @@
     "@types/lodash.throttle": "^4.1.6",
     "@types/shortid": "0.0.29",
     "babel-plugin-require-context-hook": "^1.0.0",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^3.1.1",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-focus-lock": "^2.0.5",
